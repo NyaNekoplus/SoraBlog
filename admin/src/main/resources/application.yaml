@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    username: sa
+    password: kasuganosora520
+    url: jdbc:sqlserver://localhost:1433;database=Blog
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    data:
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+mybatis-plus:
+  type-aliases-package: com.vincent.admin.entity
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: false # 关闭驼峰命名
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台输出sql语句,测试
+  global-config:
+    db-config:
+      table-underline: false
+      id-type: auto # 主键类型
+    banner: false
+
+server:
+  port: 8080
