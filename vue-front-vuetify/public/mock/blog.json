@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "color": "#1F7087",
+    "src": "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
+    "title": "Supermodel",
+    "artist": "Foster the People",
+    "length": 500
+  },
+  {
+    "id": 2,
+    "color": "#952175",
+    "src": "https://cdn.vuetifyjs.com/images/cards/halcyon.png",
+    "title": "Halcyon Days",
+    "artist": "Ellie Goulding",
+    "length": 350
+  },
+  {
+    "id": 3,
+    "color": "#1F7087",
+    "src": "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
+    "title": "Supermodel",
+    "artist": "Foster the People",
+    "length": 400
+  },
+  {
+    "id": 4,
+    "color": "#952175",
+    "src": "https://cdn.vuetifyjs.com/images/cards/halcyon.png",
+    "title": "Halcyon Days",
+    "artist": "Ellie Goulding",
+    "length": 690
+  },
+  {
+    "id": 5,
+    "color": "#1F7087",
+    "src": "https://cdn.vuetifyjs.com/images/cards/foster.jpg",
+    "title": "Supermodel",
+    "artist": "Foster the People",
+    "length": 540
+  },
+  {
+    "id": 6,
+    "color": "#952175",
+    "src": "https://cdn.vuetifyjs.com/images/cards/halcyon.png",
+    "title": "Halcyon Days",
+    "artist": "Ellie Goulding",
+    "length": 590
+  }
+]
+  

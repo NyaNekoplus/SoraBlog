@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/admin/admin.iml" filepath="$PROJECT_DIR$/admin/admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/vue-admin/vue-admin.iml" filepath="$PROJECT_DIR$/vue-admin/vue-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/vue-front/vue-front.iml" filepath="$PROJECT_DIR$/vue-front/vue-front.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vue-front-thridp/vue-front-thridp.iml" filepath="$PROJECT_DIR$/vue-front-thridp/vue-front-thridp.iml" />
       <module fileurl="file://$PROJECT_DIR$/vue-front-vuetify/vue-front-vuetify.iml" filepath="$PROJECT_DIR$/vue-front-vuetify/vue-front-vuetify.iml" />
     </modules>
   </component>

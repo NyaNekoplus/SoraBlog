@@ -1,13 +1,10 @@
 <template>
-  <v-footer>
-
-  </v-footer>
 
 </template>
 
 <script>
 export default {
-  name: "SoraFooter",
+  name: "404",
   data() {
     return {}
   }

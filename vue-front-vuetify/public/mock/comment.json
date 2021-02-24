@@ -1,0 +1,34 @@
+[
+  {
+    "uid": 1,
+    "user": "tsai",
+    "content": "そらだいすき～",
+    "avatar": "@/assets/sora.png",
+    "reply": [
+      {
+        "uid": 2,
+        "user": "sora",
+        "content": "あなた、だいすき",
+        "avatar": "@/assets/sora.png",
+        "reply": [
+          {
+          "uid": 1,
+          "user": "tsai",
+          "content": "♥",
+          "avatar": "@/assets/sora.png",
+          "reply": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "uid": 2,
+    "user": "sora",
+    "content": "そらだいすき～",
+    "avatar": "@/assets/sora.png"
+  }
+
+]
+
+

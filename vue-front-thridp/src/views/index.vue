@@ -32,13 +32,7 @@ export default {
     BlogChunk: ()=>import('@/components/blog'),
   },
   data() {
-    return {
-      pageYOffset: 0
-    }
-  },
-
-  watch:{
-
+    return {}
   }
 }
 </script>
