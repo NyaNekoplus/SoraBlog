@@ -1,12 +1,12 @@
 <template>
-  <v-fade-transition mode="out-in">
+  <div>
     <router-view />
-  </v-fade-transition>
+  </div>
 </template>
 
 <script>
 // Styles
-import '@/styles/reference.css'
+import '@/styles/style.css'
 
 export default {
   name: 'App',

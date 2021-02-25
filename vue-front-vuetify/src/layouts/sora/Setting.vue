@@ -1,238 +1,73 @@
 <template>
-  <div id="settings-wrapper">
-    <v-card
-        id="settings"
-        class="py-2 px-4"
-        color="rgba(0, 0, 0, .3)"
-        dark
-        flat
-        link
-        min-width="100"
-        style="position: fixed; top: 115px; right: -35px; border-radius: 8px; z-index: 1;"
-    >
-      <v-icon large>
-        mdi-cog
-      </v-icon>
-    </v-card>
+  <div class="site-statistics" v-if="site_statistics">
+    <script type="text/javascript"><?php echo akina_option('site_statistics'); ?></script>
+  </div>
 
-    <v-menu
-        v-model="menu"
-        :close-on-content-click="false"
-        activator="#settings"
-        bottom
-        content-class="v-settings"
-        left
-        nudge-left="8"
-        offset-x
-        origin="top right"
-        transition="scale-transition"
-    >
-      <v-card
-          class="text-center mb-0"
-          width="300"
-      >
-        <v-card-text>
-          <strong class="mb-3 d-inline-block">SIDEBAR FILTERS</strong>
+  <div class="changeSkin-gear no-select" style="bottom: -999px;">
+    <div class="keys">
+        <span id="open-skinMenu">
+		<i class="iconfont icon-gear inline-block rotating"></i>&nbsp; 切换主题 | SCHEME TOOL
+        </span>
+    </div>
+  </div>
+  <div class="skin-menu no-select">
+    <div class="theme-controls row-container">
+      <ul class="menu-list">
+        <li id="white-bg">
+          <i class="fa fa-television" aria-hidden="true"></i>
+        </li><!--Default-->
+        <li id="sakura-bg">
+          <i class="iconfont icon-sakura"></i>
+        </li><!--Sakura-->
+        <li id="gribs-bg">
+          <i class="fa fa-slack" aria-hidden="true"></i>
+        </li><!--Grids-->
+        <li id="KAdots-bg">
+          <i class="iconfont icon-dots"></i>
+        </li><!--Dots-->
+        <li id="totem-bg">
+          <i class="fa fa-superpowers" aria-hidden="true"></i>
+        </li><!--Orange-->
+        <li id="pixiv-bg">
+          <i class="iconfont icon-pixiv"></i>
+        </li><!--Start-->
+        <li id="bing-bg">
+          <i class="iconfont icon-bing"></i>
+        </li><!--Bing-->
+        <li id="dark-bg">
+          <i class="fa fa-moon-o" aria-hidden="true"></i>
+        </li><!--Night-->
+      </ul>
+    </div>
+    <div class="font-family-controls row-container">
+      <button type="button" class="control-btn-serif selected" data-mode="serif"
+              onclick="mashiro_global.font_control.change_font()">Serif</button>
+      <button type="button" class="control-btn-sans-serif" data-mode="sans-serif"
+              onclick="mashiro_global.font_control.change_font()">Sans Serif</button>
+    </div>
+  </div>
+  <canvas id="night-mode-cover"></canvas>
 
-          <v-item-group
-              v-model="color"
-              mandatory
-          >
-            <v-item
-                v-for="color in colors"
-                :key="color"
-                :value="color"
-            >
-              <template v-slot="{ active, toggle }">
-                <v-avatar
-                    :class="active && 'v-settings__item--active'"
-                    :color="color"
-                    class="v-settings__item mx-1"
-                    size="25"
-                    @click="toggle"
-                />
-              </template>
-            </v-item>
-          </v-item-group>
+  <aside v-if="akina_option('sakura_widget')" id="secondary" class="widget-area" role="complementary" style="left: -400px;">
+    <div class="heading">
+      <!--<?php _e('Widgets') /*小工具*/ ?>
+      在WordPress 中，__()函数和__e()函数被用来识别php文件中被标示的、需要被翻译成其它语言或本地化的字符串。-->
+    </div>
+    <div class="sakura_widget">
+      <!--<?php if (function_exists('dynamic_sidebar') && dynamic_sidebar('sakura_widget')) : endif; ?>-->
+    </div>
+    <div class="show-hide-wrap"><button class="show-hide"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 32 32"><path d="M22 16l-10.105-10.6-1.895 1.987 8.211 8.613-8.211 8.612 1.895 1.988 8.211-8.613z"></path></svg></button></div>
+  </aside>
 
-          <v-divider class="my-4 secondary" />
 
-          <strong class="mb-3 d-inline-block">SIDEBAR BACKGROUND</strong>
-
-          <v-item-group
-              v-model="gradient"
-              mandatory
-          >
-            <v-item
-                v-for="(scrim, index) in gradients"
-                :key="scrim"
-                :value="index"
-                class="mx-1"
-            >
-              <template v-slot="{ active, toggle }">
-                <v-avatar
-                    :class="active && 'v-settings__item--active'"
-                    :color="scrim"
-                    class="v-settings__item"
-                    size="24"
-                    @click="toggle"
-                />
-              </template>
-            </v-item>
-          </v-item-group>
-
-          <v-divider class="my-4 secondary" />
-
-          <v-row
-              align="center"
-              no-gutters
-          >
-            <v-col cols="auto">
-              Dark Mode
-            </v-col>
-
-            <v-spacer />
-
-            <v-col cols="auto">
-              <v-switch
-                  v-model="$vuetify.theme.dark"
-                  class="ma-0 pa-0"
-                  color="secondary"
-                  hide-details
-              />
-            </v-col>
-          </v-row>
-
-          <v-divider class="my-4 secondary" />
-
-          <v-row
-              align="center"
-              no-gutters
-          >
-            <v-col cols="auto">
-              Sidebar Mini
-            </v-col>
-
-            <v-spacer />
-
-            <v-col cols="auto">
-              <v-switch
-                  v-model="mini"
-                  class="ma-0 pa-0"
-                  color="secondary"
-                  hide-details
-              />
-            </v-col>
-          </v-row>
-
-          <v-divider class="my-4 secondary" />
-
-          <v-row
-              align="center"
-              no-gutters
-          >
-            <v-col cols="auto">
-              Sidebar Image
-            </v-col>
-
-            <v-spacer />
-
-            <v-col cols="auto">
-              <v-switch
-                  v-model="drawerImage"
-                  class="ma-0 pa-0"
-                  color="secondary"
-                  hide-details
-              />
-            </v-col>
-          </v-row>
-
-          <v-divider class="my-4 secondary" />
-
-          <strong class="mb-3 d-inline-block">IMAGES</strong>
-
-          <v-card
-              :disabled="!drawerImage"
-              flat
-          >
-            <v-item-group
-                v-model="image"
-                class="d-flex justify-space-between mb-3"
-            >
-              <v-item
-                  v-for="(img, index) in images"
-                  :key="img"
-                  :value="index"
-                  class="mx-1"
-              >
-                <template v-slot="{ active, toggle }">
-                  <v-sheet
-                      :class="active && 'v-settings__item--active'"
-                      class="d-inline-block v-settings__item"
-                      @click="toggle"
-                  >
-                    <v-img
-                        :src="img"
-                        height="100"
-                        width="50"
-                    />
-                  </v-sheet>
-                </template>
-              </v-item>
-            </v-item-group>
-          </v-card>
-
-          <v-btn
-              block
-              class="mb-3"
-              color="grey darken-1"
-              dark
-              href="https://vuetifyjs.com/components/api-explorer"
-              rel="noopener"
-              target="_blank"
-          >
-            Vuetify Documentation
-          </v-btn>
-
-          <v-btn
-              block
-              color="info"
-              href="https://store.vuetifyjs.com/products/vuetify-material-dashboard-free"
-              rel="noopener"
-              target="_blank"
-          >
-            Get Free Demo
-          </v-btn>
-
-          <div class="my-12" />
-
-          <div>
-            <strong class="mb-3 d-inline-block">THANK YOU FOR SHARING!</strong>
-          </div>
-
-          <v-btn
-              class="ma-1"
-              color="#55acee"
-              dark
-              rounded
-          >
-            <v-icon>mdi-twitter</v-icon>
-            - 45
-          </v-btn>
-
-          <v-btn
-              class="ma-1"
-              color="#3b5998"
-              dark
-              default
-              rounded
-          >
-            <v-icon>mdi-facebook</v-icon>
-            - 50
-          </v-btn>
-        </v-card-text>
-      </v-card>
-    </v-menu>
+  <div v-if="akina_option('aplayer_server') != 'off'"
+       id="aplayer-float" style="z-index: 100;"
+       class="aplayer"
+       data-id="<?php echo akina_option('aplayer_playlistid', ''); ?>"
+       data-server="<?php echo akina_option('aplayer_server'); ?>"
+       data-type="playlist"
+       data-fixed="true"
+       data-theme="orange">
   </div>
 </template>
 

@@ -1,22 +1,9 @@
 <template>
-  <v-main
-      style="background-repeat: repeat;background-image: url(https://view.moezx.cc/images/2018/01/10/star02.png);">
-    <!--
-    <v-img
-        eager="true"
-        :src="background"
-        contain="true"
-        style="background-repeat: repeat;"
-    >
-      <v-container fluid>
-        <router-view :key="$router.path"/>
-      </v-container>
-    </v-img>
-    -->
-    <v-container fluid>
+
+  <div id="content" class="site-content">
       <router-view :key="$router.path"/>
-    </v-container>
-  </v-main>
+  </div>
+
 </template>
 
 <script>

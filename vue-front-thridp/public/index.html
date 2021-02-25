@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html lang="">
   <head>
+      <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+      <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+      <!--
+      <title itemprop="name"><?php global $page, $paged;wp_title( '-', true, 'right' );
+bloginfo( 'name' );$site_description = get_bloginfo( 'description', 'display' );
+if ( $site_description && ( is_home() || is_front_page() ) ) echo " - $site_description";if ( $paged >= 2 || $page >= 2 ) echo ' - ' . sprintf( __( 'page %s ','sakura'), max( $paged, $page ) );/*第 %s 页*/?>
+      </title>
+      <?php
+if (akina_option('akina_meta') == true) {
+	$keywords = '';
+	$description = '';
+	if ( is_singular() ) {
+		$keywords = '';
+		$tags = get_the_tags();
+		$categories = get_the_category();
+		if ($tags) {
+			foreach($tags as $tag) {
+				$keywords .= $tag->name . ',';
+      };
+      };
+      if ($categories) {
+      foreach($categories as $category) {
+      $keywords .= $category->name . ',';
+      };
+      };
+      $description = mb_strimwidth( str_replace("\r\n", '', strip_tags($post->post_content)), 0, 240, '…');
+      } else {
+      $keywords = akina_option('akina_meta_keywords');
+      $description = akina_option('akina_meta_description');
+      };
+      ?>
+            <?php } ?>
+      -->
+      <meta name="description" content="<?php echo $description; ?>" />
+      <meta name="keywords" content="<?php echo $keywords; ?>" />
+
+      <link rel="shortcut icon" href="<%= BASE_URL %>favicon.ico"/>
+
+      <meta name="theme-color" content="#31363b">
+      <meta http-equiv="x-dns-prefetch-control" content="on">
+
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
-  <body>
+  <body class="home blog hfeed chinese-font">
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
