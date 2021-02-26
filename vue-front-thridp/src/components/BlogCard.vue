@@ -1,4 +1,5 @@
 <template>
+  <!--
   //function custom_short_excerpt($excerpt){
   //	return substr($excerpt, 0, 120);
   //}
@@ -18,27 +19,33 @@
 
   //add_filter( 'excerpt_length', 'custom_excerpt_length', 120 );
   ?>
-  <article class="post post-list-thumb <?php echo $class; ?>" itemscope="" itemtype="http://schema.org/BlogPosting">
+  -->
+  <article class="post post-list-thumb post-list-show" itemscope="" itemtype="http://schema.org/BlogPosting">
     <div class="post-thumb">
       <a href="<?php the_permalink(); ?>"><img class="lazyload" src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.1/img/svg/loader/orange.progress-bar-stripe-loader.svg" data-src="<?php echo $post_img; ?>"></a>
     </div><!-- thumbnail-->
     <div class="post-content-wrap">
       <div class="post-content">
         <div class="post-date">
-          <i class="iconfont icon-time"></i><?php echo poi_time_since(strtotime($post->post_date_gmt)); ?>
-          <?php if(is_sticky()) : ?>
-          &nbsp;<i class="iconfont hotpost icon-hot"></i>
-          <?php endif ?>
+          <i class="iconfont icon-time"></i>php echo poi_time_since(strtotime($post->post_date_gmt));
+          <div v-if="isTop"><!-- is_sticky():是否置顶 -->
+            &nbsp;<i class="iconfont hotpost icon-hot"></i>
+          </div>
+
         </div>
-        <a href="<?php the_permalink(); ?>" class="post-title"><h3><?php the_title();?></h3></a>
+        <a href="<?php the_permalink(); ?>" class="post-title"><h3>?php the_title();?</h3></a>
         <div class="post-meta">
-          <span><i class="iconfont icon-attention"></i><?php echo get_post_views(get_the_ID()).' '._n('Hit','Hits',get_post_views(get_the_ID()),'sakura')/*热度*/?></span>
-          <span class="comments-number"><i class="iconfont icon-mark"></i><?php comments_popup_link('NOTHING', '1 '.__("Comment","sakura")/*条评论*/, '% '.__("Comments","sakura")/*条评论*/); ?></span>
-          <span><i class="iconfont icon-file"></i><a href="<?php echo esc_url(get_category_link($the_cat[0]->cat_ID)); ?>"><?php echo $the_cat[0]->cat_name; ?></a>
+          <span><i class="iconfont icon-attention"></i>?php echo get_post_views(get_the_ID()).' '._n('Hit','Hits',get_post_views(get_the_ID()),'sakura')/*热度*/?</span>
+          <span class="comments-number"><i class="iconfont icon-mark"></i>?php comments_popup_link('NOTHING', '1 '.__("Comment","sakura")/*条评论*/, '% '.__("Comments","sakura")/*条评论*/); ?</span>
+          <span><i class="iconfont icon-file"></i><a href="<?php echo esc_url(get_category_link($the_cat[0]->cat_ID)); ?>">?php echo $the_cat[0]->cat_name; ?</a>
 					</span>
         </div>
         <div class="float-content">
-          <?php substr(the_excerpt() , 0 , 3); ?>
+          <!-- 提取摘要
+              the_excerpt()
+              输出当前文章的摘要，并会附上”[…]”，这不是”更多”的链接。如果你没提供一篇文章明确的摘要（后台文章编辑器的可选摘要区域），它将自动摘录文章内容中前55个字作为摘要。而HTML标签和图片都会从摘要内容中去除
+          -->
+          <p>当我们需要用 GraphQL 查询多层套嵌的数据，比如像 WordPress 这样套嵌的评论信息时，通常的写法是： { posts(first: 100)</p>
           <div class="post-bottom">
             <a href="<?php the_permalink(); ?>" class="button-normal"><i class="iconfont icon-caidan"></i></a>
           </div>
@@ -46,22 +53,27 @@
       </div>
     </div>
   </article>
-  <?php
-endwhile;
+
 </template>
 
 <script>
-import AppCard from "@/components/app/Card";
+//import AppCard from "@/components/app/Card";
 export default {
   name: "BlogCard",
   props: {
 
   },
-  components: {AppCard},
-  data: () => ({}),
+  //components: {AppCard},
+  data: () => ({
+    isTop: true,
+  }),
 }
 </script>
 
 <style>
-.v-
+.post-list-show {
+  animation: post-list-show .5s;
+  -webkit-animation: post-list-show .5s;
+  opacity: 1;
+}
 </style>
