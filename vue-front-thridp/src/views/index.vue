@@ -1,7 +1,11 @@
 <template>
   <div>
-    思绪如风，来得快去得也快，偶尔在这里停留
 
+
+    <div class="notice" style="margin-top:60px">
+      <i class="iconfont icon-notification"></i>
+      <div class="notice-content">思绪如风，来得快去得也快，偶尔在这里停留  ~&gt;ω&lt;</div>
+    </div>
     <div class="top-feature-row"><h1 class="fes-title" style="font-family: 'Ubuntu', sans-serif;"><i
         class="fa fa-anchor" aria-hidden="true"></i> START:DASH!!</h1>
       <div class="top-feature-v2">
@@ -32,7 +36,7 @@
 
       <main id="main" class="site-main" role="main">
 
-        <div v-for="i in n=3" :key="i">
+        <div v-for="i in n=10" :key="i">
           <blog-card></blog-card>
         </div>
 

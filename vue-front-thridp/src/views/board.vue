@@ -1,12 +1,10 @@
 <template>
-  <div id="page" class="site wrapper">
-
-  </div>
+  <!-- 留言板 -->
 </template>
 
 <script>
 export default {
-  name: "SiteWapper",
+  name: "board",
   data: () => ({}),
 }
 </script>

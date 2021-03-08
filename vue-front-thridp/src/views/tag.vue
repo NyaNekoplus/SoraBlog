@@ -1,15 +1,11 @@
 <template>
-  <div>
-    404
-  </div>
+  <!-- 标签 -->
 </template>
 
 <script>
 export default {
-  name: "404",
-  data() {
-    return {}
-  }
+  name: "tag",
+  data: () => ({}),
 }
 </script>
 

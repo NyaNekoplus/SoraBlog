@@ -38,6 +38,18 @@ if (akina_option('akina_meta') == true) {
       <meta name="keywords" content="<?php echo $keywords; ?>" />
 
       <link rel="shortcut icon" href="<%= BASE_URL %>favicon.ico"/>
+      <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/src/baguetteBox.min.css"/>
+      <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/src/font-awesome.min.css"/>
+      <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/src/font-awesome-animation.min.css"/>
+      <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/src/jquery.fancybox.min.css"/>
+      <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/src/sharejs.css"/>
+      <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/src/third-part.css"/>
+
+      <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/lib.css"/>
+
+      <link rel="stylesheet" href="<%= BASE_URL %>cdn/theme/github.css"/>
+      <link rel="stylesheet" href="<%= BASE_URL %>cdn/theme/sakura.css"/>
+
 
       <meta name="theme-color" content="#31363b">
       <meta http-equiv="x-dns-prefetch-control" content="on">
@@ -47,6 +59,63 @@ if (akina_option('akina_meta') == true) {
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <title><%= htmlWebpackPlugin.options.title %></title>
+
+      <style type="text/css">
+          .site-top .lower nav {display: block !important;}
+          .author-profile i , .post-like a , .post-share .show-share , .sub-text , .we-info a , span.sitename , .post-more i:hover , #pagination a:hover , .post-content a:hover , .float-content i:hover{ color: #dd3333 }
+          .feature i , /*.feature-title span ,*/ .download , .navigator i:hover , .links ul li:before , .ar-time i , span.ar-circle , .object , .comment .comment-reply-link , .siren-checkbox-radio:checked + .siren-checkbox-radioInput:after { background: #dd3333 }
+          ::-webkit-scrollbar-thumb { background: #dd3333 }
+          .download , .navigator i:hover , .link-title , .links ul li:hover , #pagination a:hover , .comment-respond input[type='submit']:hover { border-color: #dd3333 }
+          .entry-content a:hover , .site-info a:hover , .comment h4 a , #comments-navi a.prev , #comments-navi a.next , .comment h4 a:hover , .site-top ul li a:hover , .entry-title a:hover , #archives-temp h3 , span.page-numbers.current , .sorry li a:hover , .site-title a:hover , i.iconfont.js-toggle-search.iconsearch:hover , .comment-respond input[type='submit']:hover, blockquote:before, blockquote:after { color: #dd3333 }
+
+          #aplayer-float .aplayer-lrc-current { color: #dd3333 !important}
+
+          .is-active-link::before, .commentbody:not(:placeholder-shown)~.input-label, .commentbody:focus~.input-label {
+              background-color: #dd3333 !important
+          }
+
+          .commentbody:focus {
+              border-color: #dd3333 !important
+          }
+
+          .insert-image-tips:hover, .insert-image-tips-hover{
+              color: #dd3333;
+              border: 1px solid #dd3333}
+
+          .site-top ul li a:after {
+              background-color: #dd3333}
+
+          .scrollbar,.butterBar-message {
+              background: #dd3333 !important
+          }
+
+          #nprogress .spinner-icon{
+              border-top-color: #dd3333;
+              border-left-color: #dd3333}
+
+          #nprogress .bar {
+              background: #dd3333}
+
+          .changeSkin-gear,.toc{
+              background:rgba(255,255,255,0.8);
+          }
+
+          .search-form--modal .search-form__inner {
+              bottom: unset !important;
+              top: 10% !important;
+          }
+
+          .comments .comments-main {display:block !important;}
+          .comments .comments-hidden {display:none !important;}
+          .centerbg{background-image: url("https://sakura.2heng.xin/wp-json/sakura/v1/image/cover");background-position: center center;background-attachment: inherit;}
+          .rotating {
+              -webkit-animation: rotating 6s linear infinite;
+              -moz-animation: rotating 6s linear infinite;
+              -ms-animation: rotating 6s linear infinite;
+              -o-animation: rotating 6s linear infinite;
+              animation: rotating 6s linear infinite;
+          }
+      </style>
   </head>
   <body class="home blog hfeed chinese-font">
     <noscript>

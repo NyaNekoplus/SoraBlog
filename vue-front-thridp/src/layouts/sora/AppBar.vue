@@ -1,5 +1,5 @@
 <template>
-  <header class="site-header no-select yya" role="banner">
+  <header class="site-header no-select is-homepage gizle" :class="navClass" role="banner">
     <div class="site-top">
       <div class="site-branding">
         <!-- logo start 左上角logo-->
@@ -131,6 +131,9 @@
 export default {
   name: "SoraBar",
   data: () => ({
+    navClass: 'sabit',
+
+
     akina_logo: false,
     shownav: false,
     topSearch: true,
@@ -149,6 +152,26 @@ export default {
       'Updates',
     ],
   }),
+  methods: {
+    isNavbarShow(){
+      const scrollLen = document.documentElement.scrollTop;
+      if (scrollLen === 0){
+        //this.isShow = false;
+        this.navClass = 'sabit';
+        //console.log('到顶了');
+      }else {
+        //this.isShow = true;
+        this.navClass = 'yya';
+        //console.log('移动');
+      }
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', this.isNavbarShow)
+  },
+  unmounted () {
+    window.removeEventListener('scroll', this.isNavbarShow)
+  }
 }
 </script>
 

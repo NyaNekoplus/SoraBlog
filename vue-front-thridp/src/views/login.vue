@@ -1,12 +1,10 @@
 <template>
-  <section id="main-container">
 
-  </section>
 </template>
 
 <script>
 export default {
-  name: "MainContainer",
+  name: "login",
   data: () => ({}),
 }
 </script>

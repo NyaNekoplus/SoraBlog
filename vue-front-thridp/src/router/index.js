@@ -25,6 +25,10 @@ const router = new Router({
             component: Layout,
             children: [
                 { path: '/', component:()=>import('@/views/index') },
+                { path: '/tags', component:()=>import('@/views/tag') },
+                { path: '/about', component:()=>import('@/views/about') },
+                { path: '/message', component:()=>import('@/views/board') },
+                { path: '/:title', component:()=>import('@/views/page') }
             ]
         },
         //{ path:'/login',component:()=>import('@/views/login') },
