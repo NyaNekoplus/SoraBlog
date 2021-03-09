@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul :class="isChild?'children':'commentwrap'" v-for="comment in commentList" :key="comment.id">
-      <li :class="liClass" id="comment-8435">
+      <li :class="liClass" :id="comment.id"><!--id="comment-8435"-->
         <div class="contents">
           <div class="comment-arrow">
             <div class="main shadow">
@@ -31,7 +31,7 @@
                       </a>
                     </h4>
                   </div>
-                  <a rel="nofollow" class="comment-reply-link" data-commentid="8435" data-postid="3137"
+                  <a rel="nofollow" class="comment-reply-link" :id="comment.id" data-commentid="8435" data-postid="3137"
                      data-belowelement="comment-8435" data-respondelement="respond" aria-label="Reply to センカメイ" @click="reply($event)">Reply</a>
                   <div class="right">
                     <div class="info">
@@ -138,6 +138,8 @@
 </template>
 
 <script>
+import {mapMutations} from "vuex";
+
 export default {
   name: "patch",
   props: {
@@ -152,10 +154,13 @@ export default {
     liClass: 'comment even thread-even depth-1'
   }),
   methods: {
+    ...mapMutations(['setToID']),
     reply(e){
       let box = document.getElementById('respond');
       let current = e.currentTarget.parentNode.parentNode.parentNode;
-      console.log('current: '+current);
+      let toId = e.currentTarget.id;
+      this.setToID(toId);
+      console.log('toId: '+toId);
 
       /*
       let divTemp = document.createElement("div"), nodes = null

@@ -1,7 +1,5 @@
 <template>
   <div>
-
-
     <div class="notice" style="margin-top:60px">
       <i class="iconfont icon-notification"></i>
       <div class="notice-content">思绪如风，来得快去得也快，偶尔在这里停留  ~&gt;ω&lt;</div>
@@ -36,9 +34,7 @@
 
       <main id="main" class="site-main" role="main">
 
-        <div v-for="i in n=10" :key="i">
-          <blog-card></blog-card>
-        </div>
+        <main-list></main-list>
 
       </main>
     </div>
@@ -51,7 +47,7 @@
 export default {
   name: "index",
   components: {
-    BlogCard: () => import('@/components/BlogCard'),
+    MainList: () => import('@/components/list'),
   },
   data() {
     return {}

@@ -1,4 +1,4 @@
-import general from "@/util/general";
+import general from "@/utils/general";
 
 
 export default {

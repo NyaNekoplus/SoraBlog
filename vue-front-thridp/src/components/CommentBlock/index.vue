@@ -70,13 +70,13 @@ export default {
             content: '~~~',
             replyList: [
               {
-                id: 2,
-                userName: 'sora',
+                id: 1,
+                userName: 'vincent',
                 content: '~~~',
                 replyList: []
               },
               {
-                id: 2,
+                id: 3,
                 userName: '言峰',
                 content: 'mmm',
                 replyList: []

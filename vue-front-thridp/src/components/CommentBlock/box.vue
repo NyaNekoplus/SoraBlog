@@ -3,13 +3,13 @@
     <h3 id="reply-title" class="comment-reply-title">
       <small><a rel="nofollow" id="cancel-comment-reply-link" style="display:none;" @click="cancelReply">Cancel Reply</a></small><!--href="/theme-sakura/#respond" -->
     </h3>
-    <form action="https://2heng.xin/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+    <form method="post" id="commentform" class="comment-form" novalidate="">
       <p>
         <i class="iconfont icon-markdown"></i> Markdown Supported while
         <i class="fa fa-code" aria-hidden="true"></i>Forbidden
       </p>
       <div class="comment-textarea">
-        <textarea placeholder="你是我一生只会遇见一次的惊喜 ..." name="comment" class="commentbody" id="comment" rows="5" tabindex="4"></textarea>
+        <textarea placeholder="你是我一生只会遇见一次的惊喜 ..." name="comment" class="commentbody" id="comment" rows="5" tabindex="4" v-model="content"></textarea>
         <label class="input-label active">你是我一生只会遇见一次的惊喜 ...</label>
       </div>
       <div id="upload-img-show"></div>
@@ -389,8 +389,9 @@
  transform: translateY(-576px);
  height: 608px;
  "></div></span></div>
-        <div class="menhera-container motion-container" style="display:none;"><a class="emoji-item">(⌒▽⌒)</a> <a
-            class="emoji-item">（￣▽￣）</a> <a class="emoji-item">(=・ω・=)</a> <a class="emoji-item">(｀・ω・´)</a> <a
+        <div class="menhera-container motion-container" style="display:none;">
+          <a class="emoji-item">(⌒▽⌒)</a>
+          <a class="emoji-item">（￣▽￣）</a> <a class="emoji-item">(=・ω・=)</a> <a class="emoji-item">(｀・ω・´)</a> <a
             class="emoji-item">(〜￣△￣)〜</a> <a class="emoji-item">(･∀･)</a> <a class="emoji-item">(°∀°)ﾉ</a> <a
             class="emoji-item">(￣3￣)</a> <a class="emoji-item">╮(￣▽￣)╭</a> <a class="emoji-item">(´_ゝ｀)</a> <a
             class="emoji-item">←_←</a> <a class="emoji-item">→_→</a> <a class="emoji-item">(&lt;_&lt;)</a> <a
@@ -405,9 +406,11 @@
             ⁄•⁄ω⁄•⁄ ⁄)⁄</a> <a class="emoji-item">(╬ﾟдﾟ)▄︻┻┳═一</a> <a class="emoji-item">･*･:≡( ε:)</a> <a
               class="emoji-item">(笑)</a> <a class="emoji-item">(汗)</a> <a class="emoji-item">(泣)</a> <a
               class="emoji-item">(苦笑)</a></div>
-        <div class="tieba-container motion-container" style="display:none;"><span title="tongue"
-                                                                                  onclick="grin('tongue')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_tongue.gif"></span><span
+        <div class="tieba-container motion-container" style="display:none;">
+          <span title="tongue" onclick="grin('tongue')">
+            <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_tongue.gif">
+          </span>
+          <span
             title="theblackline" onclick="grin('theblackline')"><img
             src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_theblackline.gif"></span><span
             title="tear" onclick="grin('tear')"><img
@@ -473,8 +476,8 @@
         </div>
       </div>
       <div class="cmt-info-container">
-        <div class="comment-user-avatar"><img
-            src="https://gravatar.loli.net/avatar/f11f237b3de93c93b24045e71f7f65c6?s=80&amp;d=mm&amp;r=g">
+        <div class="comment-user-avatar">
+          <img src="https://gravatar.loli.net/avatar/f11f237b3de93c93b24045e71f7f65c6?s=80&amp;d=mm&amp;r=g">
           <div class="socila-check qq-check"><i class="fa fa-qq" aria-hidden="true"></i></div>
           <div class="socila-check gravatar-check"><i class="fa fa-google" aria-hidden="true"></i></div>
         </div>
@@ -498,7 +501,7 @@
       </label>
       <input type="text" placeholder="QQ" name="new_field_qq" id="qq" value="" style="display:none" autocomplete="off">
       <p class="form-submit">
-        <input name="submit" type="submit" id="submit" class="submit" value="BiuBiuBiu~">
+        <button name="submit" id="submit" class="submit" @click="submitComment">发送评论</button><!-- @click="submitComment"-->
       <div class="insert-image-tips popup">
         <i class="fa fa-picture-o" aria-hidden="true"></i>
         <span class="insert-img-popuptext" id="uploadTipPopup">上传图片</span>
@@ -518,24 +521,35 @@
 
 <script>
 import { parseTime } from '@/utils/index'
+import { addComment } from "../../api/comment";
+
 export default {
   name: "box",
   data: () => ({
+    adminUrl: process.env.VUE_APP_FRONT_API + '/comment/add',
+    content: '',
 
   }),
   methods:{
     submitComment(){
-      if (this.value === ''){
+      if (this.content === ''){
         console.log('不能为空');
         return;
       }
+      let articleId = this.$store.getters.blogId;
+      console.log('articleId: '+articleId);
+      let toUid = this.$store.getters.toId;
+      console.log('toUid: '+toUid);
+
       let param = {};
-      param.articleId = 1;
+      param.articleId = articleId;
       param.fromUid = 1;
-      param.content = this.value;
-      if(this.isReply === true){
+      param.content = this.content;
+
+
+      if(toUid !== null){ // is reply
         param.fromUid = 3;
-        param.toUid = 2;
+        param.toUid = toUid
         param.parentId = 1;
         param.targetType = 1; // 回复评论
       }else {
@@ -545,7 +559,17 @@ export default {
       }
       param.commentTime = parseTime("YYYY-mm-dd HH:MM:SS",new Date());
       alert(param.commentTime);
-      this.$emit('submitComment',param);
+      //this.$emit('submitComment',param);
+      addComment(param).then(response=> {
+        if (response.state === this.$STATE.SUCCESS) {
+          alert(response.message);
+          alert('评论成功');
+        }
+        else {
+          alert(response.message);
+          alert('发送失败');
+        }
+      });
 
     },
     cancelReply(){
@@ -554,7 +578,6 @@ export default {
       let box = document.getElementById('respond');
       console.log('current: '+box);
       console.log('child: '+box.children);
-      //current.removeChild(current.children[3]);
       box.children[0].children[0].children[0].style = 'display: none;';
       origin_pos.appendChild(box);
     }
@@ -563,5 +586,21 @@ export default {
 </script>
 
 <style scoped>
-
+.comment-respond button {
+  width: calc(98% - 46px);
+  margin: 0;
+  padding: 15px 25px;
+  text-transform: none;
+  color:
+      #535a63;
+  background: 0 0;
+  border-right: 0;
+  -webkit-transition: all .1s ease-out;
+  -moz-transition: all .1s ease-out;
+  transition: all .1s ease-out;
+  box-shadow: none;
+  border: 1px solid
+  #ccc;
+  text-shadow: none;
+}
 </style>

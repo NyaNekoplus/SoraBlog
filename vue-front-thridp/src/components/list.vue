@@ -1,6 +1,9 @@
 <template>
   <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main">
+    <main id="main" class="site-main" role="main" v-for="blog in blogData" :key="blog.id">
+
+      <blog-card :blog="blog"></blog-card>
+
 <!--
       <?php
 			while ( have_posts() ) : the_post();
@@ -47,9 +50,41 @@
 </template>
 
 <script>
+import {getBlogList} from "../api/article";
+
 export default {
-  name: "page",
-  data: () => ({}),
+  name: "list",
+  components: {
+    BlogCard: () => import('@/components/BlogCard'),
+  },
+  data: () => ({
+    pageSize: 10,
+    currentPage: 1,
+
+    blogData: [],
+  }),
+  methods: {
+    getData() {
+      getBlogList().then(response => {
+        this.blogData = response;
+        console.log(response);
+        /*
+        if (response.state === this.$STATE.SUCCESS) {
+          alert(response.message);
+          this.blogData = response.data;
+          alert('获取文章数据成功');
+        }
+        else {
+          alert(response.message);
+          alert('获取文章数据失败');
+        }
+        */
+      })
+    },
+  },
+  mounted() {
+    this.getData();
+  }
 }
 </script>
 
