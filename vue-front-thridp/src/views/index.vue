@@ -47,7 +47,7 @@
 export default {
   name: "index",
   components: {
-    MainList: () => import('@/components/list'),
+    MainList: () => import('@/components/List'),
   },
   data() {
     return {}

@@ -6,7 +6,8 @@
 
 import Vue from "vue";
 import Router from "vue-router"
-import Layout from "@/layouts/sora/index"
+import indexLayout from "@/layouts/sora/index"
+import otherLayout from "../layouts/sora/other";
 Vue.use(Router);
 
 
@@ -22,17 +23,23 @@ const router = new Router({
     routes: [
         {
             path: '',
-            component: Layout,
+            component: indexLayout,
             children: [
                 { path: '/', component:()=>import('@/views/index') },
+            ]
+        },
+        {
+            path: '',
+            component: otherLayout,
+            children: [
                 { path: '/tags', component:()=>import('@/views/tag') },
                 { path: '/about', component:()=>import('@/views/about') },
                 { path: '/message', component:()=>import('@/views/board') },
-                { path: '/:title', component:()=>import('@/views/page') }
+                { path: '/blog/:title', component:()=>import('@/views/page') },
             ]
         },
-        //{ path:'/login',component:()=>import('@/views/login') },
-        //{ path:'/register',component:()=>import('@/views/register') },
+        { path:'/login', component:()=>import('@/views/login') },
+        { path:'/register', component:()=>import('@/views/register') },
         { path: '/404', component: () => import('@/views/404') },
         { path: '/*', component: () => import('@/views/404') },
 

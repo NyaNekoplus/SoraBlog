@@ -48,10 +48,11 @@ public class ArticleApi {
     @PostMapping("/add")
     String addArticle(@RequestBody ArticleVO articleVO){
         Article article = new Article();
+        article.setCategory(articleVO.getCategory());
         article.setTitle(articleVO.getTitle());
         article.setLink(articleVO.getLink());
         article.setLanguage(articleVO.getLanguage());
-        article.setSummary(articleVO.getContent()); //
+        article.setSummary(articleVO.getContent().substring(0,35)); //
         article.setContent(articleVO.getContent());
         article.setContentMd(articleVO.getContentMd());
         article.setEnableComment(articleVO.getEnableComment());

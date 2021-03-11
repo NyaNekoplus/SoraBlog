@@ -8,6 +8,9 @@ import './styles/style.css'
 //import './assets/fonts/SAKURASO.old/icon.css'
 Vue.config.productionTip = false
 
+import prototype from "./utils/prototype";
+Vue.use(prototype);
+
 import store from "./store";
 
 new Vue({

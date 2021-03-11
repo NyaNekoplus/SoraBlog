@@ -57,6 +57,11 @@ export default {
   components: {
     BlogCard: () => import('@/components/BlogCard'),
   },
+  props: {
+    category: {
+      type: String
+    }
+  },
   data: () => ({
     pageSize: 10,
     currentPage: 1,
@@ -65,25 +70,29 @@ export default {
   }),
   methods: {
     getData() {
-      getBlogList().then(response => {
-        this.blogData = response;
+      let params = {};
+      params.category = this.category;
+      params.pageSize = this.pageSize;
+      params.currentPage = this.currentPage;
+      getBlogList(params).then(response => {
         console.log(response);
-        /*
         if (response.state === this.$STATE.SUCCESS) {
           alert(response.message);
-          this.blogData = response.data;
+          this.blogData = response.data.records;
           alert('获取文章数据成功');
         }
         else {
           alert(response.message);
           alert('获取文章数据失败');
         }
-        */
       })
     },
   },
-  mounted() {
+  created() {
     this.getData();
+  },
+  mounted() {
+
   }
 }
 </script>

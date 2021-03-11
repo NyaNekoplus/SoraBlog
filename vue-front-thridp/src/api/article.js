@@ -1,10 +1,17 @@
 import request from "@/utils/request";
 
-export function getBlogList(){
+export function getBlogList(params){
     return request({
-        url: '/mock/article.json',
-        method: 'get'
-        //method: 'post',
-        //data: userData
+        url: process.env.VUE_APP_FRONT_API + '/blog/list',
+        method: 'post',
+        data: params
+    })
+}
+
+export function getBlogByTitle(params){
+    return request({
+        url: process.env.VUE_APP_FRONT_API + '/blog/list',
+        method: 'post',
+        data: params
     })
 }

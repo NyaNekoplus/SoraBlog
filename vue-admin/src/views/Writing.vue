@@ -361,7 +361,6 @@ export default {
       //this.$message()
     },
     handleSubmit(){
-
       let activeEditor = tinymce.activeEditor;
       let editBody = activeEditor.getBody();
       activeEditor.selection.select(editBody);
@@ -376,6 +375,7 @@ export default {
       console.log('Tags: '+ this.articleProps.tags);
 
       let param = {};
+      param.category = this.articleProps.category;
       param.title = this.articleProps.title;
       param.link = this.articleProps.link;
       param.language = 0; // zhs by default
@@ -389,6 +389,7 @@ export default {
         console.log(response.data);
         if (response.data.state === 'success'){
           alert(response.data.message);
+          this.articleProps.contentMd = '';
           //this.$message.show(response.data.message);
           this.$message.success(response.data.message);
         }else {

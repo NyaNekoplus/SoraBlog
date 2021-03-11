@@ -13,6 +13,8 @@ import java.util.Date;
 @Data
 public class ArticleVO extends BaseVO<ArticleVO>{
 
+    private String category;
+
     private String title;
 
     private String link;

@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.vincent.admin.entity.Article;
 import com.vincent.admin.entity.Comment;
+import com.vincent.admin.service.ArticleService;
 import com.vincent.admin.service.CommentService;
 import com.vincent.admin.util.Result;
 import com.vincent.admin.vo.CommentVO;
@@ -32,10 +34,17 @@ public class CommentApi {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private ArticleService articleService;
+
     @PostMapping("/list")
     public String list(@RequestBody CommentVO commentVO){
         QueryWrapper<Comment> queryWrapper = new QueryWrapper<>();
         if(ObjectUtils.isNotNull(commentVO.getArticleId())){
+            Article article = articleService.getById(commentVO.getArticleId());
+            if(ObjectUtils.isNull(article) || !article.getEnableComment()){
+                return Result.failure("该文章没有开放评论");
+            }
             queryWrapper.like("articleId",commentVO.getArticleId());
         }
 
@@ -43,7 +52,7 @@ public class CommentApi {
         page.setSize(commentVO.getPageSize());
         page.setCurrent(commentVO.getCurrentPage());
         queryWrapper.isNull("toUid");
-        queryWrapper.eq("targetType",0);
+        queryWrapper.eq("targetType",0); // 所有一级评论
         queryWrapper.orderByDesc("commentTime");
 
         IPage<Comment> pageList = commentService.page(page,queryWrapper);
@@ -58,9 +67,9 @@ public class CommentApi {
             commentIdList.add(comment.getId());
         });
         if(commentIdList.size() > 0){
-            //  根据 parentId 查找所有子评论
+            //  根据 rootId 查找所有子评论
             QueryWrapper<Comment> subCommentQueryWrapper = new QueryWrapper<>();
-            subCommentQueryWrapper.in("parentId",commentIdList);
+            subCommentQueryWrapper.in("rootId",commentIdList);
             List<Comment> subCommentList = commentService.list(subCommentQueryWrapper);
             if(subCommentList.size() > 0){
                 commentList.addAll(subCommentList);
@@ -107,11 +116,20 @@ public class CommentApi {
         comment.setContent(commentVO.getContent());
         //comment.setCommentTime(commentVO.ge);
         comment.setFromUid(commentVO.getFromUid());
-        comment.setParentId(commentVO.getParentId());
+        //comment.setRootId(commentVO.getParentId());
         comment.setToUid(commentVO.getToUid());
         comment.setTargetType(commentVO.getTargetType());
 
         //comment.setUserName(commentVO.getUserName());
+        // 非一级评论，设置根评论id
+        if (ObjectUtils.isNotNull(commentVO.getToUid())) {
+            Comment toComment = commentService.getById(commentVO.getToUid());
+            if (toComment!=null && ObjectUtils.isNull(toComment.getToUid())) {
+                comment.setRootId(toComment.getId());
+            }else {
+                comment.setRootId(toComment.getRootId());
+            }
+        }
 
         Boolean isSaved = commentService.save(comment);
         if (isSaved){

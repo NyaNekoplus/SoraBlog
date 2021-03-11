@@ -32,7 +32,21 @@ import star from '../../assets/star.png'
 export default {
   name: "SoraView",
   data: ()=>({
+    isRouterAlive: true,
     background: star
-  })
+  }),
+  /*
+  provide: ()=>({
+    reload:this.reload
+  }),
+  methods: {
+    reload() {
+      //this.isRouterAlive = false;
+      this.$nextTick(function () {
+        this.isRouterAlive = true;
+      });
+    }
+  }
+   */
 }
 </script>

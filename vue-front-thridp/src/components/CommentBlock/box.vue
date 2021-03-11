@@ -3,7 +3,7 @@
     <h3 id="reply-title" class="comment-reply-title">
       <small><a rel="nofollow" id="cancel-comment-reply-link" style="display:none;" @click="cancelReply">Cancel Reply</a></small><!--href="/theme-sakura/#respond" -->
     </h3>
-    <form method="post" id="commentform" class="comment-form" novalidate="">
+    <div id="commentform" class="comment-form" novalidate="">
       <p>
         <i class="iconfont icon-markdown"></i> Markdown Supported while
         <i class="fa fa-code" aria-hidden="true"></i>Forbidden
@@ -501,7 +501,7 @@
       </label>
       <input type="text" placeholder="QQ" name="new_field_qq" id="qq" value="" style="display:none" autocomplete="off">
       <p class="form-submit">
-        <button name="submit" id="submit" class="submit" @click="submitComment">发送评论</button><!-- @click="submitComment"-->
+        <input id="submit" class="submit" @click="handleSubmit" value="发送评论" type="submit"><!-- @click="submitComment"-->
       <div class="insert-image-tips popup">
         <i class="fa fa-picture-o" aria-hidden="true"></i>
         <span class="insert-img-popuptext" id="uploadTipPopup">上传图片</span>
@@ -515,15 +515,16 @@
       </p>
       <p style="display: none;"></p>
       <input type="hidden" id="ak_js" name="ak_js" value="1614604055274">
-    </form>
+    </div>
   </div>
 </template>
 
 <script>
 import { parseTime } from '@/utils/index'
-import { addComment } from "../../api/comment";
+import {mapMutations} from "vuex";
 
 export default {
+  //inject:['reload'],
   name: "box",
   data: () => ({
     adminUrl: process.env.VUE_APP_FRONT_API + '/comment/add',
@@ -531,46 +532,37 @@ export default {
 
   }),
   methods:{
-    submitComment(){
+    ...mapMutations(['removeToId','setCommentList']),
+    handleSubmit(){
+      //event.preventDefault();
       if (this.content === ''){
         console.log('不能为空');
         return;
       }
-      let articleId = this.$store.getters.blogId;
+      let blogId = this.$store.getters.blog.id;
       console.log('articleId: '+articleId);
       let toUid = this.$store.getters.toId;
       console.log('toUid: '+toUid);
 
       let param = {};
-      param.articleId = articleId;
+      param.blogId = blogId;
       param.fromUid = 1;
       param.content = this.content;
 
-
       if(toUid !== null){ // is reply
         param.fromUid = 3;
-        param.toUid = toUid
-        param.parentId = 1;
+        param.toUid = toUid;
         param.targetType = 1; // 回复评论
       }else {
         param.toUid = null;
-        param.parentId = null;
         param.targetType = 0;
       }
       param.commentTime = parseTime("YYYY-mm-dd HH:MM:SS",new Date());
-      alert(param.commentTime);
-      //this.$emit('submitComment',param);
-      addComment(param).then(response=> {
-        if (response.state === this.$STATE.SUCCESS) {
-          alert(response.message);
-          alert('评论成功');
-        }
-        else {
-          alert(response.message);
-          alert('发送失败');
-        }
-      });
+      console.log('在box中: ' + param);
 
+      this.content = '';
+      this.cancelReply();
+      this.$emit('submit-comment', param);
     },
     cancelReply(){
       let origin_pos = document.getElementById('comments');
@@ -579,8 +571,9 @@ export default {
       console.log('current: '+box);
       console.log('child: '+box.children);
       box.children[0].children[0].children[0].style = 'display: none;';
+      this.removeToId();
       origin_pos.appendChild(box);
-    }
+    },
   }
 }
 </script>

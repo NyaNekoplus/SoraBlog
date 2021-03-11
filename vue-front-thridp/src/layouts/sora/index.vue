@@ -1,6 +1,6 @@
 <template>
   <section id="main-container">
-    <div class="scrollbar" id="bar" style="width: 29%; background: orange none repeat scroll 0% 0%;"></div>
+    <div class="scrollbar" id="bar" style="width: 19%; background: orange none repeat scroll 0% 0%;"></div>
 
     <div class="headertop filter-dot" style="height: auto;">
       <div id="banner_wave_1" class="banner_wave_hide_fit_skin" style="left: -1233px;"></div>
@@ -49,9 +49,10 @@
         <span> <i class="fa fa-chevron-down" aria-hidden="true"></i> </span>
       </div>
     </div>
-    <div id="page" class="site-wrapper">
 
-      <sora-bar/>
+    <div id="page" class="site-wrapper" style="background-repeat: repeat;background-image: url(https://view.moezx.cc/images/2018/01/10/star02.png);">
+
+      <sora-bar :is-index="true"/>
 
 
       <sora-view/>
@@ -80,48 +81,6 @@ export default {
 
   }),
   methods: {
-    getStyle: function(obj, attr) {
-      if (obj.currentStyle) {   //IE浏览器
-        return obj.currentStyle[attr]
-      } else {  //Chrome浏览器
-        return getComputedStyle(obj, false)[attr]
-      }
-    },
-//动画函数，直接调用即可
-    startMove(obj, json,fn) {
-      let all = true; //假设所有运动到达目标值
-      clearInterval(obj.timer);
-      obj.timer = setInterval(function () {
-        for(let attr in json){   //遍历取出json里的值
-          //通过in操作符，取得当前的属性值
-          let value = 0;
-          if (attr === 'opacity') {
-            value = Math.round(parseInt(getComputedStyle(obj, false)[attr]) * 100)
-          } else {
-            value = parseInt(getComputedStyle(obj, false)[attr]);
-          }
-          //计算速度
-          let speed = (json[attr] - value) / 8;
-          speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
-          if (value !== json[attr] ) {
-            all =false;
-          }
-          if (attr === 'opacity') {
-            obj.style.filter = 'alpha:(opacity:' + value + speed + ')';
-            obj.style.opacity = (value + speed) / 100;
-          } else {
-            //obj.style[attr] = value + speed + 'px';
-            document.documentElement.scrollTop = value + speed ;
-          }
-        }
-        if(all){
-          clearInterval(obj.timer);
-          if(fn){
-            fn()
-          }
-        }
-      }, 30)
-    },
     headertop_down() {
       let b = document.querySelector(".site-content")
       //let b = document.body;

@@ -78,14 +78,19 @@ export default {
     releaseTime: '2020-10-18',
   }),
   methods: {
-    ...mapMutations(['setBlogID']),
+    ...mapMutations(['setBlog']),
     intoDetail(blog){
-      this.setBlogID(blog.id);
-      console.log('blogID: '+this.$store.getters.blogId)
+      if (blog.link[0] !== '/'){
+        blog.link = '/' + blog.link;
+      }
+      this.setBlog(blog);
+      console.log('blog: '+this.$store.getters.blog);
+
       let routeData = this.$router.resolve({
-        path: blog.link,
+        path: '/blog' + blog.link,
       });
-      window.open(routeData.href, '_blank');
+      this.$router.push(routeData.href);
+      //window.open(routeData.href, '_blank');
     }
   }
 }

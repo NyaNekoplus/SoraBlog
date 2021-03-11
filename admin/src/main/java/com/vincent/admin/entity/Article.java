@@ -20,6 +20,8 @@ public class Article implements Serializable {
 
     private Long id;
 
+    private String category;
+
     private String link;
 
     private String title;

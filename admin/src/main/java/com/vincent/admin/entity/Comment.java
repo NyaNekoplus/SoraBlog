@@ -27,7 +27,7 @@ public class Comment implements Serializable {
 
     private Long toUid;
 
-    private Long parentId;
+    private Long rootId;
 
     private Long articleId;
 
