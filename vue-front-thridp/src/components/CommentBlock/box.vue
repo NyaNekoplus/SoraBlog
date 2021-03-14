@@ -527,7 +527,6 @@ export default {
   //inject:['reload'],
   name: "box",
   data: () => ({
-    adminUrl: process.env.VUE_APP_FRONT_API + '/comment/add',
     content: '',
 
   }),
@@ -540,12 +539,12 @@ export default {
         return;
       }
       let blogId = this.$store.getters.blog.id;
-      console.log('articleId: '+articleId);
+      console.log('articleId: '+blogId);
       let toUid = this.$store.getters.toId;
       console.log('toUid: '+toUid);
 
       let param = {};
-      param.blogId = blogId;
+      param.articleId = blogId;
       param.fromUid = 1;
       param.content = this.content;
 
@@ -557,7 +556,7 @@ export default {
         param.toUid = null;
         param.targetType = 0;
       }
-      param.commentTime = parseTime("YYYY-mm-dd HH:MM:SS",new Date());
+      param.createTime = parseTime("YYYY-mm-dd HH:MM:SS",new Date());
       console.log('在box中: ' + param);
 
       this.content = '';

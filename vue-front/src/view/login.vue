@@ -82,10 +82,9 @@ export default {
   },
   data(){
     return{
-      userData:{
-        userName: '',
-        nickName: '',
-      },
+      userName: '',
+      password: Number,
+      nickName: '',
       imgs:[],
       bgImg:[
         "../../bg/Vincent_van_Gogh_-_Green_Wheat_Fields_Auvers_(1890).png",
@@ -104,7 +103,10 @@ export default {
   methods:{
     ...mapMutations(['setToken','removeToken']),
     handleLogin(){
-      login(this.userData).then(response=>{
+      let params = {};
+      params.userName = this.userName;
+      params.password = this.password;
+      login(params).then(response=>{
         if(response.state === this.$STATE.SUCCESS){
           //alert('跳轉');
           //alert(response.data);
@@ -116,6 +118,9 @@ export default {
           //window.location.reload();
           //this.$refs
           //
+        }else {
+          console.log(response.data);
+          alert("后台消息："+response.data.message);
         }
       });
     },

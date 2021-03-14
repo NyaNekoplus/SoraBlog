@@ -26,7 +26,22 @@
         </a>
         <div class="header-user-menu">
           <div class="herder-user-name no-logged">
-            Whether to <a href="/login" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">log in</a> now?
+            <div v-if="isLogin">
+              <div>
+                <a href="/login" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Log out</a>
+              </div>
+              <div>
+                <a href="/login" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Profile</a>
+              </div>
+            </div>
+            <div v-else>
+              <div>
+                Whether to <a href="/login" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Sign in</a> now?
+              </div>
+              <div>
+                <a href="/login" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Sign up</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -113,6 +128,9 @@
 </template>
 
 <script>
+import {mapMutations} from "vuex";
+import {getCookie,setCookie,removeCookie} from "../../utils/cookie";
+
 export default {
   name: "SoraBar",
   props: {
@@ -121,6 +139,8 @@ export default {
     }
   },
   data: () => ({
+    isLogin: false,
+
     navClass: 'yya',
     akina_logo: false,
     shownav: false,
@@ -143,6 +163,7 @@ export default {
     ],
   }),
   methods: {
+    ...mapMutations(['removeToken']),
     isNavbarShow(){
       const scrollLen = document.documentElement.scrollTop;
       if (scrollLen === 0){
@@ -160,10 +181,31 @@ export default {
       console.log('scrollTop: '+elem.scrollTop);
       console.log('clientHeight: '+elem.clientHeight);
 */
-      let precent = elem.scrollTop/(elem.offsetHeight-elem.clientHeight)*100.0;
-      //console.log('precent: '+precent);
-      document.getElementById('bar').style.width = precent.toString() + '%';
+      let percent = elem.scrollTop/(elem.offsetHeight-elem.clientHeight)*100.0;
+      document.getElementById('bar').style.width = percent.toString() + '%';
+    },
+    verifyLogin(){
+      let token = this.$store.state.token;
+      if (token !== ''){
+        console.log('验证store中的token不为空，写入cookie');
+        setCookie("token", token, 7);
+      }else {
+        console.log('store中token为空，从cookie中获取');
+        token = getCookie("token");
+      }
+      console.log('token: '+token);
+      if (token !== null){
+        this.isLogined = true;
+      }
+    },
+    signOut(){
+      this.isLogined = false;
+      this.removeToken();
+      removeCookie("token");
     }
+  },
+  created() {
+    this.verifyLogin();
   },
   mounted () {
     if (this.isIndex){

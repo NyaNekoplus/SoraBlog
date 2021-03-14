@@ -1,17 +1,25 @@
 package com.vincent.admin.controller.api;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
-import com.vincent.admin.entity.BlogUser;
+import com.vincent.admin.entity.User;
+import com.vincent.admin.holder.RequestHolder;
 import com.vincent.admin.service.UserService;
+import com.vincent.admin.util.IpUtil;
 import com.vincent.admin.util.Result;
 import com.vincent.admin.vo.UserVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -20,34 +28,53 @@ import java.util.UUID;
  */
 
 @RestController
+@CacheConfig(cacheNames = "user")
 @RequestMapping("/front/user")
+@Slf4j
 public class UserApi {
+
 
     @Autowired
     private UserService userService;
 
     @PostMapping("/login")
+    //@Cacheable("")
     String login(@RequestBody UserVO userVO){
-        BlogUser user = userService.getOne(new QueryWrapper<BlogUser>().eq("userName",userVO.getUserName()));
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.and((wrapper) -> wrapper.eq("userName",userVO.getUserName()).or().eq("email",userVO.getUserName()));
+        User user = userService.getOne(queryWrapper);
         System.out.println(userVO);
         System.out.println(user);
-        if(ObjectUtils.isNotNull(user)){
-            if(user.getPassword().equals(userVO.getPassword())){
-                String uuid = UUID.randomUUID().toString().replaceAll("-","");
-                return Result.success("登錄成功",uuid);
-            }
-            else {
-                return Result.failure("密碼錯誤");
-            }
+        if (user == null){
+            return Result.failure("用户不存在");
+        }
+        if(!StringUtils.isEmpty(userVO.getPassword()) && user.getPassword().equals(userVO.getPassword())){
+            HttpServletRequest request = RequestHolder.getRequest();
+            String ip = IpUtil.getIpAddr(request);
+            Map<String,String> userMap = IpUtil.getOsAndBrowserInfo(request);
+            user.setBrowser(userMap.get("BROWSER"));
+            user.setOs(userMap.get("OS"));
+            user.setLastLoginIp(ip);
+            user.setLastVisitDate(new Date());
+            user.updateById();
+
+            //过滤密码
+            user.setPassword("");
+            String uuid = UUID.randomUUID().toString().replaceAll("-","");
+            String msg = "登錄成功, token: " + uuid;
+            log.info(msg);
+            return Result.success(msg,uuid);
+
         }
         else {
-            return Result.failure("用戶不存在");
+            String msg = "账号或密碼錯誤";
+            return Result.failure(msg);
         }
     }
 
     @PostMapping("register")
     String register(@RequestBody UserVO userVO){
-        BlogUser user = new BlogUser();
+        User user = new User();
         user.setUserName(userVO.getUserName());
         user.setNickName(userVO.getNickName());
         user.setPassword(userVO.getPassword());

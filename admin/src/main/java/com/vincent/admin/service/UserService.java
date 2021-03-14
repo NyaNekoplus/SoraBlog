@@ -1,7 +1,7 @@
 package com.vincent.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.vincent.admin.entity.BlogUser;
+import com.vincent.admin.entity.User;
 
 /**
  * @author Vincent Tsai
@@ -9,9 +9,9 @@ import com.vincent.admin.entity.BlogUser;
  */
 
 
-public interface UserService extends IService<BlogUser> {
+public interface UserService extends IService<User> {
 
     String login(String username, String password);
 
-    String register(BlogUser user);
+    String register(User user);
 }

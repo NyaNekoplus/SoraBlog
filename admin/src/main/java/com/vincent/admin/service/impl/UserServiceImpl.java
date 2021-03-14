@@ -1,7 +1,7 @@
 package com.vincent.admin.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.vincent.admin.entity.BlogUser;
+import com.vincent.admin.entity.User;
 import com.vincent.admin.mapper.UserMapper;
 import com.vincent.admin.service.UserService;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, BlogUser> implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
     @Override
     public String login(String username, String password) {
 
@@ -20,7 +20,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, BlogUser> implement
     }
 
     @Override
-    public String register(BlogUser user) {
+    public String register(User user) {
 
         return null;
     }

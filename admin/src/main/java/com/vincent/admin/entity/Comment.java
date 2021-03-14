@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @Data
-public class Comment implements Serializable {
+public class Comment extends SuperEntity<Comment> {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,11 +32,6 @@ public class Comment implements Serializable {
     private Long articleId;
 
     private String content;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date commentTime;
-
     /**
     * 评论目标：0为文章，1为评论
     */
@@ -48,7 +43,4 @@ public class Comment implements Serializable {
     @TableField(exist = false)
     private List<Comment> replyList;
 
-    public Comment(){
-        this.commentTime = new Date();
-    }
 }

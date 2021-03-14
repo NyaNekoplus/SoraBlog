@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: sora
   datasource:
     username: sa
     password: kasuganosora520
@@ -8,6 +10,10 @@ spring:
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
+  cache:
+    type: caffeine
+    caffeine:
+      spec: initialCapacity=10,maximumSize=1000,expireAfterAccess=60s
 
 mybatis-plus:
   type-aliases-package: com.vincent.admin.entity

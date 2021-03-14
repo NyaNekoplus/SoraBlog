@@ -29,7 +29,7 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <a @click="handleLogin" class="btn btn-primary btn-user btn-block"></a><!-- onclick="return checkNull()" -->
+                    <input @click="handleLogin" class="btn btn-primary btn-user btn-block" value="Login"><!-- onclick="return checkNull()" -->
 
                     <hr>
                     <a href="index.html" class="btn btn-google btn-user btn-block">

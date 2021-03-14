@@ -3,18 +3,20 @@ package com.vincent.admin.controller.api;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.benmanes.caffeine.cache.Cache;
 import com.vincent.admin.entity.Article;
 import com.vincent.admin.entity.Comment;
 import com.vincent.admin.service.ArticleService;
 import com.vincent.admin.service.CommentService;
 import com.vincent.admin.util.Result;
 import com.vincent.admin.vo.CommentVO;
-import org.springframework.beans.BeanUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
-import org.yaml.snakeyaml.introspector.PropertyUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +31,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/front/comment")
+@CacheConfig(cacheNames = "comment")
+@Slf4j
 public class CommentApi {
+
+    Cache<String, Object> caffeine;
 
     @Autowired
     private CommentService commentService;
@@ -38,6 +44,7 @@ public class CommentApi {
     private ArticleService articleService;
 
     @PostMapping("/list")
+    @Cacheable(key = "#p0.currentPage + #p0.pageSize + #p0.articleId")
     public String list(@RequestBody CommentVO commentVO){
         QueryWrapper<Comment> queryWrapper = new QueryWrapper<>();
         if(ObjectUtils.isNotNull(commentVO.getArticleId())){
@@ -53,7 +60,7 @@ public class CommentApi {
         page.setCurrent(commentVO.getCurrentPage());
         queryWrapper.isNull("toUid");
         queryWrapper.eq("targetType",0); // 所有一级评论
-        queryWrapper.orderByDesc("commentTime");
+        queryWrapper.orderByDesc("createTime");
 
         IPage<Comment> pageList = commentService.page(page,queryWrapper);
         /*--------------------------------------------------------------------*/
@@ -131,7 +138,7 @@ public class CommentApi {
             }
         }
 
-        Boolean isSaved = commentService.save(comment);
+        boolean isSaved = commentService.save(comment);
         if (isSaved){
             return Result.success("yattaze!");
         }

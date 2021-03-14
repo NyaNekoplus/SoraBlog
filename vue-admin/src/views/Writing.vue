@@ -367,11 +367,11 @@ export default {
       let content = activeEditor.selection.getContent( {'format' : 'text'});
 
       //let content = tinyMCE.activeEditor.selection.getContent({ format: 'text' });
-      let releaseTime = this.articleProps.date + ' ' + this.articleProps.time;
+      let createTime = this.articleProps.date + ' ' + this.articleProps.time;
 
       console.log('纯文本： '+content);
       console.log('HTML文本： '+this.articleProps.contentMd);
-      console.log('Date: '+ releaseTime);
+      console.log('Date: '+ createTime);
       console.log('Tags: '+ this.articleProps.tags);
 
       let param = {};
@@ -384,7 +384,7 @@ export default {
       param.enableComment = this.articleProps.enableComment;
       param.isDraft = this.articleProps.isDraft;
       param.isTop = this.articleProps.isTop;
-      param.releaseTime = releaseTime;
+      param.createTime = createTime;
       submitArticle(param).then(response=>{
         console.log(response.data);
         if (response.data.state === 'success'){

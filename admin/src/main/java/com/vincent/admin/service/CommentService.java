@@ -17,4 +17,6 @@ public interface CommentService extends IService<Comment> {
     List<Comment> findAllComment();
 
     IPage<Comment> findCommentByPage(Page<Comment> page, QueryWrapper<Comment> wrapper);
+
+    void clearCache();
 }

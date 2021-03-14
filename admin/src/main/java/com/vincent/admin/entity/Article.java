@@ -14,11 +14,9 @@ import java.util.List;
  */
 
 @Data
-public class Article implements Serializable {
+public class Article extends SuperEntity<Article> {
 
     private static final long serialVersionUID = 1L;
-
-    private Long id;
 
     private String category;
 
@@ -44,16 +42,9 @@ public class Article implements Serializable {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date releaseTime;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     @TableField(exist = false)
     private List<Tag> tagList;
 
-    public Article(){
-        this.releaseTime = new Date();
-    }
 }

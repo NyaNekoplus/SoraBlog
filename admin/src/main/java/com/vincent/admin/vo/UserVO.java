@@ -1,6 +1,6 @@
 package com.vincent.admin.vo;
 
-import com.vincent.admin.entity.BlogUser;
+import com.vincent.admin.entity.User;
 import lombok.Data;
 
 /**
@@ -9,7 +9,7 @@ import lombok.Data;
  */
 
 @Data
-public class UserVO extends BaseVO<BlogUser>{
+public class UserVO extends BaseVO<User>{
 
     private String userName;
 

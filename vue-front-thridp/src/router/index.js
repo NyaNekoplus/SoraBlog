@@ -46,12 +46,12 @@ const router = new Router({
     ],
 
 })
-
+/*
 function trailingSlash (str) {
     return str.endsWith('/') ? str : str + '/'
 }
 router.beforeEach((to, from, next) => {
     return to.path.endsWith('/') ? next() : next(trailingSlash(to.path))
 })
-
+*/
 export default router
