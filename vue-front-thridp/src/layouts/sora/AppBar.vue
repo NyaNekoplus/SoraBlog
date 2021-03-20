@@ -1,5 +1,5 @@
 <template>
-  <header class="site-header no-select is-homepage gizle" :class="navClass" role="banner">
+  <header :class="`site-header no-select is-homepage gizle ${navClass}`" role="banner">
     <div class="site-top">
       <div class="site-branding">
         <!-- logo start 左上角logo-->

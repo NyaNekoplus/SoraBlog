@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Vincent Tsai
@@ -13,13 +14,13 @@ import java.util.Date;
 @Data
 public class ArticleVO extends BaseVO<ArticleVO>{
 
-    private String category;
+    private String categoryUid;
 
     private String title;
 
     private String link;
 
-    private Integer language;
+    private Integer lang;
 
     private String summary;
 
@@ -31,6 +32,8 @@ public class ArticleVO extends BaseVO<ArticleVO>{
 
     private Boolean isDraft;
 
-    private Boolean isTop;
+    private Integer level;
+
+    private List<TagVO> tagList;
 
 }

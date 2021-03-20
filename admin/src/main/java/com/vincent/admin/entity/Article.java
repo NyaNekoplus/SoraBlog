@@ -1,6 +1,7 @@
 package com.vincent.admin.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,17 +15,16 @@ import java.util.List;
  */
 
 @Data
+@TableName(value = "s_blog")
 public class Article extends SuperEntity<Article> {
 
     private static final long serialVersionUID = 1L;
 
-    private String category;
+    private String title;
 
     private String link;
 
-    private String title;
-
-    private Integer language;
+    private Integer lang;
 
     private String summary;
 
@@ -32,17 +32,31 @@ public class Article extends SuperEntity<Article> {
 
     private String contentMd;
 
+    private String tagUid; // uids
+
+    private String categoryUid;
+
+    private Long imageUid;
+
     private Boolean enableComment;
 
     private Boolean isDraft;
 
-    private Boolean isTop;
+    private Integer level; // 置顶等级
 
     private Integer viewCount;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date updateTime;
+    private Boolean isOriginal; // 是否原创
+
+    private String author;
+
+    private String articleSource; // 文章来源
+
+    private Integer sort;
+
+    private Integer type; // 0:博客，1：推广
+
+    private String outsideLink;
 
     @TableField(exist = false)
     private List<Tag> tagList;

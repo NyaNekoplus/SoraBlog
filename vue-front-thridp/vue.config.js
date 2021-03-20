@@ -9,7 +9,7 @@ const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 module.exports = {
     lintOnSave: false,
     devServer: {
-        port: 8082,
+        port: 9529,
         disableHostCheck: true,
     },
     configureWebpack: {

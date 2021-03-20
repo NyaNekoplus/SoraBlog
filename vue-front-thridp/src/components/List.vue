@@ -73,7 +73,7 @@ export default {
     BlogCard: () => import('@/components/BlogCard'),
   },
   props: {
-    category: {
+    categoryUid: {
       type: String
     }
   },
@@ -94,7 +94,7 @@ export default {
         this.blogData = this.$store.getters.blogList;
       }else{
         let params = {};
-        params.category = this.category;
+        params.categoryUid = this.categoryUid;
         params.pageSize = this.pageSize;
         params.currentPage = this.currentPage;
         getBlogList(params).then(response => {

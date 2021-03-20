@@ -35,7 +35,7 @@ import java.util.List;
 @Slf4j
 public class CommentApi {
 
-    Cache<String, Object> caffeine;
+    //Cache<String, Object> caffeine;
 
     @Autowired
     private CommentService commentService;
@@ -46,6 +46,8 @@ public class CommentApi {
     @PostMapping("/list")
     @Cacheable(key = "#p0.currentPage + #p0.pageSize + #p0.articleId")
     public String list(@RequestBody CommentVO commentVO){
+        //if (caffeine.ge)
+        log.debug("Comment list from database");
         QueryWrapper<Comment> queryWrapper = new QueryWrapper<>();
         if(ObjectUtils.isNotNull(commentVO.getArticleId())){
             Article article = articleService.getById(commentVO.getArticleId());
@@ -71,7 +73,7 @@ public class CommentApi {
 
         List<Long> commentIdList = new ArrayList<>();
         commentList.forEach(comment -> {
-            commentIdList.add(comment.getId());
+            commentIdList.add(comment.getUid());
         });
         if(commentIdList.size() > 0){
             //  根据 rootId 查找所有子评论
@@ -87,11 +89,11 @@ public class CommentApi {
         for (Comment parent : commentList) {
             List<Comment> replyList = new ArrayList<>();
             for (Comment child : commentList) {
-                if (parent.getId().equals(child.getToUid())) {
+                if (parent.getUid().equals(child.getToUid())) {
                     replyList.add(child);
                 }
             }
-            replyMap.put(parent.getId(), replyList);
+            replyMap.put(parent.getUid(), replyList);
         }
         //System.out.println("最高级评论列表2：\n"+primaryCommentList);
         processReply(primaryCommentList, replyMap);
@@ -102,8 +104,8 @@ public class CommentApi {
         if(commentList == null || commentList.size()==0){ return; }
         else{
             commentList.forEach(comment -> {
-                comment.setReplyList(replyMap.get(comment.getId()));
-                processReply(replyMap.get(comment.getId()), replyMap);
+                comment.setReplyList(replyMap.get(comment.getUid()));
+                processReply(replyMap.get(comment.getUid()), replyMap);
             });
             //return commentList;
         }
@@ -119,10 +121,10 @@ public class CommentApi {
     public String addComment(@RequestBody CommentVO commentVO){
 
         Comment comment = new Comment();
-        comment.setArticleId(commentVO.getArticleId());
+        comment.setBlogUid(commentVO.getArticleId());
         comment.setContent(commentVO.getContent());
         //comment.setCommentTime(commentVO.ge);
-        comment.setFromUid(commentVO.getFromUid());
+        comment.setUserUid(commentVO.getFromUid());
         //comment.setRootId(commentVO.getParentId());
         comment.setToUid(commentVO.getToUid());
         comment.setTargetType(commentVO.getTargetType());
@@ -132,9 +134,9 @@ public class CommentApi {
         if (ObjectUtils.isNotNull(commentVO.getToUid())) {
             Comment toComment = commentService.getById(commentVO.getToUid());
             if (toComment!=null && ObjectUtils.isNull(toComment.getToUid())) {
-                comment.setRootId(toComment.getId());
+                comment.setRootUid(toComment.getUid());
             }else {
-                comment.setRootId(toComment.getRootId());
+                comment.setRootUid(toComment.getRootUid());
             }
         }
 

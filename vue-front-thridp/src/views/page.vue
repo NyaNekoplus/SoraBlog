@@ -439,23 +439,27 @@ export default {
     blog: Object,
   }),
   methods: {
-    ...mapMutations(['removeToId']),
+    ...mapMutations(['setBlog','removeToId']),
 
   },
   created() {
     console.log('page create: ' + this.$route.params.title);
     if (this.$store.getters.blog) {
-      this.blog = this.$store.getters.blog;
+      let t_blog = this.$store.getters.blog;
+      if (t_blog.title === this.$route.params.title){
+        this.blog = this.$store.getters.blog;
+      }
     } else {
       this.blog = getBlogByTitle(this.$route.params.title).then(response => {
-        console.log(response.state);
+        console.log("page: "+response.state);
         if (response.state === this.$STATE.SUCCESS) {
           this.blog = response.data.records;
-          console.log(this.blog);
+          this.setBlog(response.data.records)
+          console.log("page: "+this.blog);
         } else {
           alert(response.message);
           alert('获取文章失败');
-          //this.$router.push('/404');
+          this.$router.push('/404');
         }
       });
     }

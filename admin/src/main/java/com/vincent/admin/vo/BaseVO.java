@@ -10,6 +10,6 @@ import lombok.Data;
 @Data
 public class BaseVO<T> extends Pagination<T> {
 
-    private Long id;
+    private Long uid;
 
 }

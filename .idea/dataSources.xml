@@ -8,5 +8,16 @@
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
       <jdbc-url>jdbc:sqlserver://localhost</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="sora_blog@localhost" uuid="d1bd2dec-4b34-42a5-83a2-0c80fd7abef7">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <remarks>sora_blog</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/sora_blog</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="UTC" />
+      </driver-properties>
+      <time-zone>UTC</time-zone>
+    </data-source>
   </component>
 </project>

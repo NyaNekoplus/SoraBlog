@@ -171,12 +171,12 @@ export default {
     document.getElementById('centerbg').style.height = this.coverHeight.toString()+'px';
     //this.coverHeight =
   }
-
+//../../../public/bg.jpg
 }
 </script>
 <style>
 .centerbg{
-  background-image: url("../../../public/bg.jpg");
+  background-image: url("https://www.bing.com/th?id=OHR.MtEtna_ZH-CN9127683040_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=HpEdgeAn");
 }
 .headertop-down{
   position: absolute;

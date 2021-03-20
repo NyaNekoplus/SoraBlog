@@ -29,35 +29,43 @@ public class ArticleApi {
     private ArticleService articleService;
 
     @PostMapping("/list")
+    @Cacheable(key = "#p0.currentPage + #p0.pageSize + #p0.categoryUid")
     public String list(@RequestBody ArticleVO articleVO){
+        log.debug("Article list from database");
         QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
-        if (StringUtils.isNotBlank(articleVO.getCategory())){
-            queryWrapper.in("category", articleVO.getCategory());
+        if (!articleVO.getCategoryUid().equals("0")){
+            queryWrapper.in("category_uid", articleVO.getCategoryUid());
         }
-        queryWrapper.orderByDesc("createTime");
+        queryWrapper.orderByDesc("create_time");
         Page<Article> page = new Page<>();
         page.setSize(articleVO.getPageSize());
         page.setCurrent(articleVO.getCurrentPage());
 
         IPage<Article> blogList = articleService.page(page, queryWrapper);
-        String msg = "获取文章列表成功，参数：" + articleVO.getCategory();
+        String msg;
+        if (articleVO.getCategoryUid() == null) {
+            msg = "获取文章列表成功，无参数";
+        }else {
+            msg = "获取文章列表成功，参数:" + articleVO.getCategoryUid();
+        }
+
         log.debug(msg);
         return Result.success(msg, blogList);
     }
 
-    @PostMapping("/get")
-    @Cacheable(key = "#articleVO.id")
-    public String getBlogByTitle(@RequestBody ArticleVO articleVO){
-        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
-        if (StringUtils.isNotBlank(articleVO.getCategory())){
-            queryWrapper.in("category", articleVO.getCategory());
+    @GetMapping("/getBlogByTitle")
+    @Cacheable(key = "#p0")
+    public String getBlogByTitle(@RequestParam String title){
+        if (StringUtils.isBlank(title)){
+            return Result.failure("标题为空");
         }
-        Page<Article> page = new Page<>();
-        page.setSize(articleVO.getPageSize());
-        page.setCurrent(articleVO.getCurrentPage());
-
-        IPage<Article> blogList = articleService.page(page, queryWrapper);
-        String msg = "获取文章列表成功，参数：" + articleVO.getCategory();
-        return Result.success(msg, blogList);
+        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("title", title);
+        Article article = articleService.getOne(queryWrapper);
+        if (article == null){
+            return Result.failure("文章不存在");
+        }
+        String msg = title + "查询成功";
+        return Result.success(msg, article);
     }
 }

@@ -4,14 +4,21 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.vincent.admin.entity.Article;
+import com.vincent.admin.entity.Tag;
 import com.vincent.admin.service.ArticleService;
+import com.vincent.admin.service.TagService;
 import com.vincent.admin.util.Result;
 import com.vincent.admin.vo.ArticleVO;
+import com.vincent.admin.vo.TagVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author Vincent Tsai
@@ -20,11 +27,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/admin/article")
+@CacheConfig(cacheNames = "article")
+@Slf4j
 public class ArticleApi {
 
     @Autowired
     private ArticleService articleService;
 
+    @Autowired
+    private TagService tagService;
 
     @PostMapping("/list")
     String list(@RequestBody ArticleVO articleVO){
@@ -48,19 +59,39 @@ public class ArticleApi {
     @PostMapping("/add")
     String addArticle(@RequestBody ArticleVO articleVO){
         Article article = new Article();
-        article.setCategory(articleVO.getCategory());
+        List<TagVO> tagList = articleVO.getTagList();
+        StringBuilder tagUid = new StringBuilder(new String(""));
+        for (TagVO tagVO : tagList) {
+            if (tagVO.getUid() != null) {
+                tagUid.append(tagVO.getUid().toString() + ';');
+            }else {
+                Tag tempTag = new Tag(tagVO.getName());
+                tagService.save(tempTag);
+                if (tempTag.getUid()!=null){
+                    log.info("save后返回的id："+tempTag.getUid());
+                    tagUid.append(tempTag.getUid().toString()+';');
+                }
+                log.info(tagUid.toString());
+            }
+        }
+
+
+        article.setCategoryUid(articleVO.getCategoryUid());
+        article.setTagUid(tagUid.toString());
+        log.info("所有的tag uid："+article.getTagUid());
         article.setTitle(articleVO.getTitle());
         article.setLink(articleVO.getLink());
-        article.setLanguage(articleVO.getLanguage());
+        article.setLang(articleVO.getLang());
         article.setSummary(articleVO.getContent().substring(0,35)); //
         article.setContent(articleVO.getContent());
         article.setContentMd(articleVO.getContentMd());
         article.setEnableComment(articleVO.getEnableComment());
         article.setIsDraft(articleVO.getIsDraft());
-        article.setIsTop(articleVO.getIsTop());
+        article.setLevel(articleVO.getLevel());
+        //article.setCreateTime(articleVO.get);
         //article.setViewCount();  // 0 by default
 
-        Boolean isSaved = articleService.save(article);
+        boolean isSaved = articleService.save(article);
         if (isSaved){
             return Result.success("发布文章成功");
         }else{

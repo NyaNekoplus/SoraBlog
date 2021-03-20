@@ -29,5 +29,5 @@ public class CommentVO extends BaseVO<CommentVO>{
     /**
      * 评论目标：0为文章，1为评论
      */
-    private Boolean targetType;
+    private Integer targetType;
 }

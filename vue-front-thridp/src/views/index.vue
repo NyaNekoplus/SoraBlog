@@ -34,7 +34,7 @@
 
       <main id="main" class="site-main" role="main">
 
-        <main-list></main-list>
+        <main-list :categoryUid="'0'"></main-list>
 
       </main>
     </div>

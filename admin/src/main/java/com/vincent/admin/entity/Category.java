@@ -5,12 +5,12 @@ import lombok.Data;
 
 /**
  * @author Vincent Tsai
- * @date 2021/2/16 15:23
+ * @date 2021/3/19 14:30
  */
 
 @Data
-@TableName(value = "s_tag")
-public class Tag extends SuperEntity<Tag> {
+@TableName(value = "s_category")
+public class Category extends SuperEntity<Category>{
 
     private static final long serialVersionUID = 1L;
 
@@ -19,10 +19,5 @@ public class Tag extends SuperEntity<Tag> {
     private Integer clickCount;
 
     private Integer sort;
-
-    public Tag(String name) {
-        super();
-        this.name = name;
-    }
 
 }

@@ -12,36 +12,58 @@ import java.util.Date;
  */
 
 @Data
-@TableName("BlogUser")
+@TableName("s_user")
 public class User extends SuperEntity<User> {
 
     private static final long serialVersionUID = 1L;
 
-    private String userName;
-
-    private String nickName;
+    private String username;
 
     private String password;
 
+    private Long avatar; // 头像uid
+
     private String email;
+
+    private Date birthday;
+
+    private String phoneNumber;
+
+    private String authCode; // email authenticate code
+
+    private String introduction; // 个人介绍,用于友链
+
+    private Integer loginCount;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastLoginTime;
+
+    private String lastLoginIp;
+
+    private Integer status; // 是否在线
+
+    private String source; // 个人资料来源
+
+    private String qqNumber;
+
+    private String wechat;
+
+    private String occupation;
+
+    private Integer enableComment;
+
+    private String ipSource; // ip归属地
 
     private String os;
 
     private String browser;
 
-    private String ipAddress;
+    private Integer enableEmailNotification; // 开启邮件通知
 
-    private String lastLoginIp;
-
-    private String avatarPath;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date lastVisitDate;
-
-    private Boolean isAdmin;
+    private Integer userProxy; // 0:普通用户 1：测试用户 2：管理员
 
     public User(){
         super();
-        this.lastVisitDate = new Date();
+        this.lastLoginTime = new Date();
     }
 }

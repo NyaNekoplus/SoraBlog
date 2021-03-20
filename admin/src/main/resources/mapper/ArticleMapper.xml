@@ -2,4 +2,59 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.vincent.admin.mapper.ArticleMapper">
 
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.vincent.admin.entity.Article">
+        <id column="uid" property="uid"/>
+        <result column="title" property="title"/>
+        <result column="link" property="link"/>
+        <result column="lang" property="lang"/>
+        <result column="summary" property="summary"/>
+        <result column="content" property="content"/>
+        <result column="content_md" property="contentMd"/>
+        <result column="tag_uid" property="tagUid"/>
+        <result column="category_uid" property="categoryUid"/>
+        <result column="view_count" property="viewCount"/>
+        <result column="image_uid" property="imageUid"/>
+        <result column="enable_comment" property="enableComment"/>
+        <result column="is_draft" property="isDraft"/>
+        <result column="is_original" property="isOriginal"/>
+        <result column="author" property="author"/>
+        <result column="article_source" property="articleSource"/>
+        <result column="status" property="status"/>
+        <result column="level" property="level"/>
+        <result column="sort" property="sort"/>
+        <result column="type" property="type"/>
+        <result column="outside_link" property="outsideLink"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列
+
+     //建立sql片段
+    <sql id="query_user_where">
+        <if test="id!=null and id!=''">
+            and id=#{id}
+        </if>
+        <if test="username!=null and username!=''">
+            and username like '%${username}%'
+        </if>
+    </sql>
+
+    //使用include引用sql片段
+    <select id="findUserList" parameterType="user" resultType="user">
+        select * from user
+            <where>
+                <include refid="query_user_where"/>
+            </where>
+    </select>
+
+     -->
+    <!--
+    <sql id="Base_Column_List">
+        oid, uid, title, summary, content, taguid, clickcount, collectcount, photo, status, createtime, updatetime
+    </sql>
+    -->
+
 </mapper>

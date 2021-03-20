@@ -55,7 +55,7 @@ public class UserApi {
             user.setBrowser(userMap.get("BROWSER"));
             user.setOs(userMap.get("OS"));
             user.setLastLoginIp(ip);
-            user.setLastVisitDate(new Date());
+            user.setLastLoginTime(new Date());
             user.updateById();
 
             //过滤密码
@@ -75,13 +75,12 @@ public class UserApi {
     @PostMapping("register")
     String register(@RequestBody UserVO userVO){
         User user = new User();
-        user.setUserName(userVO.getUserName());
-        user.setNickName(userVO.getNickName());
+        user.setUsername(userVO.getUserName());
         user.setPassword(userVO.getPassword());
         user.setEmail(userVO.getEmail());
         //user.setSignupDate(userVO.getSignupDate());
         //user.setLastVisitDate(userVO.getLastVisitDate());
-        user.setIsAdmin(true);
+        user.setUserProxy(0);
 
         boolean isSaved = userService.save(user);
         if(isSaved){

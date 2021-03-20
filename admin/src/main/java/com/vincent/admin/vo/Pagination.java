@@ -10,8 +10,8 @@ import lombok.Data;
 @Data
 public class Pagination<T> {
 
-    private Long currentPage;
+    private Integer currentPage;
 
     // 分页大小
-    private Long pageSize;
+    private Integer pageSize;
 }

@@ -9,11 +9,15 @@ import {REMOVE_TOKEN, SET_LOGIN_STATE, SET_TOKEN, SET_USER_INFO} from "./mutatio
 const user = {
     state: {
         isLogin: false,
+        token: null,
         userInfo: {}
     },
     getters: {
         isLogin: state => {
             return state.isLogin;
+        },
+        token: state => {
+            return state.token;
         },
         userInfo: state => {
             return state.userInfo;
