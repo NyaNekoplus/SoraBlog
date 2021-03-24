@@ -1,4 +1,4 @@
-import {REMOVE_TO_ID, REMOVE_TOKEN, SET_BLOG, SET_BLOG_LIST, SET_TO_ID, SET_TOKEN} from "./mutation-types";
+import {REMOVE_TO_INFO, REMOVE_TOKEN, SET_BLOG, SET_BLOG_LIST, SET_TO_INFO, SET_TOKEN} from "./mutation-types";
 
 /**
  * @Author: Vincent Tsai
@@ -18,11 +18,11 @@ const state = {
 const blog = {
     state,
     getters:{
-        toId: state => {
-            if (!state.toId){
-                state.toId = JSON.parse(sessionStorage.getItem('toId'));
+        toInfo: state => {
+            if (!state.toInfo){
+                state.toInfo = JSON.parse(sessionStorage.getItem('toInfo'));
             }
-            return state.toId;
+            return state.toInfo;
         },
         blog: state => {
             if (!state.blog){
@@ -49,13 +49,13 @@ const blog = {
     */
     },
     mutations:{
-        [SET_TO_ID](state, toId){
-            state.toId = toId;
-            sessionStorage.setItem('toId', toId);
+        [SET_TO_INFO](state, toInfo){
+            state.toInfo = toInfo;
+            sessionStorage.setItem('toInfo', JSON.stringify(toInfo));
         },
-        [REMOVE_TO_ID](state){
-            state.toId = null;
-            sessionStorage.removeItem('toId');
+        [REMOVE_TO_INFO](state){
+            state.toInfo = null;
+            sessionStorage.removeItem('toInfo');
         },
         [SET_BLOG](state, blog){
             state.blog = blog;

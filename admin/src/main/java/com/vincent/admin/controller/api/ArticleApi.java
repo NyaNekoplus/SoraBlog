@@ -33,7 +33,8 @@ public class ArticleApi {
     public String list(@RequestBody ArticleVO articleVO){
         log.debug("Article list from database");
         QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
-        if (!articleVO.getCategoryUid().equals("0")){
+        boolean isIndex = articleVO.getCategoryUid().equals("0");
+        if (!isIndex){
             queryWrapper.in("category_uid", articleVO.getCategoryUid());
         }
         queryWrapper.orderByDesc("create_time");
@@ -43,10 +44,10 @@ public class ArticleApi {
 
         IPage<Article> blogList = articleService.page(page, queryWrapper);
         String msg;
-        if (articleVO.getCategoryUid() == null) {
-            msg = "获取文章列表成功，无参数";
+        if (isIndex) {
+            msg = "获取主页全文章列表成功，";
         }else {
-            msg = "获取文章列表成功，参数:" + articleVO.getCategoryUid();
+            msg = "获取部分文章列表成功，参数:" + articleVO.getCategoryUid();
         }
 
         log.debug(msg);

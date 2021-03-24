@@ -40,15 +40,15 @@
                 <!-- Using 'button-content' slot -->
                 <template #button-content>
                   <!--<em>User</em>-->
-                  <b-avatar v-if="isLogined" src="../assets/sora.png"
+                  <b-avatar v-if="isLogin" src="../assets/sora.png"
                             class="d-inline-block align-top" alt="Kitten"></b-avatar>
-                  <b-avatar v-if="!isLogined" src="../assets/favicon-32x32.png"
+                  <b-avatar v-if="!isLogin" src="../assets/favicon-32x32.png"
                             class="d-inline-block align-top" alt="Kitten"></b-avatar>
                 </template>
-                <b-dropdown-item v-show="!isLogined" to="login">登陆</b-dropdown-item>
-                <b-dropdown-item v-show="!isLogined" to="register">注册</b-dropdown-item>
-                <b-dropdown-item v-show="isLogined" v-b-toggle.sidebar-no-header>Profile</b-dropdown-item>
-                <b-dropdown-item v-show="isLogined" @click="signOut">Sign Out</b-dropdown-item>
+                <b-dropdown-item v-show="!isLogin" to="login">登陆</b-dropdown-item>
+                <b-dropdown-item v-show="!isLogin" to="register">注册</b-dropdown-item>
+                <b-dropdown-item v-show="isLogin" v-b-toggle.sidebar-no-header>Profile</b-dropdown-item>
+                <b-dropdown-item v-show="isLogin" @click="signOut">Sign Out</b-dropdown-item>
               </b-nav-item-dropdown>
             </b-navbar-nav>
           </b-collapse>
@@ -143,6 +143,7 @@
 </template>
 
 <script>
+import {authToken} from "@/api/user"
 import {getCookie, removeCookie, setCookie} from "@/util/cookie";
 import {mapMutations} from "vuex";
 
@@ -150,14 +151,14 @@ export default {
   name: "index",
   data(){
     return{
-      isLogined: false,
+      isLogin: false,
     }
   },
   created() {
     this.verifyLogin();
   },
   methods:{
-    ...mapMutations(['removeToken']),
+    ...mapMutations(['removeToken','setLoginState']),
     toLoginPage(){
       this.$router.replace('/login')
     },
@@ -172,11 +173,27 @@ export default {
       }
       console.log('token: '+token);
       if (token !== null){
-        this.isLogined = true;
+        authToken(token).then(response=>{
+          if(response.state === this.$STATE.SUCCESS){
+            this.isLogin = true;
+            //this.userInfo
+            this.setToken(response.data);
+            console.log(response.data);
+          }else {
+            this.isLogin = false;
+            removeCookie("token");
+            console.log(response.data);
+            alert("后台消息："+response.data.message);
+          }
+          this.setLoginState(this.isLogin);
+        });
+      }else {
+        this.isLogin = false;
+        this.setLoginState(this.isLogin);
       }
     },
     signOut(){
-      this.isLogined = false;
+      this.isLogin = false;
       this.removeToken();
       removeCookie("token");
     }

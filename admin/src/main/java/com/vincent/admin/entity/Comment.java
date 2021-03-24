@@ -42,8 +42,14 @@ public class Comment extends SuperEntity<Comment> {
 
     private String source; // 评论来源： about、文章、留言板
 
+    /*
     @TableField(exist = false)
-    private String userName;
+    private String username;
+
+     */
+
+    @TableField(exist = false)
+    private User user;
 
     @TableField(exist = false)
     private List<Comment> replyList;

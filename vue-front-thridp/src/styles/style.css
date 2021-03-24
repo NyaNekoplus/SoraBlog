@@ -6357,6 +6357,7 @@ button.botui-actions-buttons-button {
     text-decoration-line: none
 }
 
+.forgetmenot {}
 .forgetmenot input[type=checkbox] {
     border: 1px solid #b4b9be;
     background: #fff;

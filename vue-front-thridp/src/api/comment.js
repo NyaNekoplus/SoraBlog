@@ -15,3 +15,10 @@ export function getCommentList(params){
         data: params
     })
 }
+export function getCommentUpdatedList(params){
+    return request({
+        url: process.env.VUE_APP_FRONT_API + '/comment/update',
+        method: 'post',
+        data: params
+    })
+}

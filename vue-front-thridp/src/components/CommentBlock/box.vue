@@ -531,29 +531,36 @@ export default {
 
   }),
   methods:{
-    ...mapMutations(['removeToId','setCommentList']),
+    ...mapMutations(['removeToInfo','setCommentList']),
     handleSubmit(){
-      //event.preventDefault();
       if (this.content === ''){
+        alert("不能为空");
         console.log('不能为空');
         return;
       }
-      let blogId = this.$store.getters.blog.id;
-      console.log('articleId: '+blogId);
-      let toUid = this.$store.getters.toId;
-      console.log('toUid: '+toUid);
+      let userInfo = this.$store.getters.userInfo;
+      if (userInfo === null){
+        alert("请先登陆");
+        return;
+      }
+      let blogUid = this.$store.getters.blog.uid;
+      console.log('blogUid: '+blogUid);
+      let toInfo = this.$store.getters.toInfo;
 
       let param = {};
-      param.articleId = blogId;
-      param.fromUid = 1;
+      param.blogUid = blogUid;
+      //param.rootUid = blogId;
+      param.userUid = userInfo.uid;
       param.content = this.content;
 
-      if(toUid !== null){ // is reply
-        param.fromUid = 3;
-        param.toUid = toUid;
+      if(toInfo !== null){ // is reply
+        console.log('toInfoUid: '+toInfo.toUid);
+        param.toUid = toInfo.toUid;
+        param.toUserUid = toInfo.toUserUid;
         param.targetType = 1; // 回复评论
       }else {
         param.toUid = null;
+        param.toUserUid = null;
         param.targetType = 0;
       }
       param.createTime = parseTime("YYYY-mm-dd HH:MM:SS",new Date());
@@ -567,10 +574,11 @@ export default {
       let origin_pos = document.getElementById('comments');
       //let box = e.currentTarget.parentNode.parentNode.parentNode;
       let box = document.getElementById('respond');
-      console.log('current: '+box);
+      //let refbox = this.$refs.commentbox;
+      //console.log('refbox: '+refbox);
       console.log('child: '+box.children);
       box.children[0].children[0].children[0].style = 'display: none;';
-      this.removeToId();
+      this.removeToInfo();
       origin_pos.appendChild(box);
     },
   }

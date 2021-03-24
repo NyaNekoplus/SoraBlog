@@ -1,8 +1,10 @@
 package com.vincent.admin.util;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.text.SimpleDateFormat;
+import java.util.Map;
 
 /**
  * @author Vincent Tsai
@@ -17,6 +19,17 @@ public class JsonUtil {
         try {
             return mapper.writeValueAsString(obj);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Map<String,Object> jsonToMap(String json){
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            TypeReference<Map<String,Object>> type = new TypeReference<>() {};
+            return mapper.readValue(json,type);
+        }catch (Exception e){
             e.printStackTrace();
         }
         return null;

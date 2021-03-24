@@ -1,13 +1,12 @@
 <template>
-  <div>
     <router-view />
-  </div>
 </template>
 
 <script>
 // Styles
-import '@/styles/style.css'
-
+//import '@/styles/style.css'
+//import '@/assets/css/'
+//import '@/styles/3rd-css/style.css'
 export default {
   name: 'App',
   metaInfo: {
@@ -23,12 +22,5 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>

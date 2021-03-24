@@ -4,8 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.vincent.admin.entity.User;
 import com.vincent.admin.holder.RequestHolder;
 import com.vincent.admin.service.UserService;
-import com.vincent.admin.util.IpUtil;
-import com.vincent.admin.util.Result;
+import com.vincent.admin.util.*;
 import com.vincent.admin.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Vincent Tsai
@@ -32,23 +32,22 @@ import java.util.UUID;
 @RequestMapping("/front/user")
 @Slf4j
 public class UserApi {
-
-
     @Autowired
     private UserService userService;
+    @Autowired
+    private RedisUtil redisUtil;
 
     @PostMapping("/login")
-    //@Cacheable("")
     String login(@RequestBody UserVO userVO){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.and((wrapper) -> wrapper.eq("userName",userVO.getUserName()).or().eq("email",userVO.getUserName()));
+        queryWrapper.and((wrapper) -> wrapper.eq("userName",userVO.getUsername()).or().eq("email",userVO.getUsername()));
         User user = userService.getOne(queryWrapper);
         System.out.println(userVO);
         System.out.println(user);
         if (user == null){
-            return Result.failure("用户不存在");
+            return Result.failure("Back-end: 用户不存在");
         }
-        if(!StringUtils.isEmpty(userVO.getPassword()) && user.getPassword().equals(userVO.getPassword())){
+        if(!StringUtils.isEmpty(userVO.getPassword()) && user.getPassword().equals(MD5Util.string2MD5(userVO.getPassword()))){
             HttpServletRequest request = RequestHolder.getRequest();
             String ip = IpUtil.getIpAddr(request);
             Map<String,String> userMap = IpUtil.getOsAndBrowserInfo(request);
@@ -61,33 +60,53 @@ public class UserApi {
             //过滤密码
             user.setPassword("");
             String uuid = UUID.randomUUID().toString().replaceAll("-","");
-            String msg = "登錄成功, token: " + uuid;
+            String msg = "Back-end: 登錄成功, token: " + uuid;
+            //ACTIVE_USER
+            redisUtil.setExpire("LOGIN_TOKEN"+':'+uuid, JsonUtil.objectToJson(user),1, TimeUnit.HOURS);
             log.info(msg);
             return Result.success(msg,uuid);
 
         }
         else {
-            String msg = "账号或密碼錯誤";
+            String msg = "Back-end: 账号或密碼錯誤";
             return Result.failure(msg);
         }
     }
 
     @PostMapping("register")
     String register(@RequestBody UserVO userVO){
-        User user = new User();
-        user.setUsername(userVO.getUserName());
-        user.setPassword(userVO.getPassword());
+        if (userVO.getUsername().length()<2||userVO.getUsername().length()>16 ||
+                userVO.getPassword().length()<6||userVO.getPassword().length()>32){
+            return Result.failure("Back-end: 注册失败，用户名或密码的长度不符合");
+        }
+        HttpServletRequest request = RequestHolder.getRequest();
+        String ip = IpUtil.getIpAddr(request);
+        Map<String, String> map = IpUtil.getOsAndBrowserInfo(request);
+
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.and(wrapper->{
+            wrapper.eq("username",userVO.getUsername()).or().eq("email",userVO.getEmail());
+        });
+        queryWrapper.last("LIMIT 1");
+        User user = userService.getOne(queryWrapper);
+        if (user!=null){
+            return Result.failure("Back-end: 注册失败，用户已存在");
+        }
+        user = new User();
+        user.setUsername(userVO.getUsername());
+        user.setPassword(MD5Util.string2MD5(userVO.getPassword()));
         user.setEmail(userVO.getEmail());
+        user.setLastLoginIp(ip);
+        user.setIpSource(IpUtil.getCityInfo(ip));
+        user.setBrowser(map.get("BROWSER"));
+        user.setOs(map.get("OS"));
+        log.info("MD5值："+user.getPassword());
         //user.setSignupDate(userVO.getSignupDate());
         //user.setLastVisitDate(userVO.getLastVisitDate());
         user.setUserProxy(0);
+        log.info("注册用户信息："+user);
+        user.insert();
 
-        boolean isSaved = userService.save(user);
-        if(isSaved){
-            return Result.success("注册成功");
-        }
-        else {
-            return Result.failure("注册失败");
-        }
+        return Result.success("Back-end: 注册成功");
     }
 }

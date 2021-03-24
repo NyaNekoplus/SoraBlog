@@ -2,6 +2,7 @@
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main" v-for="blog in blogData" :key="blog.id">
 
+      <h1 class="main-title" style="font-family: 'Ubuntu', sans-serif;"><i class="fa fa-envira" aria-hidden="true"></i> Discovery</h1>
       <blog-card :blog="blog"></blog-card>
 
       <!--
@@ -122,11 +123,5 @@ export default {
 </script>
 
 <style scoped>
-.page-wrapper{
-  width: 100%;
-  padding: 20px 0;
-  text-align: center;
-  margin: 40px 0 80px;
-  display: inline-block
-}
+
 </style>

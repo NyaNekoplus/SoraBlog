@@ -1,6 +1,6 @@
 <template>
   <ul><!-- class="comment byuser comment-author-mashiro bypostauthor even depth-2"-->
-    <li class="comment" :id="comment.id" v-for="comment in commentList" :key="comment.id"><!--id="comment-8435"-->
+    <li class="comment" :id="comment.uid" v-for="comment in commentList" :key="comment.uid"><!--id="comment-8435"-->
       <div class="contents">
         <div class="comment-arrow">
           <div class="main shadow">
@@ -21,7 +21,7 @@
                           src="https://q2.qlogo.cn/headimg_dl?dst_uin=1723687845&amp;spec=100" data-src=""
                           class="lazyload avatar avatar-24 photo" alt="😀" onerror="imgError(this,1)" width="24"
                           height="24">
-                      <span class="bb-comment isauthor" title="博主">博主</span> {{ comment.userName }}
+                      <span v-if="comment.user.userProxy === 2" class="bb-comment isauthor" title="博主">博主</span> {{ comment.user.username }}
                       <span class="showGrade0" title="萌萌哒新人~">
                   <img
                       src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/level/level_0.svg"
@@ -30,16 +30,16 @@
                     </a>
                   </h4>
                 </div>
-                <a rel="nofollow" class="comment-reply-link" :id="comment.id" data-commentid="8435" data-postid="3137"
-                   data-belowelement="comment-8435" data-respondelement="respond" aria-label="Reply to センカメイ" @click="reply($event)">Reply</a>
+                <a rel="nofollow" class="comment-reply-link" :id="comment.uid" data-commentid="8435" data-postid="3137"
+                   data-belowelement="comment-8435" data-respondelement="respond" aria-label="Reply to センカメイ" @click="reply($event,comment)">Reply</a>
                 <div class="right">
                   <div class="info">
-                    <time datetime="2021-02-27">发布于 1 天前</time>&nbsp;&nbsp;
+                    <time datetime="2021-02-27">发布于 1 天前 {{comment.createTime}}</time>&nbsp;&nbsp;
                     <span class="useragent-info">(
                 <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/img/Sakura/images/ua/svg/chrome.svg">
-                &nbsp;Google Chrome 87.0.4280.88&nbsp;&nbsp;
+                &nbsp;{{ comment.user.browser }}&nbsp;&nbsp;
                 <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/img/Sakura/images/ua/svg/windows_win10.svg">
-                &nbsp;Windows 10 )
+                &nbsp;{{ comment.user.os }} )
               </span>
                     <span class="useragent-info-m">(
                 <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/img/Sakura/images/ua/svg/chrome.svg">&nbsp;&nbsp;
@@ -76,13 +76,19 @@ export default {
   data: () => ({
   }),
   methods: {
-    ...mapMutations(['setToId']),
-    reply(e){
+    ...mapMutations(['setToInfo']),
+    reply(e, comment){
       let box = document.getElementById('respond');
+      //let refbox = this.$refs.commentbox;
+      //console.log('refbox:'+refbox)
       let current = e.currentTarget.parentNode.parentNode.parentNode;
-      let toId = e.currentTarget.id;
-      this.setToId(toId);
-      console.log('toId: '+toId);
+      //let toId = e.currentTarget.id;
+      let toInfo = {
+        toUid: comment.uid,
+        toUserUid: comment.user.uid
+      }
+      this.setToInfo(toInfo);
+      console.log('toInfoUid: '+toInfo.toUid);
 
       box.children[0].children[0].children[0].style = '';
       current.appendChild(box);

@@ -7,18 +7,22 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.vincent.admin.entity.Article;
 import com.vincent.admin.entity.Comment;
+import com.vincent.admin.entity.User;
 import com.vincent.admin.service.ArticleService;
 import com.vincent.admin.service.CommentService;
+import com.vincent.admin.service.UserService;
 import com.vincent.admin.util.Result;
 import com.vincent.admin.vo.CommentVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,30 +43,31 @@ public class CommentApi {
 
     @Autowired
     private CommentService commentService;
-
+    @Autowired
+    private UserService userService;
     @Autowired
     private ArticleService articleService;
 
     @PostMapping("/list")
-    @Cacheable(key = "#p0.currentPage + #p0.pageSize + #p0.articleId")
+    @Cacheable(key = "#p0.currentPage + #p0.pageSize + #p0.source + #p0.blogUid")
     public String list(@RequestBody CommentVO commentVO){
         //if (caffeine.ge)
         log.debug("Comment list from database");
         QueryWrapper<Comment> queryWrapper = new QueryWrapper<>();
-        if(ObjectUtils.isNotNull(commentVO.getArticleId())){
-            Article article = articleService.getById(commentVO.getArticleId());
+        if(0 != commentVO.getBlogUid()){
+            Article article = articleService.getById(commentVO.getBlogUid());
             if(ObjectUtils.isNull(article) || !article.getEnableComment()){
                 return Result.failure("该文章没有开放评论");
             }
-            queryWrapper.like("articleId",commentVO.getArticleId());
+            queryWrapper.like("blog_uid",commentVO.getBlogUid());
         }
 
         Page<Comment> page = new Page<>();
         page.setSize(commentVO.getPageSize());
         page.setCurrent(commentVO.getCurrentPage());
-        queryWrapper.isNull("toUid");
-        queryWrapper.eq("targetType",0); // 所有一级评论
-        queryWrapper.orderByDesc("createTime");
+        queryWrapper.isNull("to_uid");
+        queryWrapper.eq("target_type",0); // 所有一级评论
+        queryWrapper.orderByDesc("create_time");
 
         IPage<Comment> pageList = commentService.page(page,queryWrapper);
         /*--------------------------------------------------------------------*/
@@ -78,12 +83,47 @@ public class CommentApi {
         if(commentIdList.size() > 0){
             //  根据 rootId 查找所有子评论
             QueryWrapper<Comment> subCommentQueryWrapper = new QueryWrapper<>();
-            subCommentQueryWrapper.in("rootId",commentIdList);
+            subCommentQueryWrapper.in("root_uid",commentIdList);
             List<Comment> subCommentList = commentService.list(subCommentQueryWrapper);
             if(subCommentList.size() > 0){
                 commentList.addAll(subCommentList);
             }
         }
+
+        // 从这里开始commentList为该文章下的所有评论
+        Collection<Long> userUidList = new ArrayList<>();
+        commentList.forEach(comment -> {
+            if (comment.getUserUid()!=null)
+                userUidList.add(comment.getUserUid());
+        });
+
+        List<User> userList = new ArrayList<>();
+        if (userUidList.size() > 0){
+            userList = userService.listByIds(userUidList);
+        }
+
+        List<User> processedUserList = new ArrayList<>();
+        userList.forEach(user -> {
+            User tUser = new User();
+            //tUser.setAvatar();
+            tUser.setUid(user.getUid());
+            tUser.setUserProxy(user.getUserProxy());
+            tUser.setUsername(user.getUsername());
+            tUser.setOs(user.getOs());
+            tUser.setBrowser(user.getBrowser());
+            //tUser.setIpSource(user.getIpSource());
+            processedUserList.add(tUser);
+        });
+
+        HashMap<Long, User> userMap = new HashMap<>();
+        processedUserList.forEach(user -> {
+            if (user.getUid()!=null){
+                userMap.put(user.getUid(), user);
+            }
+        }); // 哈希表，方便定位用户
+        commentList.forEach(comment -> {
+            comment.setUser(userMap.get(comment.getUserUid()));
+        }); // 为所有评论设置用户信息
 
         HashMap<Long, List<Comment>> replyMap = new HashMap<>();
         for (Comment parent : commentList) {
@@ -95,8 +135,9 @@ public class CommentApi {
             }
             replyMap.put(parent.getUid(), replyList);
         }
-        //System.out.println("最高级评论列表2：\n"+primaryCommentList);
+        //System.out.println();
         processReply(primaryCommentList, replyMap);
+        log.info("处理完毕的评论列表：\n"+primaryCommentList);
         pageList.setRecords(primaryCommentList);
         return Result.success("查找评论列表成功！",pageList);
     }
@@ -111,6 +152,12 @@ public class CommentApi {
         }
     }
 
+    @PostMapping("/update")
+    @CachePut(key = "#p0.currentPage + #p0.pageSize + #p0.source + #p0.blogUid")
+    public String updateCommentList(@RequestBody CommentVO commentVO){
+        return list(commentVO);
+    }
+
     @PostMapping("/delete")
     public String deleteComment(@RequestBody Comment comment){
         return Result.success();
@@ -121,12 +168,14 @@ public class CommentApi {
     public String addComment(@RequestBody CommentVO commentVO){
 
         Comment comment = new Comment();
-        comment.setBlogUid(commentVO.getArticleId());
+        comment.setBlogUid(commentVO.getBlogUid());
         comment.setContent(commentVO.getContent());
         //comment.setCommentTime(commentVO.ge);
-        comment.setUserUid(commentVO.getFromUid());
+        comment.setUserUid(commentVO.getUserUid());
+        comment.setToUserUid(commentVO.getToUserUid());
         //comment.setRootId(commentVO.getParentId());
         comment.setToUid(commentVO.getToUid());
+        comment.setSource(commentVO.getSource());
         comment.setTargetType(commentVO.getTargetType());
 
         //comment.setUserName(commentVO.getUserName());
@@ -139,7 +188,7 @@ public class CommentApi {
                 comment.setRootUid(toComment.getRootUid());
             }
         }
-
+        log.info("新增评论："+comment);
         boolean isSaved = commentService.save(comment);
         if (isSaved){
             return Result.success("yattaze!");

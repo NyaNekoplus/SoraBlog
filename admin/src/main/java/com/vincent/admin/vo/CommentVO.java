@@ -12,20 +12,21 @@ import java.util.Date;
 @Data
 public class CommentVO extends BaseVO<CommentVO>{
 
-    private Long userId;
+    private Long userUid;
 
-    private String userName;
+    private Long toUserUid;
 
-    private Long fromUid;
+    private String username;
 
     private Long toUid;
 
-    private Long parentId;
+    private Long rootUid;
 
-    private Long articleId;
+    private Long blogUid;
 
     private String content;
 
+    private String source; // 留言板、文章、关于
     /**
      * 评论目标：0为文章，1为评论
      */

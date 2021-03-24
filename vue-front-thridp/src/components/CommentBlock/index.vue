@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { addComment, getCommentList } from "../../api/comment";
+import {addComment, getCommentList, getCommentUpdatedList} from "../../api/comment";
 
 export default {
   name: "index",
@@ -53,12 +53,17 @@ export default {
     CommentBox: () => import('./box'),
   },
   props: {
-    blogId: {
+    /*
+    blogUid: {
       type: Number
     },
+    */
     enableComment: {
       type: Boolean
-    }
+    },
+    commentSource: {
+      type: String
+    },
   },
   data: () => ({
     commentCount: 1322,
@@ -71,8 +76,17 @@ export default {
   }),
   methods: {
     getCommentList(){
+      let blog = this.$store.getters.blog;
+      if (blog === null){
+        console.log("Comment index: store 中 blog 为空，获取评论列表失败")
+      }
       let params = {};
-      params.articleId = this.blogId;
+      params.source = this.commentSource;
+      console.log("Comment source: "+params.source);
+      if (params.source === 'BLOG'){
+        params.blogUid = blog.uid;
+      }else {params.blogUid = 0;}
+      console.log("Blog uid: "+params.blogUid);
       params.pageSize = this.pageSize;
       params.currentPage = this.currentPage;
       getCommentList(params).then(response=>{
@@ -92,10 +106,12 @@ export default {
     submitComment(c){
       //alert('father');
       let param = {};
-      param.articleId = c.articleId;
-      param.fromUid = c.fromUid;
+      param.blogUid = c.blogUid;
+      param.userUid = c.userUid;
       param.toUid = c.toUid;
-      param.parentId = c.parentId;
+      param.toUserUid = c.toUserUid;
+      //param.rootUid = c.rootUid; 后端处理
+      param.source = this.commentSource;
       param.content = c.content;
       param.targetType = c.targetType;
 
@@ -113,11 +129,20 @@ export default {
 
     },
     updateComment(){
+      let blog = this.$store.getters.blog;
+      if (blog === null){
+        console.log("Comment index: store 中 blog 为空，获取评论列表失败")
+      }
       let params = {};
-      params.articleId = this.$store.getters.blog.id;
+      params.source = this.commentSource;
+      console.log("Comment source: "+params.source);
+      if (params.source === 'BLOG'){
+        params.blogUid = blog.uid;
+      }else {params.blogUid = 0;}
+      console.log("Blog uid: "+params.blogUid);
       params.pageSize = 10//this.pageSize;
       params.currentPage = 1//this.currentPage;
-      getCommentList(params).then(response => {
+      getCommentUpdatedList(params).then(response => {
         if (response.state === this.$STATE.SUCCESS) {
           alert(response.message);
           alert('更新评论成功');
@@ -130,8 +155,11 @@ export default {
       })
     }
   },
-  mounted() {
+  created() {
     this.getCommentList();
+  },
+  mounted() {
+    //this.getCommentList();
   }
 }
 </script>

@@ -1,28 +1,7 @@
 <template>
-  <!--
-  //function custom_short_excerpt($excerpt){
-  //	return substr($excerpt, 0, 120);
-  //}
-  //add_filter('the_excerpt', 'custom_short_excerpt');
-  $i=0; while ( have_posts() ) : the_post(); $i++;
-  if( $i == 1 ){
-  $class = ' post-list-show';
-  }
-  if(has_post_thumbnail()){
-  $large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'large');
-  $post_img = $large_image_url[0];
-  }else{
-  $post_img = DEFAULT_FEATURE_IMAGE();
-  }
-  $the_cat = get_the_category();
-  // 摘要字数限制
-
-  //add_filter( 'excerpt_length', 'custom_excerpt_length', 120 );
-  ?>
-  -->
   <article class="post post-list-thumb post-list-show" itemscope="" itemtype="http://schema.org/BlogPosting">
     <div class="post-thumb">
-      <a href="<?php the_permalink(); ?>"><img class="lazyload" src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.1/img/svg/loader/orange.progress-bar-stripe-loader.svg" data-src="<?php echo $post_img; ?>"></a>
+      <a href=""><img class="lazyload" src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.1/img/svg/loader/orange.progress-bar-stripe-loader.svg" data-src="<?php echo $post_img; ?>"></a>
     </div><!-- thumbnail-->
     <div class="post-content-wrap">
       <div class="post-content">
@@ -33,7 +12,7 @@
           </div>
 
         </div>
-        <a href="<?php the_permalink(); ?>" class="post-title"><h3>{{ blog.title }}</h3></a>
+        <a @click="intoDetail(blog)" class="post-title"><h3>{{ blog.title }}</h3></a>
         <div class="post-meta">
           <span><i class="iconfont icon-attention"></i>{{ blog.viewCount }}</span>
           <span class="comments-number"><i class="iconfont icon-mark"></i>{{ blog.commentCount }}条评论</span>
@@ -97,9 +76,5 @@ export default {
 </script>
 
 <style>
-.post-list-show {
-  animation: post-list-show .5s;
-  -webkit-animation: post-list-show .5s;
-  opacity: 1;
-}
+
 </style>

@@ -4,8 +4,9 @@
       <i class="iconfont icon-notification"></i>
       <div class="notice-content">思绪如风，来得快去得也快，偶尔在这里停留  ~&gt;ω&lt;</div>
     </div>
-    <div class="top-feature-row"><h1 class="fes-title" style="font-family: 'Ubuntu', sans-serif;"><i
-        class="fa fa-anchor" aria-hidden="true"></i> START:DASH!!</h1>
+    <div class="top-feature-row">
+      <h1 class="fes-title" style="font-family: 'Ubuntu', sans-serif;">
+        <i class="fa fa-anchor" aria-hidden="true"></i> START:DASH!!</h1>
       <div class="top-feature-v2">
         <div class="the-feature square from_left_and_right"><a href="/theme-sakura/" target="_blank">
           <div class="img"><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.3.2/img/other/sakura.md.png"></div>
@@ -30,14 +31,8 @@
       </div>
     </div>
 
-    <div id="primary" class="content-area">
 
-      <main id="main" class="site-main" role="main">
-
-        <main-list :categoryUid="'0'"></main-list>
-
-      </main>
-    </div>
+    <main-list :categoryUid="'0'"></main-list>
 
   </div>
 

@@ -1,13 +1,13 @@
 <template>
-  <!-- 标签 -->
   <div>
-    tag
+    <router-view/>
   </div>
+
 </template>
 
 <script>
 export default {
-  name: "tag",
+  name: "PixivView",
   data: () => ({}),
 }
 </script>

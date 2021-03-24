@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class UserVO extends BaseVO<User>{
 
-    private String userName;
+    private String username;
 
     private String nickName;
 

@@ -60,7 +60,7 @@ public class User extends SuperEntity<User> {
 
     private Integer enableEmailNotification; // 开启邮件通知
 
-    private Integer userProxy; // 0:普通用户 1：测试用户 2：管理员
+    private Integer userProxy; // 0:普通用户 1：测试用户 2：博主
 
     public User(){
         super();
