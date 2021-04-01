@@ -28,12 +28,11 @@
 
 参考：https://blog.csdn.net/Terenceno/article/details/90033967
 */
-import star from '../../assets/star.png'
+
 export default {
   name: "SoraView",
   data: ()=>({
     isRouterAlive: true,
-    background: star
   }),
   /*
   provide: ()=>({

@@ -26,167 +26,161 @@
         </template>
       </v-file-input>
     </view-intro>
-    <v-row
-      align="center"
-      justify="center"
-    >
-      <v-col cols="12">
-        <v-row justify="center">
-          <v-col
-            cols="12"
-            sm="6"
-            md="4"
-          >
-            <material-card
-              icon="mdi-calendar-today"
-              icon-small
-              title="Category"
-              color="primary"
+    <v-form ref="form" v-model="isValid" lazy-validation>
+      <v-row align="center" justify="center">
+        <v-col cols="12">
+          <v-row justify="center">
+            <v-col
+              cols="12"
+              sm="6"
+              md="4"
             >
-              <v-card-text>
+              <material-card
+                icon="mdi-calendar-today"
+                icon-small
+                title="Category"
+                color="primary"
+              >
+                <v-card-text>
+                  <!--
+                  :hint="`${select.name}, ${select.uid}`"
+                  -->
+                  <v-select
+                    v-model="category"
+                    :items="categoryList"
+                    item-text="name"
+                    item-value="uid"
+                    label="Select"
+                    persistent-hint
+                    return-object
+                    single-line
+                  ></v-select>
+                  <!--
+                  <v-select
+                    v-model="category"
+                    :items="categoryList"
+                    hide-selected
+                  >
+                  </v-select>
+                  -->
+                </v-card-text>
                 <!--
-                :hint="`${select.name}, ${select.uid}`"
+                <v-card-text>
+                  <v-text-field
+                    :rules="rules"
+                    prepend-icon="mdi-tag-arrow-left-outline"
+                  ></v-text-field>
+                </v-card-text>
                 -->
-                <v-select
-                  v-model="category"
-                  :items="categoryList"
-                  item-text="name"
-                  item-value="uid"
-                  label="Select"
-                  persistent-hint
-                  return-object
-                  single-line
-                ></v-select>
-                <!--
-                <v-select
-                  v-model="category"
-                  :items="categoryList"
-                  hide-selected
-                >
-                </v-select>
-                -->
-              </v-card-text>
-              <!--
-              <v-card-text>
-                <v-text-field
-                  :rules="rules"
-                  prepend-icon="mdi-tag-arrow-left-outline"
-                ></v-text-field>
-              </v-card-text>
-              -->
-            </material-card>
-          </v-col>
+              </material-card>
+            </v-col>
 
-          <v-col
-            cols="12"
-            sm="6"
-            md="4"
-          >
-            <material-card
-              icon="mdi-calendar-today"
-              icon-small
-              title="Date"
-              color="primary"
+            <v-col
+              cols="12"
+              sm="6"
+              md="4"
             >
-              <v-card-text>
-                <v-menu
-                  v-model="datePicker"
-                  :close-on-content-click="false"
-                  :nudge-right="40"
-                  transition="scale-transition"
-                  offset-y
-                  min-width="auto"
-                >
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-text-field
-                      :value="computedDateFormattedMomentjs"
-                      :rules="ruleRequire"
-                      clearable
-                      label="Blog release date"
-                      prepend-icon="mdi-calendar-outline"
-                      readonly
-                      v-bind="attrs"
-                      v-on="on"
-                      @click:clear="date = null"
-                    ></v-text-field>
-                  </template>
-                  <v-date-picker
-                    v-model="date"
-                    @change="datePicker = false"
-                    width="290"
-                  ></v-date-picker>
-                </v-menu>
-              </v-card-text>
-            </material-card>
-          </v-col>
+              <material-card
+                icon="mdi-calendar-today"
+                icon-small
+                title="Date"
+                color="primary"
+              >
+                <v-card-text>
+                  <v-menu
+                    v-model="datePicker"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        :value="computedDateFormattedMomentjs"
+                        :rules="ruleRequire"
+                        clearable
+                        label="Blog release date"
+                        prepend-icon="mdi-calendar-outline"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                        @click:clear="date = null"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="date"
+                      @change="datePicker = false"
+                      width="290"
+                    ></v-date-picker>
+                  </v-menu>
+                </v-card-text>
+              </material-card>
+            </v-col>
 
-          <v-col
-            cols="12"
-            sm="6"
-            md="4"
-          >
-            <material-card
-              icon="mdi-calendar-today"
-              icon-small
-              title="Time"
-              color="primary"
-            >
-              <v-card-text>
-                <v-menu
-                  ref="menu"
-                  v-model="timePicker"
-                  :close-on-content-click="false"
-                  :nudge-right="40"
-                  :return-value.sync="time"
-                  transition="scale-transition"
-                  offset-y
-                  min-width="auto"
-                >
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-text-field
+            <v-col cols="12" sm="6" md="4">
+              <material-card
+                icon="mdi-calendar-today"
+                icon-small
+                title="Time"
+                color="primary"
+              >
+                <v-card-text>
+                  <v-menu
+                    ref="menu"
+                    v-model="timePicker"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    :return-value.sync="time"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="time"
+                        :rules="ruleRequire"
+                        label="Blog release time"
+                        prepend-icon="mdi-clock-time-four-outline"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-time-picker
+                      v-if="timePicker"
                       v-model="time"
-                      :rules="ruleRequire"
-                      label="Blog release time"
-                      prepend-icon="mdi-clock-time-four-outline"
-                      readonly
-                      v-bind="attrs"
-                      v-on="on"
-                    ></v-text-field>
-                  </template>
-                  <v-time-picker
-                    v-if="timePicker"
-                    v-model="time"
-                    ampm-in-title
-                    format="ampm"
+                      ampm-in-title
+                      format="ampm"
 
-                    landscape
-                    scrollable
-                    @click:minute="$refs.menu.save(time)"
-                  ></v-time-picker>
-                </v-menu>
-              </v-card-text>
-            </material-card>
-          </v-col>
+                      landscape
+                      scrollable
+                      @click:minute="$refs.menu.save(time)"
+                    ></v-time-picker>
+                  </v-menu>
+                </v-card-text>
+              </material-card>
+            </v-col>
 
-        </v-row>
+          </v-row>
 
-        <v-row justify="center">
-          <v-col cols="12">
-            <v-card>
-              <v-sheet class="pa-6">
-                <v-row justify="center">
-                  <v-col cols="8" md="8" >
-                    <v-row>
-                      <v-col cols="5" md="5" align-self="center">
-                        <v-text-field
-                          v-model="title"
-                          :rules="ruleRequire"
-                          label="Title"
-                          prepend-icon="mdi-format-title"
-                        ></v-text-field>
-                      </v-col>
-                      <v-spacer/>
-                      <v-col cols="2" md="2" align-self="center" class="d-flex">
+          <v-row justify="center">
+            <v-col cols="12">
+              <v-card>
+                <v-sheet class="pa-6">
+                  <v-row justify="center">
+                    <v-col cols="8" md="8" >
+                      <v-row>
+                        <v-col cols="5" md="5" align-self="center">
+                          <v-text-field
+                            v-model="title"
+                            :rules="ruleRequire"
+                            label="Title"
+                            prepend-icon="mdi-format-title"
+                          ></v-text-field>
+                        </v-col>
+                        <v-spacer/>
+                        <v-col cols="2" md="2" align-self="center" class="d-flex">
 
                           <span class="switch-label">开放评论</span>
                           <v-switch
@@ -194,33 +188,33 @@
                             inset
                           ></v-switch>
 
-                      </v-col>
-                      <v-col cols="4" md="4" align-self="center" class="d-flex">
-                        <v-combobox
-                          hint="置顶文章等级"
-                          v-model="level"
-                          :items="levelList"
-                          item-value="value"
-                          item-text="text"
-                          return-object
-                          hide-selected
-                          outlined
-                          prepend-icon="mdi-format-title"
-                        ></v-combobox>
-                      </v-col>
-                    </v-row>
-                    <br/>
-                    <v-row>
-                      <v-col cols="5" md="5" align-self="center">
-                        <v-text-field
-                          v-model="link"
-                          :rules="ruleRequire"
-                          label="Link(tooisorahe.com/link)"
-                          prepend-icon="mdi-link-variant-plus"
-                        ></v-text-field>
-                      </v-col>
-                      <v-spacer/>
-                      <v-col cols="2" md="2" align-self="center" class="d-flex">
+                        </v-col>
+                        <v-col cols="4" md="4" align-self="center" class="d-flex">
+                          <v-combobox
+                            hint="置顶文章等级"
+                            v-model="level"
+                            :items="levelList"
+                            item-value="value"
+                            item-text="text"
+                            return-object
+                            hide-selected
+                            outlined
+                            prepend-icon="mdi-format-title"
+                          ></v-combobox>
+                        </v-col>
+                      </v-row>
+                      <br/>
+                      <v-row>
+                        <v-col cols="5" md="5" align-self="center">
+                          <v-text-field
+                            v-model="link"
+                            :rules="ruleRequire"
+                            label="Link(tooisorahe.com/link)"
+                            prepend-icon="mdi-link-variant-plus"
+                          ></v-text-field>
+                        </v-col>
+                        <v-spacer/>
+                        <v-col cols="2" md="2" align-self="center" class="d-flex">
 
                           <span class="switch-label">作为草稿</span>
                           <v-switch
@@ -228,155 +222,157 @@
                             inset
                           ></v-switch>
 
-                      </v-col>
-                      <v-col cols="4" md="4" align-self="center">
-                        <v-file-input
-                          v-model="image"
-                          accept=".png, .jpeg, .jpg"
-                          :rules="imageRules"
-                          hint="File extentions (.png, .jpg, .jpeg) File Size limits (max: 1mb)"
-                          placeholder="Upload profile image"
-                          prepend-icon="mdi-camera"
-                          outlined
-                          filled
-                          show-size
-                          @click:clear="localImgUrl='';image=null"
-                          @change="previewImage">
-                          <template v-slot:selection="{ text }">
-                            <v-chip
-                              small
-                              label
-                              color="primary"
-                              v-text="text"/>
-                          </template>
-                        </v-file-input>
-                      </v-col>
-                    </v-row>
-                    <br/>
-                    <v-row>
-                      <v-col cols="5" md="5" align-self="center">
-                        <v-combobox
-                          v-model="tags"
-                          :items="tagList"
-                          item-text="name"
-                          item-value="uid"
-                          :rules="ruleRequire"
-                          hint="Press enter to apply change"
-                          persistent-hint
-                          return-object
-                          chips
-                          clearable
-                          label="Add tags for this Article"
-                          multiple
-                          prepend-icon="mdi-tag-arrow-left-outline"
-                        >
-                          <template v-slot:selection="{ attrs, item, select, selected }">
-                            <v-chip
-                              v-bind="attrs"
-                              :input-value="{uid:null, name: selected}"
-                              close
-                              @click="select"
-                              @click:close="removeTag(item)"
+                        </v-col>
+                        <v-col cols="4" md="4" align-self="center">
+                          <v-file-input
+                            v-model="image"
+                            accept=".png, .jpeg, .jpg"
+                            :rules="imageRules"
+                            hint="File extentions (.png, .jpg, .jpeg) File Size limits (max: 1mb)"
+                            placeholder="Upload profile image"
+                            prepend-icon="mdi-camera"
+                            :disabled="loading.uploadIsLoading"
+                            :loading="loading.uploadIsLoading"
+                            outlined
+                            filled
+                            show-size
+                            @click:clear="localImgUrl='';image=null"
+                            @change="previewImage">
+                            <template v-slot:selection="{ text }">
+                              <v-chip
+                                small
+                                label
+                                color="primary"
+                                v-text="text"/>
+                            </template>
+                          </v-file-input>
+                        </v-col>
+                      </v-row>
+                      <br/>
+                      <v-row>
+                        <v-col cols="5" md="5" align-self="center">
+                          <v-combobox
+                            v-model="tags"
+                            :items="tagList"
+                            item-text="name"
+                            item-value="uid"
+                            :rules="ruleRequire"
+                            hint="Press enter to apply change"
+                            persistent-hint
+                            return-object
+                            chips
+                            clearable
+                            label="Add tags for this Article"
+                            multiple
+                            prepend-icon="mdi-tag-arrow-left-outline"
+                          >
+                            <template v-slot:selection="{ attrs, item, select, selected }">
+                              <v-chip
+                                v-bind="attrs"
+                                :input-value="{uid:null, name: selected}"
+                                close
+                                @click="select"
+                                @click:close="removeTag(item)"
+                              >
+                                <v-icon left>
+                                  mdi-bookmark-plus-outline
+                                </v-icon>
+                                <strong v-if="item.name">{{ item.name }}</strong>&nbsp;
+                                <strong v-else>{{ item }}</strong>&nbsp;
+                              </v-chip>
+                            </template>
+                          </v-combobox>
+                        </v-col>
+                        <v-spacer/>
+                        <v-col cols="2" md="2" align-self="center" class="d-flex">
+                          <span class="switch-label">是否原创</span>
+                          <v-switch
+                            v-model="isOriginal"
+                            inset
+                          ></v-switch>
+                        </v-col>
+                        <v-col cols="4" md="4" align-self="center">
+                          <v-row justify="center">
+                            <app-btn
+                              :disabled="!isValid"
+                              @click="handleSubmit"
+                              large
+                              rel="noopener noreferrer"
+                              target="_blank"
+                              class="align-content-center"
+                              max-width="auto"
                             >
                               <v-icon left>
-                                mdi-bookmark-plus-outline
+                                mdi-playlist-check
                               </v-icon>
-                              <strong v-if="item.name">{{ item.name }}</strong>&nbsp;
-                              <strong v-else>{{ item }}</strong>&nbsp;
-                            </v-chip>
-                          </template>
-                        </v-combobox>
-                      </v-col>
-                      <v-spacer/>
-                      <v-col cols="2" md="2" align-self="center" class="d-flex">
-                        <span class="switch-label">是否原创</span>
-                        <v-switch
-                          v-model="isOriginal"
-                          inset
-                        ></v-switch>
-                      </v-col>
-                      <v-col cols="4" md="4" align-self="center">
-                        <v-row justify="center">
-                          <app-btn
-                            @click="handleSubmit"
-                            large
-                            rel="noopener noreferrer"
-                            target="_blank"
-                            class="align-content-center"
-                            max-width="auto"
-                          >
-                            <v-icon left>
-                              mdi-playlist-check
-                            </v-icon>
-                            <span>Release</span>
-                          </app-btn>
-                        </v-row>
-                      </v-col>
-                    </v-row>
-                  </v-col>
-
-                  <v-col cols="4" md="4" align-self="center">
-                    <v-row justify="center">
-                      <v-img
-                        :src="localImgUrl"
-                        lazy-src="https://picsum.photos/id/11/100/60"
-                        :aspect-ratio="16/9"
-                        max-width="550"
-                      >
-                        <template v-slot:placeholder>
-                          <v-row
-                            class="fill-height ma-0"
-                            align="center"
-                            justify="center"
-                          >
-                            <v-progress-circular
-                              indeterminate
-                              color="grey lighten-5"
-                            ></v-progress-circular>
+                              <span>Release</span>
+                            </app-btn>
                           </v-row>
-                        </template>
-                      </v-img>
-                    </v-row>
+                        </v-col>
+                      </v-row>
+                    </v-col>
 
-                  </v-col>
+                    <v-col cols="4" md="4" align-self="center">
+                      <v-row justify="center">
+                        <v-img
+                          :src="localImgUrl"
+                          lazy-src="https://picsum.photos/id/11/100/60"
+                          :aspect-ratio="16/9"
+                          max-width="550"
+                        >
+                          <template v-slot:placeholder>
+                            <v-row
+                              class="fill-height ma-0"
+                              align="center"
+                              justify="center"
+                            >
+                              <v-progress-circular
+                                indeterminate
+                                color="grey lighten-5"
+                              ></v-progress-circular>
+                            </v-row>
+                          </template>
+                        </v-img>
+                      </v-row>
 
-                </v-row>
+                    </v-col>
 
-                <v-row v-if="!isOriginal" justify="center">
-                  <v-col cols="5">
-                    <v-text-field
-                      clearable
-                      v-model="author"
-                      :rules="ruleRequire"
-                      label="Author"
-                      prepend-icon="mdi-format-title"
-                    ></v-text-field></v-col>
-                  <v-spacer/>
-                  <v-col cols="5">
-                    <v-text-field
-                      clearable
-                      v-model="articleSource"
-                      :rules="ruleRequire"
-                      label="Source of the article"
-                      prepend-icon="mdi-format-title"
-                    ></v-text-field></v-col>
-                </v-row>
+                  </v-row>
 
-                <v-row justify="center">
-                  <v-col cols="12">
-                    <vue-tinymce
-                      v-model="contentMd"
-                      :setting="setting" />
-                  </v-col>
-                </v-row>
-              </v-sheet>
-            </v-card>
-          </v-col>
-        </v-row>
+                  <v-row v-if="!isOriginal" justify="center">
+                    <v-col cols="5">
+                      <v-text-field
+                        clearable
+                        v-model="author"
+                        :rules="ruleRequire"
+                        label="Author"
+                        prepend-icon="mdi-format-title"
+                      ></v-text-field></v-col>
+                    <v-spacer/>
+                    <v-col cols="5">
+                      <v-text-field
+                        clearable
+                        v-model="articleSource"
+                        :rules="ruleRequire"
+                        label="Source of the article"
+                        prepend-icon="mdi-format-title"
+                      ></v-text-field></v-col>
+                  </v-row>
 
-
-      </v-col>
-    </v-row>
+                  <v-row justify="center">
+                    <v-col cols="12">
+                      <vue-tinymce
+                        v-model="contentMd"
+                        :setting="setting" />
+                    </v-col>
+                  </v-row>
+                </v-sheet>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-form>
   </v-container>
 </template>
 
@@ -384,6 +380,7 @@
 import {submitArticle} from "../api/article";
 import {getCategoryList} from "../api/category";
 import {getTagList} from "../api/tag";
+import {uploadImage} from "../api/image";
 
 export default {
   name: "Writing",
@@ -410,6 +407,11 @@ export default {
         //toc_header: 'div'
       },
 
+      isValid: true,
+      loading: {
+        uploadIsLoading: false,
+      },
+
       level: {value:0,text:'Default'},
       levelList: [{value:3,text:'Level-3'},{value:2,text:'Level-2'},{value:1,text:'Level-1'},{value:0,text:'Default'}],
 
@@ -419,7 +421,7 @@ export default {
       datePicker: false,
       time: null,
       timePicker: false,
-      category: {uid: '',name: ''},
+      category: {uid: Number,name: ''},
 
       title: '',
       link: '',
@@ -457,6 +459,13 @@ export default {
 
       author: 'Vincent Willem van Gogh',
       articleSource: 'Starry Night Over the Rhone ---Musée d\'Orsay, Paris, France',
+
+
+      requestParam: {
+        userUid: 1,
+        projectName: 'sora-admin',
+        classificationName: 'blog-image'
+      }
     }
   },
   computed: {
@@ -481,45 +490,85 @@ export default {
       console.log(this.blogFile);
       console.log(this.localFileUrl);
     },
+    uploadFiles({files,params,success,error}){
+      let formData = new FormData();
+      files.map(file=>formData.append('filedatas',file.raw));
+      for (let key in params){
+        formData.append(key,params[key]);
+      }
+      let xhr = new XMLHttpRequest();
+      xhr.open('post',process.env.VUE_APP_FILE_API+'/images',true);
+      xhr.onreadystatechange = function (){
+        if (xhr.readyState === 4){
+          if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304){
+            success && success(xhr.responseText);
+          }else {
+            error && error(xhr.status);
+          }
+        }
+      }
+      xhr.send(formData);
+    },
     handleSubmit(){
-      let activeEditor = tinymce.activeEditor;
-      let editBody = activeEditor.getBody();
-      activeEditor.selection.select(editBody);
-      let content = activeEditor.selection.getContent( {'format' : 'text'});
-      //let content = tinyMCE.activeEditor.selection.getContent({ format: 'text' });
-      let createTime = this.date + ' ' + this.time;
+      this.loading.uploadIsLoading = true;
+      let formData = new window.FormData();
+      formData.append('imageList', this.image);
+      for (let key in this.requestParam){
+        formData.append(key,this.requestParam[key]);
+      }
 
-      console.log('纯文本： '+content);
-      console.log('HTML文本： '+this.contentMd);
-      console.log('Date: '+ createTime);
-      console.log('Tags: '+ this.tags);
+      //param.imageUid = null;
+      uploadImage(formData).then(fileRes=>{
+        if (fileRes.data.state === 'success'){
+          console.log('上传图片返回数据：'+fileRes);
+          alert(fileRes.data.message);
 
-      let param = {};
-      param.tagList = [];
-      this.tags.forEach(t=>{
-        param.tagList.push({
-          uid: t.uid, name: (t.name)?t.name:t
-        })})
-      param.categoryUid = this.category.uid;
-      param.title = this.title;
-      param.link = this.link;
-      param.lang = 0; // zhs by default
-      param.content = content;
-      param.contentMd = this.contentMd;
-      param.enableComment = this.enableComment;
-      param.isDraft = this.isDraft;
-      param.isOriginal = this.isOriginal;
-      param.level = this.level.value;
-      param.createTime = createTime;
-      submitArticle(param).then(response=>{
-        console.log(response.data);
-        if (response.data.state === 'success'){
-          alert(response.data.message);
-          this.contentMd = '';
-          //this.$message.show(response.data.message);
+          let activeEditor = tinymce.activeEditor;
+          let editBody = activeEditor.getBody();
+          activeEditor.selection.select(editBody);
+          let content = activeEditor.selection.getContent( {'format' : 'text'});
+          //let content = tinyMCE.activeEditor.selection.getContent({ format: 'text' });
+          let createTime = this.date + ' ' + this.time;
+
+          console.log('纯文本： '+content);
+          console.log('HTML文本： '+this.contentMd);
+          console.log('Date: '+ createTime);
+          console.log('Tags: '+ this.tags);
+
+          let param = {};
+          param.tagList = [];
+          this.tags.forEach(t=>{
+            param.tagList.push({
+              uid: t.uid, name: (t.name)?t.name:t
+            })})
+          param.categoryUid = this.category.uid;
+          param.title = this.title;
+          param.link = this.link;
+          param.lang = 0; // zhs by default
+          param.content = content;
+          param.contentMd = this.contentMd;
+          param.enableComment = this.enableComment;
+          param.isDraft = this.isDraft;
+          param.isOriginal = this.isOriginal;
+          param.level = this.level.value;
+          param.coverUid = fileRes.data.data[0].uid;
+          param.createTime = createTime;
+          submitArticle(param).then(response=>{
+            if (response.data.state === 'success'){
+              alert(response.data.message);
+              this.contentMd = '';
+              //this.$message.show(response.data.message);
+              this.$message.success(response.data.message);
+            }else {
+              this.$message.error(response.data.message);
+              alert(response.data.message);
+            }
+          });
+          this.loading.uploadIsLoading = false;
           this.$message.success(response.data.message);
         }else {
           this.$message.error(response.data.message);
+          this.loading.uploadIsLoading = false;
           alert(response.data.message);
         }
       });

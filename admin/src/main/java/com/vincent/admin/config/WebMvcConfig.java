@@ -1,7 +1,9 @@
 package com.vincent.admin.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -10,6 +12,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+    @Value(value = "${file.upload-folder}")
+    private String uploadFolder;
+    @Value(value = "${file.static-path}")
+    private String staticPath;
+
+
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry){
+        registry.addResourceHandler(staticPath).addResourceLocations("file:/"+uploadFolder);
+    }
+
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {

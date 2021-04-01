@@ -1,6 +1,7 @@
 package com.vincent.admin.controller.api;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -166,9 +167,15 @@ public class CommentApi {
 
     @PostMapping("/add")
     public String addComment(@RequestBody CommentVO commentVO){
+        if (commentVO.getUserUid()==null){
+            return Result.failure("Back-end: 请先登录");
+        }
 
         Comment comment = new Comment();
         comment.setBlogUid(commentVO.getBlogUid());
+        Article article = articleService.getById(comment.getBlogUid());
+        article.setCommentCount(article.getCommentCount()+1);
+        article.updateById();
         comment.setContent(commentVO.getContent());
         //comment.setCommentTime(commentVO.ge);
         comment.setUserUid(commentVO.getUserUid());

@@ -2,6 +2,7 @@ package com.vincent.admin.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Vincent Tsai
@@ -9,6 +10,7 @@ import lombok.Data;
  */
 
 @Data
+@NoArgsConstructor
 @TableName(value = "s_tag")
 public class Tag extends SuperEntity<Tag> {
 
@@ -18,7 +20,8 @@ public class Tag extends SuperEntity<Tag> {
 
     private Integer clickCount;
 
-    private Integer sort;
+    private Integer weight;
+
 
     public Tag(String name) {
         super();

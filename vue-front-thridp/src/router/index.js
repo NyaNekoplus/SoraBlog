@@ -34,6 +34,7 @@ const router = new Router({
             component: otherLayout,
             children: [
                 { path: '/tags', component:()=>import('@/views/tag') },
+                { path: '/donate', component:()=>import('@/views/donate') },
                 { path: '/about', component:()=>import('@/views/about') },
                 { path: '/blog/:title', component:()=>import('@/views/page') },
                 { path: '/board', component:()=>import('@/views/board') },

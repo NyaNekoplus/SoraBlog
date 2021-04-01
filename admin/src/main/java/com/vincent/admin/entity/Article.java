@@ -34,15 +34,17 @@ public class Article extends SuperEntity<Article> {
 
     private String tagUid; // uids
 
-    private String categoryUid;
+    private Long categoryUid;
 
-    private Long imageUid;
+    private Long coverUid;
 
     private Boolean enableComment;
 
     private Boolean isDraft;
 
     private Integer level; // 置顶等级
+
+    private Integer commentCount;
 
     private Integer viewCount;
 
@@ -59,6 +61,12 @@ public class Article extends SuperEntity<Article> {
     private String outsideLink;
 
     @TableField(exist = false)
+    private String category;
+
+    @TableField(exist = false)
     private List<Tag> tagList;
+
+    @TableField(exist = false)
+    private String coverUrl;
 
 }

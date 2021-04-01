@@ -1,18 +1,14 @@
 <template>
   <div>
-    <div class="pattern-center-blank"></div>
-    <div class="single-center pattern-center-sakura">
-      <div class="pattern-attachment-img"><img src="https://2heng.xin/wp-content/uploads//2019/12/2572384.jpg"
-                                               data-src="https://2heng.xin/wp-content/uploads//2019/12/2572384.jpg"
-                                               class="lazyload" onerror="imgError(this,3)"
-                                               style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
-      </div>
-      <header class="pattern-header single-header"><h1 class="entry-title">{{ blog.title }}</h1>
-        <p class="entry-census"><span><a href="https://2heng.xin/author/Mashiro/"><img
-            src="https://gravatar.loli.net/avatar/cd2b3a164c977539712929f66cad335c?s=96&amp;d=mm&amp;r=g"></a></span><span><a
-            href="https://2heng.xin/author/Mashiro/">Mashiro</a></span><span class="bull">·</span>{{ blog.releaseTime }}<span
-            class="bull">·</span>12,957 次阅读</p></header>
-    </div>
+    <cover
+        wide-screen
+        :title="blog.title"
+        :release-time="blog.createTime"
+        :view-count="blog.view"
+        :comment-count="blog.commentCount"
+        cover-src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/sora.jpg"
+        avatar-src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png"
+    />
     <div id="content" class="site-content">
       <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
@@ -415,29 +411,8 @@
         </main>
       </div>
     </div>
-    <comment-block :blog-uid="blog.uid" :enable-comment="blog.enableComment" :comment-source="'BLOG'"></comment-block>
+    <comment-block :blog-uid="blog.uid" :enable-comment="blog.enableComment" :comment-count="blog.commentCount" :comment-source="'BLOG'"></comment-block>
   </div>
-  <!--
-  <div>
-    <div class="pattern-center-blank"></div>
-    <div class="single-center pattern-center-sakura">
-      <div class="pattern-attachment-img"><img src="https://2heng.xin/wp-content/uploads//2019/12/2572384.jpg"
-                                               data-src="https://2heng.xin/wp-content/uploads//2019/12/2572384.jpg"
-                                               class="lazyload" onerror="imgError(this,3)"
-                                               style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
-      </div>
-      <header class="pattern-header single-header"><h1 class="entry-title">{{ blog.title }}</h1>
-        <p class="entry-census"><span><a href="https://2heng.xin/author/Mashiro/"><img
-            src="https://gravatar.loli.net/avatar/cd2b3a164c977539712929f66cad335c?s=96&amp;d=mm&amp;r=g"></a></span><span><a
-            href="https://2heng.xin/author/Mashiro/">Mashiro</a></span><span class="bull">·</span>{{ blog.releaseTime }}<span
-            class="bull">·</span>12,957 次阅读</p></header>
-    </div>
-    <div id="content" class="site-content">
-
-    </div>
-
-  </div>
-  -->
 </template>
 
 <script>
@@ -447,6 +422,7 @@ import {mapMutations} from "vuex";
 export default {
   name: "page",
   components: {
+    Cover: () => import('@/layouts/sora/widgets/Cover'),
     CommentBlock: () => import('@/components/CommentBlock/index'),
   },
   data: () => ({

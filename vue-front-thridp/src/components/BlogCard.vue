@@ -1,12 +1,12 @@
 <template>
   <article class="post post-list-thumb post-list-show" itemscope="" itemtype="http://schema.org/BlogPosting">
     <div class="post-thumb">
-      <a href=""><img class="lazyload" src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.1/img/svg/loader/orange.progress-bar-stripe-loader.svg" data-src="<?php echo $post_img; ?>"></a>
+      <a href=""><img class="lazyload" src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.1/img/svg/loader/orange.progress-bar-stripe-loader.svg" :data-src="blog.coverUrl"></a>
     </div><!-- thumbnail-->
     <div class="post-content-wrap">
       <div class="post-content">
         <div class="post-date">
-          <i class="iconfont icon-time"></i>发布于 {{ blog.releaseTime }}
+          <i class="iconfont icon-time"></i>发布于 {{ blog.createTime }}
           <div v-if="blog.isTop"><!-- is_sticky():是否置顶 -->
             &nbsp;<i class="iconfont hotpost icon-hot"></i>
           </div>
@@ -55,6 +55,8 @@ export default {
     category: 'Tech',
     summary: '当我们需要用 GraphQL 查询多层套嵌的数据，比如像 WordPress 这样套嵌的评论信息时，通常的写法是： {posts(first: 100)',
     releaseTime: '2020-10-18',
+
+    isLoad: false
   }),
   methods: {
     ...mapMutations(['setBlog']),
@@ -70,7 +72,10 @@ export default {
       });
       this.$router.push(routeData.href);
       //window.open(routeData.href, '_blank');
-    }
+    },
+  },
+  mounted() {
+    //addEventListener('scroll',this.loadCover);
   }
 }
 </script>

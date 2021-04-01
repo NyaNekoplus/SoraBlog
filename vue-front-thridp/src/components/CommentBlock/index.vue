@@ -10,7 +10,7 @@
     -->
 
     <div class="comments-main">
-      <h3 id="comments-list-title">Comments | <span class="noticom">{{ commentCount }}</span></h3>
+      <h3 id="comments-list-title">Comments | <span class="noticom">{{  }}</span></h3>
       <div id="loading-comments"><span></span></div>
 
       <div v-if="enableComment">
@@ -58,6 +58,9 @@ export default {
       type: Number
     },
     */
+    commentCount: {
+      type: Number
+    },
     enableComment: {
       type: Boolean
     },
@@ -66,7 +69,6 @@ export default {
     },
   },
   data: () => ({
-    commentCount: 1322,
     //enableComment: true,
     hasComment: false,
 
@@ -104,7 +106,6 @@ export default {
       })
     },
     submitComment(c){
-      //alert('father');
       let param = {};
       param.blogUid = c.blogUid;
       param.userUid = c.userUid;
@@ -114,7 +115,6 @@ export default {
       param.source = this.commentSource;
       param.content = c.content;
       param.targetType = c.targetType;
-
       //param.commentTime = c.commentTime;
       addComment(param).then(response=> {
         if (response.state === this.$STATE.SUCCESS) {
@@ -126,7 +126,6 @@ export default {
           alert('发送失败');
         }
       });
-
     },
     updateComment(){
       let blog = this.$store.getters.blog;

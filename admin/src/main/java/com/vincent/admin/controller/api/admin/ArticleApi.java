@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -61,9 +63,11 @@ public class ArticleApi {
         Article article = new Article();
         List<TagVO> tagList = articleVO.getTagList();
         StringBuilder tagUid = new StringBuilder(new String(""));
-        for (TagVO tagVO : tagList) {
+        Collection<Long> tagUidList = new ArrayList<>();
+        for (TagVO tagVO : tagList){
             if (tagVO.getUid() != null) {
                 tagUid.append(tagVO.getUid().toString() + ';');
+                tagUidList.add(tagVO.getUid());
             }else {
                 Tag tempTag = new Tag(tagVO.getName());
                 tagService.save(tempTag);
@@ -74,6 +78,11 @@ public class ArticleApi {
                 log.info(tagUid.toString());
             }
         }
+        List<Tag> tagExistedList = tagService.listByIds(tagUidList);
+        tagExistedList.forEach(tag -> {
+            tag.setWeight(tag.getWeight()+1);
+        });
+        tagService.updateBatchById(tagExistedList);
 
 
         article.setCategoryUid(articleVO.getCategoryUid());
@@ -88,6 +97,7 @@ public class ArticleApi {
         article.setEnableComment(articleVO.getEnableComment());
         article.setIsDraft(articleVO.getIsDraft());
         article.setLevel(articleVO.getLevel());
+        article.setCoverUid(articleVO.getCoverUid());
         //article.setCreateTime(articleVO.get);
         //article.setViewCount();  // 0 by default
 

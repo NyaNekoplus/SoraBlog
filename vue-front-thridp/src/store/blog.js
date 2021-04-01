@@ -8,7 +8,7 @@ import {REMOVE_TO_INFO, REMOVE_TOKEN, SET_BLOG, SET_BLOG_LIST, SET_TO_INFO, SET_
 
 const state = {
     blog: null,
-    toId: null, // number
+    toInfo: null,
     commentList: null,
     blogList: null,
     //userInfo

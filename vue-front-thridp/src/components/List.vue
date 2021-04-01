@@ -1,6 +1,6 @@
 <template>
   <div id="primary" class="content-area">
-    <main id="main" class="site-main" role="main" v-for="blog in blogData" :key="blog.id">
+    <main id="main" class="site-main" role="main" v-for="blog in blogData" :key="blog.uid">
 
       <h1 class="main-title" style="font-family: 'Ubuntu', sans-serif;"><i class="fa fa-envira" aria-hidden="true"></i> Discovery</h1>
       <blog-card :blog="blog"></blog-card>
@@ -112,6 +112,23 @@ export default {
         })
       }
     },
+    loadCover() {
+      let imgList = document.getElementsByClassName('lazyload');
+      //console.log(imgList.length);
+      for (let i=0;i<imgList.length;i++){
+        //console.log(imgList[i].hasAttribute('data-isLoaded'));
+        if (!imgList[i].hasAttribute('data-isLoaded')){
+          let imgToTop = imgList[i].offsetTop;
+          let viewportHeight = document.documentElement.clientHeight;
+          let scrollHeight = document.documentElement.scrollTop;
+          //console.log(imgToTop-scrollHeight);
+          if (imgToTop-scrollHeight < viewportHeight + 50){
+            imgList[i].setAttribute('src',imgList[i].getAttribute('data-src'))
+            imgList[i].setAttribute('data-isLoaded', 1);
+          }
+        }
+      }
+    }
   },
   created() {
     this.getData();

@@ -1,5 +1,6 @@
 package com.vincent.admin.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -61,6 +62,9 @@ public class User extends SuperEntity<User> {
     private Integer enableEmailNotification; // 开启邮件通知
 
     private Integer userProxy; // 0:普通用户 1：测试用户 2：博主
+
+    @TableField(exist = false)
+    private String avatarUrl;
 
     public User(){
         super();

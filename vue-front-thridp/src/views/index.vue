@@ -32,7 +32,7 @@
     </div>
 
 
-    <main-list :categoryUid="'0'"></main-list>
+    <main-list :categoryUid="'1'"></main-list>
 
   </div>
 

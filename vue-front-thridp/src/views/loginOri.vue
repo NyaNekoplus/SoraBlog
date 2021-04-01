@@ -124,7 +124,6 @@ export default {
 
 <style scoped>
 
-@import "../styles/sb-admin-2.css";
 a{}
 .flip-list-enter-active, .flip-list-leave-active {
   transition: all 1s;

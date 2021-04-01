@@ -13,3 +13,5 @@ export const SET_BLOG_LIST = "setBlogList";
 export const SET_LOGIN_STATE = "setLoginState";
 export const SET_USER_INFO = "setUserInfo";
 export const REMOVE_USER_INFO = "removeUserInfo";
+
+export const SET_WIDE_SCREEN_COVER = "setWideScreenCover";

@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 public class ArticleVO extends BaseVO<ArticleVO>{
 
-    private String categoryUid;
+    private Long categoryUid;
 
     private String title;
 
@@ -35,5 +35,7 @@ public class ArticleVO extends BaseVO<ArticleVO>{
     private Integer level;
 
     private List<TagVO> tagList;
+
+    private Long coverUid;
 
 }

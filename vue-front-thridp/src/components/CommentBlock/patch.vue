@@ -6,9 +6,10 @@
           <div class="main shadow">
             <div class="profile">
               <a href="javascript: return false;" rel="nofollow">
+                <!--https://q2.qlogo.cn/headimg_dl?dst_uin=1723687845&amp;spec=100-->
                 <img
-                    src="https://q2.qlogo.cn/headimg_dl?dst_uin=1723687845&amp;spec=100" onerror="imgError(this,1)"
-                    data-src="https://q2.qlogo.cn/headimg_dl?dst_uin=1723687845&amp;spec=100"
+                    src="" onerror="imgError(this,1)"
+                    :data-src="comment.user.avatar"
                     class="lazyload avatar avatar-24 photo" alt="😀" width="24" height="24">
               </a>
             </div>
@@ -23,10 +24,8 @@
                           height="24">
                       <span v-if="comment.user.userProxy === 2" class="bb-comment isauthor" title="博主">博主</span> {{ comment.user.username }}
                       <span class="showGrade0" title="萌萌哒新人~">
-                  <img
-                      src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/level/level_0.svg"
-                      style="height: 1.5em; max-height: 1.5em; display: inline-block;">
-                </span>
+                        <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/level/level_0.svg" style="height: 1.5em; max-height: 1.5em; display: inline-block;">
+                      </span>
                     </a>
                   </h4>
                 </div>

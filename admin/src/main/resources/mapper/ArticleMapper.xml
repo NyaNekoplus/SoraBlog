@@ -14,8 +14,9 @@
         <result column="content_md" property="contentMd"/>
         <result column="tag_uid" property="tagUid"/>
         <result column="category_uid" property="categoryUid"/>
+        <result column="comment_count" property="commentCount"/>
         <result column="view_count" property="viewCount"/>
-        <result column="image_uid" property="imageUid"/>
+        <result column="cover_uid" property="coverUid"/>
         <result column="enable_comment" property="enableComment"/>
         <result column="is_draft" property="isDraft"/>
         <result column="is_original" property="isOriginal"/>

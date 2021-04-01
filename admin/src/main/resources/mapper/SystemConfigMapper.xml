@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vincent.admin.mapper.SystemConfigMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.vincent.admin.entity.SystemConfig">
+        <id column="uid" property="uid"/>
+        <result column="qi_niu_access_key" property="qiNiuAccessKey"/>
+        <result column="qi_niu_secret_key" property="qiNiuSecretKey"/>
+        <result column="qi_niu_bucket" property="qiNiuBucket"/>
+
+        <result column="qi_niu_area" property="qiNiuArea"/>
+        <result column="upload_qi_niu" property="upload_qi_niu"/>
+        <result column="upload_local" property="uploadLocal"/>
+
+        <result column="image_priority" property="imagePriority"/>
+        <result column="local_image_base_url" property="localImageBaseUrl"/>
+
+        <result column="qi_niu_image_base_url" property="qiNiuImageBaseUrl"/>
+
+        <result column="email" property="email"/>
+        <result column="email_username" property="emailUsername"/>
+        <result column="email_password" property="emailPassword"/>
+
+        <result column="smtp_address" property="smtpAddress"/>
+        <result column="smtp_port" property="smtpPort"/>
+        <result column="enable_email_notification" property="enableEmailNotification"/>
+
+        <result column="editor_model" property="editorModel"/>
+        <result column="theme_color" property="themeColor"/>
+        <result column="dashboard_notification" property="dashboardNotification"/>
+        <result column="enable_dashboard_notification" property="enableDashboardNotification"/>
+
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+</mapper>

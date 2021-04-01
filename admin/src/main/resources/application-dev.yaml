@@ -1,4 +1,8 @@
 spring:
+  servlet:
+    multipart:
+      max-request-size: 10MB #限制上传的多个文件的总大小
+      max-file-size: 1MB
   application:
     name: sora
   datasource:
@@ -43,5 +47,7 @@ mybatis-plus:
 
 server:
   port: 9527
-
+file:
+  upload-folder: D:/Download/upload-images/ # linux=/root/upload-images/
+  static-path: /upload-images/** # 静态资源对外暴露的访问路径 upload-images
 

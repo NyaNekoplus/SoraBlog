@@ -70,12 +70,8 @@
             </span>
           <span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('bishi',type = 'Math')"
                 style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_bishi.png);"><div
-              class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/bishi.png);
- animation-duration: 360ms;
- animation-timing-function: steps(9);
- transform: translateY(-256px);
- height: 288px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('fanu',type = 'Math')"
+              class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/bishi.png);animation-duration: 360ms;animation-timing-function: steps(9);transform: translateY(-256px);height: 288px;">
+          </div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('fanu',type = 'Math')"
                       style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_fanu.png);"><div
             class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/fanu.png);
  animation-duration: 1320ms;
@@ -477,22 +473,22 @@
       </div>
       <div class="cmt-info-container">
         <div class="comment-user-avatar">
-          <img src="https://gravatar.loli.net/avatar/f11f237b3de93c93b24045e71f7f65c6?s=80&amp;d=mm&amp;r=g">
+          <img :src="hasUserInfo?currentUser.avatarUrl:'https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png'">
           <div class="socila-check qq-check"><i class="fa fa-qq" aria-hidden="true"></i></div>
           <div class="socila-check gravatar-check"><i class="fa fa-google" aria-hidden="true"></i></div>
         </div>
-        <div class="popup cmt-popup cmt-author" onclick="cmt_showPopup(this)"><span class="popuptext" id="thePopup"
-                                                                                    style="margin-left: -115px;width: 230px;">输入QQ号将自动拉取昵称和头像</span><input
-            type="text" placeholder="昵称或QQ号 (必须 Name* )" name="author" id="author" value="" size="22"
-            autocomplete="off" tabindex="1" aria-required="true"></div>
-        <div class="popup cmt-popup" onclick="cmt_showPopup(this)"><span class="popuptext" id="thePopup"
-                                                                         style="margin-left: -65px;width: 130px;">你将收到回复通知</span><input
-            type="text" placeholder="邮箱 (必须 Email* )" name="email" id="email" value="" size="22" tabindex="1"
-            autocomplete="off" aria-required="true"></div>
-        <div class="popup cmt-popup" onclick="cmt_showPopup(this)"><span class="popuptext" id="thePopup"
-                                                                         style="margin-left: -55px;width: 110px;">禁止小广告😀</span><input
-            type="text" placeholder="网站 (选填 Site)" name="url" id="url" value="" size="22" autocomplete="off"
-            tabindex="1"></div>
+        <div class="popup cmt-popup cmt-author" onclick="cmt_showPopup(this)">
+          <span class="popuptext" id="thePopup" style="margin-left: -115px;width: 230px;">输入QQ号将自动拉取昵称和头像</span>
+          <input type="text" placeholder="昵称或QQ号 (必须 Name* )" name="author" id="author" value="" size="22" autocomplete="off" tabindex="1" aria-required="true">
+        </div>
+        <div class="popup cmt-popup" onclick="cmt_showPopup(this)">
+          <span class="popuptext" id="thePopup" style="margin-left: -65px;width: 130px;">你将收到回复通知</span>
+          <input type="text" placeholder="邮箱 (必须 Email* )" name="email" id="email" value="" size="22" tabindex="1" autocomplete="off" aria-required="true">
+        </div>
+        <div class="popup cmt-popup" onclick="cmt_showPopup(this)">
+          <span class="popuptext" id="thePopup" style="margin-left: -55px;width: 110px;">禁止小广告😀</span>
+          <input type="text" placeholder="网站 (选填 Site)" name="url" id="url" value="" size="22" autocomplete="off" tabindex="1">
+        </div>
       </div>
       <label class="siren-checkbox-label active">
         <input class="siren-checkbox-radio" type="checkbox" name="no-robot">
@@ -500,16 +496,16 @@
         滴，学生卡 | I'm not a robot
       </label>
       <input type="text" placeholder="QQ" name="new_field_qq" id="qq" value="" style="display:none" autocomplete="off">
-      <p class="form-submit">
+      <div class="form-submit">
         <input id="submit" class="submit" @click="handleSubmit" value="发送评论" type="submit"><!-- @click="submitComment"-->
-      <div class="insert-image-tips popup">
-        <i class="fa fa-picture-o" aria-hidden="true"></i>
-        <span class="insert-img-popuptext" id="uploadTipPopup">上传图片</span>
+        <div class="insert-image-tips popup">
+          <i class="fa fa-picture-o" aria-hidden="true"></i>
+          <span class="insert-img-popuptext" id="uploadTipPopup">上传图片</span>
+        </div>
+        <input id="upload-img-file" type="file" accept="image/*" multiple="multiple" class="insert-image-button">
+        <input type="hidden" name="comment_post_ID" value="3137" id="comment_post_ID">
+        <input type="hidden" name="comment_parent" id="comment_parent" value="0">
       </div>
-      <input id="upload-img-file" type="file" accept="image/*" multiple="multiple" class="insert-image-button">
-      <input type="hidden" name="comment_post_ID" value="3137" id="comment_post_ID">
-      <input type="hidden" name="comment_parent" id="comment_parent" value="0">
-      </p>
       <p style="display: none;">
         <input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="7f8fe6e5d2">
       </p>
@@ -528,7 +524,7 @@ export default {
   name: "box",
   data: () => ({
     content: '',
-
+    currentUser: null,
   }),
   methods:{
     ...mapMutations(['removeToInfo','setCommentList']),
@@ -539,7 +535,7 @@ export default {
         return;
       }
       let userInfo = this.$store.getters.userInfo;
-      if (userInfo === null){
+      if (userInfo === null || userInfo === undefined){
         alert("请先登陆");
         return;
       }
@@ -581,6 +577,19 @@ export default {
       this.removeToInfo();
       origin_pos.appendChild(box);
     },
+
+  },
+  created() {
+
+  },
+  mounted() {
+    this.currentUser = this.$store.getters.userInfo;
+  },
+  computed: {
+    hasUserInfo(){
+      console.log('urltest：'+!!(this.currentUser&&this.currentUser.avatarUrl))
+      return !!(this.currentUser&&this.currentUser.avatarUrl);
+    }
   }
 }
 </script>
