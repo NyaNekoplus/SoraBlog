@@ -28,6 +28,40 @@ const state = {
       to: '/components/profile/',
     },
     {
+      title: 'Image',
+      icon: 'image',
+      //to: '/tables/regular/',
+      items: [
+        {
+          title: 'Image Classification',
+          icon: 'sort-variant',
+          to: '/image/classification/',
+        },
+        {
+          title: 'Image List',
+          icon: 'folder-multiple-image',
+          to: '/image/list/',
+        },
+      ]
+    },
+    {
+      title: 'System',
+      icon: 'system',
+      //to: '/tables/regular/',
+      items: [
+        {
+          title: 'System Config',
+          icon: 'sort-variant',
+          to: '/system/config/',
+        },
+        {
+          title: 'Website',
+          icon: 'folder-multiple-image',
+          to: '/image/list/',
+        },
+      ]
+    },
+    {
       title: 'Regular Tables',
       icon: 'mdi-clipboard-outline',
       to: '/tables/regular/',

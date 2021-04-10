@@ -29,7 +29,52 @@
         <result column="outside_link" property="outsideLink"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
+
+        <result column="url" property="coverUrl"/>
+        <result column="name" property="category"/>
     </resultMap>
+    <!--
+MySQL 表关联的算法是 Nest Loop Join，是通过驱动表的结果集作为循环基础数据，然后一条一条地通过该结果集中的数据作为过滤条件到下一个表中查询数据，然后合并结果。
+
+//例: user表10000条数据，class表20条数据
+select * from user u left join class c u.userid=c.userid
+
+上面sql的后果就是需要用user表循环10000次才能查询出来，而如果用class表驱动user表则只需要循环20次就能查询出来。
+4. 该如如何优化？
+
+优化的目标是尽可能减少JOIN中Nested Loop的循环次数，以此保证：永远用小结果集驱动大结果集。
+
+排序的字段也有影响，有条原则：对驱动表可以直接排序，对非驱动表（的字段排序）需要对循环查询的合并结果（临时表）进行排序！
+    -->
+    <select id="getBlogByLink" resultMap="BaseResultMap">
+        select a.*,f.url from
+        (select * from s_blog b where b.is_draft = 0 and b.link = #{link}) a
+        left join s_file f on a.cover_uid = f.uid
+        order by a.create_time desc
+    </select>
+
+    <select id="getBlogByPageWithCover" resultMap="BaseResultMap">
+        select a.*,f.url from
+        (select * from s_blog b where b.is_draft = #{isDraft}
+        <if test="categoryUid != 0"> and b.category_uid = #{categoryUid} </if>) a
+        left join s_file f on a.cover_uid = f.uid
+        order by a.create_time desc
+    </select>
+
+    <select id="getTopBlogWithCover" resultMap="BaseResultMap">
+        select a.*, f.url from (
+        (select max(update_time) update_time, level from s_blog where level>0 group by level) b
+        inner join s_blog a on a.level = b.level and a.update_time = b.update_time)
+        left join s_file f on a.cover_uid = f.uid
+    </select>
+
+    <select id="getBlogByPageWithoutTags" resultMap="BaseResultMap">
+        select a.*,c.name from s_category c left join
+        (select b.*,f.url from
+        (select * from s_blog d where d.is_draft = #{isDraft} and d.category_uid = #{categoryUid}) b
+        left join s_file f on b.cover_uid = f.uid) a
+        on c.uid = a.category_uid order by a.create_time desc
+    </select>
 
     <!-- 通用查询结果列
 

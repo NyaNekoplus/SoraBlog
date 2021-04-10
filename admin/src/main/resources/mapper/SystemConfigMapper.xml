@@ -12,14 +12,16 @@
         <result column="qi_niu_area" property="qiNiuArea"/>
         <result column="upload_qi_niu" property="upload_qi_niu"/>
         <result column="upload_local" property="uploadLocal"/>
+        <result column="upload_github" property="uploadGithub"/>
 
+        <result column="default_cover_uid" property="defaultCoverUid"/>
         <result column="image_priority" property="imagePriority"/>
         <result column="local_image_base_url" property="localImageBaseUrl"/>
-
+        <result column="jsdelivr_image_base_url" property="jsdelivrImageBaseUrl"/>
         <result column="qi_niu_image_base_url" property="qiNiuImageBaseUrl"/>
 
         <result column="email" property="email"/>
-        <result column="email_username" property="emailUsername"/>
+        <result column="email_sender" property="emailSender"/>
         <result column="email_password" property="emailPassword"/>
 
         <result column="smtp_address" property="smtpAddress"/>

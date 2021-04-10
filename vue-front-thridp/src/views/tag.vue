@@ -1,7 +1,7 @@
 <template>
   <!-- 标签 -->
   <div>
-    <cover title="标签云" :wide-screen="this.$store.getters.wideScreenCover"/>
+    <cover title="标签云"/>
     <div id="content" class="site-content">
       <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">

@@ -57,6 +57,12 @@
         </div>
       </div>
     </v-card-title>
+    <template v-if="$slots.bar">
+      <v-card-actions class="px-4 text-caption grey--text">
+        <slot name="bar" />
+      </v-card-actions>
+      <v-divider class="mt-2 mx-4" />
+    </template>
 
     <slot />
 

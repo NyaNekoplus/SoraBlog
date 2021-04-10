@@ -32,11 +32,15 @@
           </div>
           <nav :class="`mobile-fit-control ${shownav?'hide':'navbar'}`"><!--navbar-->
             <ul id="menu-new" class="menu">
-              <li class="current-menu-item">
-                <a href="/" aria-current="page">
-                  <span class="faa-parent animated-hover"><i class="fa fa-fort-awesome faa-horizontal" aria-hidden="true"></i> 首页</span>
+              <li v-for="item in topBarItems" :key="item.name">
+                <a :href="item.link" aria-current="page">
+                  <span class="faa-parent animated-hover"><i :class="item.icon" aria-hidden="true"></i> {{ item.name }}</span>
                 </a>
+                <ul v-if="item.children.length" class="sub-menu">
+                  <li v-for="child in item.children" :key="child.name"><a :href="child.link"><i :class="child.icon" aria-hidden="true"></i>{{ child.name }}</a></li>
+                </ul>
               </li>
+              <!--
               <li>
                 <a href="/time-series/">
                   <span class="faa-parent animated-hover">
@@ -81,6 +85,7 @@
                   <span class="faa-parent animated-hover"><i class="fa fa-tree faa-pulse" aria-hidden="true"></i> 时光轴</span>
                 </a>
               </li>
+              -->
             </ul>
           </nav>
           <!-- #site-navigation -->
@@ -121,6 +126,7 @@
       -->
 
     </div>
+    <a href="#" :class="toTopClass"></a><!-- javascript:void(0); style="top: 0px;"-->
   </header><!-- #masthead -->
 </template>
 
@@ -140,6 +146,8 @@ export default {
     isLogin: false,
 
     navClass: 'yya',
+    toTopClass: 'cd-top faa-float animated',
+    //cd-top faa-float animated cd-is-visible cd-fade-out
     akina_logo: false,
     shownav: true,
     topSearch: true,
@@ -148,26 +156,109 @@ export default {
 
     topBarItems: [
       {
-        name: '',
-        link: '',
-        childrens: []
+        name: '首页',
+        icon: 'fa fa-fort-awesome faa-horizontal',
+        link: '/',
+        children: []
+      },
+      {
+        name: '归档',
+        icon: 'fa fa-archive faa-shake',
+        link: '/List',
+        children: [
+          {
+            name: 'Life',
+            icon: 'fa fa-commenting-o',
+            link: '/Life',
+          },
+          {
+            name: 'Tech',
+            icon: 'fa fa-file-text-o',
+            link: '/Tech',
+          }
+        ]
+      },
+      {
+        name: '留言板',
+        icon: 'fa fa-pencil-square-o faa-tada',
+        link: '/Board',
+        children: []
+      },
+      {
+        name: '友情链接',
+        icon: 'fa fa-link faa-shake',
+        link: '/Link',
+        children: []
+      },
+      {
+        name: '功德箱',
+        icon: 'fa fa-heart faa-pulse',
+        link: '/Donate',
+        children: []
+      },
+      {
+        name: '关于',
+        icon: 'fa fa-leaf faa-wrench',
+        link: '/About',
+        children: [
+          {
+            name: '我',
+            icon: 'fa fa-grav',
+            link: '/About',
+            children: []
+          },
+          {
+            name: '监控',
+            icon: 'fa fa-heartbeat',
+            link: '/Watch',
+            children: []
+          },
+          {
+            name: '统计',
+            icon: 'fa fa-area-chart',
+            link: '/Statistics',
+            children: []
+          },
+          {
+            name: '地图',
+            icon: 'fa fa-map-signs',
+            link: '/Map',
+            children: []
+          }
+        ]
+      },
+      {
+        name: '标签',
+        icon: 'fa fa-android faa-vertical',
+        link: '/Tags',
+        children: []
+      },
+      {
+        name: '时光轴',
+        icon: 'fa fa-film faa-vertical',
+        link: '/Timeline',
+        children: []
       }
-    ],
-    links: [
-      'Dashboard',
-      'Messages',
-      'Profile',
-      'Updates',
     ],
   }),
   methods: {
-    ...mapMutations(['removeToken','setLoginState','setUserInfo','removeUserInfo']),
+    ...mapMutations(['removeToken','setLoginState','setUserInfo','removeUserInfo','setThemeWidgetState']),
     isNavbarShow(){
       const scrollLen = document.documentElement.scrollTop;
       if (scrollLen === 0){
         this.navClass = 'sabit';
       }else {
         this.navClass = 'yya';
+      }
+    },
+    isToTopShow(){
+      const scrollLen = document.documentElement.scrollTop;
+      if (scrollLen === 0){
+        this.setThemeWidgetState(false);
+        this.toTopClass = 'cd-top faa-float animated';
+      }else {
+        this.setThemeWidgetState(true);
+        this.toTopClass = 'cd-top faa-float animated cd-is-visible cd-fade-out';
       }
     },
     collapseNav(){
@@ -246,14 +337,18 @@ export default {
   mounted () {
     if (this.isIndex){
       this.navClass = 'sabit';
+      //let e = document.documentElement;
+      //e.scrollTop = e.offsetHeight;
       window.addEventListener('scroll', this.isNavbarShow)
     }
+    window.addEventListener('scroll', this.isToTopShow)
     window.addEventListener('scroll', this.changeScrollBarLenth)
     window.addEventListener('scroll', this.loadCover);
   },
   beforeDestroy() {
     console.log('beforeDestory, remove EventListener was called');
     window.removeEventListener('scroll', this.isNavbarShow);
+    window.removeEventListener('scroll', this.isToTopShow);
     window.removeEventListener('scroll', this.changeScrollBarLenth)
     window.removeEventListener('scroll', this.loadCover);
   }

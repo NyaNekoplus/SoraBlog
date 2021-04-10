@@ -27,6 +27,11 @@ const router = new Router({
       // Pages
       route('UserProfile', null, 'components/profile'),
 
+      route('ImageClassification', null, 'image/classification'),
+      route('ImageList', null, 'image/list'),
+
+      route('SystemConfig', null, 'system/config'),
+      route('WebsiteConfig', null, 'system/website'),
 
       // Components
       route('Notifications', null, 'components/notifications'),

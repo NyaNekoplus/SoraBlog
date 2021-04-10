@@ -120,9 +120,6 @@
         </div> <!--在section内 -->
 
 
-
-        <sora-setting/>
-
       </div>
 
     </section>
@@ -195,6 +192,7 @@
         </li>
       </ul>
       <p style="text-align: center; font-size: 13px; color: #b9b9b9;">© 2021 Vincent Tsai</p></div>
+    <sora-setting/>
   </div>
 </template>
 
@@ -266,6 +264,7 @@ export default {
   mounted() {
     this.coverHeight = window.innerHeight;
     //如果是手机，则不设置
+
     document.getElementById('centerbg').style.height = this.coverHeight.toString() + 'px';
     //this.coverHeight =
   }

@@ -10,8 +10,14 @@ export function getBlogList(params){
 
 export function getBlogByTitle(params){
     return request({
-        url: process.env.VUE_APP_FRONT_API + '/blog/getBlogByTitle',
+        url: process.env.VUE_APP_FRONT_API + '/blog/getBlogByTitle/' + params,
         method: 'get',
-        data: params
+    })
+}
+
+export function getTopBlog(){
+    return request({
+        url: process.env.VUE_APP_FRONT_API + '/blog/getTop',
+        method: 'get',
     })
 }

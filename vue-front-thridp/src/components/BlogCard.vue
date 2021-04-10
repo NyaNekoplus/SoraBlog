@@ -65,8 +65,6 @@ export default {
         blog.link = '/' + blog.link;
       }
       this.setBlog(blog);
-      console.log('blog: '+this.$store.getters.blog);
-
       let routeData = this.$router.resolve({
         path: '/blog' + blog.link,
       });

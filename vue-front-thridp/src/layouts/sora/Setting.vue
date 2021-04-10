@@ -1,38 +1,7 @@
 <template>
   <div>
     <!-- m-nav-center -->
-    <div id="mo-nav">
-      <div class="m-avatar">
-        php $ava = akina_option('focus_logo') ? akina_option('focus_logo') : get_template_directory_uri().'/images/avatar.jpg';
-        <img src="<?php echo $ava ?>">
-      </div>
-      <div class="m-search">
-        <form class="m-search-form" method="get" action="<?php echo home_url(); ?>" role="search">
-          <input class="m-search-input" type="search" name="s" placeholder="<?php _e('Search...', 'sakura') /*搜索...*/?>" required>
-        </form>
-      </div>
-      <ul id="menu-menu-2" class="menu"><li class="current-menu-item"><a href="https://sakura.2heng.xin/" aria-current="page">Home</a></li>
-        <li><a href="https://sakura.2heng.xin/archiv/">Timeline</a></li>
-        <li><a href="#">Categories</a>
-          <ul class="sub-menu">
-            <li><a href="https://sakura.2heng.xin/father/">Father</a></li>
-            <li><a href="https://sakura.2heng.xin/father/child/">Child</a></li>
-          </ul>
-        </li>
-        <li><a href="https://sakura.2heng.xin/links/">Links</a></li>
-        <li><a href="https://sakura.2heng.xin/about/">About</a></li>
-        <li><a href="https://sakura.2heng.xin/sample-page/">More</a>
-          <ul class="sub-menu">
-            <li><a href="https://sakura.2heng.xin/sample-page/">Sample</a></li>
-            <li><a href="https://sakura.2heng.xin/privacy-policy/">Privacy</a></li>
-            <li><a href="https://sakura.2heng.xin/wp-login.php">Login</a></li>
-          </ul>
-        </li>
-        <li><a href="https://sakura.2heng.xin/login/">Login</a></li>
-        <li><a href="https://sakura.2heng.xin/music/">Music</a></li>
-      </ul>
-    </div><!-- m-nav-center end -->
-    <a class="cd-top faa-float animated "></a>
+
     <button id="moblieGoTop" title="Go to top"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
     <button id="moblieDarkLight"><i class="fa fa-moon-o" aria-hidden="true"></i></button>
     <!-- search start -->
@@ -64,40 +33,19 @@
       <!--<script type="text/javascript"><?php echo akina_option('site_statistics'); ?></script>-->
     </div>
 
-    <div class="changeSkin-gear no-select" style="bottom: -999px;">
+    <div class="changeSkin-gear no-select" :style="`background: none; visibility: visible; bottom: ${isTop?`0px`:`-999px`};`">
       <div class="keys">
-        <span id="open-skinMenu">
-		<i class="iconfont icon-gear inline-block rotating"></i>&nbsp; 切换主题 | SCHEME TOOL
+        <span id="open-skinMenu" @click="showThemePanel">
+		      <i class="iconfont icon-gear inline-block rotating"></i>&nbsp; 切换主题 | SCHEME TOOL
         </span>
       </div>
     </div>
-    <div class="skin-menu no-select">
+    <div :class="displayTheme?'skin-menu no-select show':'skin-menu no-select'">
       <div class="theme-controls row-container">
         <ul class="menu-list">
-          <li id="white-bg">
-            <i class="fa fa-television" aria-hidden="true"></i>
+          <li v-for="theme in themeList" :title="theme.name" @click="changeTheme(theme.param)">
+            <i :class="theme.icon" aria-hidden="true"></i>
           </li><!--Default-->
-          <li id="sakura-bg">
-            <i class="iconfont icon-sakura"></i>
-          </li><!--Sakura-->
-          <li id="gribs-bg">
-            <i class="fa fa-slack" aria-hidden="true"></i>
-          </li><!--Grids-->
-          <li id="KAdots-bg">
-            <i class="iconfont icon-dots"></i>
-          </li><!--Dots-->
-          <li id="totem-bg">
-            <i class="fa fa-superpowers" aria-hidden="true"></i>
-          </li><!--Orange-->
-          <li id="pixiv-bg">
-            <i class="iconfont icon-pixiv"></i>
-          </li><!--Start-->
-          <li id="bing-bg">
-            <i class="iconfont icon-bing"></i>
-          </li><!--Bing-->
-          <li id="dark-bg">
-            <i class="fa fa-moon-o" aria-hidden="true"></i>
-          </li><!--Night-->
         </ul>
       </div>
       <div class="font-family-controls row-container">
@@ -136,14 +84,68 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex';
 export default {
   name: "SoraSetting",
   data: () => ({
+    displayTheme: false,
+    themeList: [
+      {
+        name: '默认',
+        param: 'wide-screen',
+        icon: 'fa fa-television',
+      },
+      {
+        name: '窄屏',
+        param: 'narrow-screen',
+        icon: 'fa fa-fort-awesome faa-horizontal',
+      },
+      {
+        name: '雪原',
+        param: 'snow',
+        icon: 'iconfont icon-sakura',
+      },
+      {
+        name: 'Bing',
+        param: 'snow',
+        icon: 'iconfont icon-bing',
+      },
+      {
+        name: '夜间',
+        param: 'night',
+        icon: 'fa fa-moon-o',
+      },
+    ],
     liveSearch: true,
     siteStatistics: false,
     sakuraWidget: true,
     aplayerServer: true,
   }),
+  methods: {
+    ...mapMutations(['setWideScreenCover']),
+    showThemePanel(){
+      this.displayTheme = !this.displayTheme;
+    },
+    changeTheme(param){
+      switch (param){
+        case 'wide-screen':
+          this.setWideScreenCover(true);
+          break;
+        case 'narrow-screen':
+          this.setWideScreenCover(false);
+          break;
+        case 'snow':
+          break;
+      }
+    }
+  },
+  computed: {
+    isTop(){
+      return this.$store.getters.isThemeWidgetShow;
+    }
+  },
+  mounted() {
+  }
 }
 </script>
 

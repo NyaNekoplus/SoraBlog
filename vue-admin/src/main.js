@@ -27,7 +27,8 @@ import store from './store'
 import { sync } from 'vuex-router-sync'
 
 Vue.config.productionTip = false
-
+import prototype from "./util/prototype";
+Vue.use(prototype);
 sync(store, router)
 
 new Vue({

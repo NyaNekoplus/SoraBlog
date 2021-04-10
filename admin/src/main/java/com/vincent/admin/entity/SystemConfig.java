@@ -49,6 +49,10 @@ public class SystemConfig extends SuperEntity<SystemConfig>{
      */
     private Boolean uploadLocal;
 
+    private Boolean uploadGithub;
+
+    private Long defaultCoverUid;
+
     /**
      * 图片显示优先级（ 0:本地  1: 七牛云 2: Minio）
      */
@@ -59,6 +63,9 @@ public class SystemConfig extends SuperEntity<SystemConfig>{
      */
     @TableField(updateStrategy = FieldStrategy.IGNORED)
     private String localImageBaseUrl;
+
+    @TableField(updateStrategy = FieldStrategy.IGNORED)
+    private String jsdelivrImageBaseUrl;
 
     /**
      * 七牛云存储图片服务器，域名前缀： http://images.moguit.cn
@@ -77,7 +84,7 @@ public class SystemConfig extends SuperEntity<SystemConfig>{
      * 邮箱发件人用户名
      */
     @TableField(updateStrategy = FieldStrategy.IGNORED)
-    private String emailUsername;
+    private String emailSender;
 
     /**
      * 邮箱密码
@@ -101,7 +108,7 @@ public class SystemConfig extends SuperEntity<SystemConfig>{
      * 是否开启邮件通知(0:否， 1:是)
      * 当有新的反馈，友链申请时进行通知，首先需要在系统管理处设置接收通知的邮箱
      */
-    private String enableEmailNotification;
+    private Boolean enableEmailNotification;
 
     /**
      * 编辑器模式，(0：富文本编辑器CKEditor，1：markdown编辑器Veditor)

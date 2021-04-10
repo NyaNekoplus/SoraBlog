@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Vincent Tsai
@@ -37,5 +38,11 @@ public class ArticleVO extends BaseVO<ArticleVO>{
     private List<TagVO> tagList;
 
     private Long coverUid;
+
+    private Map<String,Boolean> sortMap;
+/*
+    private String[] sortBy;
+
+    private Boolean[] sortDesc;*/
 
 }

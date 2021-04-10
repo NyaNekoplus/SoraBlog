@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "link",
+  name: "Login",
   data: () => ({}),
 }
 </script>

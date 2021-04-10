@@ -1,12 +1,13 @@
 <template>
   <div>
     <cover
-        wide-screen
+        :author="blog.author"
         :title="blog.title"
         :release-time="blog.createTime"
-        :view-count="blog.view"
+        :view-count="blog.viewCount"
         :comment-count="blog.commentCount"
-        cover-src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/sora.jpg"
+        :tag-list="blog.tagList"
+        :cover-src="blog.coverUrl"
         avatar-src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png"
     />
     <div id="content" class="site-content">
@@ -426,28 +427,17 @@ export default {
     CommentBlock: () => import('@/components/CommentBlock/index'),
   },
   data: () => ({
-    blog: Object,
+    blog: [],
   }),
   methods: {
     ...mapMutations(['setBlog','removeToInfo']),
-
-  },
-  created() {
-    console.log('page create: ' + this.$route.params.title);
-    if (this.$store.getters.blog) {
-      let t_blog = this.$store.getters.blog;
-      if (t_blog.link[0]==='/'){
-        t_blog.link = t_blog.link.substr(1);
-      }
-      if (t_blog.link === this.$route.params.title){
-        this.blog = this.$store.getters.blog;
-      }
-    } else {
-      this.blog = getBlogByTitle(this.$route.params.title).then(response => {
+    getBlogByLink(){
+      getBlogByTitle(this.$route.params.title).then(response => {
         console.log("page: "+response.state);
         if (response.state === this.$STATE.SUCCESS) {
-          this.blog = response.data.records;
-          this.setBlog(response.data.records)
+          console.log("blog: "+response.data);
+          this.blog = response.data;
+          this.setBlog(response.data)
           console.log("page: "+this.blog);
         } else {
           alert(response.message);
@@ -458,10 +448,31 @@ export default {
     }
 
   },
-  mounted() {
+  created() {
     this.removeToInfo();
+
+
+  },
+  mounted() {
+
     //this.blog = this.$store.getters.blog;
     //this.toId = this.$store.getters.toId;
+    console.log('page create: ' + this.$store.getters.blog);
+    if (this.$store.getters.blog!==undefined && this.$store.getters.blog!==null) {
+      let t_blog = this.$store.getters.blog;
+      if (t_blog.link[0]==='/'){
+        t_blog.link = t_blog.link.substr(1);
+      }
+      console.log('t_blog.link: '+t_blog.link);
+      console.log('this.$route.params.title: '+this.$route.params.title);
+      if (t_blog.link === this.$route.params.title){
+        this.blog = this.$store.getters.blog;
+      }else{
+        this.getBlogByLink();
+      }
+    } else {
+      this.getBlogByLink();
+    }
   }
 
 }

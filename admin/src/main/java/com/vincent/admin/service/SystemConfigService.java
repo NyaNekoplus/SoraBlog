@@ -8,4 +8,6 @@ import com.vincent.admin.entity.SystemConfig;
  * @date 2021/3/25 18:35
  */
 public interface SystemConfigService extends IService<SystemConfig> {
+
+    SystemConfig getConfig(Long id);
 }

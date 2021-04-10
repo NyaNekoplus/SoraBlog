@@ -15,8 +15,23 @@ export function submitArticle(param){
 
 export function getBlogListByPage(param){
   return request({
-    url: process.env.VUE_APP_ADMIN_API + '/article/list',
+    url: process.env.VUE_APP_ADMIN_API + '/article/getArticleListByPage',
     method: 'post',
     data: param
+  })
+}
+
+export function updateArticleState(param){
+  return request({
+    url: process.env.VUE_APP_ADMIN_API + '/article/updateState',
+    method: 'post',
+    data: param
+  })
+}
+
+export function deleteArticle(param){
+  return request({
+    url: process.env.VUE_APP_ADMIN_API + '/article/delete/' + param,
+    method: 'delete'
   })
 }

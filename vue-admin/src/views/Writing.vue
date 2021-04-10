@@ -1,9 +1,5 @@
 <template>
-  <v-container
-    id="user-profile-view"
-    fluid
-    tag="section"
-  >
+  <v-container id="user-profile-view" fluid tag="section">
     <view-intro>
       <v-file-input
         v-model="blogFile"
@@ -26,25 +22,13 @@
         </template>
       </v-file-input>
     </view-intro>
-    <v-form ref="form" v-model="isValid" lazy-validation>
+    <v-form ref="form" v-model="isValid">
       <v-row align="center" justify="center">
         <v-col cols="12">
           <v-row justify="center">
-            <v-col
-              cols="12"
-              sm="6"
-              md="4"
-            >
-              <material-card
-                icon="mdi-calendar-today"
-                icon-small
-                title="Category"
-                color="primary"
-              >
+            <v-col cols="12" sm="6" md="4">
+              <material-card icon="mdi-calendar-today" icon-small title="Category" color="primary">
                 <v-card-text>
-                  <!--
-                  :hint="`${select.name}, ${select.uid}`"
-                  -->
                   <v-select
                     v-model="category"
                     :items="categoryList"
@@ -55,37 +39,12 @@
                     return-object
                     single-line
                   ></v-select>
-                  <!--
-                  <v-select
-                    v-model="category"
-                    :items="categoryList"
-                    hide-selected
-                  >
-                  </v-select>
-                  -->
                 </v-card-text>
-                <!--
-                <v-card-text>
-                  <v-text-field
-                    :rules="rules"
-                    prepend-icon="mdi-tag-arrow-left-outline"
-                  ></v-text-field>
-                </v-card-text>
-                -->
               </material-card>
             </v-col>
 
-            <v-col
-              cols="12"
-              sm="6"
-              md="4"
-            >
-              <material-card
-                icon="mdi-calendar-today"
-                icon-small
-                title="Date"
-                color="primary"
-              >
+            <v-col cols="12" sm="6" md="4">
+              <material-card icon="mdi-calendar-today" icon-small title="Date" color="primary">
                 <v-card-text>
                   <v-menu
                     v-model="datePicker"
@@ -108,23 +67,14 @@
                         @click:clear="date = null"
                       ></v-text-field>
                     </template>
-                    <v-date-picker
-                      v-model="date"
-                      @change="datePicker = false"
-                      width="290"
-                    ></v-date-picker>
+                    <v-date-picker v-model="date" @change="datePicker = false" width="290"></v-date-picker>
                   </v-menu>
                 </v-card-text>
               </material-card>
             </v-col>
 
             <v-col cols="12" sm="6" md="4">
-              <material-card
-                icon="mdi-calendar-today"
-                icon-small
-                title="Time"
-                color="primary"
-              >
+              <material-card icon="mdi-calendar-today" icon-small title="Time" color="primary">
                 <v-card-text>
                   <v-menu
                     ref="menu"
@@ -152,7 +102,6 @@
                       v-model="time"
                       ampm-in-title
                       format="ampm"
-
                       landscape
                       scrollable
                       @click:minute="$refs.menu.save(time)"
@@ -181,13 +130,8 @@
                         </v-col>
                         <v-spacer/>
                         <v-col cols="2" md="2" align-self="center" class="d-flex">
-
                           <span class="switch-label">开放评论</span>
-                          <v-switch
-                            v-model="enableComment"
-                            inset
-                          ></v-switch>
-
+                          <v-switch v-model="enableComment" inset></v-switch>
                         </v-col>
                         <v-col cols="4" md="4" align-self="center" class="d-flex">
                           <v-combobox
@@ -208,25 +152,22 @@
                         <v-col cols="5" md="5" align-self="center">
                           <v-text-field
                             v-model="link"
-                            :rules="ruleRequire"
+                            :rules="[value => !!value || 'Required.' , value => !value || value[0]!=='/' || '首字符不能为/']"
                             label="Link(tooisorahe.com/link)"
                             prepend-icon="mdi-link-variant-plus"
                           ></v-text-field>
                         </v-col>
                         <v-spacer/>
                         <v-col cols="2" md="2" align-self="center" class="d-flex">
-
                           <span class="switch-label">作为草稿</span>
-                          <v-switch
-                            v-model="isDraft"
-                            inset
-                          ></v-switch>
-
+                          <v-switch v-model="isDraft" inset></v-switch>
                         </v-col>
                         <v-col cols="4" md="4" align-self="center">
                           <v-file-input
+                            clearable
                             v-model="image"
                             accept=".png, .jpeg, .jpg"
+                            success-messages="如不上传将使用默认封面"
                             :rules="imageRules"
                             hint="File extentions (.png, .jpg, .jpeg) File Size limits (max: 1mb)"
                             placeholder="Upload profile image"
@@ -274,9 +215,7 @@
                                 @click="select"
                                 @click:close="removeTag(item)"
                               >
-                                <v-icon left>
-                                  mdi-bookmark-plus-outline
-                                </v-icon>
+                                <v-icon left>mdi-bookmark-plus-outline</v-icon>
                                 <strong v-if="item.name">{{ item.name }}</strong>&nbsp;
                                 <strong v-else>{{ item }}</strong>&nbsp;
                               </v-chip>
@@ -286,13 +225,11 @@
                         <v-spacer/>
                         <v-col cols="2" md="2" align-self="center" class="d-flex">
                           <span class="switch-label">是否原创</span>
-                          <v-switch
-                            v-model="isOriginal"
-                            inset
-                          ></v-switch>
+                          <v-switch v-model="isOriginal" inset></v-switch>
                         </v-col>
                         <v-col cols="4" md="4" align-self="center">
                           <v-row justify="center">
+                            <!--:disabled="!isValid"-->
                             <app-btn
                               :disabled="!isValid"
                               @click="handleSubmit"
@@ -302,9 +239,7 @@
                               class="align-content-center"
                               max-width="auto"
                             >
-                              <v-icon left>
-                                mdi-playlist-check
-                              </v-icon>
+                              <v-icon left>mdi-playlist-check</v-icon>
                               <span>Release</span>
                             </app-btn>
                           </v-row>
@@ -321,22 +256,14 @@
                           max-width="550"
                         >
                           <template v-slot:placeholder>
-                            <v-row
-                              class="fill-height ma-0"
-                              align="center"
-                              justify="center"
-                            >
-                              <v-progress-circular
-                                indeterminate
-                                color="grey lighten-5"
-                              ></v-progress-circular>
+                            <v-row class="fill-height ma-0" align="center" justify="center">
+                              <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
                             </v-row>
                           </template>
                         </v-img>
                       </v-row>
 
                     </v-col>
-
                   </v-row>
 
                   <v-row v-if="!isOriginal" justify="center">
@@ -448,7 +375,7 @@ export default {
       image: [],
       localImgUrl: '',
       imageRules: [
-        value => !value || value.size < 1000000 || 'Image size should be less than 1 MB!',
+        value => !value || value.size < 2000000 || 'Image size should be less than 2 MB!',
       ],
 
       blogFile: [],
@@ -481,7 +408,13 @@ export default {
   },
   methods: {
     previewImage(){
-      this.localImgUrl = URL.createObjectURL(this.image);
+      try {
+        this.localImgUrl = URL.createObjectURL(this.image);
+      }catch (e) {
+        console.log(e);
+        this.localFileUrl = this.image;
+      }
+
       console.log(this.image);
       console.log(this.localImgUrl);
     },
@@ -510,68 +443,72 @@ export default {
       xhr.send(formData);
     },
     handleSubmit(){
-      this.loading.uploadIsLoading = true;
-      let formData = new window.FormData();
-      formData.append('imageList', this.image);
-      for (let key in this.requestParam){
-        formData.append(key,this.requestParam[key]);
+      console.log('is valid: ' +this.isValid);
+      if (!this.$refs.form.validate()){
+        return ;
       }
-
-      //param.imageUid = null;
-      uploadImage(formData).then(fileRes=>{
-        if (fileRes.data.state === 'success'){
-          console.log('上传图片返回数据：'+fileRes);
-          alert(fileRes.data.message);
-
-          let activeEditor = tinymce.activeEditor;
-          let editBody = activeEditor.getBody();
-          activeEditor.selection.select(editBody);
-          let content = activeEditor.selection.getContent( {'format' : 'text'});
-          //let content = tinyMCE.activeEditor.selection.getContent({ format: 'text' });
-          let createTime = this.date + ' ' + this.time;
-
-          console.log('纯文本： '+content);
-          console.log('HTML文本： '+this.contentMd);
-          console.log('Date: '+ createTime);
-          console.log('Tags: '+ this.tags);
-
-          let param = {};
-          param.tagList = [];
-          this.tags.forEach(t=>{
-            param.tagList.push({
-              uid: t.uid, name: (t.name)?t.name:t
-            })})
-          param.categoryUid = this.category.uid;
-          param.title = this.title;
-          param.link = this.link;
-          param.lang = 0; // zhs by default
-          param.content = content;
-          param.contentMd = this.contentMd;
-          param.enableComment = this.enableComment;
-          param.isDraft = this.isDraft;
-          param.isOriginal = this.isOriginal;
-          param.level = this.level.value;
-          param.coverUid = fileRes.data.data[0].uid;
-          param.createTime = createTime;
-          submitArticle(param).then(response=>{
-            if (response.data.state === 'success'){
-              alert(response.data.message);
-              this.contentMd = '';
-              //this.$message.show(response.data.message);
-              this.$message.success(response.data.message);
-            }else {
-              this.$message.error(response.data.message);
-              alert(response.data.message);
-            }
-          });
-          this.loading.uploadIsLoading = false;
-          this.$message.success(response.data.message);
-        }else {
-          this.$message.error(response.data.message);
-          this.loading.uploadIsLoading = false;
-          alert(response.data.message);
+      if (this.image!=null){
+        this.loading.uploadIsLoading = true;
+        let formData = new window.FormData();
+        formData.append('imageList', this.image);
+        for (let key in this.requestParam){
+          formData.append(key,this.requestParam[key]);
         }
-      });
+        //param.imageUid = null;
+        uploadImage(formData).then(fileRes=>{
+          if (fileRes.state === this.$STATE.SUCCESS){
+            console.log('上传图片返回数据：'+fileRes);
+            alert(fileRes.message);
+            let param = {};
+            param.coverUid = fileRes.data[0].uid;
+            alert('cover uid: '+param.coverUid);
+            let activeEditor = tinymce.activeEditor;
+            let editBody = activeEditor.getBody();
+            activeEditor.selection.select(editBody);
+            let content = activeEditor.selection.getContent( {'format' : 'text'});
+            let createTime = this.date + ' ' + this.time;
+
+            console.log('纯文本： '+content);
+            console.log('HTML文本： '+this.contentMd);
+            console.log('Date: '+ createTime);
+            console.log('Tags: '+ this.tags);
+
+            param.tagList = [];
+            this.tags.forEach(t=>{
+              param.tagList.push({
+                uid: t.uid, name: (t.name)?t.name:t
+              })})
+            param.categoryUid = this.category.uid;
+            param.title = this.title;
+            param.link = this.link[0]==='/'?this.link.substr(1):this.link;
+            param.lang = 0; // zhs by default
+            param.content = content;
+            param.contentMd = this.contentMd;
+            param.enableComment = this.enableComment;
+            param.isDraft = this.isDraft;
+            param.isOriginal = this.isOriginal;
+            param.level = this.level.value;
+            param.createTime = createTime;
+            submitArticle(param).then(response=>{
+              if (response.state === this.$STATE.SUCCESS){
+                alert(response.message);
+                this.contentMd = '';
+                //this.$message.show(response.data.message);
+                //this.$message.success(response.message);
+              }else {
+                this.$message.error(response.message);
+                alert(response.message);
+              }
+            });
+            this.loading.uploadIsLoading = false;
+            //this.$message.success(response.message);
+          }else {
+            //this.$message.error(response.message);
+            this.loading.uploadIsLoading = false;
+            //alert(response.message);
+          }
+        });
+      }
     },
     removeTag (item) {
       this.tags.splice(this.tags.indexOf(item), 1)
@@ -580,16 +517,16 @@ export default {
   },
   created() {
     getCategoryList().then(response => {
-      let data = response.data.data;
+      let data = response.data;
       this.categoryList = data;
       this.category = data[0];
-      console.log('category list:'+response.data.data);
+      console.log('category list:'+response.data);
     })
     getTagList().then(response => {
-      let data = response.data.data;
+      let data = response.data;
       this.tagList = data;
       this.tags = data;
-      console.log('tag list:'+response.data.data);
+      console.log('tag list:'+response.data);
     })
   }
 }
