@@ -87,7 +87,7 @@ export default {
           alert(response.data)
           //alert('登陆成功');
 
-          this.setToken(response.data);
+          setToken(response.data);
           this.$router.push('/');
           //this.setCommentList(response.data.records);
         } else {

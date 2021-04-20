@@ -51,7 +51,7 @@ public class SystemConfig extends SuperEntity<SystemConfig>{
 
     private Boolean uploadGithub;
 
-    private Long defaultCoverUid;
+    private String defaultCoverUrl;
 
     /**
      * 图片显示优先级（ 0:本地  1: 七牛云 2: Minio）

@@ -422,27 +422,35 @@ public class IpUtil {
         InputStream certStream = null;
         try {
             //获取当前项目所在的绝对路径
-            String proFilePath = System.getProperty("user.dir");
+            String proFilePath = System.getProperty("user.dir") + "/admin";
 
             //获取模板下的路径，然后存放在temp目录下　
             String newFilePath = proFilePath + File.separator + "temp" + File.separator + ftlPath;
+            log.info("newFilePath： "+newFilePath);
             newFilePath = newFilePath.replace("/", File.separator);
             //检查项目运行时的src下的对应路径
             File newFile = new File(newFilePath + ftlName);
+            log.info("isfile and exist: "+newFile.isFile()+newFile.exists());
             if (newFile.isFile() && newFile.exists()) {
                 return newFilePath;
             }
+            log.info("createFtlFile: 复制db文件");
             //当项目打成jar包会运行下面的代码，并且复制一份到src路径下（具体结构看下面图片）
+            log.info("路径："+Thread.currentThread().getContextClassLoader().getResource(ftlPath + ftlName));
             certStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(ftlPath + ftlName);
             byte[] certData = org.apache.commons.io.IOUtils.toByteArray(certStream);
             org.apache.commons.io.FileUtils.writeByteArrayToFile(newFile, certData);
             return newFilePath;
         } catch (Exception e) {
+            log.info("第一个错误");
             log.error(e.getMessage());
         } finally {
             try {
-                certStream.close();
+                if (certStream != null) {
+                    certStream.close();
+                }
             } catch (Exception e) {
+                log.info("第二个错误");
                 log.error(e.getMessage());
             }
         }
@@ -452,6 +460,11 @@ public class IpUtil {
     public static String getCityInfo(String ip) {
 
         String dbPath = createFtlFileByFtlArray() + "ip2region.db";
+        //String dbPath = "E:\\JavaWorkSpace\\sora-blog\\admin\\src\\main\\resources\\city\\ip2region.db";
+        log.info("db path:" + dbPath);
+        log.info("path:" + IpUtil.class.getResource("") + IpUtil.class.getResource("/") );
+        log.info("ip2region.db:" + IpUtil.class.getResource("ip2region.db"));
+        log.info("getCityInfo ip: " +ip);
         File file = new File(dbPath);
         if (file.exists() == false) {
             System.out.println("Error: Invalid ip2region.db file");
@@ -496,6 +509,7 @@ public class IpUtil {
                 ipInfo = ipInfo.replace("|0", "");
                 ipInfo = ipInfo.replace("0|", "");
             }
+            searcher.close();
             return ipInfo;
 
         } catch (Exception e) {

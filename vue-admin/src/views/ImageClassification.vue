@@ -75,7 +75,12 @@
 </template>
 
 <script>
-import {getImageClassification, getImageListByPge} from '../api/file';
+import {
+  getImageClassification,
+  addImageClassification,
+  deleteImageClassification,
+  updateImageClassification
+} from '../api/file';
 import MaterialCard from "../components/MaterialCard";
 import DefaultSearch from "../layouts/default/widgets/Search";
 export default {
@@ -100,24 +105,26 @@ export default {
     classificationList: [
       {
         uid: 'Frozen Yogurt',
-        projectName: 159,
-        classificationName: 6.0,
-        url: 24,
-        createTime: 4.0,
+        projectName: '',
+        classificationName: '',
+        url: '',
+        createTime: '2021-04-12 10:05:00',
       },
     ],
     editedIndex: -1,
     editedItem: {
-      projectName: '',
-      classificationName: 0,
-      url: 0,
-      createTime: 0,
+      uid: '',
+      projectName: 'sora-admin',
+      classificationName: '',
+      url: '',
+      createTime: '2021-04-12 10:05:00',
     },
     defaultItem: {
+      uid: '',
       projectName: '',
-      classificationName: 0,
-      url: 0,
-      createTime: 0,
+      classificationName: '',
+      url: '',
+      createTime: '2021-04-12 10:05:00',
     },
 
     loading: false,
@@ -143,9 +150,6 @@ export default {
   },
 
   methods: {
-    addClassification(){
-
-    },
     editItem (item) {
       this.editedIndex = this.classificationList.indexOf(item)
       this.editedItem = Object.assign({}, item)
@@ -159,7 +163,14 @@ export default {
     },
 
     deleteItemConfirm () {
-      this.classificationList.splice(this.editedIndex, 1)
+      deleteImageClassification(this.editedItem.uid).then(response => {
+        if (response.state === this.$STATE.SUCCESS){
+          console.log(response.message);
+          this.classificationList.splice(this.editedIndex, 1)
+        }else {
+          console.log(response.message);
+        }
+      })
       this.closeDelete()
     },
 
@@ -180,18 +191,33 @@ export default {
     },
 
     save () {
-      if (this.editedIndex > -1) {
-        Object.assign(this.classificationList[this.editedIndex], this.editedItem)
-      } else {
-        this.classificationList.push(this.editedItem)
+      if (this.editedIndex > -1) { // 更新
+        let i = this.editedIndex;
+        updateImageClassification(this.editedItem).then(response => {
+          if (response.state === this.$STATE.SUCCESS){
+            console.log(response.message);
+            Object.assign(this.classificationList[i], response.data)
+          }else {
+            console.log(response.message);
+          }
+        })
+      } else { // 新增
+        addImageClassification(this.editedItem).then(response => {
+          if (response.state === this.$STATE.SUCCESS){
+            console.log(response.data);
+            this.classificationList.push(response.data);
+          }else {
+            console.log(response.message);
+          }
+        })
       }
       this.close()
     },
   },
   mounted() {
     getImageClassification().then(response => {
-      console.log('Classification List: '+response.data.data);
-      this.classificationList = response.data.data;
+      console.log('Classification List: '+response.data);
+      this.classificationList = response.data;
       //this.getImagesByClassification(response.data.data[0])
     });
   },

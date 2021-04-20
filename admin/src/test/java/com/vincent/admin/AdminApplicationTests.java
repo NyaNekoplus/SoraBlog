@@ -2,39 +2,52 @@ package com.vincent.admin;
 
 import com.vincent.admin.entity.Comment;
 import com.vincent.admin.service.CommentService;
+import com.vincent.admin.service.RecordService;
+import com.vincent.admin.util.IpUtil;
 import com.vincent.admin.util.JsonUtil;
 import com.vincent.admin.vo.UserVO;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.http.HttpEntity;
+import org.springframework.web.client.RestTemplate;
 
+import java.io.File;
+import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
+import java.util.*;
+@Slf4j
 @SpringBootTest
 class AdminApplicationTests {
 
     @Autowired
+    RecordService recordService;
+    @Autowired
     CommentService commentService;
+    @Autowired
+    private RestTemplate restTemplate;
 
 
     @Autowired
     private RedisTemplate redisTemplate;
+
     @Test
     public void testObj() throws Exception{
-        UserVO userVo = new UserVO();
-        userVo.setUsername("测试dfas");
-        ValueOperations<String,Object> operations = redisTemplate.opsForValue();
-        /*
-        redisService.expireKey("name",20, TimeUnit.SECONDS);
-        String key = RedisKeyUtil.getKey(UserVo.Table,"name",userVo.getName());
-        UserVo vo = (UserVo) operations.get(key);
-        System.out.println(vo);
-
-         */
+        String picGoUrl = "http://127.0.0.1:36677/upload";
+        String data = "{list: ['C:\\Users\\Kasugano Sora\\Desktop\\Reimu\\reimon\\34631407_p0.jpg']}";
+        Map<String,Object> map = new HashMap<>();
+        List<String> imgPath = new ArrayList<>();
+        imgPath.add("C:\\Users\\Kasugano Sora\\Desktop\\Reimu\\reimon\\34631407_p0.jpg");
+        map.put("list",imgPath);
+        HttpEntity<Map<String,Object>> request = new HttpEntity<>(map);
+        //restTemplate.post
+        Map json = restTemplate.postForObject(picGoUrl,request, Map.class);
+        log.info("success:"+ json.get("success").getClass());
+        log.info("result:"+ json.get("result").getClass());
+        System.out.println("上传至GitHub："+json);
     }
     @Test
     void testDate(){
@@ -49,8 +62,7 @@ class AdminApplicationTests {
 
     @Test
     void testFindComment(){
-        List<Comment> comments = commentService.findAllComment();
-        System.out.println(comments);
+        System.out.println("+++++:  "+recordService.getVisitorCountOfToday());
     }
 
 }

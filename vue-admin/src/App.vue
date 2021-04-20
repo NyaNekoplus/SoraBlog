@@ -11,8 +11,8 @@
   export default {
     name: 'App',
     metaInfo: {
-      title: 'App',
-      titleTemplate: '%s | Material Dashboard Free',
+      title: 'Admin',
+      titleTemplate: '%s | すべて遠く理想郷',
       htmlAttrs: { lang: 'en' },
       meta: [
         { charset: 'utf-8' },

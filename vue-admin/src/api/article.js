@@ -21,9 +21,9 @@ export function getBlogListByPage(param){
   })
 }
 
-export function updateArticleState(param){
+export function updateArticle(param){
   return request({
-    url: process.env.VUE_APP_ADMIN_API + '/article/updateState',
+    url: process.env.VUE_APP_ADMIN_API + '/article/update',
     method: 'post',
     data: param
   })

@@ -12,6 +12,14 @@ export function getSystemConfig(){
   })
 }
 
+export function setDefaultCover(param){
+  return request({
+    url: process.env.VUE_APP_ADMIN_API + '/system/setDefaultCover',
+    method: 'post',
+    data: param
+  })
+}
+
 export function updateSystemConfig(param){
   return request({
     url: process.env.VUE_APP_ADMIN_API  + '/system/updateConfig',
@@ -19,3 +27,5 @@ export function updateSystemConfig(param){
     data: param
   })
 }
+
+

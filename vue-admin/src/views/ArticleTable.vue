@@ -57,15 +57,58 @@
                       <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
                         <v-card>
                           <v-toolbar dark color="primary">
-                              <v-btn icon dark @click="dialog = false">
+                              <v-btn icon dark @click="close">
                                 <v-icon>mdi-close</v-icon>
                               </v-btn>
                               <v-toolbar-title>Editing</v-toolbar-title>
                               <v-spacer></v-spacer>
                               <v-toolbar-items>
-                                <v-btn dark text @click="save(item)">Save</v-btn>
+                                <v-btn dark text @click="save">Save</v-btn>
                               </v-toolbar-items>
                             </v-toolbar>
+                          <v-row>
+                            <v-col>
+                              <material-card icon="mdi-calendar-today" icon-small title="Category" color="primary">
+                                <v-card-text>
+                                  <v-select
+                                    v-model="editedItem.category"
+                                    :items="categoryList"
+                                    item-text="name"
+                                    item-value="uid"
+                                    label="Select"
+                                    persistent-hint
+                                    return-object
+                                    single-line
+                                  ></v-select>
+                                </v-card-text>
+                              </material-card>
+                              <v-text-field
+                                v-model="editedItem.title"
+                                label="Title"
+                                prepend-icon="mdi-format-title"
+                              ></v-text-field>
+                              <v-combobox
+                                hint="置顶文章等级"
+                                v-model="editedItem.level"
+                                :items="levelList"
+                                item-value="value"
+                                item-text="text"
+                                return-object
+                                hide-selected
+                                outlined
+                                prepend-icon="mdi-format-title"
+                              ></v-combobox>
+
+                              <v-text-field
+                                v-model="editedItem.link"
+                                :rules="[value => !value || value[0]!=='/' || '首字符不能为/']"
+                                label="Link(tooisorahe.com/link)"
+                                prepend-icon="mdi-link-variant-plus"
+                              ></v-text-field>
+                            </v-col>
+                            <v-col cols="12"><vue-tinymce v-model="editedItem.contentMd" :setting="setting" /></v-col>
+                          </v-row>
+                          <!--
                           <v-list three-line subheader>
                               <v-subheader>User Controls</v-subheader>
                               <v-list-item>
@@ -112,7 +155,9 @@
                                 </v-list-item-content>
                               </v-list-item>
                             </v-list>
-                          <vue-tinymce v-model="contentMd" :setting="setting" />
+                          -->
+
+
                         </v-card>
                       </v-dialog>
                       <v-dialog v-model="dialogDelete" max-width="500px" :retain-focus="false">
@@ -139,7 +184,7 @@
                     </v-chip-group>
                   </template>
                   <template v-slot:item.enableComment="{ item }">
-                    <v-switch v-model="item.enableComment" inset @click="changeArticleState(item,false)"></v-switch>
+                    <v-switch v-model="item.enableComment" inset @click="updateArticle(item,false)"></v-switch>
                   </template>
                   <template v-slot:item.level="{ item }">
                     <v-chip class="ma-2" :color="item.level===1?'primary':item.level===2?'cyan':item.level===3?'red':'secondary'" label text-color="white">
@@ -152,7 +197,7 @@
                       <v-icon @click="editItem(item)">mdi-file-edit-outline</v-icon>
                     </app-btn>
                     <app-btn icon text elevation="1" min-width="0" class="px-2 ml-1">
-                      <v-icon @click="changeArticleState(item,true)">
+                      <v-icon @click="updateArticle(item,true)">
                         {{tabs===0?'mdi-eye-off':'mdi-eye'}}
                       </v-icon>
                     </app-btn>
@@ -174,7 +219,8 @@
 </template>
 
 <script>
-import {deleteArticle, getBlogListByPage, updateArticleState} from "../api/article";
+import {get} from 'vuex-pathify';
+import {deleteArticle, getBlogListByPage, updateArticle} from "../api/article";
 import AppBtn from "../components/app/Btn";
 
 export default {
@@ -228,28 +274,16 @@ export default {
     ],
     /*  文本编辑器  */
     contentMd: '',
-    setting: {
-      //menubar: 'file edit insert view format table tools help',
-      menubar: false,
-      toolbar: "undo redo | fullscreen | formatselect alignleft aligncenter alignright alignjustify | link unlink | numlist bullist | image media table | fontselect fontsizeselect forecolor backcolor | bold italic underline strikethrough | indent outdent | superscript subscript | removeformat | codesample | code | toc | preview |",
-      toolbar_mode: "floating",
-      quickbars_selection_toolbar: "removeformat | bold italic underline strikethrough | fontsizeselect forecolor backcolor",
-      plugins: "link image media table lists fullscreen quickbars codesample code preview toc",
-
-      language: 'zh_CN', //本地化设置
-      branding: false,
-      statusbar: false,
-      skin: 'oxide',
-      height: '70vh',
-
-      images_upload_url: '/admin/upimg.php',
-      images_upload_base_path: '/admin',
-      //toc_depth: 3,
-      //toc_class: 'my-class',
-      //toc_header: 'div'
-    },
     /*  文本编辑器  */
+    /**/
+    title: '',
+    link: '',
+    level: '',
+    levelList: [],
+    category: '',
+    categoryList: [],
     blogList: [],
+    /**/
     editedIndex: -1,
     editedItem: {
       articleSource: '',
@@ -309,6 +343,7 @@ export default {
     },
   }),
   computed: {
+    setting: get('editor/setting'),
     formTitle () {
       return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
     },
@@ -387,14 +422,11 @@ export default {
         this.loading = false
       })
     },
-    changeArticleState(item, changeDraft){
+    updateArticle(item, changeDraft){
       this.editedIndex = this.blogList.indexOf(item)
-      let param = {};
-      param.uid = item.uid;
-      param.isDraft = !item.isDraft;
-      param.enableComment = item.enableComment;
-      //param.level = item.level;
-      updateArticleState(param).then(response => {
+      let param = item;
+      //param.isDraft = !item.isDraft;
+      updateArticle(param).then(response => {
         if (response.state === this.$STATE.SUCCESS){
           console.log(response.message);
           if (changeDraft){
@@ -410,12 +442,21 @@ export default {
       this.editedIndex = this.blogList.indexOf(item)
       this.editedItem = Object.assign({}, item)
       console.log(item)
+      // vue-tinymce问题，更新content后不同步。将于1.1.1版本修复
       this.contentMd = item.contentMd;
       this.dialog = true
+      this.$nextTick(() => {
+        tinymce.activeEditor.setContent(item.contentMd);
+      })
+      //this.$tinymce.setContent(item.contentMd);
+      //tinyMCE.setContent(item.contentMd)
+      //tinymce.setContent(item.contentMd)
     },
     save () {
       if (this.editedIndex > -1) {
         Object.assign(this.blogList[this.editedIndex], this.editedItem)
+        console.log("save: "+this.editedItem.link+this.editedItem.content)
+        this.updateArticle(this.editedItem)
       } else {
         this.blogList.push(this.editedItem)
       }
@@ -423,6 +464,7 @@ export default {
     },
     close () {
       this.dialog = false
+      this.contentMd = '';
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1

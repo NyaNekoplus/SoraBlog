@@ -69,4 +69,7 @@ public class Article extends SuperEntity<Article> {
     @TableField(exist = false)
     private String coverUrl;
 
+    @TableField(exist = false)
+    private String coverJsDelivrUrl;
+
 }

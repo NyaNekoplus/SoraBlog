@@ -9,9 +9,11 @@ Vue.use(VueTinymce)
 
 
 import router from './router'
+import './router/authentication'
 import vuetify from './plugins/vuetify'
 import './plugins'
 
+import './directive'
 
 import VuetifyMessage from './components/message/index';
 Vue.use(VuetifyMessage.register);

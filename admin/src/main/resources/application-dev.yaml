@@ -26,7 +26,7 @@ spring:
         # 连接池中的最大空闲连接
         max-idle: 8
         min-idle: 0
-    timeout: 10000
+    timeout: 20000
   cache:
     type: caffeine
     caffeine:
@@ -38,7 +38,7 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true # 关闭驼峰命名
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台输出sql语句,测试
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台输出sql语句,测试
   global-config:
     db-config:
       table-underline: false

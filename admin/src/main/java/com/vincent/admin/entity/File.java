@@ -24,7 +24,7 @@ public class File extends SuperEntity<File>{
 
     private Long fileSize;
 
-    private String qiNiuUrl;
+    private String jsDelivrUrl;
 
     private Long fileClassificationUid; // 上传者
 

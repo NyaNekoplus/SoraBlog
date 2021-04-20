@@ -35,4 +35,16 @@ public class JsonUtil {
         return null;
     }
 
+    public static Map<String, Object> objectToMap(Object obj) {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+        try {
+            String json = mapper.writeValueAsString(obj);
+            TypeReference<Map<String,Object>> type = new TypeReference<>() {};
+            return mapper.readValue(json,type);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

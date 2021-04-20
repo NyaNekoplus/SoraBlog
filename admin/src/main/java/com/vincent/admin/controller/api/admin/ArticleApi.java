@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -42,7 +43,7 @@ public class ArticleApi {
     public String list(@RequestBody ArticleVO articleVO){
         QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("is_draft", articleVO.getIsDraft());
-        queryWrapper.orderByDesc("createTime");
+        queryWrapper.orderByDesc("create_time");
         //queryWrapper.isNull("updateTime");
 
         Page<Article> page = new Page<>();
@@ -86,17 +87,21 @@ public class ArticleApi {
         });
 
         if (coverImageUidList.size()>0){
+            SystemConfig systemConfig = systemConfigService.getById(1);
             List<File> coverList = fileService.listByIds(coverImageUidList);
             HashMap<Long,String> fileMap = new HashMap<>();
             coverList.forEach(cover -> {
-                fileMap.put(cover.getUid(),cover.getUrl());
+                if (cover.getJsDelivrUrl() == null){ // 如果jsdevUrl为空，则使用本地图片
+                    fileMap.put(cover.getUid(),systemConfig.getLocalImageBaseUrl()+cover.getUrl());
+                }else {
+                    fileMap.put(cover.getUid(),cover.getJsDelivrUrl());
+                }
             });
-            SystemConfig systemConfig = systemConfigService.getById(1);
             articleList.forEach(article -> {
                 if (article.getCoverUid()!=null){
-                    article.setCoverUrl(systemConfig.getLocalImageBaseUrl()+fileMap.get(article.getCoverUid()));
+                    article.setCoverUrl(fileMap.get(article.getCoverUid()));
                 }else {
-                    article.setCoverUrl("https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/cover.png");
+                    article.setCoverUrl(systemConfig.getLocalImageBaseUrl()+systemConfig.getDefaultCoverUrl());
                 }
             });
         }else {
@@ -176,19 +181,30 @@ public class ArticleApi {
         article.setTitle(articleVO.getTitle());
         article.setLink(articleVO.getLink());
         article.setLang(articleVO.getLang());
-        article.setSummary(articleVO.getContent().substring(0,35)); //
+
+        if (articleVO.getContent().length()>35){
+            article.setSummary(articleVO.getContent().substring(0,35)); //
+        }else {
+            article.setSummary(articleVO.getContent());
+        }
+
         article.setContent(articleVO.getContent());
         article.setContentMd(articleVO.getContentMd());
         article.setEnableComment(articleVO.getEnableComment());
         article.setIsDraft(articleVO.getIsDraft());
         article.setLevel(articleVO.getLevel());
+        article.setCoverUid(articleVO.getCoverUid());
+        /*
         if (articleVO.getCoverUid()==null){
             SystemConfig config = systemConfigService.getById(1);
             article.setCoverUid(config.getDefaultCoverUid());
         }else {
             article.setCoverUid(articleVO.getCoverUid());
+        }*/
+        if (articleVO.getCreateTime() != null) {
+            log.info("Add article: create time is "+articleVO.getCreateTime());
+            article.setCreateTime(articleVO.getCreateTime());
         }
-        //article.setCreateTime(articleVO.get);
         //article.setViewCount();  // 0 by default
 
         boolean isSaved = articleService.save(article);
@@ -199,12 +215,23 @@ public class ArticleApi {
         }
     }
 
-    @PostMapping("/updateState")
+    @PostMapping("/update")
     String updateArticleState(@RequestBody ArticleVO articleVO){
 
         UpdateWrapper<Article> wrapper = new UpdateWrapper<>();
         wrapper.set("enable_comment",articleVO.getEnableComment());
         wrapper.set("is_draft",articleVO.getIsDraft());
+        wrapper.set("content",articleVO.getContent());
+        wrapper.set("link",articleVO.getLink());
+        wrapper.set("title",articleVO.getTitle());
+        wrapper.set("level",articleVO.getLevel());
+
+        if (articleVO.getUpdateTime() == null){
+            wrapper.set("update_time", new Date());
+        }else {
+            wrapper.set("update_time", articleVO.getUpdateTime());
+        }
+
         wrapper.eq("uid", articleVO.getUid());
         //wrapper.set("level",articleVO.getLevel());
         boolean result = articleService.update(wrapper);

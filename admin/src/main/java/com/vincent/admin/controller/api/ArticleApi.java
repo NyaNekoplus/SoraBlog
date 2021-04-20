@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.vincent.admin.entity.*;
+import com.vincent.admin.enums.UserOperation;
+import com.vincent.admin.record.VisitRecord;
 import com.vincent.admin.service.*;
 import com.vincent.admin.util.Result;
 import com.vincent.admin.vo.ArticleVO;
@@ -62,5 +64,11 @@ public class ArticleApi {
     @GetMapping("/getTop")
     public String getTopBlog(){
         return articleService.getTopBlog();
+    }
+
+    @VisitRecord(value = "访问主页", operation = UserOperation.VISIT_PAGE)
+    @GetMapping("/visitRecord")
+    public String visitRecord() {
+        return Result.success();
     }
 }

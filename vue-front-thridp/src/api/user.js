@@ -22,3 +22,12 @@ export function authToken(param){
         method: 'get',
     })
 }
+
+
+export function getAboutMe(){
+    return request({
+        url: process.env.VUE_APP_FRONT_API+'/user/getAboutMe',
+        method: 'get',
+        //data: param lang
+    })
+}

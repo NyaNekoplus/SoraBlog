@@ -18,7 +18,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     private String staticPath;
 
 
-
+    // 线上使用nginx
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
         registry.addResourceHandler(staticPath).addResourceLocations("file:/"+uploadFolder);

@@ -40,11 +40,13 @@
 
           <div class="focusinfo no-select">
             <div class="header-tou">
-              <a href="https://www.lovewx.club"><img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png"></a>
+              <a href="https://www.lovewx.club">
+                <img :src="about.avatarUrl">
+              </a>
             </div>
             <!--<h1 class="center-text glitch is-glitching Ubuntu-font" data-text="遠い空へ">遠い空へ</h1>-->
             <div class="header-info">
-              <p><i class="fa fa-quote-left"></i> 思绪如风，来得快去得也快，偶尔在这里停留 <i class="fa fa-quote-right"></i></p>
+              <p><i class="fa fa-quote-left"></i> {{ about.motto }} <i class="fa fa-quote-right"></i></p>
               <div class="top-social_v2">
                 <li id="bg-pre">
                   <img class="flipx" src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/next-b.svg">
@@ -197,6 +199,8 @@
 </template>
 
 <script>
+import {getAboutMe} from "../../api/user";
+
 export default {
   name: 'SoraLayout',
   components: {
@@ -208,6 +212,8 @@ export default {
   data: () => ({
     coverHeight: 1440,
     sidebarOn: false,
+
+    about: {},
   }),
   methods: {
     showSidebar(){
@@ -267,7 +273,17 @@ export default {
 
     document.getElementById('centerbg').style.height = this.coverHeight.toString() + 'px';
     //this.coverHeight =
+  },
+  created() {
+    getAboutMe().then(response => {
+      if (response.state === this.$STATE.SUCCESS){
+        this.about = response.data;
+      }else{
+        console.log(response.message);
+      }
+    })
   }
+
 
 }
 </script>

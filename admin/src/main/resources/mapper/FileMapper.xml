@@ -9,9 +9,9 @@
         <result column="original_name" property="originalName"/>
         <result column="new_name" property="newName"/>
         <result column="url" property="url"/>
+        <result column="js_delivr_url" property="jsDelivrUrl"/>
         <result column="extension" property="extension"/>
         <result column="file_size" property="fileSize"/>
-        <result column="qi_niu_url" property="qiNiuUrl"/>
         <result column="file_classification_uid" property="fileClassificationUid"/>
         <result column="status" property="status"/>
 

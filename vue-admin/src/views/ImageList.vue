@@ -43,6 +43,7 @@
                                 <v-btn
                                   v-for="(icon, index) in ['content-copy', 'mdi-play', 'mdi-fast-forward']"
                                   :key="index"
+                                  @click="imageOperation(index, image)"
                                   :class="{ 'show-btns': hover }"
                                   :color="transparent"
                                   icon
@@ -73,6 +74,7 @@
 import {getImageClassification, getImageListByPge} from '../api/file';
 import MaterialCard from "../components/MaterialCard";
 import DefaultSearch from "../layouts/default/widgets/Search";
+import {setDefaultCover} from "../api/system";
 export default {
   name: "ImageList",
   components: {DefaultSearch, MaterialCard},
@@ -139,6 +141,22 @@ export default {
     }*/
   },
   methods: {
+    imageOperation(i, image){
+      switch (i){
+        case 0:
+          break;
+        case 1:
+          break;
+        case 2://设为默认封面
+          let imageUrl = image.url;
+          console.log('image url: '+imageUrl);
+          setDefaultCover(image).then(response => {alert(response.message)})
+          break;
+        default:
+          console.log('image operation: 无此操作');
+          break;
+      }
+    },
     addClassification(){
 
     },
@@ -150,9 +168,9 @@ export default {
       param.uid = classification.uid;
       param.classificationName = classification.classificationName;
       getImageListByPge(param).then(response => {
-        let blogData = response.data.data;
-        console.log(response.data.data);
-        console.log(response.data.data.records);
+        let blogData = response.data;
+        console.log(response.data);
+        console.log(response.data.records);
         console.log(blogData.records.length);
         this.imageList = blogData.records;
         //this.blogNum = blogData.records.length;
@@ -165,9 +183,9 @@ export default {
   },
   mounted() {
     getImageClassification().then(response => {
-      console.log('Classification List: '+response.data.data);
-      this.tabList = response.data.data;
-      this.getImagesByClassification(response.data.data[0])
+      console.log('Classification List: '+response.data);
+      this.tabList = response.data;
+      this.getImagesByClassification(response.data[0])
     });
   },
   created() {

@@ -13,325 +13,68 @@
     <div id="content" class="site-content">
       <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
-          <article id="post-4491"
-                   class="post-4491 post type-post status-publish format-standard has-post-thumbnail hentry category-hacking tag-graphql tag-javascript tag-wordpress">
-            <div class="entry-content">
+          <article id="post-4491" class="post-4491 post type-post status-publish format-standard has-post-thumbnail hentry category-hacking tag-graphql tag-javascript tag-wordpress">
+
+            <!--
+            <div class="ins-section-wrapper">
+              <div class="ins-section-container">
+                <div class="ins-section">
+                  <div class="ins-section-header">
+                    header
+                  </div>
+                </div>
+              </div>
+            </div>
+            -->
+            <div class="toc-container">
+              <div class="toc" style="background: none;">
+                <!--
+                <ol class="toc-list ">
+                  <li class="toc-list-item"><a href="#toc-head-1" class="toc-link node-name--H2  is-active-link">I. 特性</a>
+                    <ol class="toc-list  is-collapsible">
+                      <li class="toc-list-item"><a href="#toc-head-2" class="toc-link node-name--H3 ">随机封面图</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-3" class="toc-link node-name--H3 ">Lazyload</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-4" class="toc-link node-name--H3 ">文章封面视频</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-5" class="toc-link node-name--H3 ">定制登陆及后台界面</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-6" class="toc-link node-name--H3 ">支持 Bilibili 表情</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-7" class="toc-link node-name--H3 ">QQ/Gravatar 头像</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-8" class="toc-link node-name--H3 ">评论插图</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-9" class="toc-link node-name--H3 ">用户 UA 及 IP 定位</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-10" class="toc-link node-name--H3 ">文章目录</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-11" class="toc-link node-name--H3 ">Mac 风格代码块</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-12" class="toc-link node-name--H3 ">前端主题切换</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-13" class="toc-link node-name--H3 ">时光轴</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-14" class="toc-link node-name--H3 ">相册</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-15" class="toc-link node-name--H3 ">邮件模板</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-16" class="toc-link node-name--H3 ">Aplayer/HermitX 支持</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-17" class="toc-link node-name--H3 ">CDN 优化</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-18" class="toc-link node-name--H3 ">Github Cards</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-19" class="toc-link node-name--H3 ">移动客户端*</a></li>
+                    </ol>
+                  </li>
+                  <li class="toc-list-item"><a href="#toc-head-20" class="toc-link node-name--H2 ">II. 注意事项</a>
+                    <ol class="toc-list  is-collapsible is-collapsed">
+                      <li class="toc-list-item"><a href="#toc-head-21" class="toc-link node-name--H3 ">重要★★：</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-22" class="toc-link node-name--H3 ">建议安装的插件☆</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-23" class="toc-link node-name--H3 ">我也在使用的插件</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-24" class="toc-link node-name--H3 ">兼容性</a>
+                        <ol class="toc-list  is-collapsible is-collapsed">
+                          <li class="toc-list-item"><a href="#toc-head-25" class="toc-link node-name--H4 ">服务器端</a></li>
+                          <li class="toc-list-item"><a href="#toc-head-26" class="toc-link node-name--H4 ">前端</a></li>
+                        </ol>
+                      </li>
+                      <li class="toc-list-item"><a href="#toc-head-27" class="toc-link node-name--H3 ">写作规范</a></li>
+                      <li class="toc-list-item"><a href="#toc-head-28" class="toc-link node-name--H3 ">API</a></li>
+                    </ol>
+                  </li>
+                  <li class="toc-list-item"><a href="#toc-head-29" class="toc-link node-name--H2 ">III. FAQ</a></li>
+                  <li class="toc-list-item"><a href="#toc-head-30" class="toc-link node-name--H2 ">IV. 下载</a></li>
+                </ol>
+                -->
+              </div>
+            </div>
+            <div class="entry-content" @click="enlargeImage">
               <div v-html="blog.contentMd"></div>
-              <!--
-              <p>当我们需要用 GraphQL 查询多层套嵌的数据，比如像 WordPress 这样套嵌的评论信息时，通常的写法是：</p>
-              <pre class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                   design="by Mashiro" contenteditable="false"><code class="language-json hljs" data-rel="JSON"
-                                                                     id="hljs-0"><table class="hljs-ln"><tbody><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="1"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">{</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">  posts(first: <span class="hljs-number">100</span>) {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="3"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">    nodes {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="4"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">      id</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="5"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">      title</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="6"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">      comments {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="7"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">        nodes {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="8"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">          ...CommentFields</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="9"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">          replies: children {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="10"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">            nodes {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="11"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">              ...CommentFields</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="12"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">              replies: children {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="13"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">                nodes {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="14"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">                  ...CommentFields</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="15"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">                  replies: children {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="16"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">                    nodes {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="17"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">                      ...CommentFields</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="18"></div></td><td
-                  class="hljs-ln-code"><div
-                  class="hljs-ln-line">                      replies: children {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="19"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">                        nodes {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="20"></div></td><td
-                  class="hljs-ln-code"><div
-                  class="hljs-ln-line">                          ...CommentFields</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="21"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">                        }</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="22"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">                      }</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="23"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">                    }</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="24"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">                  }</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="25"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">                }</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="26"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">              }</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="27"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">            }</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="28"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">          }</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="29"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">        }</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="30"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">      }</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="31"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">    }</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="32"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">  }</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="33"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">}</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="34"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"> </div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="35"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">fragment CommentFields on Comment {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="36"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">  id</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="37"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">  date</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="38"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">  type</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="39"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">  approved</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="40"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">  content</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="41"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">}</div></td></tr></tbody></table></code><a class="copy-code" href="javascript:"
-                                                                                  data-clipboard-target="#hljs-0"
-                                                                                  title="拷贝代码"><i
-                  class="fa fa-clipboard" aria-hidden="true"></i></a></pre>
-              <p>以上的写法只实现了四层套嵌评论的查询，很麻烦对不对？这或许是 GraphQL 的缺陷，但这也或许正体现了 GraphQL 的设计理念——所得即所查。</p>
-              <p>找了一下，没有现成的轮子，就自己写一个套嵌实现吧（注意 graphql 查询语句要顶头写，多余的缩进会影响递归结果）：</p>
-              <pre class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                   design="by Mashiro" contenteditable="false"><code class="language-js hljs javascript"
-                                                                     data-rel="JAVASCRIPT" id="hljs-1"><table
-                  class="hljs-ln"><tbody><tr><td class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n"
-                                                                              data-line-number="1"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span
-                  class="hljs-keyword">import</span> ApolloClient <span class="hljs-keyword">from</span> <span
-                  class="hljs-string">'apollo-boost'</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="2"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-keyword">import</span> gql <span
-                  class="hljs-keyword">from</span> <span class="hljs-string">'graphql-tag'</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="3"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"> </div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="4"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span
-                  class="hljs-title">getPostCommentByPostId</span> </span>{</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="5"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">  private postId: number</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="6"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">  private MaxChildrenLevel: number</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="7"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">  private data: any</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="8"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"> </div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="9"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">  <span class="hljs-comment"><span
-                  class="hljs-comment">/**</span></span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="10"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-comment">   * @param {number} postId           wordpress post id</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="11"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-comment">   * @param {number} MaxChildrenLevel post threaded (nested) comments levels deep (/wp-admin/options-discussion.php)</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="12"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-comment">   */</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="13"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">  public <span class="hljs-keyword">constructor</span>(postId: number, MaxChildrenLevel) {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="14"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">    <span class="hljs-keyword">this</span>.postId = postId</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="15"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">    <span class="hljs-keyword">this</span>.MaxChildrenLevel = MaxChildrenLevel</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="16"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">  }</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="17"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"> </div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="18"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">  <span class="hljs-comment">// 处理递归部分</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="19"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">  private queryChildren() {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="20"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">    <span class="hljs-keyword">let</span> queryHeader: string = <span
-                  class="hljs-string">``</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="21"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">    <span class="hljs-keyword">let</span> queryFooter: string = <span
-                  class="hljs-string">``</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="22"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">    <span class="hljs-comment">// 迭代之前的内容</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="23"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">    <span class="hljs-keyword">const</span> childrenHeader: string = <span
-                  class="hljs-string"><span class="hljs-string">`</span></span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="24"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">children {</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="25"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span
-                  class="hljs-string">  nodes {</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="26"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-string">    ...CommentFields`</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="27"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">    <span class="hljs-comment">// 迭代之后的内容</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="28"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">    <span class="hljs-keyword">const</span> childrenFooter: string = <span
-                  class="hljs-string"><span class="hljs-string">`</span></span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="29"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">  }</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="30"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">}`</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="31"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"> </div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="32"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">    <span class="hljs-comment">// 处理每行前的空格</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="33"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">    <span
-                  class="hljs-keyword">let</span> addTabs = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span
-                  class="hljs-params">str: string, n: number</span>) </span>{</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="34"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">      <span class="hljs-keyword">return</span> str.replace(<span
-                  class="hljs-regexp">/^/gm</span>, <span class="hljs-string">'  '</span>.repeat(n)) <span
-                  class="hljs-comment">// 注意我用的是两格缩进，四格缩进请自行调整</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="35"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">    }</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="36"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"> </div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="37"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span
-                  class="hljs-number">0</span>; i &lt; <span
-                  class="hljs-keyword">this</span>.MaxChildrenLevel; i++) {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="38"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">      queryHeader = addTabs(childrenHeader + queryHeader, <span
-                  class="hljs-number">2</span>)</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="39"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">      queryFooter = addTabs(queryFooter + childrenFooter, <span
-                  class="hljs-number">2</span>)</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="40"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">    }</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="41"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">    <span
-                  class="hljs-keyword">return</span> addTabs(queryHeader + queryFooter, <span
-                  class="hljs-number">2</span>)</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="42"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">  }</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="43"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"> </div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="44"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">  <span class="hljs-comment">// 查询部分</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="45"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">  private query() {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="46"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">    <span class="hljs-keyword">const</span> client: ApolloClient = <span
-                  class="hljs-keyword">new</span> ApolloClient()</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="47"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">    client.query({</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="48"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">      <span class="hljs-attr">query</span>: gql<span class="hljs-string"><span
-                  class="hljs-string">`</span></span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="49"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-string">query GET_POST($postId: Int) {</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="50"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span
-                  class="hljs-string">  postBy(postId: $postId) {</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="51"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-string">    id</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="52"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">    postId</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="53"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span
-                  class="hljs-string">    title</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="54"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-string">    date</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="55"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span
-                  class="hljs-string">    uri</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="56"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-string">    content</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="57"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">  }</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="58"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span
-                  class="hljs-string">  comments {</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="59"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-string">    edges {</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="60"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span
-                  class="hljs-string">      node {</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="61"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-string">        ...CommentFields<span
-                  class="hljs-subst">${<span class="hljs-keyword">this</span>.queryChildren()}</span></span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="62"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span
-                  class="hljs-string">      }</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="63"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-string">    }</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="64"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">  }</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="65"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">}</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="66"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">fragment CommentFields on Comment {</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="67"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">  date</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="68"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span
-                  class="hljs-string">  agent</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="69"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-string">  content(format: RENDERED)</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="70"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">  commentId</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="71"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">  author {</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="72"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span
-                  class="hljs-string">    ... on CommentAuthor {</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="73"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-string">      email</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="74"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">      name</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="75"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span
-                  class="hljs-string">      url</span></div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="76"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line"><span class="hljs-string">    }</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="77"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">  }</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="78"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">  authorIp</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="79"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">}</span></div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="80"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line"><span class="hljs-string">`</span>,</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="81"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">      <span class="hljs-attr">variables</span>: {</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="82"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">        <span
-                  class="hljs-string">"postId"</span>: <span class="hljs-keyword">this</span>.postId</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="83"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">      },</div></td></tr><tr><td
-                  class="hljs-ln-numbers"><div class="hljs-ln-line hljs-ln-n" data-line-number="84"></div></td><td
-                  class="hljs-ln-code"><div class="hljs-ln-line">    })</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="85"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">      .then(<span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> <span
-                  class="hljs-built_in">console</span>.log(data))</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="86"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">      .catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span
-                  class="hljs-built_in">console</span>.log(error))</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="87"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">  }</div></td></tr><tr><td class="hljs-ln-numbers"><div
-                  class="hljs-ln-line hljs-ln-n" data-line-number="88"></div></td><td class="hljs-ln-code"><div
-                  class="hljs-ln-line">}</div></td></tr></tbody></table></code><a class="copy-code" href="javascript:"
-                                                                                  data-clipboard-target="#hljs-1"
-                                                                                  title="拷贝代码"><i
-                  class="fa fa-clipboard" aria-hidden="true"></i></a></pre>
-              <p>Q.E.D. <i class="fa fa-meetup" aria-hidden="true" style="color:#d34836"></i></p>
-              <h2 class="footer-comment-flag" style="opacity:0;max-height:0;margin:0">Comments</h2>
-          -->
             </div>
             <div class="single-reward">
               <div class="reward-open">赏
@@ -417,6 +160,9 @@
 </template>
 
 <script>
+import Viewer from "viewerjs"
+import 'viewerjs/dist/viewer.css';
+import * as tocbot from "tocbot";
 import {getBlogByTitle} from "../api/article";
 import {mapMutations} from "vuex";
 
@@ -431,6 +177,19 @@ export default {
   }),
   methods: {
     ...mapMutations(['setBlog','removeToInfo']),
+    enlargeImage(event){
+      //this.$nextTick(function (){})
+      //console.log(event.target) // testssss
+      //console.log(event.target.nodeName) // p
+      let target = event.target;
+      if (target.nodeName === 'IMG') {
+        // 获取触发事件对象的属性
+        const viewer = new Viewer(target, {
+          inline: false,
+        })
+        viewer.view(0);
+      }
+    },
     getBlogByLink(){
       getBlogByTitle(this.$route.params.title).then(response => {
         console.log("page: "+response.state);
@@ -452,11 +211,10 @@ export default {
     this.removeToInfo();
 
 
+
+
   },
   mounted() {
-
-    //this.blog = this.$store.getters.blog;
-    //this.toId = this.$store.getters.toId;
     console.log('page create: ' + this.$store.getters.blog);
     if (this.$store.getters.blog!==undefined && this.$store.getters.blog!==null) {
       let t_blog = this.$store.getters.blog;
@@ -473,7 +231,37 @@ export default {
     } else {
       this.getBlogByLink();
     }
+    // tocbot
+    this.$nextTick(function() {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.toc', // 放置目录的容器
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.entry-content', // 正文内容所在
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+        positionFixedSelector: ".toc", //目录位置固定
+        /*
+        scrollEndCallback: function (e) { //回调函数
+          window.scrollTo(window.scrollX, window.scrollY - 80);
+          //修正滚动后页面的位置，80 是自己顶部栏的高度
+        },
+        */
+        hasInnerContainers: true
+      });
+    });
+    /*
+    this.$nextTick( () => {
+
+      document.getElementsByClassName('.entry-content').on
+      $('.entry-content').on('click','img',() => {
+        let thisImgAttr = $(this).attr("src");
+        console.log('img url: '+thisImgAttr)
+      })
+    })
+    */
   }
+
 
 }
 </script>

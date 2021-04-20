@@ -8,6 +8,7 @@ import com.vincent.admin.entity.SystemConfig;
 import com.vincent.admin.mapper.FileMapper;
 import com.vincent.admin.service.FileClassificationService;
 import com.vincent.admin.service.FileService;
+import com.vincent.admin.service.JsDelivrFileService;
 import com.vincent.admin.service.LocalFileService;
 import com.vincent.admin.util.FileUtil;
 import com.vincent.admin.util.Result;
@@ -33,11 +34,13 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, File> implements Fi
     private FileClassificationService fileClassificationService;
     @Autowired
     private LocalFileService localFileService;
+    @Autowired
+    private JsDelivrFileService jsDelivrFileService;
 
     @Override
     public String batchUploadFile(HttpServletRequest request, List<MultipartFile> filedatas, SystemConfig systemConfig) {
         Boolean uploadLocal = systemConfig.getUploadLocal();
-        Boolean uploadQiNiu = systemConfig.getUploadQiNiu();
+        Boolean uploadJsDelivr = systemConfig.getUploadGithub();
 
 
         // 判断来源
@@ -98,6 +101,7 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, File> implements Fi
             log.info("图片文件：" + filedatas);
             List<File> fileList = new ArrayList<>();
             String localUrl = "";
+            String jsDelivrUrl = null;
             for (MultipartFile filedata : filedatas){
                 long fileSize = filedata.getSize();
                 String originalFileName = filedata.getOriginalFilename();
@@ -106,6 +110,10 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, File> implements Fi
                 try {
                     if (uploadLocal){
                         localUrl = localFileService.saveFile(filedata,fileClassification);
+                    }
+                    if (uploadJsDelivr && fileSize <= 1048576){ // 小于1M上传Github
+                        jsDelivrUrl = jsDelivrFileService.saveFile(systemConfig.getLocalImageBaseUrl()+localUrl);
+                        log.info("FileService upload jsdelivr: "+jsDelivrUrl);
                     }
                 } catch (IOException e) {
                     log.error("FileService: batchUploadFile: upload file failed.");
@@ -119,6 +127,7 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, File> implements Fi
                 file.setExtension(FileUtil.getFileExtension(filedata.getName()));
                 file.setUserUid(Long.parseLong(userUid));
                 file.setUrl(localUrl);
+                file.setJsDelivrUrl(jsDelivrUrl);
                 file.insert();
                 fileList.add(file);
             }

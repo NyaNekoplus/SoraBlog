@@ -21,3 +21,10 @@ export function getTopBlog(){
         method: 'get',
     })
 }
+
+export function visitRecord(){
+    return request({
+        url: process.env.VUE_APP_FRONT_API + '/blog/visitRecord',
+        method: 'get',
+    })
+}

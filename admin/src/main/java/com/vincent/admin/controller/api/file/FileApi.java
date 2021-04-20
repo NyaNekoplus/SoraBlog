@@ -41,11 +41,36 @@ public class FileApi {
     private FileClassificationService fileClassificationService;
 
     @GetMapping("/getImageClassification")
-    @Cacheable
     public String getImageClassification(){
         List<FileClassification> list = fileClassificationService.list();
         log.info("File Classification: "+ list);
         return Result.success("查询图片分类成功",list);
+    }
+
+    @GetMapping("/deleteClassification/{uid}")
+    public String deleteClassification(@PathVariable Long uid){
+        boolean result = fileClassificationService.removeById(uid);
+        return result?Result.success("删除文件分类成功"):Result.failure("删除文件分类失败");
+    }
+
+    @PostMapping("/updateClassification")
+    public String updateClassification(@RequestBody FileClassification classification){
+        if (classification==null||classification.getProjectName()==null||classification.getClassificationName()==null||classification.getUrl()==null){
+            return Result.failure("更新文件分类失败，参数不能为空");
+        }
+        boolean result = classification.updateById();
+        return result?Result.success("更新文件分类成功",classification):Result.failure("更新文件分类失败");
+    }
+
+    @PostMapping("/addClassification")
+    public String addImageClassification(@RequestBody FileClassificationVO vo){
+        if (vo==null||vo.getProjectName()==null||vo.getClassificationName()==null||vo.getUrl()==null){
+            return Result.failure("新增文件分类失败，参数不正确");
+        }
+        FileClassification classification = new FileClassification(vo);
+        boolean result = classification.insert();
+        //boolean result = fileClassificationService.save(classification);
+        return result?Result.success("新增文件分类成功",classification):Result.failure("新增文件分类失败");
     }
 
     @PostMapping("/getImageListByPge")

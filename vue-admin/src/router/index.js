@@ -44,11 +44,14 @@ const router = new Router({
       // Maps
       route('Google Maps', null, 'maps/google'),
     ]),
+    layout('Pixiv', [
+      route('Login', null, 'login')
+    ])
   ],
 })
-
+/*
 router.beforeEach((to, from, next) => {
   return to.path.endsWith('/') ? next() : next(trailingSlash(to.path))
 })
-
+*/
 export default router

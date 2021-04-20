@@ -3,6 +3,7 @@ package com.vincent.admin.controller.api;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.vincent.admin.entity.User;
 import com.vincent.admin.holder.RequestHolder;
+import com.vincent.admin.service.AboutMeService;
 import com.vincent.admin.service.UserService;
 import com.vincent.admin.util.*;
 import com.vincent.admin.vo.UserVO;
@@ -11,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -27,7 +25,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2021/1/30 11:34
  */
 
-@RestController
+@RestController("FrontUserApi")
 @CacheConfig(cacheNames = "user")
 @RequestMapping("/front/user")
 @Slf4j
@@ -35,25 +33,31 @@ public class UserApi {
     @Autowired
     private UserService userService;
     @Autowired
+    private AboutMeService aboutMeService;
+    @Autowired
     private RedisUtil redisUtil;
 
     @PostMapping("/login")
-    String login(@RequestBody UserVO userVO){
+    public String login(@RequestBody UserVO userVO){
+        if (StringUtils.isEmpty(userVO.getPassword())||StringUtils.isEmpty(userVO.getPassword())){
+            return Result.failure("用户名或密码不能为空");
+        }
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.and((wrapper) -> wrapper.eq("userName",userVO.getUsername()).or().eq("email",userVO.getUsername()));
+        queryWrapper.and((wrapper) -> wrapper.eq("username",userVO.getUsername()).or().eq("email",userVO.getUsername()));
         User user = userService.getOne(queryWrapper);
         System.out.println(userVO);
         System.out.println(user);
         if (user == null){
             return Result.failure("Back-end: 用户不存在");
         }
-        if(!StringUtils.isEmpty(userVO.getPassword()) && user.getPassword().equals(MD5Util.string2MD5(userVO.getPassword()))){
+        if(user.getPassword().equals(MD5Util.string2MD5(userVO.getPassword()))){
             HttpServletRequest request = RequestHolder.getRequest();
             String ip = IpUtil.getIpAddr(request);
             Map<String,String> userMap = IpUtil.getOsAndBrowserInfo(request);
             user.setBrowser(userMap.get("BROWSER"));
             user.setOs(userMap.get("OS"));
             user.setLastLoginIp(ip);
+            user.setIpSource(IpUtil.getCityInfo(ip));
             user.setLastLoginTime(new Date());
             user.updateById();
 
@@ -74,7 +78,7 @@ public class UserApi {
     }
 
     @PostMapping("register")
-    String register(@RequestBody UserVO userVO){
+    public String register(@RequestBody UserVO userVO){
         if (userVO.getUsername().length()<2||userVO.getUsername().length()>16 ||
                 userVO.getPassword().length()<6||userVO.getPassword().length()>32){
             return Result.failure("Back-end: 注册失败，用户名或密码的长度不符合");
@@ -108,5 +112,10 @@ public class UserApi {
         user.insert();
 
         return Result.success("Back-end: 注册成功");
+    }
+
+    @GetMapping("/getAboutMe")
+    public String getAboutMe(){
+        return aboutMeService.getAboutMeByLang(1);
     }
 }

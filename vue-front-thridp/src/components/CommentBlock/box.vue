@@ -498,11 +498,15 @@
       <input type="text" placeholder="QQ" name="new_field_qq" id="qq" value="" style="display:none" autocomplete="off">
       <div class="form-submit">
         <input id="submit" class="submit" @click="handleSubmit" value="发送评论" type="submit"><!-- @click="submitComment"-->
-        <div class="insert-image-tips popup">
+        <div class="insert-image-tips popup"
+             @mouseenter="$event.currentTarget.children[1].className='insert-img-popuptext show'"
+             @mouseleave="$event.currentTarget.children[1].className='insert-img-popuptext'">
           <i class="fa fa-picture-o" aria-hidden="true"></i>
           <span class="insert-img-popuptext" id="uploadTipPopup">上传图片</span>
         </div>
+        <!--
         <input id="upload-img-file" type="file" accept="image/*" multiple="multiple" class="insert-image-button">
+        -->
         <input type="hidden" name="comment_post_ID" value="3137" id="comment_post_ID">
         <input type="hidden" name="comment_parent" id="comment_parent" value="0">
       </div>
@@ -525,6 +529,7 @@ export default {
   data: () => ({
     content: '',
     currentUser: null,
+
   }),
   methods:{
     ...mapMutations(['removeToInfo','setCommentList']),

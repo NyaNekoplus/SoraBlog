@@ -9,6 +9,8 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.vincent.admin.entity.Article;
 import com.vincent.admin.entity.Comment;
 import com.vincent.admin.entity.User;
+import com.vincent.admin.enums.UserOperation;
+import com.vincent.admin.record.VisitRecord;
 import com.vincent.admin.service.ArticleService;
 import com.vincent.admin.service.CommentService;
 import com.vincent.admin.service.UserService;
@@ -164,7 +166,7 @@ public class CommentApi {
         return Result.success();
     }
 
-
+    @VisitRecord(value = "评论", operation = UserOperation.PUBLISH_COMMENT)
     @PostMapping("/add")
     public String addComment(@RequestBody CommentVO commentVO){
         if (commentVO.getUserUid()==null){

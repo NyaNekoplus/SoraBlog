@@ -3,6 +3,23 @@
  * @Description:
  * @Date: create in 2021/4/8 21:51
  */
+
+import Cookies from 'js-cookie'
+
+const TokenKey = 'Admin-Token'
+
+export function getToken() {
+  return Cookies.get(TokenKey)
+}
+
+export function setToken(token) {
+  return Cookies.set(TokenKey, token, { expires: 7 }) // 7天
+}
+
+export function removeToken() {
+  return Cookies.remove(TokenKey)
+}
+
 export function setCookie(name, value, time){
   let date = new Date();
   date.setDate(date.getDate()+time);

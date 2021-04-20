@@ -208,14 +208,14 @@ export default {
       param.jsdelivrImageBaseUrl=this.jsdelivrImageBaseUrl;
       param.enableEmailNotification=this.enableEmailNotification;
       updateSystemConfig(param).then(response=>{
-        if (response.data.state === 'success'){
-          alert(response.data.message);
+        if (response.state === this.$STATE.SUCCESS){
+          alert(response.message);
           //this.contentMd = '';
           //this.$message.show(response.data.message);
           //this.$message.success(response.data.message);
         }else {
           //this.$message.error(response.data.message);
-          alert(response.data.message);
+          alert(response.message);
         }
       });
     }
@@ -233,8 +233,8 @@ export default {
   },
   created() {
     getSystemConfig().then(response => {
-      let config = response.data.data;
-      console.log(response.data.data);
+      let config = response.data;
+      console.log(response.data);
       //console.log(response.data.data.records);
       //console.log(config.records.length);
       //this.imageList = blogData.records;

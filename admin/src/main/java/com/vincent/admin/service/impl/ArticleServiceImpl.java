@@ -48,15 +48,17 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
             return Result.failure("文章不存在");
         }
         SystemConfig config = systemConfigService.getConfig((long) 1);
-        article.setCoverUrl(config.getLocalImageBaseUrl()+article.getCoverUrl());
+        if (article.getCoverJsDelivrUrl() != null){
+            article.setCoverUrl(article.getCoverJsDelivrUrl());
+        }else {
+            article.setCoverUrl(config.getLocalImageBaseUrl()+article.getCoverUrl());
+        }
         return Result.success("获取文章成功，链接："+link,article);
     }
 
     @Override
     @Cacheable(key = "#p0.currentPage + #p0.pageSize + #p0.categoryUid")
     public String getArticleListByPage(ArticleVO articleVO) {
-
-        log.debug("Article list from database");
         /*
         articleVO.setIsDraft(false);
         QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
@@ -72,43 +74,31 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         page.setSize(articleVO.getPageSize());
         page.setCurrent(articleVO.getCurrentPage());
 
-        IPage<Article> pageList = baseMapper.getBlogByPageWithCover(page,
+        IPage<Article> pageList = baseMapper.getBlogByPageWithoutTags(page,
                 (long) 0,
                 false);
         List<Article> articleList = new ArrayList<>(pageList.getRecords());
         SystemConfig config = systemConfigService.getConfig((long) 1);
-        Collection<Long> categoryUidList = new ArrayList<>();
         articleList.forEach(article -> {
-            article.setCoverUrl(config.getLocalImageBaseUrl()+article.getCoverUrl());
-            if (article.getCategoryUid()!=null){
-                categoryUidList.add(article.getCategoryUid());
+            if (article.getCoverUrl()==null){
+                article.setCoverUrl(config.getLocalImageBaseUrl()+config.getDefaultCoverUrl());
+            }else {
+                if (article.getCoverJsDelivrUrl() != null){
+                    article.setCoverUrl(article.getCoverJsDelivrUrl());
+                }else {
+                    article.setCoverUrl(config.getLocalImageBaseUrl()+article.getCoverUrl());
+                }
+            }
+            if (article.getTagUid()!=null){
+                String[] tagUidArray = article.getTagUid().split(";");
+                Collection<Long> tagUidList = new ArrayList<>();
+                for (String s : tagUidArray) {
+                    tagUidList.add(Long.parseLong(s));
+                }
+                List<Tag> tagList = tagService.listByIds(tagUidList);
+                article.setTagList(tagList);
             }
         });
-        if (categoryUidList.size()>0){
-            List<Category> categoryList = categoryService.listByIds(categoryUidList);
-            HashMap<Long,String> categoryMap = new HashMap<>();
-            categoryList.forEach(category -> {
-                categoryMap.put(category.getUid(),category.getName());
-            });
-            articleList.forEach(article -> {
-                if (article.getCategoryUid()!=null){
-                    article.setCategory(categoryMap.get(article.getCategoryUid()));
-                }else {
-                    article.setCategory("奇怪的分类");
-                }
-                if (article.getTagUid()!=null){
-                    String[] tagUidArray = article.getTagUid().split(";");
-                    Collection<Long> tagUidList = new ArrayList<>();
-                    for (String s : tagUidArray) {
-                        tagUidList.add(Long.parseLong(s));
-                    }
-                    log.info("Tag uid list: "+ tagUidList);
-                    List<Tag> tagList = tagService.listByIds(tagUidList);
-                    log.info("Tag List: "+ tagList);
-                    article.setTagList(tagList);
-                }
-            });
-        }
         /*
         IPage<Article> pageList = articleService.page(page, queryWrapper);
         List<Article> articleList = new ArrayList<>(pageList.getRecords());
@@ -182,9 +172,12 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         List<Article> topList = baseMapper.getTopBlogWithCover();//new ArrayList<>(3);
         SystemConfig config = systemConfigService.getConfig((long) 1);
         topList.forEach(top ->{
-            top.setCoverUrl(config.getLocalImageBaseUrl()+top.getCoverUrl());
+            if (top.getCoverJsDelivrUrl() != null){
+                top.setCoverUrl(top.getCoverJsDelivrUrl());
+            }else {
+                top.setCoverUrl(config.getLocalImageBaseUrl()+top.getCoverUrl());
+            }
         });
-        log.info("Top list: "+topList);
         return Result.success("查找置顶文章成功",topList);
     }
 

@@ -5,7 +5,7 @@
     -->
 
     <div id="page" class="site-wrapper"
-         style="background-repeat: repeat;background-image: url('https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/snow.png');">
+         style="background-repeat: repeat;background-image: url('https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/star.png');">
 
       <sora-bar :is-index="false"/>
 

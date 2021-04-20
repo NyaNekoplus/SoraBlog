@@ -22,7 +22,7 @@
         </template>
       </v-file-input>
     </view-intro>
-    <v-form ref="form" v-model="isValid">
+    <v-form ref="form" v-model="isValid" lazy-validation>
       <v-row align="center" justify="center">
         <v-col cols="12">
           <v-row justify="center">
@@ -55,9 +55,9 @@
                     min-width="auto"
                   >
                     <template v-slot:activator="{ on, attrs }">
+                      <!--:rules="ruleRequire"-->
                       <v-text-field
                         :value="computedDateFormattedMomentjs"
-                        :rules="ruleRequire"
                         clearable
                         label="Blog release date"
                         prepend-icon="mdi-calendar-outline"
@@ -87,9 +87,9 @@
                     min-width="auto"
                   >
                     <template v-slot:activator="{ on, attrs }">
+                      <!--:rules="ruleRequire"-->
                       <v-text-field
                         v-model="time"
-                        :rules="ruleRequire"
                         label="Blog release time"
                         prepend-icon="mdi-clock-time-four-outline"
                         readonly
@@ -163,11 +163,11 @@
                           <v-switch v-model="isDraft" inset></v-switch>
                         </v-col>
                         <v-col cols="4" md="4" align-self="center">
+                          <!--                            success-messages="如不上传将使用默认封面"-->
                           <v-file-input
                             clearable
                             v-model="image"
                             accept=".png, .jpeg, .jpg"
-                            success-messages="如不上传将使用默认封面"
                             :rules="imageRules"
                             hint="File extentions (.png, .jpg, .jpeg) File Size limits (max: 1mb)"
                             placeholder="Upload profile image"
@@ -304,98 +304,81 @@
 </template>
 
 <script>
+import {get} from 'vuex-pathify'
 import {submitArticle} from "../api/article";
 import {getCategoryList} from "../api/category";
 import {getTagList} from "../api/tag";
-import {uploadImage} from "../api/image";
+import {uploadImage} from "../api/file";
 
 export default {
   name: "Writing",
-  data() {
-    return {
-      setting: {
-        //menubar: 'file edit insert view format table tools help',
-        menubar: false,
-        toolbar: "undo redo | fullscreen | formatselect alignleft aligncenter alignright alignjustify | link unlink | numlist bullist | image media table | fontselect fontsizeselect forecolor backcolor | bold italic underline strikethrough | indent outdent | superscript subscript | removeformat | codesample | code | toc | preview |",
-        toolbar_mode: "floating",
-        quickbars_selection_toolbar: "removeformat | bold italic underline strikethrough | fontsizeselect forecolor backcolor",
-        plugins: "link image media table lists fullscreen quickbars codesample code preview toc",
+  data: () => ({
+    isValid: true,
+    loading: {
+      uploadIsLoading: false,
+    },
 
-        language: 'zh_CN', //本地化设置
-        branding: false,
-        statusbar: false,
-        skin: 'oxide',
-        height: '70vh',
+    level: {value:0,text:'Default'},
+    levelList: [{value:3,text:'Level-3'},{value:2,text:'Level-2'},{value:1,text:'Level-1'},{value:0,text:'Default'}],
 
-        images_upload_url: '/admin/upimg.php',
-        images_upload_base_path: '/admin',
-        //toc_depth: 3,
-        //toc_class: 'my-class',
-        //toc_header: 'div'
+    categoryList: [],
+
+    date: null,
+    datePicker: false,
+    time: null,
+    timePicker: false,
+    category: {uid: Number,name: ''},
+
+    title: '',
+    link: '',
+
+    tags: [],
+    tagList: [],
+
+    enableComment: true,
+    isDraft: true,
+    isOriginal: true,
+
+    contentMd: '<h1 style="text-align: center;">长恨歌</h1><p style="text-align: center;">汉皇重色思倾国，御宇多年求不得。<br />杨家有女初长成，养在深闺人未识。<br />天生丽质难自弃，一朝选在君王侧。<br />回眸一笑百媚生，六宫粉黛无颜色。<br />春寒赐浴华清池，温泉水滑洗凝脂。<br />侍儿扶起娇无力，始是新承恩泽时。<br />云鬓花颜金步摇，芙蓉帐暖度春宵。<br />春宵苦短日高起，从此君王不早朝。<br />承欢侍宴无闲暇，春从春游夜专夜。<br />后宫佳丽三千人，三千宠爱在一身。<br />金屋妆成娇侍夜，玉楼宴罢醉和春。<br />姊妹弟兄皆列土，可怜光彩生门户。<br />遂令天下父母心，不重生男重生女。<br />骊宫高处入青云，仙乐风飘处处闻。<br />缓歌慢舞凝丝竹，尽日君王看不足。<br />渔阳鼙鼓动地来，惊破霓裳羽衣曲。</p><p style="text-align: center;">九重城阙烟尘生，千乘万骑西南行。<br />翠华摇摇行复止，西出都门百余里。<br />六军不发无奈何，宛转蛾眉马前死。<br />花钿委地无人收，翠翘金雀玉搔头。<br />君王掩面救不得，回看血泪相和流。<br />黄埃散漫风萧索，云栈萦纡登剑阁。<br />峨嵋山下少人行，旌旗无光日色薄。<br />蜀江水碧蜀山青，圣主朝朝暮暮情。<br />行宫见月伤心色，夜雨闻铃肠断声。<br />天旋日转回龙驭，到此踌躇不能去。<br />马嵬坡下泥土中，不见玉颜空死处。<br />君臣相顾尽沾衣，东望都门信马归。<br />归来池苑皆依旧，太液芙蓉未央柳。<br />芙蓉如面柳如眉，对此如何不泪垂。<br />春风桃李花开夜，秋雨梧桐叶落时。<br />西宫南苑多秋草，落叶满阶红不扫。<br />梨园弟子白发新，椒房阿监青娥老。<br />夕殿萤飞思悄然，孤灯挑尽未成眠。<br />迟迟钟鼓初长夜，耿耿星河欲曙天。<br />鸳鸯瓦冷霜华重，翡翠衾寒谁与共。<br />悠悠生死别经年，魂魄不曾来入梦。</p><p style="text-align: center;">临邛道士鸿都客，能以精诚致魂魄。<br />为感君王辗转思，遂教方士殷勤觅。<br />排空驭气奔如电，升天入地求之遍。<br />上穷碧落下黄泉，两处茫茫皆不见。<br />忽闻海上有仙山，山在虚无缥缈间。<br />楼阁玲珑五云起，其中绰约多仙子。<br />中有一人字太真，雪肤花貌参差是。<br />金阙西厢叩玉扃，转教小玉报双成。<br />闻道汉家天子使，九华帐里梦魂惊。<br />揽衣推枕起徘徊，珠箔银屏迤逦开。<br />云鬓半偏新睡觉，花冠不整下堂来。</p><p style="text-align: center;">风吹仙袂飘飖举，犹似霓裳羽衣舞。<br />玉容寂寞泪阑干，梨花一枝春带雨。<br />含情凝睇谢君王，一别音容两渺茫。<br />昭阳殿里恩爱绝，蓬莱宫中日月长。<br />回头下望人寰处，不见长安见尘雾。<br />惟将旧物表深情，钿合金钗寄将去。<br />钗留一股合一扇，钗擘黄金合分钿。<br />但令心似金钿坚，天上人间会相见。</p><p style="text-align: center;">临别殷勤重寄词，词中有誓两心知。<br />七月七日长生殿，夜半无人私语时。<br />在天愿作比翼鸟，在地愿为连理枝。<br />天长地久有时尽，此恨绵绵无绝期。</p>',
+
+    ruleRequire: [value => !!value || 'Required.'],
+    rules: [
+      value => !!value || 'Required.',
+      value => (value || '').length <= 20 || 'Max 20 characters',
+      value => {
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        return pattern.test(value) || 'Invalid e-mail.'
       },
+    ],
 
-      isValid: true,
-      loading: {
-        uploadIsLoading: false,
+    image: null,
+    localImgUrl: '',
+    imageRules: [
+      value => {
+        if (value===null){return true;}
+        else {return !value || value.size < 2000000 || 'Image size should be less than 2 MB!';}
       },
+      //value => !!value || !value || value.size < 2000000 || 'Image size should be less than 2 MB!',
+    ],
 
-      level: {value:0,text:'Default'},
-      levelList: [{value:3,text:'Level-3'},{value:2,text:'Level-2'},{value:1,text:'Level-1'},{value:0,text:'Default'}],
+    blogFile: [],
+    localFileUrl: '',
+    blogFileRules: [
+      value => !value || value.size < 1000000 || 'File size should be less than 1 MB!',
+    ],
 
-      categoryList: [],
-
-      date: null,
-      datePicker: false,
-      time: null,
-      timePicker: false,
-      category: {uid: Number,name: ''},
-
-      title: '',
-      link: '',
-
-      tags: [],
-      tagList: [],
-
-      enableComment: true,
-      isDraft: true,
-      isOriginal: true,
-
-      contentMd: '<h1 style="text-align: center;">长恨歌</h1><p style="text-align: center;">汉皇重色思倾国，御宇多年求不得。<br />杨家有女初长成，养在深闺人未识。<br />天生丽质难自弃，一朝选在君王侧。<br />回眸一笑百媚生，六宫粉黛无颜色。<br />春寒赐浴华清池，温泉水滑洗凝脂。<br />侍儿扶起娇无力，始是新承恩泽时。<br />云鬓花颜金步摇，芙蓉帐暖度春宵。<br />春宵苦短日高起，从此君王不早朝。<br />承欢侍宴无闲暇，春从春游夜专夜。<br />后宫佳丽三千人，三千宠爱在一身。<br />金屋妆成娇侍夜，玉楼宴罢醉和春。<br />姊妹弟兄皆列土，可怜光彩生门户。<br />遂令天下父母心，不重生男重生女。<br />骊宫高处入青云，仙乐风飘处处闻。<br />缓歌慢舞凝丝竹，尽日君王看不足。<br />渔阳鼙鼓动地来，惊破霓裳羽衣曲。</p><p style="text-align: center;">九重城阙烟尘生，千乘万骑西南行。<br />翠华摇摇行复止，西出都门百余里。<br />六军不发无奈何，宛转蛾眉马前死。<br />花钿委地无人收，翠翘金雀玉搔头。<br />君王掩面救不得，回看血泪相和流。<br />黄埃散漫风萧索，云栈萦纡登剑阁。<br />峨嵋山下少人行，旌旗无光日色薄。<br />蜀江水碧蜀山青，圣主朝朝暮暮情。<br />行宫见月伤心色，夜雨闻铃肠断声。<br />天旋日转回龙驭，到此踌躇不能去。<br />马嵬坡下泥土中，不见玉颜空死处。<br />君臣相顾尽沾衣，东望都门信马归。<br />归来池苑皆依旧，太液芙蓉未央柳。<br />芙蓉如面柳如眉，对此如何不泪垂。<br />春风桃李花开夜，秋雨梧桐叶落时。<br />西宫南苑多秋草，落叶满阶红不扫。<br />梨园弟子白发新，椒房阿监青娥老。<br />夕殿萤飞思悄然，孤灯挑尽未成眠。<br />迟迟钟鼓初长夜，耿耿星河欲曙天。<br />鸳鸯瓦冷霜华重，翡翠衾寒谁与共。<br />悠悠生死别经年，魂魄不曾来入梦。</p><p style="text-align: center;">临邛道士鸿都客，能以精诚致魂魄。<br />为感君王辗转思，遂教方士殷勤觅。<br />排空驭气奔如电，升天入地求之遍。<br />上穷碧落下黄泉，两处茫茫皆不见。<br />忽闻海上有仙山，山在虚无缥缈间。<br />楼阁玲珑五云起，其中绰约多仙子。<br />中有一人字太真，雪肤花貌参差是。<br />金阙西厢叩玉扃，转教小玉报双成。<br />闻道汉家天子使，九华帐里梦魂惊。<br />揽衣推枕起徘徊，珠箔银屏迤逦开。<br />云鬓半偏新睡觉，花冠不整下堂来。</p><p style="text-align: center;">风吹仙袂飘飖举，犹似霓裳羽衣舞。<br />玉容寂寞泪阑干，梨花一枝春带雨。<br />含情凝睇谢君王，一别音容两渺茫。<br />昭阳殿里恩爱绝，蓬莱宫中日月长。<br />回头下望人寰处，不见长安见尘雾。<br />惟将旧物表深情，钿合金钗寄将去。<br />钗留一股合一扇，钗擘黄金合分钿。<br />但令心似金钿坚，天上人间会相见。</p><p style="text-align: center;">临别殷勤重寄词，词中有誓两心知。<br />七月七日长生殿，夜半无人私语时。<br />在天愿作比翼鸟，在地愿为连理枝。<br />天长地久有时尽，此恨绵绵无绝期。</p>',
-
-      ruleRequire: [value => !!value || 'Required.'],
-      rules: [
-        value => !!value || 'Required.',
-        value => (value || '').length <= 20 || 'Max 20 characters',
-        value => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || 'Invalid e-mail.'
-        },
-      ],
-
-      image: [],
-      localImgUrl: '',
-      imageRules: [
-        value => !value || value.size < 2000000 || 'Image size should be less than 2 MB!',
-      ],
-
-      blogFile: [],
-      localFileUrl: '',
-      blogFileRules: [
-        value => !value || value.size < 1000000 || 'File size should be less than 1 MB!',
-      ],
-
-      author: 'Vincent Willem van Gogh',
-      articleSource: 'Starry Night Over the Rhone ---Musée d\'Orsay, Paris, France',
+    author: 'Vincent Willem van Gogh',
+    articleSource: 'Starry Night Over the Rhone ---Musée d\'Orsay, Paris, France',
 
 
-      requestParam: {
-        userUid: 1,
-        projectName: 'sora-admin',
-        classificationName: 'blog-image'
-      }
+    requestParam: {
+      userUid: 1,
+      projectName: 'sora-admin',
+      classificationName: 'blog-image'
     }
-  },
+  }),
   computed: {
+    setting: get('editor/setting'),
     computedDateFormattedMomentjs () {
       return this.date;
       //return this.date ? moment(this.date).format('dddd, MMMM Do YYYY') : ''
@@ -447,48 +430,48 @@ export default {
       if (!this.$refs.form.validate()){
         return ;
       }
+      let param = {};
+      let activeEditor = tinymce.activeEditor;
+      let editBody = activeEditor.getBody();
+      activeEditor.selection.select(editBody);
+      let content = activeEditor.selection.getContent( {'format' : 'text'});
+
+      if (this.date === null){
+        this.date = '2021-04-11';
+      }
+      if (this.time === null){
+        this.time = '08:50';
+      }
+      let createTime = this.date + ' ' + this.time + ':00';
+
+      console.log('纯文本： '+content);
+      console.log('HTML文本： '+this.contentMd);
+      console.log('Date: '+ createTime);
+      console.log('Tags: '+ this.tags);
+
+      param.tagList = [];
+      this.tags.forEach(t=>{param.tagList.push({uid: t.uid, name: (t.name)?t.name:t})})
+      param.categoryUid = this.category.uid;
+      param.title = this.title;
+      param.link = this.link[0]==='/'?this.link.substr(1):this.link;
+      param.lang = 0; // zhs by default
+      param.content = content;
+      param.contentMd = this.contentMd;
+      param.enableComment = this.enableComment;
+      param.isDraft = this.isDraft;
+      param.isOriginal = this.isOriginal;
+      param.level = this.level.value;
+      param.createTime = createTime;
       if (this.image!=null){
         this.loading.uploadIsLoading = true;
         let formData = new window.FormData();
         formData.append('imageList', this.image);
-        for (let key in this.requestParam){
-          formData.append(key,this.requestParam[key]);
-        }
-        //param.imageUid = null;
+        for (let key in this.requestParam){formData.append(key,this.requestParam[key]);}
         uploadImage(formData).then(fileRes=>{
           if (fileRes.state === this.$STATE.SUCCESS){
             console.log('上传图片返回数据：'+fileRes);
             alert(fileRes.message);
-            let param = {};
             param.coverUid = fileRes.data[0].uid;
-            alert('cover uid: '+param.coverUid);
-            let activeEditor = tinymce.activeEditor;
-            let editBody = activeEditor.getBody();
-            activeEditor.selection.select(editBody);
-            let content = activeEditor.selection.getContent( {'format' : 'text'});
-            let createTime = this.date + ' ' + this.time;
-
-            console.log('纯文本： '+content);
-            console.log('HTML文本： '+this.contentMd);
-            console.log('Date: '+ createTime);
-            console.log('Tags: '+ this.tags);
-
-            param.tagList = [];
-            this.tags.forEach(t=>{
-              param.tagList.push({
-                uid: t.uid, name: (t.name)?t.name:t
-              })})
-            param.categoryUid = this.category.uid;
-            param.title = this.title;
-            param.link = this.link[0]==='/'?this.link.substr(1):this.link;
-            param.lang = 0; // zhs by default
-            param.content = content;
-            param.contentMd = this.contentMd;
-            param.enableComment = this.enableComment;
-            param.isDraft = this.isDraft;
-            param.isOriginal = this.isOriginal;
-            param.level = this.level.value;
-            param.createTime = createTime;
             submitArticle(param).then(response=>{
               if (response.state === this.$STATE.SUCCESS){
                 alert(response.message);
@@ -496,7 +479,6 @@ export default {
                 //this.$message.show(response.data.message);
                 //this.$message.success(response.message);
               }else {
-                this.$message.error(response.message);
                 alert(response.message);
               }
             });
@@ -505,7 +487,18 @@ export default {
           }else {
             //this.$message.error(response.message);
             this.loading.uploadIsLoading = false;
-            //alert(response.message);
+          }
+        });
+      } else {
+        submitArticle(param).then(response=>{
+          if (response.state === this.$STATE.SUCCESS){
+            alert(response.message);
+            this.contentMd = '';
+            //this.$message.show(response.data.message);
+            //this.$message.success(response.message);
+          }else {
+            this.$message.error(response.message);
+            alert(response.message);
           }
         });
       }

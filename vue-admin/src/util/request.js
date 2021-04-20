@@ -6,6 +6,7 @@
 import axios from "axios";
 import store from "../store";
 import router from "../router";
+import {getToken} from "./cookie";
 
 const request = axios.create({
   baseURL: "/",
@@ -28,12 +29,12 @@ request.interceptors.request.use(
     }
 )
 */
-request.defaults.headers.common['Authorization'] = store.state.token;
+request.defaults.headers.common['Authorization'] = getToken();
 
 request.interceptors.request.use(
   config=>{
     if(store.state.token){
-      config.headers.common['Authorization']=store.state.token;
+      config.headers.common['Authorization']=getToken();
     }
     return config;
   },
@@ -48,6 +49,8 @@ request.interceptors.response.use(
   response => {
     // return response.data
     const res = response.data
+    console.log('request.js:' + res.message);
+    //res.data = {}
     return res;
     /*if (res.state === 'success' || res.state === 'error') {
         return res

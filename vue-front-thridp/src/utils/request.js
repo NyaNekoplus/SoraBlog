@@ -33,8 +33,8 @@ request.defaults.headers.common['Authorization'] = store.state.token;
 
 request.interceptors.request.use(
     config=>{
-        if(store.state.token){
-            config.headers.common['Authorization']=store.state.token;
+        if(store.getters.token){
+            config.headers.common['Authorization']=store.getters.token;
         }
         return config;
     },
