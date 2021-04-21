@@ -77,50 +77,16 @@
     </div>
     -->
     <div class="tag-cloud-container">
-      <div class="tag-cloud">
-        <ol class="tag-cloud-list ">
-          <li class="tag-cloud-list-item"><a href="#tag-cloud-head-1" class="tag-cloud-link node-name--H2  is-active-link">I. 特性</a>
-            <ol class="tag-cloud-list  is-collapsible">
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-2" class="tag-cloud-link node-name--H3 ">随机封面图</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-3" class="tag-cloud-link node-name--H3 ">Lazyload</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-4" class="tag-cloud-link node-name--H3 ">文章封面视频</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-5" class="tag-cloud-link node-name--H3 ">定制登陆及后台界面</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-6" class="tag-cloud-link node-name--H3 ">支持 Bilibili 表情</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-7" class="tag-cloud-link node-name--H3 ">QQ/Gravatar 头像</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-8" class="tag-cloud-link node-name--H3 ">评论插图</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-9" class="tag-cloud-link node-name--H3 ">用户 UA 及 IP 定位</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-10" class="tag-cloud-link node-name--H3 ">文章目录</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-11" class="tag-cloud-link node-name--H3 ">Mac 风格代码块</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-12" class="tag-cloud-link node-name--H3 ">前端主题切换</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-13" class="tag-cloud-link node-name--H3 ">时光轴</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-14" class="tag-cloud-link node-name--H3 ">相册</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-15" class="tag-cloud-link node-name--H3 ">邮件模板</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-16" class="tag-cloud-link node-name--H3 ">Aplayer/HermitX 支持</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-17" class="tag-cloud-link node-name--H3 ">CDN 优化</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-18" class="tag-cloud-link node-name--H3 ">Github Cards</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-19" class="tag-cloud-link node-name--H3 ">移动客户端*</a></li>
-            </ol>
+      <div class="tag-cloud" style="background: none;">
+        <ul class="cloud" role="navigation" aria-label="Webdev tag cloud">
+          <li v-for="tag in tagList" :id="tag.uid">
+            <a :data-weight="tag.weight" :href="tag.name">{{ tag.name }}</a>
           </li>
-          <li class="tag-cloud-list-item"><a href="#tag-cloud-head-20" class="tag-cloud-link node-name--H2 ">II. 注意事项</a>
-            <ol class="tag-cloud-list  is-collapsible is-collapsed">
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-21" class="tag-cloud-link node-name--H3 ">重要★★：</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-22" class="tag-cloud-link node-name--H3 ">建议安装的插件☆</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-23" class="tag-cloud-link node-name--H3 ">我也在使用的插件</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-24" class="tag-cloud-link node-name--H3 ">兼容性</a>
-                <ol class="tag-cloud-list  is-collapsible is-collapsed">
-                  <li class="tag-cloud-list-item"><a href="#tag-cloud-head-25" class="tag-cloud-link node-name--H4 ">服务器端</a></li>
-                  <li class="tag-cloud-list-item"><a href="#tag-cloud-head-26" class="tag-cloud-link node-name--H4 ">前端</a></li>
-                </ol>
-              </li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-27" class="tag-cloud-link node-name--H3 ">写作规范</a></li>
-              <li class="tag-cloud-list-item"><a href="#tag-cloud-head-28" class="tag-cloud-link node-name--H3 ">API</a></li>
-            </ol>
-          </li>
-          <li class="tag-cloud-list-item"><a href="#tag-cloud-head-29" class="tag-cloud-link node-name--H2 ">III. FAQ</a></li>
-          <li class="tag-cloud-list-item"><a href="#tag-cloud-head-30" class="tag-cloud-link node-name--H2 ">IV. 下载</a></li>
-        </ol>
+
+        </ul>
       </div>
     </div>
+
     <div class="notice" style="margin-top:60px">
       <i class="iconfont icon-notification"></i>
       <div class="notice-content">思绪如风，来得快去得也快，偶尔在这里停留  ~&gt;ω&lt;</div>
@@ -135,6 +101,7 @@
 
 <script>
 import {visitRecord} from "../api/article";
+import {getTagList} from "../api/tag";
 
 export default {
   name: "index",
@@ -143,10 +110,19 @@ export default {
     MainList: () => import('@/components/List'),
   },
   data: () => ({
-
+    tagList: [],
   }),
   created() {
     visitRecord();
+    getTagList().then(response=>{
+      if (response.state === this.$STATE.SUCCESS){
+        this.tagList = response.data;
+        console.log(response.data);
+      }else {
+        alert(response.message);
+        alert('获取标签列表失败');
+      }
+    })
   }
 }
 </script>
@@ -219,68 +195,70 @@ h1[id*=tag-cloud-head]::before,h2[id*=tag-cloud-head]::before,h3[id*=tag-cloud-h
   visibility:hidden
 }
 
-.sticky_layout {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 20px;
-}
-.card-widget, #recent-posts > .recent-post-item, .layout_page > div:first-child:not(.recent-posts), .layout_post > #page, .layout_post > #post, .read-mode .layout_post > #post {
-  background: var(--light_bg_color);
-}
-.card-widget {
-  position: relative;
-  overflow: hidden;
-  margin-top: 1rem;
-  border-radius: 8px;
-  background: var(--card-bg);
-  -webkit-box-shadow: 0 4px 8px 6px rgba(7,17,27,0.06);
-  box-shadow: 0 4px 8px 6px
-  rgba(7,17,27,0.06);
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  transition: all 0.3s;
-}
-.card-content {
-  padding: 1rem 1.2rem;
-}
-.item-headline {
-  padding-bottom: 0.3rem;
-  font-size: 1.2em;
-}
-.aside-list > .aside-list-item:not(:last-child) {
-  border-bottom: 1px dashed
-  #f5f5f5;
-}
-.aside-list > .aside-list-item:first-child {
-  padding-top: 0;
-}
-.aside-list > .aside-list-item {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: box;
+ul.cloud {
+  list-style: none;
+  padding-left: 0;
   display: flex;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -o-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
+  flex-wrap: wrap;
   align-items: center;
-  padding: 0.3rem 0;
-  padding-top: 0.3rem;
+  justify-content: center;
+  line-height: 2.5rem;
 }
-.aside-list > .aside-list-item .content {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  -o-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  padding-left: 10px;
-  word-break: break-all;
+ul.cloud a {
+  color: #a33;
+  display: block;
+  font-size: 0.15rem;
+  padding: 0.0125rem 0.025rem;
+  text-decoration: none;
+  position: relative;
+}
+ul.cloud a[data-weight="1"] { --size: 1; }
+ul.cloud a[data-weight="2"] { --size: 2; }
+ul.cloud a[data-weight="3"] { --size: 3; }
+ul.cloud a[data-weight="4"] { --size: 4; }
+ul.cloud a[data-weight="5"] { --size: 5; }
+ul.cloud a[data-weight="6"] { --size: 6; }
+ul.cloud a[data-weight="7"] { --size: 7; }
+ul.cloud a[data-weight="8"] { --size: 8; }
+ul.cloud a[data-weight="9"] { --size: 9; }
+
+ul.cloud a:focus {
+  outline: 1px dashed;
+}
+ul.cloud a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
+  background: var(--color);
+  transform: translate(-50%, 0);
+  opacity: 0.15;
+  transition: width 0.25s;
+}
+
+ul.cloud a:focus::before,
+ul.cloud a:hover::before {
+  width: 100%;
+}
+ul.cloud a {
+  --size: 4;
+  font-size: calc(var(--size) * 0.025rem + 0.05rem);
+  /* ... */
+}
+
+ul.cloud[data-show-value] a::after {
+  content: " (" attr(data-weight) ")";
+  font-size: 0.1rem;
+}
+ul.cloud li:nth-child(2n+1) a { --color: #181; }
+ul.cloud li:nth-child(3n+1) a { --color: #33a; }
+ul.cloud li:nth-child(4n+1) a { --color: #c38; }
+
+@media (prefers-reduced-motion) {
+  ul.cloud * {
+    transition: none !important;
+  }
 }
 </style>

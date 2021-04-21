@@ -1,5 +1,6 @@
 <template>
   <v-menu bottom left offset-y origin="top right" transition="scale-transition"><!-- min-width="200"-->
+    <div>{{username}}</div>
     <template v-slot:activator="{ on }">
       <v-btn
         icon

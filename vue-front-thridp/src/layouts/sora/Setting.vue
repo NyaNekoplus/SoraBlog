@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- m-nav-center -->
+    <a href="#" :class="isTop?'cd-top faa-float animated cd-is-visible cd-fade-out':'cd-top faa-float animated'"></a><!-- javascript:void(0); style="top: 0px;"-->
 
     <button id="moblieGoTop" title="Go to top"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
     <button id="moblieDarkLight"><i class="fa fa-moon-o" aria-hidden="true"></i></button>
@@ -106,13 +107,18 @@ export default {
         icon: 'iconfont icon-sakura',
       },
       {
+        name: '樱花飞舞',
+        param: 'sakura',
+        icon: 'iconfont icon-sakura',
+      },
+      {
         name: 'Bing',
         param: 'snow',
         icon: 'iconfont icon-bing',
       },
       {
         name: '夜间',
-        param: 'night',
+        param: 'dark',
         icon: 'fa fa-moon-o',
       },
     ],
@@ -120,6 +126,8 @@ export default {
     siteStatistics: false,
     sakuraWidget: true,
     aplayerServer: true,
+
+    toTopClass: 'cd-top faa-float animated',
   }),
   methods: {
     ...mapMutations(['setWideScreenCover']),
@@ -135,6 +143,12 @@ export default {
           this.setWideScreenCover(false);
           break;
         case 'snow':
+          break;
+        case 'sakura':
+          break;
+        case 'dark':
+          break;
+        default:
           break;
       }
     }

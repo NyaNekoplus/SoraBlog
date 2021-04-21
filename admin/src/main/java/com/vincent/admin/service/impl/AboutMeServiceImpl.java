@@ -19,7 +19,7 @@ public class AboutMeServiceImpl extends ServiceImpl<AboutMeMapper, About> implem
     public String getAboutMeByLang(Integer lang) {
         About about = getOne(new QueryWrapper<About>().eq("lang",lang));
         if (about == null)
-            return Result.failure("获取About me成功, 不支持这种语言");
+            return Result.failure("获取About me失败, 不支持这种语言");
         return Result.success("获取About me成功",about);
     }
 

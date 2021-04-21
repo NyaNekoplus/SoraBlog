@@ -1,87 +1,39 @@
 <template>
   <div>
     <section id="main-container" :class="sidebarOn?'open':''">
-      <div class="headertop filter-dot headertop-bar" style="height: auto;">
-        <div id="banner_wave_1" class="banner_wave_hide_fit_skin" style="left: -1233px;"></div>
-        <div id="banner_wave_2" class="banner_wave_hide_fit_skin" style="left: -1009px;"></div>
+      <div class="headertop filter-dot" style="height: auto;"> <!-- headertop-bar : banner处的一行白色-->
+
+        <div id="banner_wave_1"></div>
+        <div id="banner_wave_2"></div>
 
         <figure id="centerbg" class="centerbg"><!-- style="height: 938px;"-->
-          <!--
-          <div class="focusinfo">
-            <div class="header-tou"><a href="https://www.lovewx.club"><img src="https://q1.qlogo.cn/g?b=qq&amp;nk=2808694449&amp;s=5"></a></div>
-            <div class="header-info">
-              <p></p>
-              <div class="top-social_v2">
-                <li id="bg-pre"><img class="flipx" src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/next-b.svg"></li>
-                <li><a href="https://github.com/MoeACG-Xyrh" target="_blank" class="social-github" title="github"><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/github.png"></a></li>
-
-                <li><a href="https://weibo.com/lovewx99" target="_blank" class="social-sina" title="sina"><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/sina.png"></a></li>
-                <li><a href="https://t.me/moexyrh" target="_blank" class="social-lofter" title="telegram"><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/telegram.svg"></a></li>
-
-                <li class="qq"><a href="tencent://message/?uin=2808694449" title="Initiate chat ?"><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/qq.png"></a></li>
-
-
-
-                <li><a href="http://space.bilibili.com/67428761" target="_blank" class="social-bili" title="bilibili"><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/bilibili.png"></a></li>
-                <li><a href="https://music.163.com/#/user/home?id=472641677" target="_blank" class="social-wangyiyun" title="CloudMusic"><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/wangyiyun.png"></a></li>
-                <li><a href="https://twitter.com/moeacg_xyrh" target="_blank" class="social-wangyiyun" title="Twitter"><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/twitter.png"></a></li>
-
-
-
-
-                <li><a onclick="mail_me()" class="social-wangyiyun" title="E-mail"><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/email.svg"></a></li>
-
-                <li id="bg-next"><img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/next-b.svg"></li>
-              </div>
-            </div>
-          </div>
-          -->
-
-
           <div class="focusinfo no-select">
             <div class="header-tou">
-              <a href="https://www.lovewx.club">
+              <a :href="about.link">
                 <img :src="about.avatarUrl">
               </a>
             </div>
             <!--<h1 class="center-text glitch is-glitching Ubuntu-font" data-text="遠い空へ">遠い空へ</h1>-->
             <div class="header-info">
-              <p><i class="fa fa-quote-left"></i> {{ about.motto }} <i class="fa fa-quote-right"></i></p>
+              <!--
+              <i class="fa fa-quote-left"></i>
+              <i class="fa fa-quote-right"></i>
+              -->
+              <p> {{ about.motto }} </p>
               <div class="top-social_v2">
+                <!--
                 <li id="bg-pre">
                   <img class="flipx" src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/next-b.svg">
-                </li>
-                <li>
-                  <a href="http://github.com/mashirozx" target="_blank" class="social-github" title="github">
-                    <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/github.png">
-                  </a>
-                </li>
-                <li>
-                  <a href="http://weibo.com/mashirozx?is_all=1" target="_blank" class="social-sina" title="sina">
-                    <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/sina.png">
-                  </a>
-                </li>
-                <li>
-                  <a href="https://t.me/SakurasoNoMashiro" target="_blank" class="social-lofter" title="telegram">
-                    <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/telegram.svg">
-                  </a>
-                </li>
-                <li>
-                  <a href="https://music.163.com/m/user/home?id=2655217" target="_blank" class="social-wangyiyun"
-                     title="CloudMusic">
-                    <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/wangyiyun.png"></a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/2hengxin" target="_blank" class="social-wangyiyun" title="Twitter">
-                    <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/twitter.png"></a>
-                </li>
-                <li>
-                  <a onclick="mail_me()" class="social-wangyiyun" title="E-mail">
-                    <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/email.svg"></a>
                 </li>
                 <li id="bg-next">
                   <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/next-b.svg">
                 </li>
+                -->
+                <li v-for="link in links" :key="link.title">
+                  <a :title="link.title">
+                    <img :src="link.icon"></a>
+                </li>
+
               </div>
             </div>
           </div>
@@ -125,7 +77,6 @@
       </div>
 
     </section>
-
 
     <div id="mo-nav" :class="sidebarOn?'open':''">
       <div class="m-avatar"><img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png"></div>
@@ -214,6 +165,28 @@ export default {
     sidebarOn: false,
 
     about: {},
+    links: [
+      {
+        title: 'Github',
+        link: '',
+        icon: 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/github.png'
+      },
+      {
+        title: 'Telegram',
+        link: '',
+        icon: 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/telegram.svg'
+      },
+      {
+        title: 'Twitter',
+        link: '',
+        icon: 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/twitter.png'
+      },
+      {
+        title: 'E-mail',
+        link: 'guoxitsai@gmail.com',
+        icon: 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/email.svg'
+      },
+    ],
   }),
   methods: {
     showSidebar(){
@@ -307,5 +280,134 @@ export default {
   background-image: url('https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/landscape.jfif');
   background-position: center center;
   background-attachment: inherit;
+}
+
+
+
+@-webkit-keyframes wave1/*Safari and Chrome*/
+{
+  0% { left:-1500px;bottom:-5px}
+  50%{ left:0px;bottom:0px}
+  100%{ left:-1500px;bottom:-5px}
+}
+
+@-webkit-keyframes wave2
+{
+  0% { left:-1450px}
+  50%{ left:0px}
+  100%{left:-1450px}
+
+}
+@keyframes wave1/*Safari and Chrome*/
+{
+  0% { left:-1500px;bottom:-5px}
+  50%{ left:0px;bottom:0px}
+  100%{ left:-1500px;bottom:-5px}
+}
+
+@keyframes wave2
+{
+  0% { left:-1450px}
+  50%{ left:0px}
+  100%{left:-1450px}
+
+}
+#banner_wave_1 {
+  width:auto;
+  height:65px;
+  background:url("https://cdn.jsdelivr.net/gh/yremp/resource@2.0/img/other/wave1.png") repeat-x;
+  _filter:alpha(opacity=80);
+  position:absolute;
+  bottom:0;
+  width:400%;
+  left:-236px;
+  z-index:5;
+  opacity:1;
+  transiton-property:opacity,bottom;
+  animation:wave1 90s infinite;
+  -webkit-animation:wave1 90s infinite;
+}
+#banner_wave_2 {
+  width:auto;
+  height:80px;
+  background:url("https://cdn.jsdelivr.net/gh/yremp/resource@2.0/img/other/wave2.png") repeat-x;
+  _filter:alpha(opacity=80);
+  position:absolute;
+  bottom:0;
+  width:400%;
+  left:0;
+  z-index:4;
+  opacity:1;
+  transiton-property:opacity,bottom;
+  animation:wave2 90s infinite;
+  -webkit-animation:wave2 90s infinite;
+}
+.banner_wave_hide,.banner_wave_hide_fit_skin {
+  opacity:0 !important;
+  bottom:-999px !important
+}
+@media(max-width:860px) {
+  #banner_wave_1,#banner_wave_2 {
+    display:inline-block;
+
+  }
+  @-webkit-keyframes wave1/*Safari and Chrome*/
+  {
+    0% { left:-750px;bottom:-2px}
+    50%{ left:0px;bottom:0px}
+    100%{ left:-750px;bottom:-2px}
+  }
+
+  @-webkit-keyframes wave2
+  {
+    0% { left:-750px}
+    50%{ left:0px}
+    100%{left:-750px}
+
+  }
+  @keyframes wave1/*Safari and Chrome*/
+  {
+    0% { left:-750px;bottom:-2px}
+    50%{ left:0px;bottom:0px}
+    100%{ left:-750px;bottom:-2px}
+  }
+
+  @keyframes wave2
+  {
+    0% { left:-750px}
+    50%{ left:0px}
+    100%{left:-750px}
+
+  }
+  #banner_wave_1 {
+    width:auto;
+    height:65px;
+    background:url("https://cdn.jsdelivr.net/gh/yremp/resource@2.0/img/other/wave1.png") repeat-x;
+    _filter:alpha(opacity=80);
+    position:absolute;
+    bottom:0;
+    width:400%;
+    left:750px;
+    z-index:5;
+    opacity:1;
+    transiton-property:opacity,bottom;
+    animation:wave1 90s infinite;
+    -webkit-animation:wave1 60s infinite;
+  }
+  #banner_wave_2 {
+    width:auto;
+    height:80px;
+    background:url("https://cdn.jsdelivr.net/gh/yremp/resource@2.0/img/other/wave2.png") repeat-x;
+    _filter:alpha(opacity=80);
+    position:absolute;
+    bottom:0;
+    width:400%;
+    left:0;
+    z-index:4;
+    opacity:1;
+    transiton-property:opacity,bottom;
+    animation:wave2 90s infinite;
+    -webkit-animation:wave2 60s infinite;
+  }
 }
 </style>

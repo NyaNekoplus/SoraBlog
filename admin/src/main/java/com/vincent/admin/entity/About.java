@@ -15,6 +15,8 @@ public class About extends SuperEntity<About>{
 
     private String name;
 
+    private String link;
+
     private Integer lang;
 
     private String avatarUrl;

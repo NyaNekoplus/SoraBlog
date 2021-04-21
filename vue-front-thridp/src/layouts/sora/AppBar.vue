@@ -126,7 +126,8 @@
       -->
 
     </div>
-    <a href="#" :class="toTopClass"></a><!-- javascript:void(0); style="top: 0px;"-->
+
+
   </header><!-- #masthead -->
 </template>
 
@@ -146,7 +147,7 @@ export default {
     isLogin: false,
 
     navClass: 'yya',
-    toTopClass: 'cd-top faa-float animated',
+
     //cd-top faa-float animated cd-is-visible cd-fade-out
     akina_logo: false,
     shownav: true,
@@ -255,10 +256,10 @@ export default {
       const scrollLen = document.documentElement.scrollTop;
       if (scrollLen === 0){
         this.setThemeWidgetState(false);
-        this.toTopClass = 'cd-top faa-float animated';
+        //this.toTopClass = 'cd-top faa-float animated';
       }else {
         this.setThemeWidgetState(true);
-        this.toTopClass = 'cd-top faa-float animated cd-is-visible cd-fade-out';
+        //this.toTopClass = 'cd-top faa-float animated cd-is-visible cd-fade-out';
       }
     },
     collapseNav(){

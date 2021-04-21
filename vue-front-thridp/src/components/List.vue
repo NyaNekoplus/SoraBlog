@@ -10,15 +10,18 @@
 
     <div class="page-wrapper">
       <nav id="comments-navi">
-        <a class="prev page-numbers" href="https://2heng.xin/theme-sakura/comment-page-54/#comments">« Older</a>
+        <a v-if="currentPage!==1" class="prev page-numbers" href="https://2heng.xin/theme-sakura/comment-page-54/#comments">« Older</a>
+        <a v-for="i in totalPage" :key="i" :class="`page-numbers ${(i)===currentPage?'current':''}`" href="https://2heng.xin/theme-sakura/comment-page-1/#comments">{{ i }}</a>
+        <!--
         <a class="page-numbers" href="https://2heng.xin/theme-sakura/comment-page-1/#comments">1</a>
         <span class="page-numbers dots">…</span>
         <a class="page-numbers" href="https://2heng.xin/theme-sakura/comment-page-53/#comments">53</a>
         <a class="page-numbers" href="https://2heng.xin/theme-sakura/comment-page-54/#comments">54</a>
-        <span aria-current="page" class="page-numbers current">55</span>
+        <span aria-current="page" class="page-numbers current">{{ currentPage }}</span>
         <a class="page-numbers" href="https://2heng.xin/theme-sakura/comment-page-56/#comments">56</a>
         <a class="page-numbers" href="https://2heng.xin/theme-sakura/comment-page-57/#comments">57</a>
-        <a class="next page-numbers" href="https://2heng.xin/theme-sakura/comment-page-56/#comments">Newer »</a></nav>
+        -->
+        <a v-if="currentPage!==totalPage" class="next page-numbers" href="https://2heng.xin/theme-sakura/comment-page-56/#comments">Newer »</a></nav>
       <!--<a href="https://2heng.xin/page/2/?_pjax=%23page">Previous</a>-->
     </div>
   </div><!-- #primary -->
@@ -41,6 +44,7 @@ export default {
   data: () => ({
     pageSize: 10,
     currentPage: 1,
+    totalPage: 0,
 
     blogData: [],
   }),
@@ -63,7 +67,12 @@ export default {
           console.log(response);
           if (response.state === this.$STATE.SUCCESS) {
             alert('Message from Back-end: '+response.message);
-            this.blogData = response.data.records;
+            let data = response.data;
+            this.blogData = data.records;
+            this.pageSize = data.size;
+            this.totalPage = data.pages;
+            this.currentPage = data.current;
+            console.log(this.totalPage)
             this.setBlogList(this.blogData);
             alert('获取文章数据成功');
           } else {
