@@ -2,24 +2,27 @@
   <header :class="`site-header no-select is-homepage gizle ${navClass}`" @mouseenter="isIndex && (navClass='yya')" @mouseleave="isIndex && (navClass='sabit')" role="banner">
     <div class="site-top">
       <div class="site-branding">
-        <!-- logo start 左上角logo-->
         <div class="site-title" v-if="akina_logo">
           <a href="<?php bloginfo('url');?>"><img src="<?php echo akina_option('akina_logo'); ?>"></a>
         </div>
         <span class="site-title" v-else :style="`${shownav?'':'display: none;'}`"><!--style="display: none;"-->
-          <span class="logolink serif">
-            <a href="<?php bloginfo('url');?>">
-              <span class="site-name">{{ siteName }}</span>
+
+          <span class="logolink moe-mashiro">
+            <a :href="about.link">
+              <ruby>
+              <!-- <span class="site-name"><?php echo akina_option('site_name', ''); ?></span> -->
+                <span class="sakuraso" style="padding-left: 7px"><span>悠</span></span>
+
+                <span class="no">の</span>
+
+                <span class="shironeko">空</span>
+
+                <rp></rp><rt class="chinese-font">{{ about.name }}</rt><rp></rp>
+              </ruby>
             </a>
           </span>
         </span>
-        <!-- logo end -->
       </div>
-      <!-- .site-branding -->
-
-
-
-
       <!-- 搜索按钮
       <div v-if="topSearch" class="searchbox"><i class="iconfont js-toggle-search iconsearch icon-search"></i></div>
       -->
@@ -32,7 +35,7 @@
           </div>
           <nav :class="`mobile-fit-control ${shownav?'hide':'navbar'}`"><!--navbar-->
             <ul id="menu-new" class="menu">
-              <li v-for="item in topBarItems" :key="item.name">
+              <li v-for="item in navbarItem" :key="item.name">
                 <a :href="item.link" aria-current="page">
                   <span class="faa-parent animated-hover"><i :class="item.icon" aria-hidden="true"></i> {{ item.name }}</span>
                 </a>
@@ -88,32 +91,31 @@
               -->
             </ul>
           </nav>
-          <!-- #site-navigation -->
         </div>
       </div>
 
       <div class="header-user-avatar">
-        <a href="/login">
+        <router-link to="/login">
           <img class="faa-shake animated-hover"
-               src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/none.png"
+               :src="userInfo.avatar?userInfo.avatar:'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/none.png'"
                width="30" height="30">
-        </a>
+        </router-link>
         <div class="header-user-menu">
           <div class="herder-user-name no-logged">
             <div v-if="isLogin">
               <div>
-                <a @click="signOut" href="/login" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Log out</a>
+                <a @click="signOut" :href="about.link+'/login'" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Log out</a>
               </div>
               <div>
-                <a href="/profile" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Profile</a>
+                <a :href="about.link+'/profile'" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Profile</a>
               </div>
             </div>
             <div v-else>
               <div>
-                Whether to <a href="/login" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Sign in</a> now?
+                Whether to <router-link to="/login" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Sign in</router-link> now?
               </div>
               <div>
-                <a href="/login" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Sign up</a>
+                <a :href="about.link+'/register'" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Sign up</a>
               </div>
             </div>
           </div>
@@ -124,17 +126,15 @@
       <div class="lower-container">
       </div>
       -->
-
     </div>
-
-
-  </header><!-- #masthead -->
+  </header>
 </template>
 
 <script>
 import {mapMutations} from "vuex";
 import {authToken} from "../../api/user";
 import {getCookie,setCookie,removeCookie} from "../../utils/cookie";
+import {message} from "../../components/Message";
 
 export default {
   name: "SoraBar",
@@ -148,99 +148,9 @@ export default {
 
     navClass: 'yya',
 
-    //cd-top faa-float animated cd-is-visible cd-fade-out
     akina_logo: false,
     shownav: true,
     topSearch: true,
-
-    siteName: '悠远的苍穹',
-
-    topBarItems: [
-      {
-        name: '首页',
-        icon: 'fa fa-fort-awesome faa-horizontal',
-        link: '/',
-        children: []
-      },
-      {
-        name: '归档',
-        icon: 'fa fa-archive faa-shake',
-        link: '/List',
-        children: [
-          {
-            name: 'Life',
-            icon: 'fa fa-commenting-o',
-            link: '/Life',
-          },
-          {
-            name: 'Tech',
-            icon: 'fa fa-file-text-o',
-            link: '/Tech',
-          }
-        ]
-      },
-      {
-        name: '留言板',
-        icon: 'fa fa-pencil-square-o faa-tada',
-        link: '/Board',
-        children: []
-      },
-      {
-        name: '友情链接',
-        icon: 'fa fa-link faa-shake',
-        link: '/Link',
-        children: []
-      },
-      {
-        name: '功德箱',
-        icon: 'fa fa-heart faa-pulse',
-        link: '/Donate',
-        children: []
-      },
-      {
-        name: '关于',
-        icon: 'fa fa-leaf faa-wrench',
-        link: '/About',
-        children: [
-          {
-            name: '我',
-            icon: 'fa fa-grav',
-            link: '/About',
-            children: []
-          },
-          {
-            name: '监控',
-            icon: 'fa fa-heartbeat',
-            link: '/Watch',
-            children: []
-          },
-          {
-            name: '统计',
-            icon: 'fa fa-area-chart',
-            link: '/Statistics',
-            children: []
-          },
-          {
-            name: '地图',
-            icon: 'fa fa-map-signs',
-            link: '/Map',
-            children: []
-          }
-        ]
-      },
-      {
-        name: '标签',
-        icon: 'fa fa-android faa-vertical',
-        link: '/Tags',
-        children: []
-      },
-      {
-        name: '时光轴',
-        icon: 'fa fa-film faa-vertical',
-        link: '/Timeline',
-        children: []
-      }
-    ],
   }),
   methods: {
     ...mapMutations(['removeToken','setLoginState','setUserInfo','removeUserInfo','setThemeWidgetState']),
@@ -256,10 +166,8 @@ export default {
       const scrollLen = document.documentElement.scrollTop;
       if (scrollLen === 0){
         this.setThemeWidgetState(false);
-        //this.toTopClass = 'cd-top faa-float animated';
       }else {
         this.setThemeWidgetState(true);
-        //this.toTopClass = 'cd-top faa-float animated cd-is-visible cd-fade-out';
       }
     },
     collapseNav(){
@@ -267,26 +175,16 @@ export default {
     },
     changeScrollBarLenth(){
       let elem = document.documentElement;
-/*
-      console.log('offsetHeight: '+elem.offsetHeight);
-      console.log('offsetTop: '+elem.offsetTop);
-      console.log('scrollHeight: '+elem.scrollHeight);
-      console.log('scrollTop: '+elem.scrollTop);
-      console.log('clientHeight: '+elem.clientHeight);
-*/
       let percent = elem.scrollTop/(elem.offsetHeight-elem.clientHeight)*100.0;
       document.getElementById('bar').style.width = percent.toString() + '%';
     },
     loadCover() {
       let imgList = document.getElementsByClassName('lazyload');
-      //console.log(imgList.length);
       for (let i=0;i<imgList.length;i++){
-        //console.log(imgList[i].hasAttribute('data-isLoaded'));
         if (!imgList[i].hasAttribute('data-isLoaded')){
           let imgToTop = imgList[i].offsetTop;
           let viewportHeight = document.documentElement.clientHeight;
           let scrollHeight = document.documentElement.scrollTop;
-          //console.log(imgToTop-scrollHeight);
           if (imgToTop-scrollHeight < viewportHeight + 50){
             imgList[i].setAttribute('src',imgList[i].getAttribute('data-src'))
             imgList[i].setAttribute('data-isLoaded', 1);
@@ -315,7 +213,7 @@ export default {
             this.isLogin = false;
             removeCookie("token");
             console.log(response.data);
-            alert("后台消息："+response.data.message);
+            message(response.data.message)
           }
           this.setLoginState(this.isLogin);
         });
@@ -330,6 +228,17 @@ export default {
       this.removeToken();
       this.removeUserInfo();
       removeCookie("token");
+    }
+  },
+  computed: {
+    navbarItem(){
+      return this.$store.getters.navbarItems;
+    },
+    about(){
+      return this.$store.getters.about;
+    },
+    userInfo(){
+      return this.$store.getters.userInfo;
     }
   },
   created() {

@@ -1,7 +1,9 @@
 <template>
   <div class="sora-form">
     <div class="sora-form__logo-box">
-      <div class="sora-form__logo"></div>
+      <div class="sora-form__logo">
+        悠の空
+      </div>
       <div class="sora-form__catchphrase">让创作变得更有乐趣</div>
     </div>
 
@@ -59,6 +61,7 @@
       <a href="https://policies.google.com/privacy"> Privacy Policy</a> and
       <a href="https://policies.google.com/terms"> Terms of Service</a> apply.
     </div>
+
   </div>
 </template>
 
@@ -66,6 +69,7 @@
 
 import {mapMutations} from "vuex";
 import {login} from "../api/user";
+import {message} from "../components/Message";
 
 export default {
   name: "login",
@@ -83,16 +87,11 @@ export default {
       param.remember = this.remember;
       login(param).then(response => {
         if (response.state === this.$STATE.SUCCESS) {
-          alert(response.message);
-          alert(response.data)
-          //alert('登陆成功');
-
-          setToken(response.data);
+          message('aa');
+          this.setToken(response.data);
           this.$router.push('/');
-          //this.setCommentList(response.data.records);
         } else {
-          alert(response.message);
-          //alert('更新评论失败');
+          message(response.message);
         }
       })
     },

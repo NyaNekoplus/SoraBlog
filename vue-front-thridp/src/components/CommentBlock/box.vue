@@ -522,6 +522,7 @@
 <script>
 import { parseTime } from '@/utils/index'
 import {mapMutations} from "vuex";
+import {message} from "../Message";
 
 export default {
   //inject:['reload'],
@@ -535,13 +536,12 @@ export default {
     ...mapMutations(['removeToInfo','setCommentList']),
     handleSubmit(){
       if (this.content === ''){
-        alert("不能为空");
-        console.log('不能为空');
+        message("不能为空");
         return;
       }
       let userInfo = this.$store.getters.userInfo;
       if (userInfo === null || userInfo === undefined){
-        alert("请先登陆");
+        message("请先登陆");
         return;
       }
       let blogUid = this.$store.getters.blog.uid;

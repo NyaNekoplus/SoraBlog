@@ -66,7 +66,6 @@ export default {
         getBlogList(params).then(response => {
           console.log(response);
           if (response.state === this.$STATE.SUCCESS) {
-            alert('Message from Back-end: '+response.message);
             let data = response.data;
             this.blogData = data.records;
             this.pageSize = data.size;
@@ -74,7 +73,6 @@ export default {
             this.currentPage = data.current;
             console.log(this.totalPage)
             this.setBlogList(this.blogData);
-            alert('获取文章数据成功');
           } else {
             alert('Message from Back-end: '+response.message);
             alert('获取文章数据失败');

@@ -1,8 +1,14 @@
 <template>
   <div class="sora-form">
     <div class="sora-form__logo-box">
-      <div class="sora-form__logo"></div>
-      <div class="sora-form__catchphrase">让创作变得更有乐趣</div>
+      <div class="sora-form__logo">
+        <img width="128" height="128" style=""
+             src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png">
+      </div>
+      <div class="sora-form__catchphrase">
+
+        让创作变得更有乐趣
+      </div>
     </div>
 
     <input type="text" required autocomplete="username" placeholder="用户名" autocapitalize="off" v-model="username">
@@ -12,7 +18,8 @@
     <ul class="uuvlpj-0 jpfKJC"></ul>
     <input class="register-button" value="注册" type="button" @click="handleRegister">
     <div class="sora-form-nav">
-      <a href="/login">已有账号?->登陆</a>
+      <router-link to="/login">已有账号?->登陆</router-link>
+      <!--<a href="/login"></a>-->
     </div>
 
     <div class="sora-form__sns-btn-area">
@@ -50,6 +57,7 @@
 <script>
 
 import {register} from "../api/user";
+import {message} from "../components/Message";
 
 export default {
   name: "register",
@@ -66,13 +74,10 @@ export default {
       params.email = this.email;
       register(params).then(response => {
         if (response.state === this.$STATE.SUCCESS) {
-          alert(response.message);
-          //alert('登陆成功');
+          message(response.message);
           this.$router.push('/login');
-          //this.setCommentList(response.data.records);
         } else {
-          alert(response.message);
-          //alert('更新评论失败');
+          message(response.message);
         }
       })
     }

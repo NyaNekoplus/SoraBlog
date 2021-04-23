@@ -6,9 +6,11 @@
 
 import Vue from "vue";
 import Vuex from "vuex"
+
 import user from "./user";
 import blog from "./blog";
 import theme from "./theme";
+import data from "./data";
 
 Vue.use(Vuex);
 
@@ -18,8 +20,9 @@ const store = new Vuex.Store({
     modules: {
         user,
         blog,
-        theme
-    }
+        theme,
+        data
+    },
 });
 
 export default store

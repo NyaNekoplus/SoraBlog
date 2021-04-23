@@ -1,13 +1,14 @@
 <template>
   <div>
     <section id="main-container" :class="sidebarOn?'open':''">
+      <div class="scrollbar" id="bar" style="width: 19%; background: #00bbff none repeat scroll 0% 0%;"></div>
       <div class="headertop filter-dot" style="height: auto;"> <!-- headertop-bar : banner处的一行白色-->
 
         <div id="banner_wave_1"></div>
         <div id="banner_wave_2"></div>
 
         <figure id="centerbg" class="centerbg"><!-- style="height: 938px;"-->
-          <div class="focusinfo no-select">
+          <div class="focusinfo no-select" >
             <div class="header-tou">
               <a :href="about.link">
                 <img :src="about.avatarUrl">
@@ -33,7 +34,6 @@
                   <a :title="link.title">
                     <img :src="link.icon"></a>
                 </li>
-
               </div>
             </div>
           </div>
@@ -51,8 +51,7 @@
         </div>
       </div>
 
-      <div id="page" class="site-wrapper"
-           style="background-repeat: repeat;background-image: url(https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/star.png);">
+      <div id="page" class="site-wrapper">
 
         <sora-bar :is-index="true"/>
 
@@ -94,6 +93,15 @@
         </form>
       </div>
       <ul id="menu-new-1" class="menu">
+        <li v-for="item in navbarItem" :key="item.name">
+          <a :href="item.link" aria-current="page">
+            <span class="faa-parent animated-hover"><i :class="item.icon" aria-hidden="true"></i> {{ item.name }}</span>
+          </a>
+          <ul v-if="item.children.length" class="sub-menu">
+            <li v-for="child in item.children" :key="child.name"><a :href="child.link"><i :class="child.icon" aria-hidden="true"></i>{{ child.name }}</a></li>
+          </ul>
+        </li>
+        <!--
         <li class="current-menu-item">
           <a href="/" aria-current="page">
             <span class="faa-parent animated-hover"><i class="fa fa-fort-awesome faa-horizontal" aria-hidden="true"></i> 首页</span>
@@ -143,13 +151,17 @@
             <span class="faa-parent animated-hover"><i class="fa fa-tree faa-pulse" aria-hidden="true"></i> 时光轴</span>
           </a>
         </li>
+        -->
       </ul>
       <p style="text-align: center; font-size: 13px; color: #b9b9b9;">© 2021 Vincent Tsai</p></div>
     <sora-setting/>
+
+
   </div>
 </template>
 
 <script>
+import {mapMutations} from "vuex";
 import {getAboutMe} from "../../api/user";
 
 export default {
@@ -161,63 +173,35 @@ export default {
     SoraSetting: () => import('./Setting'),
   },
   data: () => ({
-    coverHeight: 1440,
+    coverHeight: 300,
     sidebarOn: false,
 
     about: {},
-    links: [
-      {
-        title: 'Github',
-        link: '',
-        icon: 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/github.png'
-      },
-      {
-        title: 'Telegram',
-        link: '',
-        icon: 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/telegram.svg'
-      },
-      {
-        title: 'Twitter',
-        link: '',
-        icon: 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/twitter.png'
-      },
-      {
-        title: 'E-mail',
-        link: 'guoxitsai@gmail.com',
-        icon: 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/email.svg'
-      },
-    ],
+
   }),
   methods: {
+    ...mapMutations(['setAbout']),
     showSidebar(){
       this.sidebarOn = !this.sidebarOn;
     },
     headertop_down() {
       let b = document.querySelector(".site-content")
-      //let b = document.body;
       console.log(b);
       this.startMove(b, {'scroll-margin-top': this.coverHeight});
       //var coverOffset=$('#content').offset().top;$('html,body').animate({scrollTop:coverOffset},600);}
     },
     headertop_down0() {
-      console.log('滚动');
-      //let pos = document.querySelector(".site-content").offsetTop; // 当前下部到顶端的距离
       let pos = document.documentElement.scrollTop;
-      console.log('pos: ' + pos);
       let h = this.coverHeight
       let distance = h - pos;
-
       let step = 200;
       let part = distance / step;
-
       if (pos < h) {
         setTimeout(function () {
           smoothDown();
         }, 10);
       }
-
       function smoothDown() {
-        console.log('down')
         if (pos < h) {
           pos += part;
           document.documentElement.scrollTop = pos
@@ -225,34 +209,28 @@ export default {
         }
       }
     },
-    /*
-    scrollBar(){
-      if(document.body.clientWidth>860){
-        window.scroll(function(){
-          let s=$(window).scrollTop();
-          let a=$(document).height();
-          let b=$(window).height();
-          let result=parseInt(s/(a-b)*100);$("#bar").css("width",result+"%");
-        }
-      }else {
-
-      }
+  },
+  computed: {
+    navbarItem(){
+      return this.$store.getters.navbarItems;
+    },
+    links(){
+      return this.$store.getters.links;
     }
-    */
   },
   mounted() {
-    this.coverHeight = window.innerHeight;
-    //如果是手机，则不设置
-
-    document.getElementById('centerbg').style.height = this.coverHeight.toString() + 'px';
-    //this.coverHeight =
+    if (window.innerHeight>860){
+      this.coverHeight = window.innerHeight;
+      document.getElementById('centerbg').style.height = this.coverHeight.toString() + 'px';
+    }else {
+      document.getElementById('centerbg').style.height = 'auto;'
+    }
   },
   created() {
     getAboutMe().then(response => {
       if (response.state === this.$STATE.SUCCESS){
         this.about = response.data;
-      }else{
-        console.log(response.message);
+        this.setAbout(this.about);
       }
     })
   }

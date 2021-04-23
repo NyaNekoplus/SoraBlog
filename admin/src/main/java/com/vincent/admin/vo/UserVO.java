@@ -22,4 +22,6 @@ public class UserVO extends BaseVO<User>{
     private String lastVisitDate;
 
     private String signupDate;
+
+    private Boolean remember;
 }

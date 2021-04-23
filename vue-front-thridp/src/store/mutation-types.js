@@ -15,4 +15,11 @@ export const SET_USER_INFO = "setUserInfo";
 export const REMOVE_USER_INFO = "removeUserInfo";
 
 export const SET_THEME_WIDGET_STATE = "setThemeWidgetState";
+export const SET_DARK = "setDark"
+export const SET_SAKURA_EFFECT = "setSakuraEffect";
+export const SET_SNOW_EFFECT = "setSnowEffect";
 export const SET_WIDE_SCREEN_COVER = "setWideScreenCover";
+export const SET_BACKGROUND = "setBackground";
+
+
+export const SET_ABOUT = "setAbout"

@@ -5,7 +5,7 @@
     <search-bar/>
     <pixiv-view/>
 
-   <pixiv-footer/>
+   <!--<pixiv-footer/>-->
 
   </div>
 </template>

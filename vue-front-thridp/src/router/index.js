@@ -9,6 +9,7 @@ import Router from "vue-router"
 import indexLayout from "@/layouts/sora/index"
 import otherLayout from "../layouts/sora/other";
 import formLayout from "@/layouts/pixiv/index";
+import loginLayout from "@/layouts/user/index";
 Vue.use(Router);
 
 

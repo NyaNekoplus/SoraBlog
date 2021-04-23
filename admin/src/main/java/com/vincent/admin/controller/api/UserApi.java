@@ -46,7 +46,6 @@ public class UserApi {
         queryWrapper.and((wrapper) -> wrapper.eq("username",userVO.getUsername()).or().eq("email",userVO.getUsername()));
         User user = userService.getOne(queryWrapper);
         System.out.println(userVO);
-        System.out.println(user);
         if (user == null){
             return Result.failure("Back-end: 用户不存在");
         }
@@ -66,7 +65,9 @@ public class UserApi {
             String uuid = UUID.randomUUID().toString().replaceAll("-","");
             String msg = "Back-end: 登錄成功, token: " + uuid;
             //ACTIVE_USER
-            redisUtil.setExpire("LOGIN_TOKEN"+':'+uuid, JsonUtil.objectToJson(user),1, TimeUnit.HOURS);
+            int timeout = userVO.getRemember()?48:1;
+
+            redisUtil.setExpire("LOGIN_TOKEN"+':'+uuid, JsonUtil.objectToJson(user),timeout, TimeUnit.HOURS);
             log.info(msg);
             return Result.success(msg,uuid);
 

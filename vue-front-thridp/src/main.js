@@ -17,7 +17,8 @@ Vue.config.productionTip = false
 
 import prototype from "./utils/prototype";
 Vue.use(prototype);
-
+import VueClipboard from "vue-clipboard2";
+Vue.use(VueClipboard);
 import store from "./store";
 
 new Vue({

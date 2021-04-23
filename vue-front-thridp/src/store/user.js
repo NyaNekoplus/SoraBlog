@@ -10,7 +10,9 @@ const user = {
     state: {
         isLogin: false,
         token: null,
-        userInfo: null
+        userInfo: {
+            avatarUrl: null
+        }
     },
     getters: {
         isLogin: state => {

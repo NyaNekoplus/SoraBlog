@@ -13,7 +13,8 @@
     <div id="content" class="site-content">
       <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
-          <article id="post-4491" class="post-4491 post type-post status-publish format-standard has-post-thumbnail hentry category-hacking tag-graphql tag-javascript tag-wordpress">
+          <article id="post-4491"
+                   class="post-4491 post type-post status-publish format-standard has-post-thumbnail hentry category-hacking tag-graphql tag-javascript tag-wordpress">
 
             <!--
             <div class="ins-section-wrapper">
@@ -80,10 +81,12 @@
               <div class="reward-open">赏
                 <div class="reward-main">
                   <ul class="reward-row">
-                    <li class="alipay-code"><img
-                        src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.3.3/img/other/AliPayQR.jpg"></li>
-                    <li class="wechat-code"><img
-                        src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.3.3/img/other/WeChanQR.png"></li>
+                    <li class="alipay-code">
+                      <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/alipay.png">
+                    </li>
+                    <li class="wechat-code">
+                      <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/wechat.png">
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -138,24 +141,50 @@
             </footer>
           </article>
           <section class="post-squares nextprev">
-            <div class="post-nepre full previous"><a href="https://2heng.xin/2019/09/18/fix-100-vh-in-mobile-browser/"
-                                                     rel="prev">
-              <div class="background"><img class="lazyload"
-                                           data-src="https://2heng.xin/wp-content/uploads//2018/06/child-1024x576.jpg"
-                                           style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
-                                           onerror="imgError(this,3)"
-                                           src="https://2heng.xin/wp-content/uploads//2018/06/child-1024x576.jpg"></div>
-              <span class="label">Previous Post</span>
-              <div class="info"><h3>解决移动端浏览器 vh 单位异常问题</h3>
-                <hr>
-              </div>
-            </a></div>
+            <div class="post-nepre full previous">
+              <a href="https://2heng.xin/2019/09/18/fix-100-vh-in-mobile-browser/" rel="prev">
+                <div class="background">
+                  <img class="lazyload"
+                       data-src="https://2heng.xin/wp-content/uploads//2018/06/child-1024x576.jpg"
+                       style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                       src="https://2heng.xin/wp-content/uploads//2018/06/child-1024x576.jpg">
+                </div>
+                <span class="label">Previous Post</span>
+                <div class="info"><h3>解决移动端浏览器 vh 单位异常问题</h3>
+                  <hr>
+                </div>
+              </a></div>
             <div class="post-nepre half next"></div>
+          </section>
+          <section class="post-squares nextprev">
+            <div class="post-nepre half previous">
+              <a href="https://yremp.live/spring-cloud-aibaba-sentinel-openfeign/" rel="prev">
+                <div class="background lazyload"
+                     style="background-image: url(&quot;/wp-content/uploads/2020/08/B144246C-2DE7-4BC1-A0FE-011385FC6436bf8d7-1-e1596867142294.png&quot;);"
+                     data-src="/wp-content/uploads/2020/08/B144246C-2DE7-4BC1-A0FE-011385FC6436bf8d7-1-e1596867142294.png"></div>
+                <span class="label">Previous Post</span>
+                <div class="info"><h3>Spring Cloud Aibaba Sentinel服务熔断OpenFeign</h3>
+                  <hr>
+                </div>
+              </a>
+            </div>
+            <div class="post-nepre half next">
+              <a href="https://yremp.live/bt-sites/" rel="next">
+                <div class="background lazyload"
+                     style="background-image: url(&quot;/wp-content/uploads/2020/12/6E808C9D-A183-41DF-9D6E-68E4AE0F0129-e1607945706154.png&quot;);"
+                     data-src="/wp-content/uploads/2020/12/6E808C9D-A183-41DF-9D6E-68E4AE0F0129-e1607945706154.png"></div>
+                <span class="label">Next Post</span>
+                <div class="info"><h3>宝塔多站点域名解析问题</h3>
+                  <hr>
+                </div>
+              </a>
+            </div>
           </section>
         </main>
       </div>
     </div>
-    <comment-block :blog-uid="blog.uid" :enable-comment="blog.enableComment" :comment-count="blog.commentCount" :comment-source="'BLOG'"></comment-block>
+    <comment-block :blog-uid="blog.uid" :enable-comment="blog.enableComment" :comment-count="blog.commentCount"
+                   :comment-source="'BLOG'"></comment-block>
   </div>
 </template>
 
@@ -176,8 +205,8 @@ export default {
     blog: [],
   }),
   methods: {
-    ...mapMutations(['setBlog','removeToInfo']),
-    enlargeImage(event){
+    ...mapMutations(['setBlog', 'removeToInfo']),
+    enlargeImage(event) {
       //this.$nextTick(function (){})
       //console.log(event.target) // testssss
       //console.log(event.target.nodeName) // p
@@ -190,14 +219,14 @@ export default {
         viewer.view(0);
       }
     },
-    getBlogByLink(){
+    getBlogByLink() {
       getBlogByTitle(this.$route.params.title).then(response => {
-        console.log("page: "+response.state);
+        console.log("page: " + response.state);
         if (response.state === this.$STATE.SUCCESS) {
-          console.log("blog: "+response.data);
+          console.log("blog: " + response.data);
           this.blog = response.data;
           this.setBlog(response.data)
-          console.log("page: "+this.blog);
+          console.log("page: " + this.blog);
         } else {
           alert(response.message);
           alert('获取文章失败');
@@ -211,28 +240,26 @@ export default {
     this.removeToInfo();
 
 
-
-
   },
   mounted() {
     console.log('page create: ' + this.$store.getters.blog);
-    if (this.$store.getters.blog!==undefined && this.$store.getters.blog!==null) {
+    if (this.$store.getters.blog !== undefined && this.$store.getters.blog !== null) {
       let t_blog = this.$store.getters.blog;
-      if (t_blog.link[0]==='/'){
+      if (t_blog.link[0] === '/') {
         t_blog.link = t_blog.link.substr(1);
       }
-      console.log('t_blog.link: '+t_blog.link);
-      console.log('this.$route.params.title: '+this.$route.params.title);
-      if (t_blog.link === this.$route.params.title){
+      console.log('t_blog.link: ' + t_blog.link);
+      console.log('this.$route.params.title: ' + this.$route.params.title);
+      if (t_blog.link === this.$route.params.title) {
         this.blog = this.$store.getters.blog;
-      }else{
+      } else {
         this.getBlogByLink();
       }
     } else {
       this.getBlogByLink();
     }
     // tocbot
-    this.$nextTick(function() {
+    this.$nextTick(function () {
       tocbot.init({
         // Where to render the table of contents.
         tocSelector: '.toc', // 放置目录的容器

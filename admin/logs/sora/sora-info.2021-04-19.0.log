@@ -1,0 +1,216 @@
+[sora:0.0.0.0:9527] [,] 2021-04-19 09:41:18 INFO 14212 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 14212 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 09:41:18 INFO 14212 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 09:41:19 INFO 14212 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 09:41:19 INFO 14212 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 09:41:19 INFO 14212 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 23ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 09:41:22 INFO 14212 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 09:41:23 INFO 14212 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.537 seconds (JVM running for 5.677)
+[sora:0.0.0.0:9527] [,] 2021-04-19 09:41:23 INFO 14212 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 09:41:24 INFO 14212 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 09:41:24 INFO 14212 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 09:41:24 INFO 14212 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 09:41:24 INFO 14212 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:01:22 INFO 22200 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 22200 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:01:22 INFO 22200 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:01:23 INFO 22200 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:01:23 INFO 22200 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:01:23 INFO 22200 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 23ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:01:25 INFO 22200 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:01:26 INFO 22200 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.062 seconds (JVM running for 5.028)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:01:26 INFO 22200 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:01:27 INFO 22200 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:01:27 INFO 22200 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:01:27 INFO 22200 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:01:27 INFO 22200 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:19:25 INFO 29792 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 29792 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:19:25 INFO 29792 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:19:26 INFO 29792 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:19:26 INFO 29792 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:19:26 INFO 29792 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 27ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:19:29 INFO 29792 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:19:30 INFO 29792 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 5.323 seconds (JVM running for 6.51)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:19:30 INFO 29792 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:19:31 INFO 29792 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:19:31 INFO 29792 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:19:31 INFO 29792 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:19:31 INFO 29792 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:24:56 INFO 30964 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 30964 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:24:56 INFO 30964 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:24:56 INFO 30964 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:24:56 INFO 30964 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:24:56 INFO 30964 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 30ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:24:59 INFO 30964 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:24:59 INFO 30964 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.285 seconds (JVM running for 5.29)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:25:00 INFO 30964 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:25:00 INFO 30964 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:25:00 INFO 30964 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:25:00 INFO 30964 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:25:00 INFO 30964 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:27:43 INFO 26660 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 26660 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:27:43 INFO 26660 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:27:44 INFO 26660 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:27:44 INFO 26660 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:27:44 INFO 26660 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 22ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:27:47 INFO 26660 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:27:47 INFO 26660 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.062 seconds (JVM running for 4.996)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:27:48 INFO 26660 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:27:48 INFO 26660 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:27:48 INFO 26660 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:27:48 INFO 26660 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:27:48 INFO 26660 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:31:13 INFO 32208 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 32208 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:31:13 INFO 32208 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:31:14 INFO 32208 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:31:14 INFO 32208 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:31:14 INFO 32208 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 22ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:31:17 INFO 32208 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:31:17 INFO 32208 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.091 seconds (JVM running for 5.03)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:31:17 INFO 32208 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:31:18 INFO 32208 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:31:18 INFO 32208 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:31:18 INFO 32208 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:31:18 INFO 32208 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:32:58 INFO 33868 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 33868 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:32:58 INFO 33868 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:32:59 INFO 33868 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:32:59 INFO 33868 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:32:59 INFO 33868 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 22ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:33:01 INFO 33868 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:33:02 INFO 33868 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.096 seconds (JVM running for 5.032)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:33:02 INFO 33868 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:33:03 INFO 33868 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:33:03 INFO 33868 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:33:03 INFO 33868 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:33:03 INFO 33868 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:34:51 INFO 16904 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 16904 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:34:51 INFO 16904 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:34:51 INFO 16904 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:34:51 INFO 16904 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:34:51 INFO 16904 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 21ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:34:54 INFO 16904 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:34:54 INFO 16904 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.074 seconds (JVM running for 4.985)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:34:55 INFO 16904 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:34:55 INFO 16904 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:34:55 INFO 16904 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:34:55 INFO 16904 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:34:55 INFO 16904 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:35:34 INFO 3376 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 3376 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:35:34 INFO 3376 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:35:35 INFO 3376 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:35:35 INFO 3376 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:35:35 INFO 3376 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 22ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:35:37 INFO 3376 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:35:38 INFO 3376 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.04 seconds (JVM running for 4.946)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:35:38 INFO 3376 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:35:38 INFO 3376 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:35:38 INFO 3376 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:35:38 INFO 3376 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:35:38 INFO 3376 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:41:40 INFO 31316 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 31316 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:41:40 INFO 31316 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:41:40 INFO 31316 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:41:40 INFO 31316 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:41:40 INFO 31316 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 25ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:41:43 INFO 31316 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:41:43 INFO 31316 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.093 seconds (JVM running for 5.021)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:41:44 INFO 31316 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:41:44 INFO 31316 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:41:44 INFO 31316 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:41:44 INFO 31316 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:41:44 INFO 31316 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:43:53 INFO 29516 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 29516 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:43:53 INFO 29516 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:43:53 INFO 29516 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:43:53 INFO 29516 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:43:53 INFO 29516 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 23ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:43:56 INFO 29516 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:43:56 INFO 29516 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.039 seconds (JVM running for 4.977)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:43:57 INFO 29516 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:43:57 INFO 29516 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:43:57 INFO 29516 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:43:57 INFO 29516 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:43:57 INFO 29516 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:46:12 INFO 21412 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 21412 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:46:12 INFO 21412 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:46:13 INFO 21412 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:46:13 INFO 21412 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:46:13 INFO 21412 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 24ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:46:16 INFO 21412 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:46:16 INFO 21412 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.057 seconds (JVM running for 4.957)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:46:16 INFO 21412 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:46:17 INFO 21412 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:46:17 INFO 21412 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:46:17 INFO 21412 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:46:17 INFO 21412 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:47:26 INFO 4912 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 4912 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:47:26 INFO 4912 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:47:26 INFO 4912 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:47:26 INFO 4912 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:47:26 INFO 4912 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 24ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:47:29 INFO 4912 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:47:29 INFO 4912 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.195 seconds (JVM running for 5.081)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:47:30 INFO 4912 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:47:30 INFO 4912 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:47:30 INFO 4912 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:47:30 INFO 4912 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:47:30 INFO 4912 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:48:31 INFO 28268 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 28268 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:48:31 INFO 28268 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:48:31 INFO 28268 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:48:31 INFO 28268 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:48:31 INFO 28268 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 23ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:48:34 INFO 28268 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:48:34 INFO 28268 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.002 seconds (JVM running for 4.887)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:48:35 INFO 28268 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:48:35 INFO 28268 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:48:35 INFO 28268 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:48:35 INFO 28268 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:48:35 INFO 28268 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:50:37 INFO 35796 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 35796 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:50:37 INFO 35796 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:50:37 INFO 35796 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:50:37 INFO 35796 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:50:38 INFO 35796 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 22ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:50:40 INFO 35796 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:50:41 INFO 35796 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.061 seconds (JVM running for 5.004)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:50:41 INFO 35796 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:50:41 INFO 35796 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:50:41 INFO 35796 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:50:41 INFO 35796 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:50:41 INFO 35796 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:54:50 INFO 35752 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 35752 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:54:50 INFO 35752 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:54:51 INFO 35752 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:54:51 INFO 35752 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:54:51 INFO 35752 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 22ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:54:53 INFO 35752 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:54:54 INFO 35752 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.286 seconds (JVM running for 5.243)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:54:54 INFO 35752 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:54:55 INFO 35752 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:54:55 INFO 35752 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:54:55 INFO 35752 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:54:55 INFO 35752 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:57:02 INFO 25244 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 25244 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:57:02 INFO 25244 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:57:03 INFO 25244 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:57:03 INFO 25244 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:57:03 INFO 25244 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 22ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:57:06 INFO 25244 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:57:06 INFO 25244 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.138 seconds (JVM running for 5.106)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:57:06 INFO 25244 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:57:07 INFO 25244 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:57:07 INFO 25244 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:57:07 INFO 25244 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:57:07 INFO 25244 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:58:52 INFO 22996 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 22996 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:58:52 INFO 22996 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:58:52 INFO 22996 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:58:52 INFO 22996 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:58:52 INFO 22996 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 23ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:58:55 INFO 22996 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:58:55 INFO 22996 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.301 seconds (JVM running for 5.28)
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:58:56 INFO 22996 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Starting...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:58:56 INFO 22996 [main] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Start completed.
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:58:56 INFO 22996 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:58:56 INFO 22996 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown initiated...
+[sora:0.0.0.0:9527] [,] 2021-04-19 10:58:56 INFO 22996 [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource HikariPool-1 - Shutdown completed.

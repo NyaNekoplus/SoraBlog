@@ -11,6 +11,7 @@
     <link ref="stylesheet" href="<%= BASE_URL %>cdn/css/wp/style.min.css">
     <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/src/baguetteBox.min.css"/>
     <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/src/font-awesome.min.css"/>
+    <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/src/font-icon.css"/>
     <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/src/font-awesome-animation.min.css"/>
     <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/src/jquery.fancybox.min.css"/>
     <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/src/sharejs.css"/>
@@ -23,6 +24,9 @@
 
     <link rel="stylesheet" href="<%= BASE_URL %>cdn/css/style.css"/>
 
+    <!--title font-->
+    <link rel="stylesheet" href="<%= BASE_URL %>cdn/font/YUMIN-subfont.css" media="all">
+
 
     <meta name="theme-color" content="#31363b">
     <meta http-equiv="x-dns-prefetch-control" content="on">
@@ -31,6 +35,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <script src="<%= BASE_URL %>cdn/theme/sakura_effect.js"></script>
+
+    <!--
     <style type="text/css">
         .site-top .lower nav {
             display: block !important;
@@ -387,28 +394,129 @@
             color: #ccc;
         }
     </style>
-    <style type="text/css">.hljs-ln {
-        border-collapse: collapse
-    }
+    <style type="text/css">
+        .hljs-ln {
+            border-collapse: collapse
+        }
+        .hljs-ln td {
+            padding: 0
+        }
+        .hljs-ln-n:before {
+            content: attr(data-line-number)
+        }
+    </style>
+    -->
+    <!--
+    <style type="text/css">
+        /*  logo  */
+        .logolink a {
+            color: #464646;
+            float: left;
+            font-size: 20px;
+            font-weight: 800;
+            height: 56px;
+            line-height: 56px;
+            padding-left: 35px;
+            padding-right: 15px;
+            padding-top: 11px;
+            text-decoration-line: none
+        }
 
-    .hljs-ln td {
-        padding: 0
-    }
+        .logolink .sakuraso {
+            background-color: rgba(255, 255, 255, .5);
+            border-radius: 5px;
+            color: #464646;
+            height: auto;
+            line-height: 25px;
+            margin-right: 0;
+            padding-bottom: 0px;
+            padding-top: 1px;
+            text-size-adjust: 100%;
+            width: auto
+        }
 
-    .hljs-ln-n:before {
-        content: attr(data-line-number)
-    }</style>
+        .logolink a:hover .sakuraso {
+            background-color: orange;
+            color: #fff;
+        }
+
+        .logolink a:hover .shironeko,
+        .logolink a:hover .no,
+        .logolink a:hover rt {
+            color: orange;
+        }
+
+        .logolink.moe-mashiro a {
+            color: #464646;
+            float: left;
+            font-size: 25px;
+            font-weight: 800;
+            height: 56px;
+            line-height: 56px;
+            padding-left: 6px;
+            padding-right: 15px;
+            padding-top: 11px;
+            text-decoration-line: none;
+        }
+        .logolink.moe-mashiro .sakuraso,.logolink.moe-mashiro .no {
+            font-size: 25px;
+            border-radius: 9px;
+            padding-bottom: 2px;
+            padding-top: 5px;
+        }
+
+        .logolink.moe-mashiro .no {
+            font-size: 20px;
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        .logolink a:hover .no {
+            -webkit-animation: spin 1.5s linear infinite;
+            animation: spin 1.5s linear infinite;
+        }
+
+        .logolink ruby {
+            ruby-position: under;
+            -webkit-ruby-position: after;
+        }
+
+        .logolink ruby rt {
+            font-size: 10px;
+            letter-spacing:2px;
+            transform: translateY(-15px);
+            opacity: 0;
+            transiton-property: opacity;
+            transition-duration: 0.5s, 0.5s;
+        }
+
+        .logolink a:hover ruby rt {
+            opacity: 1
+        }
+
+        .moe-mashiro {
+            font-family: 'YUMIN-subfont', 'Merriweather Sans', Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei', sans-serif;;
+        }
+        .chinese-font {
+            font-family: 'Merriweather Sans', Helvetica, Tahoma, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei', 'WenQuanYi Micro Hei', sans-serif;
+        }
+    </style>
+    -->
 </head>
 <body class="html body.post-template-default.single.single-post.postid-6.single-format-standard.chinese-font.serif">
 <noscript>
     <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
         Please enable it to continue.</strong>
 </noscript>
-<div class="scrollbar" id="bar" style="width: 19%; background: #00bbff none repeat scroll 0% 0%;"></div>
+
 <div id="app"></div>
 <!-- built files will be auto injected -->
+<canvas id="Snow" width="542" height="722"></canvas>
+<canvas id="night-mode-cover" style="visibility: hidden;"></canvas>
+
 </body>
 </html>
+<script src="<%= BASE_URL %>cdn/theme/snow_effect.js"></script>
 <script>
 
 </script>

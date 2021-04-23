@@ -80,7 +80,6 @@
          data-fixed="true"
          data-theme="orange">
     </div>
-
   </div>
 </template>
 
@@ -104,7 +103,7 @@ export default {
       {
         name: '雪原',
         param: 'snow',
-        icon: 'iconfont icon-sakura',
+        icon: 'iconfont icon-dots',
       },
       {
         name: '樱花飞舞',
@@ -112,15 +111,25 @@ export default {
         icon: 'iconfont icon-sakura',
       },
       {
+        name: '格子',
+        param: 'slack',
+        icon: 'fa fa-slack',
+      },
+      {
         name: 'Bing',
-        param: 'snow',
+        param: 'bing',
         icon: 'iconfont icon-bing',
+      },
+      {
+        name: 'PIXIV',
+        param: 'pixiv',
+        icon: 'iconfont icon-pixiv',
       },
       {
         name: '夜间',
         param: 'dark',
         icon: 'fa fa-moon-o',
-      },
+      }
     ],
     liveSearch: true,
     siteStatistics: false,
@@ -130,23 +139,67 @@ export default {
     toTopClass: 'cd-top faa-float animated',
   }),
   methods: {
-    ...mapMutations(['setWideScreenCover']),
+    ...mapMutations(['setWideScreenCover','setSakuraEffect','setSnowEffect','setBackground','setDark']),
     showThemePanel(){
       this.displayTheme = !this.displayTheme;
+    },
+    dynamicLoadJs(){
+      // 创建script标签，引入外部文件
+      let script = document.createElement('script')
+
+      script.type = 'text/javascript'
+      script.src = 'https://cdn.jsdelivr.net/gh/yremp/yremp-js@1.5/sakura.js'
+
+      let effect = this.$refs.dynamicEffect;
+      effect.appendChild(script);
     },
     changeTheme(param){
       switch (param){
         case 'wide-screen':
+          //document.body.style = 'background-image: none;';
+          //document.getElementById('main-container');
+          //console.log(document.getElementById('main-container'));
+          //document.body.style = this.$store.getters.background;
+          this.setBackground(0);
           this.setWideScreenCover(true);
           break;
         case 'narrow-screen':
           this.setWideScreenCover(false);
           break;
         case 'snow':
+          snow_on = !snow_on;
+          this.setSnowEffect(snow_on);
           break;
         case 'sakura':
+          if (sakura_on) {
+            this.setSakuraEffect(false);stopp();}
+          else {
+            this.setSakuraEffect(true);startSakura();}
+          break;
+        case 'slack':
+          this.setBackground(2);
+          break;
+        case 'pixiv':
+          this.setBackground(1);
           break;
         case 'dark':
+          this.setDark(!this.$store.getters.dark);
+          this.setBackground(3);
+          break;
+        case 'sakura_snow':
+          if (sakura_on&&snow_on){
+            stopp();snow_on=false;
+            this.setSakuraEffect(false);this.setSnowEffect(false);
+          }else if (sakura_on===false&&snow_on===false){
+            startSakura();snow_on=true;
+            this.setSakuraEffect(true);this.setSnowEffect(true);
+          }else {
+            if (sakura_on){
+              snow_on=true;this.setSnowEffect(true);break;
+            }else {
+              startSakura();this.setSakuraEffect(true);break;
+            }
+          }
           break;
         default:
           break;
@@ -156,9 +209,14 @@ export default {
   computed: {
     isTop(){
       return this.$store.getters.isThemeWidgetShow;
-    }
+    },
   },
   mounted() {
+    console.log('setting.vue mounted '+this.$store.getters.sakuraEffect)
+    if (this.$store.getters.sakuraEffect)startSakura();
+    if (this.$store.getters.snowEffect)snow_on = true;
+    document.body.style = this.$store.getters.background;
+    document.getElementById('night-mode-cover').style.visibility = this.$store.getters.dark?'visible':'hidden';
   }
 }
 </script>
