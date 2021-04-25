@@ -395,7 +395,7 @@ export default {
         this.localImgUrl = URL.createObjectURL(this.image);
       }catch (e) {
         console.log(e);
-        this.localFileUrl = this.image;
+        this.localImgUrl = this.image;
       }
 
       console.log(this.image);

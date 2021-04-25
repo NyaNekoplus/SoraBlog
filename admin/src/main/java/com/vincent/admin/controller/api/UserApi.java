@@ -1,9 +1,14 @@
 package com.vincent.admin.controller.api;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.vincent.admin.entity.File;
+import com.vincent.admin.entity.SystemConfig;
 import com.vincent.admin.entity.User;
+import com.vincent.admin.enums.Proxy;
 import com.vincent.admin.holder.RequestHolder;
 import com.vincent.admin.service.AboutMeService;
+import com.vincent.admin.service.FileService;
+import com.vincent.admin.service.SystemConfigService;
 import com.vincent.admin.service.UserService;
 import com.vincent.admin.util.*;
 import com.vincent.admin.vo.UserVO;
@@ -33,7 +38,11 @@ public class UserApi {
     @Autowired
     private UserService userService;
     @Autowired
+    private FileService fileService;
+    @Autowired
     private AboutMeService aboutMeService;
+    @Autowired
+    private SystemConfigService systemConfigService;
     @Autowired
     private RedisUtil redisUtil;
 
@@ -45,7 +54,6 @@ public class UserApi {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.and((wrapper) -> wrapper.eq("username",userVO.getUsername()).or().eq("email",userVO.getUsername()));
         User user = userService.getOne(queryWrapper);
-        System.out.println(userVO);
         if (user == null){
             return Result.failure("Back-end: 用户不存在");
         }
@@ -57,18 +65,36 @@ public class UserApi {
             user.setOs(userMap.get("OS"));
             user.setLastLoginIp(ip);
             user.setIpSource(IpUtil.getCityInfo(ip));
+            user.setLoginCount(user.getLoginCount()+1);
             user.setLastLoginTime(new Date());
             user.updateById();
 
+            SystemConfig config;
+            if (user.getAvatar() != null){
+                File avatar = fileService.getById(user.getAvatar());
+                if (avatar != null){
+                    if (avatar.getJsDelivrUrl() != null){
+                        user.setAvatarUrl(avatar.getJsDelivrUrl());
+                    }else if (avatar.getUrl() != null){
+                        user.setAvatarUrl(avatar.getUrl());
+                    }else {
+                        config = systemConfigService.getConfig((long) 1);
+                        user.setAvatarUrl(config.getDefaultAvatarUrl());
+                    }
+                }
+            }else {
+                config = systemConfigService.getConfig((long) 1);
+                user.setAvatarUrl(config.getDefaultAvatarUrl());
+            }
             //过滤密码
             user.setPassword("");
             String uuid = UUID.randomUUID().toString().replaceAll("-","");
-            String msg = "Back-end: 登錄成功, token: " + uuid;
+            String msg = "登錄成功";
             //ACTIVE_USER
             int timeout = userVO.getRemember()?48:1;
 
             redisUtil.setExpire("LOGIN_TOKEN"+':'+uuid, JsonUtil.objectToJson(user),timeout, TimeUnit.HOURS);
-            log.info(msg);
+            log.info(user.getUsername());
             return Result.success(msg,uuid);
 
         }
@@ -100,6 +126,7 @@ public class UserApi {
         user = new User();
         user.setUsername(userVO.getUsername());
         user.setPassword(MD5Util.string2MD5(userVO.getPassword()));
+        user.setAvatar(userVO.getAvatarUid());
         user.setEmail(userVO.getEmail());
         user.setLastLoginIp(ip);
         user.setIpSource(IpUtil.getCityInfo(ip));
@@ -108,7 +135,7 @@ public class UserApi {
         log.info("MD5值："+user.getPassword());
         //user.setSignupDate(userVO.getSignupDate());
         //user.setLastVisitDate(userVO.getLastVisitDate());
-        user.setUserProxy(0);
+        user.setUserProxy(Proxy.USER);
         log.info("注册用户信息："+user);
         user.insert();
 

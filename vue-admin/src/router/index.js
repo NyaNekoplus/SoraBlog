@@ -22,10 +22,11 @@ const router = new Router({
     layout('Default', [
       route('Dashboard'),
 
-      route('Writing', null, 'Writing'),
-      route('Article Table', null, 'table/article'),
+      route('Writing', null, 'writing'),
+      route('UserList', null, 'users'),
+      route('ArticleTable', null, 'articles'),
       // Pages
-      route('UserProfile', null, 'components/profile'),
+      route('UserProfile', null, 'profile'),
 
       route('ImageClassification', null, 'image/classification'),
       route('ImageList', null, 'image/list'),
@@ -49,9 +50,4 @@ const router = new Router({
     ])
   ],
 })
-/*
-router.beforeEach((to, from, next) => {
-  return to.path.endsWith('/') ? next() : next(trailingSlash(to.path))
-})
-*/
 export default router

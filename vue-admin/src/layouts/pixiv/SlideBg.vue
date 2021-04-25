@@ -1,12 +1,13 @@
 <template>
   <div id="background-slideshow">
-    <div class=" slide">
+    <div class="slide">
       <div class="wallpaper"
-           style="background-image:url('https://picsum.photos/510/300?random')">
+           style="background-image:url('https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wyTr?ver=ecf5')">
+        <!--
         <div class="user-info">
           <a href="https://www.pixiv.net/users/772547" target="_blank">
             <div class="user-icon"
-                 style="background-image:url('https://picsum.photos/id/11/100/60')">
+                 style="background-image:url('https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/none.png')">
             </div>
           </a>
           <div class="description">
@@ -22,15 +23,17 @@
             </div>
           </div>
         </div>
+        -->
       </div>
     </div>
-    <div class=" slide">
-      <div class="wallpaper"
+    <div class="slide">
+      <div :class="`wallpaper ${changeBg?'fadeout':''}`"
            style="background-image:url('https://www.bing.com/th?id=OHR.JouxFog_ZH-CN9947036409_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=HpEdgeAn')">
+        <!--
         <div class="user-info">
           <a href="https://www.pixiv.net/users/76266" target="_blank">
             <div class="user-icon"
-                 style="background-image:url('https://i.pximg.net/user-profile/img/2019/03/04/21/32/39/15481009_3e9c633d4ba157c79be31d983c978e6b_50.jpg')">
+                 style="background-image:url('https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/none.png')">
             </div>
           </a>
           <div class="description">
@@ -46,6 +49,7 @@
             </div>
           </div>
         </div>
+        -->
       </div>
     </div>
   </div>
@@ -54,7 +58,21 @@
 <script>
 export default {
   name: "SlideBg",
-  data: () => ({}),
+  data: () => ({
+    changeBg: true,
+  }),
+  methods: {
+    changeBackground: function () {
+      this.changeBg = !this.changeBg;
+      setTimeout(this.changeBackground,3000);
+    }
+  },
+  mounted() {
+
+  },
+  created() {
+    this.changeBackground()
+  }
 }
 </script>
 
@@ -68,6 +86,9 @@ export default {
   position: fixed;
 }
 
+#background-slideshow .wallpaper.fadeout {
+  opacity: 0;
+}
 #background-slideshow .wallpaper {
   width: 100%;
   height: 100%;

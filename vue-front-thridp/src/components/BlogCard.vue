@@ -1,18 +1,22 @@
 <template>
   <article class="post post-list-thumb post-list-show" itemscope="" itemtype="http://schema.org/BlogPosting">
     <div class="post-thumb">
-      <a href=""><img class="lazyload" src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.1/img/svg/loader/orange.progress-bar-stripe-loader.svg" :data-src="blog.coverUrl"></a>
+      <a href="">
+        <img class="lazyload"
+             src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.1/img/svg/loader/orange.progress-bar-stripe-loader.svg"
+             :data-src="blog.coverUrl">
+      </a>
     </div><!-- thumbnail-->
     <div class="post-content-wrap">
       <div class="post-content">
         <div class="post-date">
-          <i class="iconfont icon-time"></i>发布于 {{ blog.createTime }}
+          <i class="iconfont icon-time"></i>发布于 {{ formatDate(blog.createTime) }}
           <div v-if="blog.isTop"><!-- is_sticky():是否置顶 -->
             &nbsp;<i class="iconfont hotpost icon-hot"></i>
           </div>
 
         </div>
-        <a @click="intoDetail(blog)" class="post-title"><h3>{{ blog.title }}</h3></a>
+        <a :href="'/blog/'+blog.link" class="post-title"><h3>{{ blog.title }}</h3></a>
         <div class="post-meta">
           <span><i class="iconfont icon-attention"></i>{{ blog.viewCount }}</span>
           <span class="comments-number"><i class="iconfont icon-mark"></i>{{ blog.commentCount }}条评论</span>
@@ -26,7 +30,7 @@
           -->
           <p>{{ blog.summary }}</p>
           <div class="post-bottom">
-            <a @click="intoDetail(blog)" class="button-normal"><i class="iconfont icon-caidan"></i>...</a>
+            <a :href="'/blog/'+blog.link" class="button-normal"><i class="iconfont icon-caidan"></i></a>
           </div>
         </div>
       </div>
@@ -37,6 +41,7 @@
 
 <script>
 import { mapMutations } from "vuex";
+import {formatDate} from "../utils";
 
 export default {
   name: "BlogCard",
@@ -64,16 +69,18 @@ export default {
       if (blog.link[0] !== '/'){
         blog.link = '/' + blog.link;
       }
-      this.setBlog(blog);
+      //this.setBlog(blog);
       let routeData = this.$router.resolve({
         path: '/blog' + blog.link,
       });
       this.$router.push(routeData.href);
       //window.open(routeData.href, '_blank');
     },
+    formatDate(date){
+      return formatDate(date)
+    }
   },
   mounted() {
-    //addEventListener('scroll',this.loadCover);
   }
 }
 </script>

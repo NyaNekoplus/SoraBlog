@@ -4,7 +4,10 @@
       <div class="sora-form__logo">
         悠の空
       </div>
-      <div class="sora-form__catchphrase">让创作变得更有乐趣</div>
+
+      <div class="sora-form__catchphrase">
+        In solitude, where we are least alone.
+      </div>
     </div>
 
 
@@ -27,19 +30,13 @@
       <a href="">忘记密码</a> |
       <a href="/register" data-click-category="signup_pc_page" data-click-action="step1" data-click-label="mail">注册账号</a>
     </div>
-
-
-    <!--
-    <a href="" class="sora-form__submit--login">登录</a>
-    -->
-
     <div class="sora-form__sns-btn-area">
       <div class="sora-form__sns-btn-area index">
         <div>使用其他账号登陆</div>
         <div class="sns-button-list"><a
             href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=apple&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_apple"
             class="btn-item btn-apple js-click-trackable compact index" data-click-category="signup_page_pc"
-            data-click-action="step1" data-click-label="apple" rel="nofollow">QQ</a>
+            data-click-action="step1" data-click-label="apple" rel="nofollow">Twitter</a>
           |
           <a
               href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=sina&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_sina"
@@ -77,6 +74,8 @@ export default {
     username: '',
     password: '',
     remember: 1,
+
+
   }),
   methods: {
     ...mapMutations(["setToken"]),
@@ -95,12 +94,12 @@ export default {
         }
       })
     },
+
   }
 }
 </script>
 
 <style scoped>
-
 .sora-form {
   margin: 20vh auto 0;
   text-align: center;
@@ -152,7 +151,7 @@ export default {
 
 .logo, .sora-form .sora-form__logo {
   display: inline-block;
-  width: 164px;
+  width: 64px;
   height: 64px;
   background-image: url(/src/assets/background.jpg);
   background-repeat: no-repeat;

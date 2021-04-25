@@ -19,3 +19,14 @@ export function getImageList(params){
         data: params
     })
 }
+
+export function uploadImage(param){
+    return request({
+        url: process.env.VUE_APP_FILE_API + '/images',
+        method: 'post',
+        data: param,
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
+}

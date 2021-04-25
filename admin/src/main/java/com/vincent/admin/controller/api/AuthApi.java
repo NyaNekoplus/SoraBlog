@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
@@ -39,5 +40,10 @@ public class AuthApi {
             log.info("Authenticate Api：验证成功，redis数据："+map);
             return Result.success("Back-end: 验证成功",map);
         }
+    }
+
+    @RequestMapping("/callback/{platform}")
+    public void login(@PathVariable("platform") String platform, HttpServletResponse httpServletResponse){
+        log.info("platform: "+platform);
     }
 }

@@ -4,11 +4,13 @@ import com.vincent.admin.entity.FileClassification;
 import com.vincent.admin.entity.SystemConfig;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.net.ConnectException;
+
 /**
  * @author Vincent Tsai
  * @date 2021/4/20 12:49
  */
 public interface JsDelivrFileService {
 
-    String saveFile(String fileLocalPath);
+    String saveFile(String fileLocalPath) throws ConnectException;
 }

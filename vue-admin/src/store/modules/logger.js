@@ -30,7 +30,6 @@ const actions = {
       login(params).then(response => {
 
           const data = response.data
-          console.log('login response: '+data)
           // 向cookie中设置token
           setToken(data)
           // 向store中设置cookie
@@ -44,9 +43,7 @@ const actions = {
   },
   GetInfo({commit, state}){
     return new Promise((resolve, reject) => {
-      console.log('state token:  '+state.token);
       getInfo(state.token).then(response => {
-        console.log('GetInfo response: '+response)
         const user = response.data
         if (user.userProxy){
           commit('proxy',user.userProxy)

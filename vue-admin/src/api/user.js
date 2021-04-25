@@ -20,7 +20,6 @@ export function updateAboutMe(param){
     data: param
   })
 }
-
 export function getAboutMe(){
   return request({
     url: process.env.VUE_APP_ADMIN_API+'/user/getAboutMe',
@@ -28,3 +27,29 @@ export function getAboutMe(){
     //data: param lang
   })
 }
+
+export function getUserListByPage(param){
+  return request({
+    url: process.env.VUE_APP_ADMIN_API + '/user/getUserListByPage',
+    method: 'post',
+    data: param
+  })
+}
+
+export function updateUserState(param){
+  return request({
+    url: process.env.VUE_APP_ADMIN_API + '/user/update',
+    method: 'post',
+    data: param
+  })
+}
+
+export function removeUser(param){
+  return request({
+    url: process.env.VUE_APP_ADMIN_API + '/user/delete/' + param,
+    method: 'delete'
+  })
+}
+
+
+

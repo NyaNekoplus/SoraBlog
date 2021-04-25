@@ -15,6 +15,7 @@
         <result column="upload_github" property="uploadGithub"/>
 
         <result column="default_cover_url" property="defaultCoverUrl"/>
+        <result column="default_avatar_url" property="defaultAvatarUrl"/>
         <result column="image_priority" property="imagePriority"/>
         <result column="local_image_base_url" property="localImageBaseUrl"/>
         <result column="jsdelivr_image_base_url" property="jsdelivrImageBaseUrl"/>

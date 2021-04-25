@@ -29,6 +29,12 @@
         <result column="user_proxy" property="userProxy"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
+
+        <result column="url" property="avatarUrl"/>
+        <result column="js_delivr_url" property="avatarJsDelivrUrl"/>
     </resultMap>
 
+    <select id="getUserByPageWithAvatar" resultMap="BaseResultMap">
+        select a.*,f.url,f.js_delivr_url from (select * from s_user where enable_comment=#{enableComment}) a left join s_file f on a.avatar = f.uid
+    </select>
 </mapper>

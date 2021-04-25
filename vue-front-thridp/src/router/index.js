@@ -9,7 +9,6 @@ import Router from "vue-router"
 import indexLayout from "@/layouts/sora/index"
 import otherLayout from "../layouts/sora/other";
 import formLayout from "@/layouts/pixiv/index";
-import loginLayout from "@/layouts/user/index";
 Vue.use(Router);
 
 
@@ -34,7 +33,7 @@ const router = new Router({
             path: '',
             component: otherLayout,
             children: [
-                { path: '/tags', component:()=>import('@/views/tag') },
+                //{ path: '/tags', component:()=>import('@/views/tag') },
                 { path: '/donate', component:()=>import('@/views/donate') },
                 { path: '/about', component:()=>import('@/views/about') },
                 { path: '/blog/:title', component:()=>import('@/views/page') },

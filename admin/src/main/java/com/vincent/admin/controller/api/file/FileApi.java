@@ -82,10 +82,18 @@ public class FileApi {
         if (fileClassificationVO.getUid()==null){
             return Result.failure("获取图片列表失败！图片分类uid为null");
         }
+        SystemConfig config = systemConfigService.getConfig((long) 1);
         QueryWrapper<File> wrapper = new QueryWrapper<>();
         wrapper.eq("file_classification_uid",fileClassificationVO.getUid());
-        wrapper.orderByDesc("create_time");
+        wrapper.orderByDesc("create_time"); // todo
         IPage<File> imageListPage = fileService.page(page,wrapper);
+        List<File> imageList = imageListPage.getRecords();
+        imageList.forEach(image -> {
+            if (image.getUrl()!=null){
+                image.setUrl(config.getLocalImageBaseUrl()+image.getUrl());
+            }
+        });
+        imageListPage.setRecords(imageList);
         return Result.success("查询图片列表成功",imageListPage);
     }
 

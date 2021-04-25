@@ -2,12 +2,17 @@
   <div class="sora-form">
     <div class="sora-form__logo-box">
       <div class="sora-form__logo">
-        <img width="128" height="128" style=""
-             src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png">
+        悠の空
       </div>
       <div class="sora-form__catchphrase">
-
-        让创作变得更有乐趣
+        <div style="display: inline-block">
+          <input v-show="false" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="previewImage($event)" ref="input" />
+          <div style="width:64px;height:64px;text-align:center;" @click="openImg">
+            <!--<span v-if="imgUrl==''">点击上传</span>-->
+            <img style="height:100%;width:100%;"
+                 :src="imgUrl===''?'https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/none.png':imgUrl" alt="上传头像"/>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -28,20 +33,12 @@
         <div class="sns-button-list"><a
             href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=apple&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_apple"
             class="btn-item btn-apple js-click-trackable compact index" data-click-category="signup_page_pc"
-            data-click-action="step1" data-click-label="apple" rel="nofollow">QQ</a>
+            data-click-action="step1" data-click-label="apple" rel="nofollow">Twitter</a>
            |
           <a
             href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=sina&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_sina"
             class="btn-item btn-weibo js-click-trackable compact index" data-click-category="signup_page_pc"
             data-click-action="step1" data-click-label="sina" rel="nofollow">Github</a>
-          <!--
-          <a
-            href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=googleplus&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_google"
-            class="btn-item btn-gplus js-click-trackable compact index" data-click-category="signup_page_pc"
-            data-click-action="step1" data-click-label="googleplus" rel="nofollow">通过 Google 继续</a><a
-            href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=facebook&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_facebook"
-            class="btn-item btn-facebook js-click-trackable compact index" data-click-category="signup_page_pc"
-            data-click-action="step1" data-click-label="facebook" rel="nofollow">通过 Facebook 继续</a> -->
         </div>
 
       </div>
@@ -58,6 +55,7 @@
 
 import {register} from "../api/user";
 import {message} from "../components/Message";
+import {uploadImage} from "../api/file";
 
 export default {
   name: "register",
@@ -65,6 +63,14 @@ export default {
     username: '',
     email: '',
     password: '',
+
+    image: null,
+    imgUrl: '',
+
+    requestParam: {
+      projectName: 'sora-front',
+      classificationName: 'user-avatar'
+    }
   }),
   methods: {
     handleRegister(){
@@ -72,14 +78,51 @@ export default {
       params.username = this.username;
       params.password = this.password;
       params.email = this.email;
-      register(params).then(response => {
-        if (response.state === this.$STATE.SUCCESS) {
+      if (this.image!=null){
+        let formData = new FormData();
+        formData.append('imageList', this.image);
+        for (let key in this.requestParam){formData.append(key,this.requestParam[key]);}
+        uploadImage(formData).then(fileRes=>{
+          message(fileRes.message);
+          if (fileRes.state === this.$STATE.SUCCESS){
+            params.avatarUid = fileRes.data[0].uid;
+            register(params).then(response => {
+              message(response.message);
+              if (response.state === this.$STATE.SUCCESS) {
+                this.$router.push('/login');
+              }
+            })
+          }
+        });
+      }else {
+        register(params).then(response => {
           message(response.message);
-          this.$router.push('/login');
-        } else {
-          message(response.message);
-        }
-      })
+          if (response.state === this.$STATE.SUCCESS) {
+            this.$router.push('/login');
+          }
+        })
+      }
+    },
+    previewImage(e){
+      let file = e.target.files[0];
+      console.log(URL.createObjectURL(file))
+      this.image = file;
+      console.log('file: '+file)
+      this.imgUrl = URL.createObjectURL(file)
+      /*
+      let url = "";
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      let that = this;
+      reader.onload = function(e) {
+        url = this.result.substring(this.result.indexOf(",") + 1);
+        that.imgUrl = //"data:image/png;base64," + url;
+        // that.$refs['imgimg'].setAttribute('src','data:image/png;base64,'+url);
+      };
+      */
+    },
+    openImg() {
+      this.$refs.input.click();
     }
   }
 }

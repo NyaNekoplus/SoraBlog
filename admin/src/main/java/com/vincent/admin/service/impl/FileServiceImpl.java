@@ -16,10 +16,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,15 +77,16 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, File> implements Fi
         }
         */
 
-        //projectName现在默认base
+        //projectName现在默认sora-front
         if (StringUtils.isEmpty(projectName)) {
-            projectName = "base";
+            projectName = "sora-front";
         }
 
         //TODO 检测用户上传，如果不是网站的用户就不能调用
+        /*
         if (StringUtils.isEmpty(userUid)) {
             return Result.failure("请先注册再上传图片");
-        }
+        }*/
 
         QueryWrapper<FileClassification> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("classification_name", classificationName);
@@ -115,7 +118,7 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, File> implements Fi
                         jsDelivrUrl = jsDelivrFileService.saveFile(systemConfig.getLocalImageBaseUrl()+localUrl);
                         log.info("FileService upload jsdelivr: "+jsDelivrUrl);
                     }
-                } catch (IOException e) {
+                } catch (IOException | ResourceAccessException e) {
                     log.error("FileService: batchUploadFile: upload file failed.");
                     e.printStackTrace();
                 }
@@ -125,7 +128,9 @@ public class FileServiceImpl extends ServiceImpl<FileMapper, File> implements Fi
                 file.setFileSize(fileSize);
                 file.setFileClassificationUid(fileClassification.getUid());
                 file.setExtension(FileUtil.getFileExtension(filedata.getName()));
-                file.setUserUid(Long.parseLong(userUid));
+                if (!StringUtils.isEmpty(userUid)) {
+                    file.setUserUid(Long.parseLong(userUid));
+                }
                 file.setUrl(localUrl);
                 file.setJsDelivrUrl(jsDelivrUrl);
                 file.insert();

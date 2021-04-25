@@ -48,7 +48,7 @@ select * from user u left join class c u.userid=c.userid
 排序的字段也有影响，有条原则：对驱动表可以直接排序，对非驱动表（的字段排序）需要对循环查询的合并结果（临时表）进行排序！
     -->
     <select id="getBlogByLink" resultMap="BaseResultMap">
-        select a.*,f.url f.js_delivr_url from
+        select a.*,f.url,f.js_delivr_url from
         (select * from s_blog b where b.is_draft = 0 and b.link = #{link}) a
         left join s_file f on a.cover_uid = f.uid
         order by a.create_time desc

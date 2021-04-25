@@ -4,9 +4,9 @@
 
 <script>
 export default {
-  name: 'App',
+  name: 'Sora',
   metaInfo: {
-    title: 'App',
+    title: 'Sora',
     titleTemplate: '%s | 悠远的苍穹',
     htmlAttrs: {lang: 'en'},
     meta: [

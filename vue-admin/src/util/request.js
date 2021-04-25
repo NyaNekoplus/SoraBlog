@@ -49,7 +49,6 @@ request.interceptors.response.use(
   response => {
     // return response.data
     const res = response.data
-    console.log('request.js:' + res.message);
     //res.data = {}
     return res;
     /*if (res.state === 'success' || res.state === 'error') {

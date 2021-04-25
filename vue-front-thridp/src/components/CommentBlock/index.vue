@@ -10,19 +10,27 @@
     -->
 
     <div class="comments-main">
-      <h3 id="comments-list-title">Comments | <span class="noticom">{{  }}</span></h3>
+      <h3 id="comments-list-title">Comments | <span class="noticom">{{ total===0?'暂无评论':total }}</span></h3>
       <div id="loading-comments"><span></span></div>
 
       <div v-if="enableComment">
         <div v-if="hasComment">
           <comment-patch :comment-list="commentList" class="commentwrap"></comment-patch><!--this.rootId-->
-          <nav id="comments-navi"><a class="prev page-numbers"
-                                     href="https://2heng.xin/theme-sakura/comment-page-56/#comments">« Older</a> <a
-              class="page-numbers" href="https://2heng.xin/theme-sakura/comment-page-1/#comments">1</a> <span
-              class="page-numbers dots">…</span> <a class="page-numbers"
-                                                    href="https://2heng.xin/theme-sakura/comment-page-55/#comments">55</a> <a
-              class="page-numbers" href="https://2heng.xin/theme-sakura/comment-page-56/#comments">56</a> <span
-              aria-current="page" class="page-numbers current">57</span>
+          <nav id="comments-navi">
+            <a v-if="currentPage!==1" class="prev page-numbers">« Older</a>
+            <span v-if="totalPage>10&&currentPage>3" class="page-numbers">1</span>
+            <span v-if="totalPage>10&&currentPage>3" class="page-numbers dots">…</span>
+            <span
+                v-for="i in totalPage>10?pageRange:totalPage" :key="i"
+                @click="changePage(i)"
+                style="padding: 0 5px;"
+                :class="`page-numbers ${i===currentPage?'current':''}`"
+            >
+              {{ i }}
+            </span>
+            <span v-if="totalPage>10&&currentPage<(totalPage-2)" class="page-numbers dots">…</span>
+            <span v-if="totalPage>10&&currentPage<totalPage-2" @click="changePage(totalPage)" class="page-numbers">{{ totalPage }}</span>
+            <a v-if="currentPage!==totalPage" @click="changePage(this.currentPage+1)" class="next page-numbers">Newer »</a>
           </nav>
         </div>
         <div v-else>
@@ -37,14 +45,12 @@
     </div>
 
     <comment-box @submit-comment="submitComment"></comment-box>
-
-
-
   </section>
 </template>
 
 <script>
 import {addComment, getCommentList, getCommentUpdatedList} from "../../api/comment";
+import {message} from "../Message";
 
 export default {
   name: "index",
@@ -53,11 +59,10 @@ export default {
     CommentBox: () => import('./box'),
   },
   props: {
-    /*
     blogUid: {
-      type: Number
+      type: Number,
+      default: 0 // 默认不在文章页下评论
     },
-    */
     commentCount: {
       type: Number
     },
@@ -72,42 +77,37 @@ export default {
     //enableComment: true,
     hasComment: false,
 
+    total: 0,
+    totalPage: 0,
     pageSize: 10,
     currentPage: 1,
     commentList: [],
   }),
   methods: {
     getCommentList(){
-      let blog = this.$store.getters.blog;
-      if (blog === null){
-        console.log("Comment index: store 中 blog 为空，获取评论列表失败")
-      }
       let params = {};
       params.source = this.commentSource;
       console.log("Comment source: "+params.source);
       if (params.source === 'BLOG'){
-        params.blogUid = blog.uid;
+        params.blogUid = this.blogUid//blog.uid;
       }else {params.blogUid = 0;}
-      console.log("Blog uid: "+params.blogUid);
       params.pageSize = this.pageSize;
       params.currentPage = this.currentPage;
       getCommentList(params).then(response=>{
-        console.log(response.state);
         if (response.state === this.$STATE.SUCCESS){
+          message(response.message);
           if (response.data.records.length !== 0){
             this.hasComment = true;
+            this.total = response.data.total;
+            this.totalPage = response.data.pages;
             this.commentList = response.data.records;
           }
-          console.log(response.data.records);
-        }else {
-          alert(response.message);
-          alert('获取评论失败');
         }
       })
     },
     submitComment(c){
       let param = {};
-      param.blogUid = c.blogUid;
+      param.blogUid = this.blogUid;
       param.userUid = c.userUid;
       param.toUid = c.toUid;
       param.toUserUid = c.toUserUid;
@@ -117,41 +117,49 @@ export default {
       param.targetType = c.targetType;
       //param.commentTime = c.commentTime;
       addComment(param).then(response=> {
+        message(response.message)
         if (response.state === this.$STATE.SUCCESS) {
-          alert(response.message);
-          alert('评论成功');
           this.updateComment();
-        } else {
-          alert(response.message);
-          alert('发送失败');
         }
       });
     },
     updateComment(){
-      let blog = this.$store.getters.blog;
-      if (blog === null){
-        console.log("Comment index: store 中 blog 为空，获取评论列表失败")
-      }
       let params = {};
       params.source = this.commentSource;
       console.log("Comment source: "+params.source);
       if (params.source === 'BLOG'){
-        params.blogUid = blog.uid;
+        params.blogUid = this.blogUid//blog.uid;
       }else {params.blogUid = 0;}
       console.log("Blog uid: "+params.blogUid);
-      params.pageSize = 10//this.pageSize;
-      params.currentPage = 1//this.currentPage;
+      params.pageSize = this.pageSize;
+      params.currentPage = this.currentPage;
       getCommentUpdatedList(params).then(response => {
+        message(response.message)
         if (response.state === this.$STATE.SUCCESS) {
-          alert(response.message);
-          alert('更新评论成功');
           this.commentList = response.data.records;
-          //this.setCommentList(response.data.records);
-        } else {
-          alert(response.message);
-          alert('更新评论失败');
+          this.total = response.data.total;
+          this.totalPage = response.data.pages;
         }
       })
+    },
+    changePage(page){
+      this.currentPage = page;
+      this.updateComment();
+    }
+  },
+  computed: {
+    pageRange(){
+      let range = [];
+      let cur = this.currentPage;
+      let v = 2;
+      let s=cur-v;
+      if (s<=0)s=1
+      let e = cur+v;
+      if (e>=this.totalPage)e=this.totalPage+1
+      for (;s<e;s++){//todo
+        range.push(s);
+      }
+      return range;
     }
   },
   created() {
@@ -164,5 +172,7 @@ export default {
 </script>
 
 <style scoped>
-
+.next,.prev{
+  color: #00bbff;
+}
 </style>

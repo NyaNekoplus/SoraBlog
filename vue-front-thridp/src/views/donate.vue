@@ -4,8 +4,7 @@
     <div id="content" class="site-content">
       <div id="primary" class="content-area">
         <main id="main" class="site-main" role="main">
-          <article id="post-202"
-                   class="post-202 post type-post status-publish format-standard hentry category-uncategorized tag-bilibili tag-3 tag-5 tag-4">
+          <article class="post-202 post type-post status-publish format-standard hentry category-uncategorized tag-bilibili tag-3 tag-5 tag-4">
             <div class="entry-content">
               <p style="color: #3598db; font-size: 24pt;">
                 积累功德的有效方法：<br>
@@ -18,20 +17,7 @@
                 √ 和Vincent交个朋友<br><br><br><br>
               </p>
               <p style="text-align: center;">支付宝 / 微信</p>
-              <div class="single-reward">
-                <div class="reward-open">赏
-                  <div class="reward-main">
-                    <ul class="reward-row">
-                      <li class="alipay-code">
-                        <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/alipay.png">
-                      </li>
-                      <li class="wechat-code">
-                        <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/wechat.png">
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+              <donate-icon/>
               <p>
                 <strong>USDT(ERC20)：</strong><span style="margin-left: 25px">{{usdt}}</span>
                 <a v-clipboard:copy="usdt"
@@ -79,10 +65,12 @@
 
 <script>
 import {message} from "../components/Message";
+import DonateIcon from "../components/DonateIcon";
 
 export default {
   name: "donate",
   components: {
+    DonateIcon,
     Cover: () => import('@/layouts/sora/widgets/Cover'),
   },
   data: () => ({

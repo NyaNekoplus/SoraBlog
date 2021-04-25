@@ -6,14 +6,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.benmanes.caffeine.cache.Cache;
-import com.vincent.admin.entity.Article;
-import com.vincent.admin.entity.Comment;
-import com.vincent.admin.entity.User;
+import com.vincent.admin.entity.*;
 import com.vincent.admin.enums.UserOperation;
 import com.vincent.admin.record.VisitRecord;
-import com.vincent.admin.service.ArticleService;
-import com.vincent.admin.service.CommentService;
-import com.vincent.admin.service.UserService;
+import com.vincent.admin.service.*;
 import com.vincent.admin.util.Result;
 import com.vincent.admin.vo.CommentVO;
 import lombok.extern.slf4j.Slf4j;
@@ -50,6 +46,10 @@ public class CommentApi {
     private UserService userService;
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private FileService fileService;
+    @Autowired
+    private SystemConfigService systemConfigService;
 
     @PostMapping("/list")
     @Cacheable(key = "#p0.currentPage + #p0.pageSize + #p0.source + #p0.blogUid")
@@ -68,6 +68,7 @@ public class CommentApi {
         Page<Comment> page = new Page<>();
         page.setSize(commentVO.getPageSize());
         page.setCurrent(commentVO.getCurrentPage());
+        queryWrapper.eq("source",commentVO.getSource());
         queryWrapper.isNull("to_uid");
         queryWrapper.eq("target_type",0); // 所有一级评论
         queryWrapper.orderByDesc("create_time");
@@ -108,7 +109,7 @@ public class CommentApi {
         List<User> processedUserList = new ArrayList<>();
         userList.forEach(user -> {
             User tUser = new User();
-            //tUser.setAvatar();
+            tUser.setAvatar(user.getAvatar());
             tUser.setUid(user.getUid());
             tUser.setUserProxy(user.getUserProxy());
             tUser.setUsername(user.getUsername());
@@ -118,9 +119,32 @@ public class CommentApi {
             processedUserList.add(tUser);
         });
 
+        Collection<Long> avatarUidList = new ArrayList<>();
+        processedUserList.forEach(user -> {
+            if (user.getAvatar()!=null)
+                avatarUidList.add(user.getAvatar());
+        });
+
+        SystemConfig config = systemConfigService.getConfig((long)1);
+        HashMap<Long, String> avatarUrlMap = new HashMap<>();
+        if (avatarUidList.size() > 0){
+            List<File> avatarList = fileService.listByIds(avatarUidList);
+
+            avatarList.forEach(avatar -> {
+                avatarUrlMap.put(avatar.getUid(),
+                        avatar.getJsDelivrUrl()==null?avatar.getJsDelivrUrl():
+                                config.getLocalImageBaseUrl()+avatar.getUrl());
+            });
+        }
+
         HashMap<Long, User> userMap = new HashMap<>();
         processedUserList.forEach(user -> {
             if (user.getUid()!=null){
+                if (user.getAvatar()==null){
+                    user.setAvatarUrl(config.getDefaultAvatarUrl());
+                }else {
+                    user.setAvatarUrl(avatarUrlMap.get(user.getAvatar()));
+                }
                 userMap.put(user.getUid(), user);
             }
         }); // 哈希表，方便定位用户

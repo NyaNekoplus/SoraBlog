@@ -2,6 +2,7 @@ package com.vincent.admin.controller.api.admin;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.vincent.admin.entity.User;
+import com.vincent.admin.enums.Proxy;
 import com.vincent.admin.holder.RequestHolder;
 import com.vincent.admin.service.UserService;
 import com.vincent.admin.util.*;
@@ -53,7 +54,7 @@ public class LoginApi {
         if (user == null){
             return Result.failure("账号不存在，登陆失败!剩余尝试次数："+getRestNumberOfTryLogin(request));
         }
-        if (user.getUserProxy()==0){  // 0 为普通用户
+        if (user.getUserProxy().equals(Proxy.USER)){
             return Result.failure("权限不足,登陆失败");
         }
         if(user.getPassword().equals(MD5Util.string2MD5(password))){

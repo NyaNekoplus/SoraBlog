@@ -48,10 +48,14 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
             return Result.failure("文章不存在");
         }
         SystemConfig config = systemConfigService.getConfig((long) 1);
-        if (article.getCoverJsDelivrUrl() != null){
-            article.setCoverUrl(article.getCoverJsDelivrUrl());
+        if (article.getCoverUrl()==null){
+            article.setCoverUrl(config.getLocalImageBaseUrl()+config.getDefaultCoverUrl());
         }else {
-            article.setCoverUrl(config.getLocalImageBaseUrl()+article.getCoverUrl());
+            if (article.getCoverJsDelivrUrl() != null){
+                article.setCoverUrl(article.getCoverJsDelivrUrl());
+            }else {
+                article.setCoverUrl(config.getLocalImageBaseUrl()+article.getCoverUrl());
+            }
         }
         return Result.success("获取文章成功，链接："+link,article);
     }
@@ -59,16 +63,6 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     @Cacheable(key = "#p0.currentPage + #p0.pageSize + #p0.categoryUid")
     public String getArticleListByPage(ArticleVO articleVO) {
-        /*
-        articleVO.setIsDraft(false);
-        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("is_draft", false);
-        boolean isIndex = articleVO.getCategoryUid()==0;
-        if (!isIndex){
-            queryWrapper.in("category_uid", articleVO.getCategoryUid());
-        }
-        queryWrapper.orderByDesc("create_time");
-        */
         log.info("articleVO.getCategoryUid(): "+articleVO.getCategoryUid());
         Page<Article> page = new Page<>();
         page.setSize(articleVO.getPageSize());

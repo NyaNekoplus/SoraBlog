@@ -21,7 +21,8 @@
         <a class="page-numbers" href="https://2heng.xin/theme-sakura/comment-page-56/#comments">56</a>
         <a class="page-numbers" href="https://2heng.xin/theme-sakura/comment-page-57/#comments">57</a>
         -->
-        <a v-if="currentPage!==totalPage" class="next page-numbers" href="https://2heng.xin/theme-sakura/comment-page-56/#comments">Newer »</a></nav>
+        <a v-if="currentPage!==totalPage" class="next page-numbers" href="https://2heng.xin/theme-sakura/comment-page-56/#comments">Newer »</a>
+      </nav>
       <!--<a href="https://2heng.xin/page/2/?_pjax=%23page">Previous</a>-->
     </div>
   </div><!-- #primary -->

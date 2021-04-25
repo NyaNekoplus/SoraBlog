@@ -389,6 +389,7 @@ export default {
     this.getBlogList(false);
   },
   created () {
+
   },
   methods: {
     getBlogList(isDraft){

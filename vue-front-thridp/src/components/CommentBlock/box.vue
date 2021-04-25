@@ -530,7 +530,6 @@ export default {
   data: () => ({
     content: '',
     currentUser: null,
-
   }),
   methods:{
     ...mapMutations(['removeToInfo','setCommentList']),
@@ -544,12 +543,12 @@ export default {
         message("请先登陆");
         return;
       }
-      let blogUid = this.$store.getters.blog.uid;
+      let blogUid = this.blogUid//this.$store.getters.blog.uid;
       console.log('blogUid: '+blogUid);
       let toInfo = this.$store.getters.toInfo;
 
       let param = {};
-      param.blogUid = blogUid;
+      //param.blogUid = blogUid; // 在comment-index中
       //param.rootUid = blogId;
       param.userUid = userInfo.uid;
       param.content = this.content;

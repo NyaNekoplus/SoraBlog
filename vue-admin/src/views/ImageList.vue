@@ -31,7 +31,7 @@
                 <v-col v-for="image in imageList" :key="image.uid" cols="3">
                   <v-hover v-slot="{ hover }">
                     <v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }">
-                      <v-img :src="image.url" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="300px">
+                      <v-img :src="image.jsDelivrUrl===null?image.url:image.jsDelivrUrl" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="300px">
                         <v-card-title :class="{ 'show-btns': hover }" :color="transparent">
                           <v-row dense no-gutters justify="space-between">
                             <v-col cols="3">

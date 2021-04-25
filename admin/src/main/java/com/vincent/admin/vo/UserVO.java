@@ -13,6 +13,8 @@ public class UserVO extends BaseVO<User>{
 
     private String username;
 
+    private Long avatarUid;
+
     private String nickName;
 
     private String password;
@@ -24,4 +26,7 @@ public class UserVO extends BaseVO<User>{
     private String signupDate;
 
     private Boolean remember;
+
+    private Boolean enableComment;
+
 }

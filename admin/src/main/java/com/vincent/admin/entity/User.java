@@ -61,10 +61,12 @@ public class User extends SuperEntity<User> {
 
     private Integer enableEmailNotification; // 开启邮件通知
 
-    private Integer userProxy; // 0:普通用户 1：测试用户 2：博主
+    private Integer userProxy; // 0:博主 1：测试用户 2：普通用户
 
     @TableField(exist = false)
     private String avatarUrl;
+    @TableField(exist = false)
+    private String avatarJsDelivrUrl;
 
     public User(){
         super();

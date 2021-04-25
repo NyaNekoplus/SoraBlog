@@ -1,11 +1,12 @@
 <template>
   <div id="wrapper">
+    <v-overlay :value="isLoading"></v-overlay>
     <slide-bg/>
 
     <search-bar/>
     <pixiv-view/>
 
-   <pixiv-footer/>
+   <!--<pixiv-footer/>-->
 
   </div>
 </template>
@@ -19,7 +20,12 @@ export default {
     SearchBar: () => import("./SearchBar"),
     PixivFooter: () => import("./Footer")
   },
-  data: () => ({}),
+  data: () => ({
+    isLoading: true
+  }),
+  created() {
+    this.isLoading = false
+  }
 }
 </script>
 

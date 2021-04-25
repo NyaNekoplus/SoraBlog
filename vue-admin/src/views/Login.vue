@@ -5,7 +5,6 @@
       <div class="sora-form__catchphrase">全て遠き理想郷</div>
     </div>
 
-
     <div class="major">
       <input type="text" required autocomplete="username" placeholder="邮箱/用户名" autocapitalize="off" v-model="username">
       <input type="password" required autocomplete="current-password" placeholder="密码" autocapitalize="off" v-model="password">
@@ -20,44 +19,6 @@
     <ul class="uuvlpj-0 jpfKJC"></ul>
     <div class="major">
       <input class="login-button" value="登录" type="button" @click="handleLogin">
-    </div>
-    <div class="sora-form-nav">
-      <a href="">忘记密码</a> |
-      <a href="/register" data-click-category="signup_pc_page" data-click-action="step1" data-click-label="mail">注册账号</a>
-    </div>
-
-
-    <!--
-    <a href="" class="sora-form__submit--login">登录</a>
-    -->
-
-    <div class="sora-form__sns-btn-area">
-      <div class="sora-form__sns-btn-area index">
-        <div>使用其他账号登陆</div>
-        <div class="sns-button-list"><a
-            href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=apple&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_apple"
-            class="btn-item btn-apple js-click-trackable compact index" data-click-category="signup_page_pc"
-            data-click-action="step1" data-click-label="apple" rel="nofollow">QQ</a>
-          |
-          <a
-              href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=sina&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_sina"
-              class="btn-item btn-weibo js-click-trackable compact index" data-click-category="signup_page_pc"
-              data-click-action="step1" data-click-label="sina" rel="nofollow">Github</a>
-          <!--
-          <a
-            href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=googleplus&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_google"
-            class="btn-item btn-gplus js-click-trackable compact index" data-click-category="signup_page_pc"
-            data-click-action="step1" data-click-label="googleplus" rel="nofollow">通过 Google 继续</a><a
-            href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=facebook&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_facebook"
-            class="btn-item btn-facebook js-click-trackable compact index" data-click-category="signup_page_pc"
-            data-click-action="step1" data-click-label="facebook" rel="nofollow">通过 Facebook 继续</a> -->
-        </div>
-      </div>
-    </div>
-    <div class="recaptcha-terms">
-      This site is protected by reCAPTCHA Enterprise and the Google
-      <a href="https://policies.google.com/privacy"> Privacy Policy</a> and
-      <a href="https://policies.google.com/terms"> Terms of Service</a> apply.
     </div>
   </div>
 </template>
@@ -84,8 +45,6 @@ export default {
       this.$store.dispatch('logger/Login',param)
         .then(response => {
         if (response.state === this.$STATE.SUCCESS) {
-          alert(response.message);
-          alert(response.data)
           this.$router.push({path: '/'});
         } else {
           alert(response.message);

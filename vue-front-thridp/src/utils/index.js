@@ -23,3 +23,18 @@ export function parseTime(format, date){
     }
     return format;
 }
+
+export function formatDate(date) {
+    let d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear(),
+        hour = d.getUTCHours(),
+        minute = d.getUTCMinutes();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    if (hour.toString().length < 2) hour = '0' + hour;
+    if (minute.toString().length < 2) minute = '0' + minute;
+    return [year, month, day].join('-')+' '+[hour, minute].join(':');
+}

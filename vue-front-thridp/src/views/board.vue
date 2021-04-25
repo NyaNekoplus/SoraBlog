@@ -1,7 +1,9 @@
-<template>
-  <!-- 留言板 -->
+<template><!-- 留言板 -->
   <div>
-    <cover/>
+    <cover
+        title="留言板"
+        cover-src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/board.jpg"
+    />
     <comment-block :comment-source="'BOARD'"></comment-block><!--:enable-comment="blog.enableComment" -->
   </div>
 </template>
