@@ -1,4 +1,4 @@
-package com.vincent.admin.record;
+package com.vincent.admin.annotation.record;
 
 import com.vincent.admin.entity.Record;
 import com.vincent.admin.holder.AbstractRequestAwareRunnable;

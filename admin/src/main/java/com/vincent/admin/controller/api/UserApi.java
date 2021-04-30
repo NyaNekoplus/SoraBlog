@@ -71,14 +71,14 @@ public class UserApi {
 
             SystemConfig config;
             if (user.getAvatar() != null){
+                config = systemConfigService.getConfig((long) 1);
                 File avatar = fileService.getById(user.getAvatar());
                 if (avatar != null){
                     if (avatar.getJsDelivrUrl() != null){
                         user.setAvatarUrl(avatar.getJsDelivrUrl());
                     }else if (avatar.getUrl() != null){
-                        user.setAvatarUrl(avatar.getUrl());
+                        user.setAvatarUrl(config.getLocalImageBaseUrl()+avatar.getUrl());
                     }else {
-                        config = systemConfigService.getConfig((long) 1);
                         user.setAvatarUrl(config.getDefaultAvatarUrl());
                     }
                 }

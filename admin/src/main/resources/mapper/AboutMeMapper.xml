@@ -12,6 +12,7 @@
         <result column="motto" property="motto"/>
         <result column="detail" property="detail"/>
         <result column="avatar_url" property="avatarUrl"/>
+        <result column="enable_comment" property="enableComment"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
     </resultMap>

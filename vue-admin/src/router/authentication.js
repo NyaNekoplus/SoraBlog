@@ -19,7 +19,7 @@ router.beforeEach((to, from, next) => {
           next()
         }).catch(err=>{
           store.dispatch('logger/FrontEndLogout').then(()=>{
-            console.log('获取用户信息失败'+err)
+            alert('获取用户信息失败'+err)
             next('/')
           })
         });

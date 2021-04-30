@@ -24,4 +24,6 @@ public class About extends SuperEntity<About>{
     private String motto;
 
     private String detail;
+
+    private Boolean enableComment;
 }

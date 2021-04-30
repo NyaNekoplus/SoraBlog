@@ -1,27 +1,14 @@
 package com.vincent.admin.controller.api;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.vincent.admin.entity.*;
 import com.vincent.admin.enums.UserOperation;
-import com.vincent.admin.record.VisitRecord;
+import com.vincent.admin.annotation.record.VisitRecord;
 import com.vincent.admin.service.*;
 import com.vincent.admin.util.Result;
 import com.vincent.admin.vo.ArticleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * @author Vincent Tsai

@@ -3,6 +3,7 @@ package com.vincent.admin.controller.api.admin;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.vincent.admin.annotation.proxy.ProxyAuth;
 import com.vincent.admin.entity.About;
 import com.vincent.admin.entity.User;
 import com.vincent.admin.mapper.UserMapper;
@@ -29,16 +30,19 @@ public class UserApi {
     @Autowired
     private AboutMeService aboutMeService;
 
+    @ProxyAuth
     @GetMapping("/getAboutMe")
     public String getAboutMe(){
         return aboutMeService.getAboutMeByLang(1);
     }
 
+    @ProxyAuth
     @PostMapping("/updateAboutMe")
     public String updateAboutMe(@RequestBody About about){
         return aboutMeService.updateAboutMe(about);
     }
 
+    @ProxyAuth
     @PostMapping("/getUserListByPage")
     public String getUserListByPage(@RequestBody UserVO userVO){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();

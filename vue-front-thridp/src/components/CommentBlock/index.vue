@@ -18,9 +18,9 @@
           <comment-patch :comment-list="commentList" class="commentwrap"></comment-patch><!--this.rootId-->
           <nav id="comments-navi">
             <a v-if="currentPage!==1" class="prev page-numbers">« Older</a>
-            <span v-if="totalPage>10&&currentPage>3" class="page-numbers">1</span>
-            <span v-if="totalPage>10&&currentPage>3" class="page-numbers dots">…</span>
-            <span
+            <span v-if="totalPage>10&&currentPage>4" @click="changePage(1)" class="page-numbers">1</span>
+            <span v-if="totalPage>10&&currentPage>4" class="page-numbers dots">…</span>
+            <span v-if="totalPage!==1"
                 v-for="i in totalPage>10?pageRange:totalPage" :key="i"
                 @click="changePage(i)"
                 style="padding: 0 5px;"
@@ -28,8 +28,8 @@
             >
               {{ i }}
             </span>
-            <span v-if="totalPage>10&&currentPage<(totalPage-2)" class="page-numbers dots">…</span>
-            <span v-if="totalPage>10&&currentPage<totalPage-2" @click="changePage(totalPage)" class="page-numbers">{{ totalPage }}</span>
+            <span v-if="totalPage>10&&currentPage<(totalPage-3)" class="page-numbers dots">…</span>
+            <span v-if="totalPage>10&&currentPage<(totalPage-3)" @click="changePage(totalPage)" class="page-numbers">{{ totalPage }}</span>
             <a v-if="currentPage!==totalPage" @click="changePage(this.currentPage+1)" class="next page-numbers">Newer »</a>
           </nav>
         </div>
@@ -62,9 +62,6 @@ export default {
     blogUid: {
       type: Number,
       default: 0 // 默认不在文章页下评论
-    },
-    commentCount: {
-      type: Number
     },
     enableComment: {
       type: Boolean
@@ -151,8 +148,8 @@ export default {
     pageRange(){
       let range = [];
       let cur = this.currentPage;
-      let v = 2;
-      let s=cur-v;
+      let v = 3;
+      let s=cur-v+1;
       if (s<=0)s=1
       let e = cur+v;
       if (e>=this.totalPage)e=this.totalPage+1

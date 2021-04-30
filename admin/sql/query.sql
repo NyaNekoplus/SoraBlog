@@ -11,10 +11,17 @@ select * from s_file_classification;
 select * from s_file;
 select * from s_visit_record;
 
+select a.*,f.url,f.js_delivr_url from (select * from s_user where enable_comment=1) a left join s_file f on a.avatar = f.uid;
+
+
 update s_visit_record set ip = '32.31.30.222' where uid>36;
 update s_visit_record set create_time = '2021-04-16 00:00:00' where uid<36;
 
-
+        select a.*, f.url, f.jsdelivr_url from (
+        (select max(update_time) update_time, level from s_blog where level>0 group by level) b
+        inner join s_blog a on a.level = b.level and a.update_time = b.update_time)
+        left join s_file f on a.cover_uid = f.uid;
+        
 select count(ip) from (select ip from s_visit_record where create_time > '2021-04-15 00:00:00' and create_time < 	 group by ip) t;
 
 select ip from s_visit_record group by ip having count(ip)>5;

@@ -1,7 +1,7 @@
 <template>
   <div class="top-feature-row">
     <h1 class="fes-title" style="font-family: 'Ubuntu', sans-serif;">
-      <i class="fa fa-anchor" aria-hidden="true"></i> START:DASH!!</h1>
+      <i class="fa fa-anchor" aria-hidden="true"></i> Zero: </h1>
     <!--
     <div class="top-feature-v2">
       <div class="the-feature square from_left_and_right">
@@ -50,7 +50,7 @@
             </div>
             <div class="info">
               <h3>{{ top.title }}</h3>
-              <p>P 站的正确打开方式</p>
+              <!--<p>P 站的正确打开方式</p>-->
             </div>
           </a>
         </div>

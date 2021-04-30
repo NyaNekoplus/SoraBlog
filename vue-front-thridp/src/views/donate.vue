@@ -1,76 +1,69 @@
 <template>
   <div>
     <cover title="功德箱" cover-src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/donate.jpg"/>
-    <div id="content" class="site-content">
-      <div id="primary" class="content-area">
-        <main id="main" class="site-main" role="main">
-          <article class="post-202 post type-post status-publish format-standard hentry category-uncategorized tag-bilibili tag-3 tag-5 tag-4">
-            <div class="entry-content">
-              <p style="color: #3598db; font-size: 24pt;">
-                积累功德的有效方法：<br>
-              </p>
-              <p>
-                × 放生<br>
-                × 念经<br>
-                × 戒色<br>
-                × 戒赌<br>
-                √ 和Vincent交个朋友<br><br><br><br>
-              </p>
-              <p style="text-align: center;">支付宝 / 微信</p>
-              <donate-icon/>
-              <p>
-                <strong>USDT(ERC20)：</strong><span style="margin-left: 25px">{{usdt}}</span>
-                <a v-clipboard:copy="usdt"
-                   v-clipboard:success="copy"
-                   class="copy-code" href="javascript:" title="复制">
-                  <i class="fa fa-clipboard" aria-hidden="true"></i>
-                </a>
-                <br><br>
-                <strong>ETH：</strong><span style="margin-left: 100px">{{eth}}</span>
-                <a v-clipboard:copy="btc"
-                   v-clipboard:success="copy"
-                   class="copy-code" href="javascript:" title="复制">
-                  <i class="fa fa-clipboard" aria-hidden="true"></i>
-                </a>
-                <br><br>
-                <strong>BTC：</strong><span style="margin-left: 100px">{{btc}}</span>
-                <a v-clipboard:copy="btc"
-                   v-clipboard:success="copy"
-                   class="copy-code" href="javascript:" title="复制">
-                  <i class="fa fa-clipboard" aria-hidden="true"></i>
-                </a>
-                <br><br>
+    <page-content>
+      <article class="post type-post status-publish format-standard hentry category-uncategorized tag-bilibili tag-3 tag-5 tag-4">
+        <div class="entry-content">
+          <p style="color: #3598db; font-size: 24pt;">
+            积累功德的有效方法：<br>
+          </p>
+          <p>
+            × 放生<br>
+            × 念经<br>
+            × 戒色<br>
+            × 戒赌<br>
+            √ 和Vincent交个朋友<br><br><br><br>
+          </p>
+          <p style="text-align: center;">支付宝 / 微信</p>
+          <donate-icon/>
+          <p>
+            <strong>USDT(ERC20)：</strong><span style="margin-left: 25px">{{usdt}}</span>
+            <a v-clipboard:copy="usdt"
+               v-clipboard:success="copy"
+               class="copy-code" href="javascript:" title="复制">
+              <i class="fa fa-clipboard" aria-hidden="true"></i>
+            </a>
+            <br><br>
+            <strong>ETH：</strong><span style="margin-left: 100px">{{eth}}</span>
+            <a v-clipboard:copy="btc"
+               v-clipboard:success="copy"
+               class="copy-code" href="javascript:" title="复制">
+              <i class="fa fa-clipboard" aria-hidden="true"></i>
+            </a>
+            <br><br>
+            <strong>BTC：</strong><span style="margin-left: 100px">{{btc}}</span>
+            <a v-clipboard:copy="btc"
+               v-clipboard:success="copy"
+               class="copy-code" href="javascript:" title="复制">
+              <i class="fa fa-clipboard" aria-hidden="true"></i>
+            </a>
+            <br><br>
 
-                任意金额，交个朋友
-              </p>
-              <p></p>
-              <p>
-                <a href="https://www.vultr.com/?ref=7196564" target="_blank" rel="nofollow">
-                  <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/gd.jfif"
-                       alt="谢谢饲主了喵~"
-                       title="谢谢饲主了喵~"
-                       width="100%">
-                </a>
-              </p>
-              <noscript>
-                <img src="https://www.vultr.com/media/banner_1.png" alt="谢谢饲主了喵~" title="谢谢饲主了喵~" width="100%">
-              </noscript>
-            </div>
-          </article>
-        </main>
-      </div>
-    </div>
+            任意金额，交个朋友
+          </p>
+          <p></p>
+          <p>
+            <a href="https://sora.vin/Donate" target="_blank" rel="nofollow">
+              <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/gd.jfif"
+                   alt="谢谢饲主了喵~"
+                   title="谢谢饲主了喵~"
+                   width="100%">
+            </a>
+          </p>
+        </div>
+      </article>
+    </page-content>
   </div>
 </template>
 
 <script>
 import {message} from "../components/Message";
-import DonateIcon from "../components/DonateIcon";
 
 export default {
   name: "donate",
   components: {
-    DonateIcon,
+    DonateIcon: () => import('@/components/DonateIcon'),
+    PageContent: () => import('@/components/PageContent'),
     Cover: () => import('@/layouts/sora/widgets/Cover'),
   },
   data: () => ({

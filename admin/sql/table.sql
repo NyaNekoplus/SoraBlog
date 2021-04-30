@@ -82,7 +82,7 @@ DROP TABLE IF EXISTS `s_category`;
 CREATE TABLE `s_category` (
   `uid` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一uid',
   `name` varchar(8) DEFAULT NULL COMMENT '分类内容',
-  `click_count` int DEFAULT '0' COMMENT '标签简介',
+  `click_count` int DEFAULT '0' COMMENT '分类点击数',
   `create_time` timestamp NOT NULL DEFAULT '2021-03-18 14:08:05' COMMENT '创建时间',
   `update_time` timestamp DEFAULT NULL COMMENT '更新时间',
   `sort` int DEFAULT '0' COMMENT '排序字段，越大越靠前',

@@ -57,9 +57,7 @@
 
         <div class="blank" style="padding-top: 0px;"></div>
 
-
         <sora-view/>
-
 
         <sora-footer/>
 
@@ -68,92 +66,25 @@
             <div class="icon"></div>
           </div>
           <div class="site-branding">
-            <h1 class="site-title"><a href="https://www.lovewx.club"></a>悠遠的蒼穹</h1>
+            <h1 class="site-title">
+              <a :href="about.link">
+                <ruby>
+                  <span class="sakuraso" style="padding-left: 7px"><span>悠</span></span>
+
+                  <span class="no">の</span>
+
+                  <span class="shironeko">空</span>
+
+                  <rp></rp><rt class="chinese-font">{{ about.name }}</rt><rp></rp>
+                </ruby>
+              </a>
+            </h1>
           </div>
         </div> <!--在section内 -->
-
-
       </div>
-
     </section>
 
-    <div id="mo-nav" :class="sidebarOn?'open':''">
-      <div class="m-avatar"><img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png"></div>
-      <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">
-        Mashiro Sama...</p>
-      <p style="text-align: center; word-spacing: 20px;">
-        <a href="http://twitter.com/2hengxin" class="fa fa-twitter" target="_blank" style="color: #00aced"></a>
-        <a href="http://weibo.com/2960337711" class="fa fa-weibo" target="_blank" style="color: #dd4b39"></a>
-        <a href="http://github.com/mashirozx" class="fa fa-github" target="_blank" style="color: #333"></a>
-        <a onclick="mail_me()" class="fa fa-envelope" style="color: #ffbf00"></a>
-      </p>
-      <div class="m-search">
-        <form class="m-search-form" method="get" action="https://2heng.xin" role="search">
-          <input class="m-search-input" type="search" name="s" placeholder="搜索..." required="">
-        </form>
-      </div>
-      <ul id="menu-new-1" class="menu">
-        <li v-for="item in navbarItem" :key="item.name">
-          <a :href="item.link" aria-current="page">
-            <span class="faa-parent animated-hover"><i :class="item.icon" aria-hidden="true"></i> {{ item.name }}</span>
-          </a>
-          <ul v-if="item.children.length" class="sub-menu">
-            <li v-for="child in item.children" :key="child.name"><a :href="child.link"><i :class="child.icon" aria-hidden="true"></i>{{ child.name }}</a></li>
-          </ul>
-        </li>
-        <!--
-        <li class="current-menu-item">
-          <a href="/" aria-current="page">
-            <span class="faa-parent animated-hover"><i class="fa fa-fort-awesome faa-horizontal" aria-hidden="true"></i> 首页</span>
-          </a>
-        </li>
-        <li>
-          <a href="/time-series/">
-                  <span class="faa-parent animated-hover">
-                    <i class="fa fa-archive faa-shake" aria-hidden="true"></i> 归档
-                  </span>
-          </a>
-          <ul class="sub-menu">
-            <li><a href="https://2heng.xin/archives/hacking/"><i class="icon-uni304F" aria-hidden="true"></i>极客</a></li>
-            <li><a href="https://2heng.xin/archives/article/"><i class="fa fa-file-text-o" aria-hidden="true"></i>文章</a></li>
-            <li><a href="https://2heng.xin/archives/review/"><i class="fa fa-quote-right" aria-hidden="true"></i>影评</a></li>
-            <li><a href="https://2heng.xin/archives/thingking/"><i class="fa fa-commenting-o" aria-hidden="true"></i> 随想</a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://mashiro.top/"><i class="fa fa-book" aria-hidden="true"></i>笔记</a></li>
-          </ul>
-        </li>
-        <li><a><span class="faa-parent animated-hover"><i class="fa fa-list-ul faa-vertical" aria-hidden="true"></i> 清单</span></a>
-          <ul class="sub-menu">
-            <li><a href="https://2heng.xin/book-list/"><i class="fa fa-th-list faa-bounce" aria-hidden="true"></i>书单</a></li>
-            <li><a href="https://2heng.xin/bangumi/"><i class="fa fa-film faa-vertical" aria-hidden="true"></i>番组</a></li>
-            <li><a href="https://2heng.xin/music/"><i class="fa fa-headphones" aria-hidden="true"></i> 歌单</a></li>
-            <li><a href="https://2heng.xin/hearthstone-deck-index/"><i class="iconfont icon-Hearthstone" aria-hidden="true"></i> 卡组</a></li>
-          </ul>
-        </li>
-        <li><a href="/board"><span class="faa-parent animated-hover"><i
-            class="fa fa-pencil-square-o  faa-tada" aria-hidden="true"></i> 留言板</span></a></li>
-        <li><a href="https://2heng.xin/friends/"><span class="faa-parent animated-hover"><i
-            class="fa fa-link faa-shake" aria-hidden="true"></i> 友人帐</span></a></li>
-        <li><a href="https://2heng.xin/donate/"><span class="faa-parent animated-hover"><i
-            class="fa fa-heart faa-pulse" aria-hidden="true"></i> 赞赏</span></a></li>
-        <li><a href="#"><span class="faa-parent animated-hover"><i class="fa fa-leaf faa-wrench" aria-hidden="true"></i> 关于</span></a>
-          <ul class="sub-menu">
-            <li><a href="https://2heng.xin/about/"><i class="fa fa-grav" aria-hidden="true"></i> 我？</a></li>
-            <li><a href="https://2heng.xin/analytics/"><i class="fa fa-area-chart" aria-hidden="true"></i> 统计</a></li>
-            <li><a href="https://2heng.xin/server-status/"><i class="fa fa-heartbeat" aria-hidden="true"></i>监控</a></li>
-            <li><a href="https://2heng.xin/theme-sakura/"><i class="iconfont icon-sakura" aria-hidden="true"></i>主题</a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://2heng.xin/sitemap_index.xml"><i class="fa fa-map-signs" aria-hidden="true"></i> MAP</a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://2heng.xin/feed"><i class="fa fa-rss " aria-hidden="true"></i>RSS</a></li>
-          </ul>
-        </li>
-        <li><a href="/tags"><span class="faa-parent animated-hover"><i class="fa fa-android faa-vertical" aria-hidden="true"></i> 标签</span></a></li>
-        <li>
-          <a target="_blank" rel="noopener noreferrer" href="https://hello.2heng.xin/about/more">
-            <span class="faa-parent animated-hover"><i class="fa fa-tree faa-pulse" aria-hidden="true"></i> 时光轴</span>
-          </a>
-        </li>
-        -->
-      </ul>
-      <p style="text-align: center; font-size: 13px; color: #b9b9b9;">© 2021 Vincent Tsai</p></div>
+
     <sora-setting/>
 
 
@@ -174,15 +105,13 @@ export default {
   },
   data: () => ({
     coverHeight: 300,
-    sidebarOn: false,
-
+    //sidebarOn: false,
     about: {},
-
   }),
   methods: {
-    ...mapMutations(['setAbout']),
+    ...mapMutations(['setAbout','setSidebarOn']),
     showSidebar(){
-      this.sidebarOn = !this.sidebarOn;
+      this.setSidebarOn(!this.$store.getters.sidebarOn);
     },
     headertop_down() {
       let b = document.querySelector(".site-content")
@@ -211,8 +140,8 @@ export default {
     },
   },
   computed: {
-    navbarItem(){
-      return this.$store.getters.navbarItems;
+    sidebarOn(){
+      return this.$store.getters.sidebarOn
     },
     links(){
       return this.$store.getters.links;
@@ -234,8 +163,6 @@ export default {
       }
     })
   }
-
-
 }
 </script>
 <style>

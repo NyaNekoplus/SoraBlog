@@ -19,8 +19,8 @@
 export default {
   name: "DonateIcon",
   data: () => ({
-    aliPay: "https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/alipay.png",
-    wechat: "https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/wechat.png"
+    aliPay: "https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.4/img/alipay.png",
+    wechat: "https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.4/img/wechat.png"
   }),
 }
 </script>

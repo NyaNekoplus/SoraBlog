@@ -1,5 +1,6 @@
 package com.vincent.admin.controller.api.admin;
 
+import com.vincent.admin.annotation.proxy.ProxyAuth;
 import com.vincent.admin.entity.Category;
 import com.vincent.admin.entity.Tag;
 import com.vincent.admin.service.TagService;
@@ -27,6 +28,7 @@ public class TagApi {
     @Autowired
     private TagService tagService;
 
+    @ProxyAuth
     @GetMapping("/list")
     @Cacheable
     public String list(){

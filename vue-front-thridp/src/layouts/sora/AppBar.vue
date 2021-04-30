@@ -3,7 +3,7 @@
     <div class="site-top">
       <div class="site-branding">
         <div class="site-title" v-if="akina_logo">
-          <a href="<?php bloginfo('url');?>"><img src="<?php echo akina_option('akina_logo'); ?>"></a>
+          <a href="https://sora.vin"><img src="<?php echo akina_option('akina_logo'); ?>"></a>
         </div>
         <span class="site-title" v-else :style="`${shownav?'':'display: none;'}`"><!--style="display: none;"-->
 
@@ -97,7 +97,7 @@
       <div class="header-user-avatar">
         <router-link to="/login">
           <img class="faa-shake animated-hover"
-               :src="userInfo.avatar?userInfo.avatar:'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/none.png'"
+               :src="userInfo.avatarUrl?userInfo.avatarUrl:'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/none.png'"
                width="30" height="30">
         </router-link>
         <div class="header-user-menu">
@@ -122,10 +122,6 @@
         </div>
       </div>
       <div class="searchbox"><i class="iconfont js-toggle-search iconsearch icon-search"></i></div>
-      <!-- 上方导航栏，用v-for
-      <div class="lower-container">
-      </div>
-      -->
     </div>
   </header>
 </template>
@@ -213,7 +209,7 @@ export default {
             this.isLogin = false;
             removeCookie("token");
             console.log(response.data);
-            message(response.data.message)
+            message(response.message)
           }
           this.setLoginState(this.isLogin);
         });

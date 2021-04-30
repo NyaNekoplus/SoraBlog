@@ -29,5 +29,5 @@ function startSakura() {
     stop = requestAnimationFrame(function () { cxt.clearRect(0, 0, canvas.width, canvas.height); sakuraList.update(); sakuraList.draw(cxt); stop = requestAnimationFrame(arguments.callee); })
 }
 window.onresize = function () { var canvasSnow = document.getElementById('canvas_snow'); }
-//img.onload = function () { startSakura(); } //禁止自启动
+img.onload = function () { startSakura(); } //禁止自启动
 function stopp() { if (sakura_on) { var child = document.getElementById("canvas_sakura"); child.parentNode.removeChild(child); window.cancelAnimationFrame(stop); sakura_on = false; } else { startSakura(); } }

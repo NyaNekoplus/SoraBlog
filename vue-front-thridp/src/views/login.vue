@@ -85,12 +85,10 @@ export default {
       param.password = this.password;
       param.remember = this.remember;
       login(param).then(response => {
+        message(response.message);
         if (response.state === this.$STATE.SUCCESS) {
-          message('aa');
           this.setToken(response.data);
           this.$router.push('/');
-        } else {
-          message(response.message);
         }
       })
     },

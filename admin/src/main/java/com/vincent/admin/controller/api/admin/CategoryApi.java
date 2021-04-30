@@ -1,6 +1,7 @@
 package com.vincent.admin.controller.api.admin;
 
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
+import com.vincent.admin.annotation.proxy.ProxyAuth;
 import com.vincent.admin.entity.Category;
 import com.vincent.admin.service.CategoryService;
 import com.vincent.admin.util.Result;
@@ -28,6 +29,7 @@ public class CategoryApi {
     @Autowired
     private CategoryService categoryService;
 
+    @ProxyAuth
     @GetMapping("/list")
     @Cacheable
     public String list() {
@@ -42,6 +44,7 @@ public class CategoryApi {
         return Result.success(msg, list);
     }
 
+    @ProxyAuth
     @PostMapping("/add")
     public String addCategory(@RequestBody CategoryVO categoryVO) {
         Category category = new Category();

@@ -1,5 +1,6 @@
 package com.vincent.admin.controller.api.admin;
 
+import com.vincent.admin.annotation.proxy.ProxyAuth;
 import com.vincent.admin.service.CommentService;
 import com.vincent.admin.service.RecordService;
 import com.vincent.admin.service.UserService;
@@ -32,6 +33,7 @@ public class SummaryApi {
     private UserService userService;
 
 
+    @ProxyAuth
     @GetMapping("/indexInit")
     String indexInit(){
         Map<String,Integer> map = new HashMap<>();

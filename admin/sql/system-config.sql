@@ -27,7 +27,8 @@ CREATE TABLE `s_system_config` (
   `theme_color` varchar(10) NOT NULL DEFAULT '#409EFF' COMMENT '主题颜色',
   `enable_dashboard_notification` tinyint NOT NULL DEFAULT '0' COMMENT '是否开启仪表盘通知(0:否， 1:是)',
   `dashboard_notification` longtext COMMENT '仪表盘通知【用于首次登录弹框】',
-  `default_cover_url` varchar(255) DEFAULT NULL COMMENT '文件地址',
+  `default_cover_url` varchar(255) DEFAULT NULL COMMENT '默认封面地址',
+  `default_avatar_url` varchar(255) DEFAULT NULL COMMENT '默认头像地址',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='系统配置表';
 create unique index uk_system_config on s_system_config( (1) );
@@ -41,6 +42,7 @@ CREATE TABLE `s_about_me` (
   `motto` varchar(32) DEFAULT NULL COMMENT '格言',
   `lang` tinyint unsigned NOT NULL DEFAULT '1' COMMENT 'language',
   `detail` longtext DEFAULT NULL COMMENT '详细',
+  `enable_comment` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '是否开启评论(0:否 1:是)',
   `create_time` timestamp NOT NULL DEFAULT '2021-03-18 14:08:05' COMMENT '创建时间',
   `update_time` timestamp DEFAULT NULL COMMENT '更新时间',
   UNIQUE (`lang`),

@@ -45,10 +45,10 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
         const user = response.data
-        if (user.userProxy){
+        if (user.userProxy!=null){
           commit('proxy',user.userProxy)
         }else {
-          reject('登录已过期')
+          reject('用户权限不足')
         }
         commit('username',user.username)
         commit('avatar',user.avatarUrl)

@@ -33,11 +33,15 @@ const router = new Router({
             path: '',
             component: otherLayout,
             children: [
-                //{ path: '/tags', component:()=>import('@/views/tag') },
+                { path: '/tags', component:()=>import('@/views/tag') },
+                { path: '/category', component:()=>import('@/views/categories') },
+                { path: '/category/:title', component:()=>import('@/views/category') },
+                { path: '/link', component:()=>import('@/views/links') },
                 { path: '/donate', component:()=>import('@/views/donate') },
                 { path: '/about', component:()=>import('@/views/about') },
                 { path: '/blog/:title', component:()=>import('@/views/page') },
                 { path: '/board', component:()=>import('@/views/board') },
+                { path: '/timeline', component:()=>import('@/views/timeline') },
             ]
         },
         {

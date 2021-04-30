@@ -4,14 +4,13 @@
     <div :class="isWideScreen?'single-center pattern-center':'single-center pattern-center-sakura'">
       <div class="pattern-attachment-img">
         <img :src="coverSrc"
-             onerror="imgError(this,3)"
              style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
       </div>
       <header v-if="hasSubtitle" class="pattern-header single-header"><!--pattern-header single-header-->
         <h1 class="entry-title">{{ title }}</h1>
         <p class="entry-census">
           <span>
-            <a href="https://2heng.xin/author/Mashiro/">
+            <a href="https://sora.vin/About">
               <img :src="avatarSrc">
             </a>
           </span>
@@ -22,10 +21,12 @@
           <span class="bull">·</span>{{ viewCount }} 次阅读
           <span class="bull">·</span>{{ commentCount }} 条评论
           <span class="bull">·</span><span v-for="tag in tagList" :key="tag.uid">{{tag.name}} | </span>
+          <!--
           <a href="//farseerfc.me/zhs/tag/swap.html" class="btn btn-primary btn-xs withripple">
             <i class="fa fa-tag"></i> swap
             <div class="ripple-wrapper"></div>
           </a>
+          -->
         </p>
       </header>
       <header v-else class="pattern-header">

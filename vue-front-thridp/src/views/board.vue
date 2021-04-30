@@ -4,7 +4,7 @@
         title="留言板"
         cover-src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/board.jpg"
     />
-    <comment-block :comment-source="'BOARD'"></comment-block><!--:enable-comment="blog.enableComment" -->
+    <comment-block :comment-source="'BOARD'" :enable-comment="true"></comment-block><!--:enable-comment="blog.enableComment" -->
   </div>
 </template>
 
@@ -24,33 +24,9 @@ export default {
 
   },
   created() {
-    /*
-    console.log('page create: ' + this.$route.params.title);
-    if (this.$store.getters.blog) {
-      let t_blog = this.$store.getters.blog;
-      if (t_blog.title === this.$route.params.title){
-        this.blog = this.$store.getters.blog;
-      }
-    } else {
-      this.blog = getBlogByTitle(this.$route.params.title).then(response => {
-        console.log("page: "+response.state);
-        if (response.state === this.$STATE.SUCCESS) {
-          this.blog = response.data.records;
-          this.setBlog(response.data.records)
-          console.log("page: "+this.blog);
-        } else {
-          alert(response.message);
-          alert('获取文章失败');
-          this.$router.push('/404');
-        }
-      });
-    }*/
-
   },
   mounted() {
     this.removeToInfo();
-    //this.blog = this.$store.getters.blog;
-    //this.toId = this.$store.getters.toId;
   }
 }
 </script>

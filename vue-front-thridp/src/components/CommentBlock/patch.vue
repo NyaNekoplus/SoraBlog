@@ -19,10 +19,10 @@
                   <h4 class="author">
                     <a href="javascript: return false;" rel="nofollow">
                       <img
-                          src="https://q2.qlogo.cn/headimg_dl?dst_uin=1723687845&amp;spec=100" :data-src="comment.avatarUrl"
+                          src="" :data-src="comment.user.avatarUrl"
                           class="lazyload avatar avatar-24 photo" alt="😀" width="24"
                           height="24">
-                      <span v-if="comment.user.userProxy === 0" class="bb-comment isauthor" title="博主">博主</span> {{ comment.user.username }}
+                      <span v-if="comment.user.userProxy === 0" class="bb-comment" title="博主">博主</span> {{ comment.user.username }}
                       <span class="showGrade0" title="萌萌哒新人~">
                         <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/level/level_0.svg" style="height: 1.5em; max-height: 1.5em; display: inline-block;">
                       </span>
@@ -33,7 +33,7 @@
                    data-belowelement="comment-8435" data-respondelement="respond" aria-label="Reply to センカメイ" @click="reply($event,comment)">Reply</a>
                 <div class="right">
                   <div class="info">
-                    <time datetime="2021-02-27">发布于 1 天前 {{comment.createTime}}</time>&nbsp;&nbsp;
+                    <time datetime="2021-02-27">{{calculatePeriod(comment.createTime)}}</time>&nbsp;&nbsp;
                     <span class="useragent-info">(
                       <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/img/Sakura/images/ua/svg/chrome.svg">
                       &nbsp;{{ comment.user.browser }}&nbsp;&nbsp;
@@ -76,6 +76,40 @@ export default {
   }),
   methods: {
     ...mapMutations(['setToInfo']),
+    calculatePeriod(time){
+      let d = new Date(time),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear(),
+          hour = d.getUTCHours(),
+          minute = d.getUTCMinutes(),
+          second = d.getUTCSeconds();
+      let p = new Date(),
+          pmonth = '' + (p.getMonth() + 1),
+          pday = '' + p.getDate(),
+          pyear = p.getFullYear(),
+          phour = p.getUTCHours(),
+          pminute = p.getUTCMinutes(),
+          psecond = p.getUTCSeconds();
+      if (pyear === year&&pmonth === month){
+        let t = '发布于'
+        if (pday === day){
+          if (phour === hour){
+            if (pminute === minute){
+              return t+(psecond-second)+'秒前'
+            }else {
+              return t+(pminute-minute)+'分钟前'
+            }
+          }else {
+            return t+(phour-hour)+'小时前'
+          }
+        }else {
+          return t+(pday-day)+'天前'
+        }
+      }else {
+        return time;
+      }
+    },
     reply(e, comment){
       let box = document.getElementById('respond');
       //let refbox = this.$refs.commentbox;

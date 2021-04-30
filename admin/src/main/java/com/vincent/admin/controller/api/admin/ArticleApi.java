@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.vincent.admin.annotation.proxy.ProxyAuth;
 import com.vincent.admin.entity.*;
 import com.vincent.admin.service.*;
 import com.vincent.admin.util.Result;
@@ -39,6 +40,7 @@ public class ArticleApi {
     @Autowired
     private SystemConfigService systemConfigService;
 
+    @ProxyAuth
     @PostMapping("/list")
     public String list(@RequestBody ArticleVO articleVO){
         QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
@@ -59,6 +61,7 @@ public class ArticleApi {
         return Result.success("查询文章列表成功",pageList);
     }
 
+    @ProxyAuth
     @PostMapping("/getArticleListByPage")
     public String getArticleListByPage(@RequestBody ArticleVO articleVO){
         QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
@@ -147,6 +150,7 @@ public class ArticleApi {
         //System.out.println(pageList);
     }
 
+    @ProxyAuth
     @PostMapping("/add")
     String addArticle(@RequestBody ArticleVO articleVO){
         Article article = new Article();
@@ -215,6 +219,7 @@ public class ArticleApi {
         }
     }
 
+    @ProxyAuth
     @PostMapping("/update")
     String updateArticleState(@RequestBody ArticleVO articleVO){
 
@@ -238,6 +243,7 @@ public class ArticleApi {
         return result?Result.success("Back-end：更新文章状态成功"):Result.failure("Back-end：更新文章状态失败");
     }
 
+    @ProxyAuth
     @DeleteMapping("/delete/{uid}")
     public String deleteArticle(@PathVariable(value = "uid") Long uid){
         boolean result = articleService.removeById(uid);;

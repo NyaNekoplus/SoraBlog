@@ -10,7 +10,6 @@ const state = {
     blog: null,
     toInfo: null,
     commentList: null,
-    blogList: null,
     //userInfo
     //token: localStorage.getItem('token')?localStorage.getItem('token'):'',
 };
@@ -30,23 +29,12 @@ const blog = {
             }
             return state.blog;
         },
-        blogList: state => {
-            return state.blogList;
-        },
         commentList: state => {
             if (!state.commentList){
                 state.commentList = JSON.parse(sessionStorage.getItem('commentList'));
             }
             return state.commentList;
         },
-        /*
-        getStorage(state){   // 获取本地存储的登录信息
-            if(!state.token){
-                state.token =JSON.parse(sessionStorage.getItem('token'))
-            }
-            return state.token
-        }
-    */
     },
     mutations:{
         [SET_TO_INFO](state, toInfo){
@@ -60,9 +48,6 @@ const blog = {
         [SET_BLOG](state, blog){
             state.blog = blog;
             sessionStorage.setItem('blog', JSON.stringify(blog));
-        },
-        [SET_BLOG_LIST](state, blogList){
-            state.blogList = blogList;
         }
     }
 }

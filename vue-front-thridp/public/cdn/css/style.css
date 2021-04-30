@@ -360,7 +360,7 @@ blockquote:before {
     position: absolute;
     top: -25px;
     left: 12px;
-    color: orange;
+    color: #76B9E4;
     font-family: FontAwesome
 }
 
@@ -370,7 +370,7 @@ blockquote:after {
     position: absolute;
     bottom: -25px;
     right: -5px;
-    color: orange;
+    color: #76B9E4;
     font-family: FontAwesome
 }
 
@@ -608,7 +608,7 @@ a {
 a:active,
 a:focus,
 a:hover {
-    color: orange
+    color: #76B9E4
 }
 
 a:focus {
@@ -618,7 +618,7 @@ a:focus {
 a:active,
 a:hover {
     outline: 0;
-    color: orange
+    color: #76B9E4
 }
 
 .site-top {
@@ -1030,7 +1030,7 @@ a:hover {
 }
 
 .site-title a:hover {
-    color: orange
+    color: #76B9E4
 }
 
 .site-title img {
@@ -1070,11 +1070,17 @@ a:hover {
     min-width: 758.4px;
     pointer-events: none;
 }
+@media (max-width: 1200px){
+    .site-top .lower-cantiner {
+        left: 0;
+    }
+}
+/*
 @media (max-width:1562px) {
     .site-top .lower-cantiner {
         left: 78%;
     }
-}
+}*/
 
 .site-top .lower {
     display: inline-block;
@@ -1089,11 +1095,17 @@ a:hover {
         left: 15px;
     }
 }
-@media (max-width:1562px){
+@media (max-width:1200px){
     .site-top .lower nav.hide {
         display: none !important;
     }
 }
+/*
+@media (max-width:1562px){
+    .site-top .lower nav.hide {
+        display: none !important;
+    }
+}*/
 
 .site-top .lower nav {
     display: block !important;
@@ -1144,7 +1156,7 @@ a:hover {
 }
 
 .site-top ul li a:hover {
-    color: orange
+    color: #76B9E4
 }
 
 .site-top ul li a:after {
@@ -1153,7 +1165,7 @@ a:hover {
     position: absolute;
     bottom: -16px;
     height: 6px;
-    background-color: #FE9600;
+    background-color: #76B9E4;
     width: 100%;
     max-width:0;
     transition: max-width .25s ease-in-out
@@ -1165,7 +1177,7 @@ a:hover {
     position: absolute;
     bottom: -21px;
     height: 6px;
-    background-color: #FE9600;
+    background-color: #76B9E4;
     width: 100%;
     max-width:0;
     transition: max-width .25s ease-in-out
@@ -1174,6 +1186,7 @@ a:hover {
 .site-top ul li a:hover:after {
     max-width:100%
 }
+/*
 @media (max-width:1562px) {
     .site-top .lower nav{
         right: calc(-150px - 100%);
@@ -1191,7 +1204,7 @@ a:hover {
     }
 
 }
-
+*/
 
 
 
@@ -1253,12 +1266,18 @@ a:hover {
     opacity: 0;
     pointer-events: none;
 }
-@media (max-width:1562px){
+@media (max-width:1200px){
     #show-nav.mobile-fit {
         opacity: 1;
         pointer-events: auto;
     }
 }
+/*@media (max-width:1562px){
+    #show-nav.mobile-fit {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}*/
 
 
 .lower li ul {
@@ -1416,7 +1435,7 @@ a:hover {
 }
 
 .entry-title a:hover {
-    color: orange
+    color: #76B9E4
 }
 
 .p-time {
@@ -1794,8 +1813,8 @@ body.dark .s-content{
 
 .navigator i:hover {
     color: #fff;
-    background: orange;
-    border: 2px solid orange;
+    background: #76B9E4;
+    border: 2px solid #76B9E4;
     -webkit-transition: all .2s ease-in-out;
     -moz-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
@@ -1821,7 +1840,7 @@ body.dark .s-content{
 }
 
 .site-info a:hover {
-    color: orange
+    color: #76B9E4
 }
 
 .footertext p {
@@ -2005,7 +2024,7 @@ h1.page-title.mb- {
 }
 
 .post-tags a:hover {
-    color: orange
+    color: #76B9E4
 }
 
 .post-tags i {
@@ -2079,7 +2098,7 @@ h1.page-title.mb- {
 }
 
 .post-share ul li a:hover {
-    color: orange
+    color: #76B9E4
 }
 
 .post-share .show-share {
@@ -2646,7 +2665,7 @@ h3#comments-list-title {
 }
 
 .butterBar-message {
-    background: #FE9600;
+    background: #76B9E4;
     color: #fff;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
@@ -2878,7 +2897,7 @@ h1.works-title {
     font-style: italic;
     font-size: 20px;
     font-weight: 400;
-    color: orange;
+    color: #76B9E4;
     margin-left: 30px;
     margin-top: 50px
 }
@@ -2909,7 +2928,7 @@ span.time {
 .ar-time i {
     padding: 10px;
     border-radius: 100px;
-    background: orange;
+    background: #76B9E4;
     color: #fff
 }
 
@@ -2939,7 +2958,7 @@ span.time {
 span.ar-circle {
     height: 10px;
     width: 10px;
-    background: orange;
+    background: #76B9E4;
     display: inline-block;
     position: absolute;
     left: -5px;
@@ -3032,7 +3051,7 @@ header.page-header {
 }
 
 span.sitename {
-    color: orange;
+    color: #76B9E4;
     padding-bottom: 10px;
     display: block;
     -webkit-transition: all .3s;
@@ -3066,12 +3085,12 @@ span.sitename {
 
 .link-title span.link-fix {
     padding-left:10px;
-    border-left:3px solid orange;
+    border-left:3px solid #76B9E4;
 }
 
 .links ul li:before {
     content: "";
-    background-color: orange;
+    background-color: #76B9E4;
     -webkit-transform: skew(45deg, 0);
     transform: skew(45deg, 0);
     width: 0;
@@ -3086,7 +3105,7 @@ span.sitename {
 
 .links ul li:hover {
     color: #27323A;
-    border: 1px solid orange
+    border: 1px solid #76B9E4
 }
 
 .links ul li:hover:before {
@@ -3229,14 +3248,6 @@ a.page-numbers {
     margin-bottom: 5px;
     float: left;
     padding-bottom: 25px
-}
-
-.comment .isauthor {
-    display: none
-}
-
-.comment.bypostauthor>.contents .isauthor {
-    display: inline
 }
 
 .comment .body {
@@ -3411,7 +3422,7 @@ a.page-numbers {
 }
 
 .comment h4 a:hover {
-    color: orange
+    color: #76B9E4
 }
 
 .comment hr {
@@ -3550,7 +3561,7 @@ a.page-numbers {
 }
 
 .commentbody:focus {
-	border-color: orange;
+	border-color: #76B9E4;
 	transition: border-color .25s
 }
 
@@ -3566,7 +3577,7 @@ a.page-numbers {
 
 .commentbody:not(:placeholder-shown)~.input-label, .commentbody:focus~.input-label {
 	color: #fff;
-	background-color: orange;
+	background-color: #76B9E4;
 	transform: scale(.75) translate(-2px, -37px);
 	border-radius: 3px
 }
@@ -3596,9 +3607,9 @@ a.page-numbers {
 }
 
 .comment-respond input[type=submit]:hover {
-    border: 1px solid #FE9600;
+    border: 1px solid #76B9E4;
     background: 0 0 !important;
-    color: #FE9600
+    color: #76B9E4
 }
 
 .comment-respond input[type=submit]:hover {
@@ -3721,7 +3732,7 @@ a.page-numbers {
 }
 
 .siren-checkbox-radio:checked+.siren-checkbox-radioInput:after {
-    background-color: #FE9600;
+    background-color: #76B9E4;
     border-radius: 100%;
     content: "";
     display: block;
@@ -4503,7 +4514,7 @@ body.dark .ins-section .fa{
 }
 
 .sorry li a:hover {
-    color: orange
+    color: #76B9E4
 }
 
 .sorry-inner {
@@ -4522,15 +4533,15 @@ body.dark .ins-section .fa{
 .err-button.back a {
     padding: 10px 30px;
     margin: 0 10px;
-    border: 1px solid orange;
-    color: orange;
+    border: 1px solid #76B9E4;
+    color: #76B9E4;
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     border-radius: 50px
 }
 
 #gohome {
-    background: orange;
+    background: #76B9E4;
     color: #fff
 }
 
@@ -4920,7 +4931,7 @@ object {
 }
 
 #nprogress .bar {
-    background: orange;
+    background: #76B9E4;
     position: fixed;
     z-index: 1031;
     top: 0;
@@ -4935,7 +4946,7 @@ object {
     right: 0;
     width: 100px;
     height: 100%;
-    box-shadow: 0 0 10px orange, 0 0 5px orange;
+    box-shadow: 0 0 10px #76B9E4, 0 0 5px #76B9E4;
     opacity: 1;
     -webkit-transform: rotate(3deg) translate(0, -4px);
     -ms-transform: rotate(3deg) translate(0, -4px);
@@ -4959,8 +4970,8 @@ object {
     height: 20px;
     box-sizing: border-box;
     border: solid 3px transparent;
-    border-top-color: orange;
-    border-left-color: orange;
+    border-top-color: #76B9E4;
+    border-left-color: #76B9E4;
     border-radius: 50%;
     -webkit-animation: nprogress-spinner .4s linear infinite;
     animation: nprogress-spinner .4s linear infinite
@@ -5085,8 +5096,8 @@ i.iconfont.down {
 }
 
 #pagination a:hover {
-    border: 1px solid orange;
-    color: orange
+    border: 1px solid #76B9E4;
+    color: #76B9E4
 }
 
 #pagination .loading,#bangumi-pagination .loading {
@@ -5253,7 +5264,7 @@ i.iconfont.down {
         display: none
     }
     .links ul li:hover .sitename {
-        color: orange
+        color: #76B9E4
     }
     .links ul li:hover .linkdes {
         color: #949494;
@@ -5468,7 +5479,7 @@ i.iconfont.down {
     }
     #mo-nav ul li a:hover {
         cursor: pointer;
-        color: orange
+        color: #76B9E4
     }
     .we-content li {
         height: 250px
@@ -6433,14 +6444,14 @@ button.botui-actions-buttons-button {
 }
 
 .logolink a:hover .sakuraso {
-    background-color: orange;
+    background-color: #76B9E4;
     color: #fff;
 }
 
 .logolink a:hover .shironeko,
 .logolink a:hover .no,
 .logolink a:hover rt {
-    color: orange;
+    color: #76B9E4;
 }
 
 .logolink.moe-mashiro a {
@@ -6890,7 +6901,7 @@ input[type=radio]:checked:before {
 
 @media (min-width:861px) {
     .hide-live2d {
-        background-color: orange;
+        background-color: #76B9E4;
         bottom: 156px;
         visibility: visible;
         min-height: 38.75px
@@ -7379,7 +7390,7 @@ li>ol {
 }
 
 .art .art-content #archives a:hover {
-    color: orange
+    color: #76B9E4
 }
 
 .art .art-content #archives .al_year {
@@ -7564,7 +7575,7 @@ a.toc-link {
 }
 
 .is-active-link::before {
-    background-color: orange /*!important*/ /*mark*/
+    background-color: #76B9E4 /*!important*/ /*mark*/
 }
 
 .flipx {
@@ -7729,11 +7740,11 @@ a.toc-link {
 
 .motion-switcher-table th:hover {
     background-color: rgba(245, 245, 245, .5);
-    color: orange
+    color: #76B9E4
 }
 
 .motion-switcher-table .on-hover {
-    color: orange
+    color: #76B9E4
 }
 
 .motion-container {
@@ -7811,7 +7822,7 @@ a.toc-link {
     position: fixed;
     top: 0;
     height: 3px;
-    background: orange;
+    background: #76B9E4;
     transiton-property: width, background;
     transition-duration: 1s, 1s;
     z-index: 99999
@@ -8020,8 +8031,8 @@ a.toc-link {
 }
 
 .insert-image-tips:hover {
-    color: orange;
-    border: 1px solid orange
+    color: #76B9E4;
+    border: 1px solid #76B9E4
 }
 
 .insert-image-button {
@@ -8036,8 +8047,8 @@ a.toc-link {
 }
 
 .insert-image-tips-hover {
-    color: orange;
-    border: 1px solid orange
+    color: #76B9E4;
+    border: 1px solid #76B9E4
 }
 
 .upload-image-preview {
@@ -8650,7 +8661,7 @@ td.hljs-ln-numbers {
 }
 
 #aplayer-float .aplayer-lrc-current {
-    color: orange;
+    color: #76B9E4;
     font-size: 15px;
     font-weight: 700
 }
@@ -8956,7 +8967,7 @@ h1[id*=toc-head]::before,h2[id*=toc-head]::before,h3[id*=toc-head]::before,h4[id
     height: 100%;
 }
 .bangumi-next i {
-    color: orange;
+    color: #76B9E4;
 }
 
 .sidebar-on {

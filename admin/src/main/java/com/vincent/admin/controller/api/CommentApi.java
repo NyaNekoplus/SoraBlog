@@ -1,14 +1,12 @@
 package com.vincent.admin.controller.api;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.github.benmanes.caffeine.cache.Cache;
 import com.vincent.admin.entity.*;
 import com.vincent.admin.enums.UserOperation;
-import com.vincent.admin.record.VisitRecord;
+import com.vincent.admin.annotation.record.VisitRecord;
 import com.vincent.admin.service.*;
 import com.vincent.admin.util.Result;
 import com.vincent.admin.vo.CommentVO;
@@ -132,8 +130,8 @@ public class CommentApi {
 
             avatarList.forEach(avatar -> {
                 avatarUrlMap.put(avatar.getUid(),
-                        avatar.getJsDelivrUrl()==null?avatar.getJsDelivrUrl():
-                                config.getLocalImageBaseUrl()+avatar.getUrl());
+                        avatar.getJsDelivrUrl()==null?config.getLocalImageBaseUrl()+avatar.getUrl()
+                                :avatar.getJsDelivrUrl());
             });
         }
 
@@ -199,14 +197,16 @@ public class CommentApi {
 
         Comment comment = new Comment();
         comment.setBlogUid(commentVO.getBlogUid());
-        Article article = articleService.getById(comment.getBlogUid());
-        article.setCommentCount(article.getCommentCount()+1);
-        article.updateById();
+        if (commentVO.getBlogUid() != 0){
+            Article article = articleService.getById(comment.getBlogUid());
+            article.setCommentCount(article.getCommentCount()+1);
+            article.updateById();
+        }
+
         comment.setContent(commentVO.getContent());
         //comment.setCommentTime(commentVO.ge);
         comment.setUserUid(commentVO.getUserUid());
         comment.setToUserUid(commentVO.getToUserUid());
-        //comment.setRootId(commentVO.getParentId());
         comment.setToUid(commentVO.getToUid());
         comment.setSource(commentVO.getSource());
         comment.setTargetType(commentVO.getTargetType());

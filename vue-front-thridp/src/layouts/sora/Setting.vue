@@ -1,5 +1,35 @@
 <template>
   <div>
+    <div id="mo-nav" :class="sidebarOn?'open':''">
+      <div class="m-avatar">
+        <img :src="about.avatarUrl">
+      </div>
+      <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">
+        {{ about.name }}
+      </p>
+      <p style="text-align: center; word-spacing: 20px;">
+        <a href="http://twitter.com/2hengxin" class="fa fa-twitter" target="_blank" style="color: #00aced"></a>
+        <a href="http://weibo.com/2960337711" class="fa fa-weibo" target="_blank" style="color: #dd4b39"></a>
+        <a href="http://github.com/mashirozx" class="fa fa-github" target="_blank" style="color: #333"></a>
+        <a onclick="mail_me()" class="fa fa-envelope" style="color: #ffbf00"></a>
+      </p>
+      <div class="m-search">
+        <form class="m-search-form" method="get" action="https://2heng.xin" role="search">
+          <input class="m-search-input" type="search" name="s" placeholder="搜索..." required="">
+        </form>
+      </div>
+      <ul id="menu-new-1" class="menu">
+        <li v-for="item in navbarItem" :key="item.name">
+          <a :href="item.link" aria-current="page">
+            <span class="faa-parent animated-hover"><i :class="item.icon" aria-hidden="true"></i> {{ item.name }}</span>
+          </a>
+          <ul v-if="item.children.length" class="sub-menu">
+            <li v-for="child in item.children" :key="child.name"><a :href="child.link"><i :class="child.icon" aria-hidden="true"></i>{{ child.name }}</a></li>
+          </ul>
+        </li>
+      </ul>
+      <p style="text-align: center; font-size: 13px; color: #b9b9b9;">© {{new Date().getUTCFullYear()}} Vincent Tsai</p>
+    </div>
     <!-- m-nav-center -->
     <a href="#" :class="isTop?'cd-top faa-float animated cd-is-visible cd-fade-out':'cd-top faa-float animated'"></a><!-- javascript:void(0); style="top: 0px;"-->
 
@@ -136,6 +166,7 @@ export default {
     sakuraWidget: true,
     aplayerServer: true,
 
+
     toTopClass: 'cd-top faa-float animated',
   }),
   methods: {
@@ -156,10 +187,6 @@ export default {
     changeTheme(param){
       switch (param){
         case 'wide-screen':
-          //document.body.style = 'background-image: none;';
-          //document.getElementById('main-container');
-          //console.log(document.getElementById('main-container'));
-          //document.body.style = this.$store.getters.background;
           this.setBackground(0);
           this.setWideScreenCover(true);
           break;
@@ -207,6 +234,15 @@ export default {
     }
   },
   computed: {
+    sidebarOn(){
+      return this.$store.getters.sidebarOn
+    },
+    about(){
+      return this.$store.getters.about
+    },
+    navbarItem(){
+      return this.$store.getters.navbarItems;
+    },
     isTop(){
       return this.$store.getters.isThemeWidgetShow;
     },

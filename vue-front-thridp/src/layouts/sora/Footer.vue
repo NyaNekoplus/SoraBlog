@@ -26,7 +26,7 @@
         </p>
         <p style="font-family: 'Ubuntu', sans-serif;">
 					<span style="color: #b9b9b9;">
-            Refactored<i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Vincent Tsai</a> using Vue
+            Refactored<i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://sora.vin/About" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Vincent Tsai</a> using Vue
 					</span>
         </p>
       </div>

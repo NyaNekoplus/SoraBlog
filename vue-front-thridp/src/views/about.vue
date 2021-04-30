@@ -5,13 +5,19 @@
         cover-src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/about.png"
     />
     <page-content>
-      aaa
+      <article class="page type-page status-publish has-post-thumbnail hentry">
+        <div class="entry-content">
+          <div v-html="about.detail"></div>
+        </div>
+      </article>
     </page-content>
-    <comment-block :comment-source="'ABOUT'"></comment-block>
+    <comment-block :comment-source="'ABOUT'" :enable-comment="about.enableComment"></comment-block>
   </div>
 </template>
 
 <script>
+import {getAboutMe} from "../api/user";
+
 export default {
   name: "about",
   components: {
@@ -19,7 +25,17 @@ export default {
     Cover: () => import('@/layouts/sora/widgets/Cover'),
     CommentBlock: () => import('@/components/CommentBlock/index'),
   },
-  data: () => ({}),
+  data: () => ({
+    about: {}
+  }),
+  created() {
+    getAboutMe().then(response => {
+      if (response.state === this.$STATE.SUCCESS){
+        this.about = response.data;
+        //this.setAbout(this.about);
+      }
+    })
+  }
 }
 </script>
 

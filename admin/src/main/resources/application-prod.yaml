@@ -1,4 +1,8 @@
 spring:
+  servlet:
+    multipart:
+      max-request-size: 10MB #限制上传的多个文件的总大小
+      max-file-size: 2MB
   application:
     name: sora
   datasource:
@@ -34,7 +38,7 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true # 关闭驼峰命名
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台输出sql语句,测试
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台输出sql语句,测试
   global-config:
     db-config:
       table-underline: false
@@ -43,5 +47,7 @@ mybatis-plus:
 
 server:
   port: 9527
-
+file:
+  upload-folder: /home/vincent/blog-upload/
+  static-path: /** # 静态资源对外暴露的访问路径 upload-images
 

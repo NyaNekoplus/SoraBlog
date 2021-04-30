@@ -1,32 +1,40 @@
 <template>
   <div id="respond" class="comment-respond">
     <h3 id="reply-title" class="comment-reply-title">
-      <small><a rel="nofollow" id="cancel-comment-reply-link" style="display:none;" @click="cancelReply">Cancel Reply</a></small><!--href="/theme-sakura/#respond" -->
+      <small><a rel="nofollow" id="cancel-comment-reply-link" style="display:none;" @click="cancelReply">Cancel
+        Reply</a></small><!--href="/theme-sakura/#respond" -->
     </h3>
     <div id="commentform" class="comment-form" novalidate="">
       <p>
+        <i class="iconfont icon-markdown"></i> Html tag Supported
+        <!--
         <i class="iconfont icon-markdown"></i> Markdown Supported while
         <i class="fa fa-code" aria-hidden="true"></i>Forbidden
+        -->
       </p>
       <div class="comment-textarea">
-        <textarea placeholder="你是我一生只会遇见一次的惊喜 ..." name="comment" class="commentbody" id="comment" rows="5" tabindex="4" v-model="content"></textarea>
+        <textarea placeholder="你是我一生只会遇见一次的惊喜 ..." name="comment" class="commentbody" id="comment" rows="5" tabindex="4"
+                  v-model="content"></textarea>
         <label class="input-label active">你是我一生只会遇见一次的惊喜 ...</label>
       </div>
       <div id="upload-img-show"></div>
       <p id="emotion-toggle" class="no-select">
-        <span class="emotion-toggle-off">戳我试试 OωO</span>
-        <span class="emotion-toggle-on">嘿嘿嘿 ヾ(≧∇≦*)ゝ</span>
+        <span v-show="!emojiPanelState" @click="emojiPanelState = !emojiPanelState">Emoji panel on</span>
+        <span v-show="emojiPanelState" @click="emojiPanelState = !emojiPanelState">Emoji panel off</span>
       </p>
-      <div class="emotion-box no-select">
+      <div class="emotion-box no-select" :style="`display: ${emojiPanelState?'inline':'none'};`">
         <table class="motion-switcher-table">
           <tbody>
           <tr>
-            <th onclick="motionSwitch('.bili')" class="bili-bar on-hover">bilibili~</th>
+            <!--
+            <th onclick="motionSwitch('.bili')" class="bili-bar">bilibili~</th>
             <th onclick="motionSwitch('.menhera')" class="menhera-bar">(✪ω✪)</th>
-            <th onclick="motionSwitch('.tieba')" class="tieba-bar">Tieba</th>
+            -->
+            <th class="tieba-bar  on-hover">Tieba</th>
           </tr>
           </tbody>
         </table>
+        <!--
         <div class="bili-container motion-container">
             <span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('baiyan',type = 'Math')"
                   style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_baiyan.png);">
@@ -402,102 +410,47 @@
             ⁄•⁄ω⁄•⁄ ⁄)⁄</a> <a class="emoji-item">(╬ﾟдﾟ)▄︻┻┳═一</a> <a class="emoji-item">･*･:≡( ε:)</a> <a
               class="emoji-item">(笑)</a> <a class="emoji-item">(汗)</a> <a class="emoji-item">(泣)</a> <a
               class="emoji-item">(苦笑)</a></div>
-        <div class="tieba-container motion-container" style="display:none;">
-          <span title="tongue" onclick="grin('tongue')">
-            <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_tongue.gif">
+              -->
+        <div class="tieba-container motion-container">
+          <span v-for="(value,key) in tiebaEmojiMap" :key="key">
+            <img @click="addEmoji($event)"
+                 :src="value"
+                 :alt="key">
           </span>
-          <span
-            title="theblackline" onclick="grin('theblackline')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_theblackline.gif"></span><span
-            title="tear" onclick="grin('tear')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_tear.gif"></span><span
-            title="surprised" onclick="grin('surprised')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_surprised.gif"></span><span
-            title="surprised2" onclick="grin('surprised2')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_surprised2.gif"></span><span
-            title="spray" onclick="grin('spray')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_spray.gif"></span><span
-            title="spit" onclick="grin('spit')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_spit.gif"></span><span
-            title="smilingeyes" onclick="grin('smilingeyes')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_smilingeyes.gif"></span><span
-            title="shui" onclick="grin('shui')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_shui.gif"></span><span
-            title="shame" onclick="grin('shame')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_shame.gif"></span><span
-            title="se" onclick="grin('se')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_se.gif"></span><span
-            title="rmb" onclick="grin('rmb')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_rmb.gif"></span><span
-            title="reluctantly" onclick="grin('reluctantly')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_reluctantly.gif"></span><span
-            title="rbq" onclick="grin('rbq')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_rbq.gif"></span><span
-            title="niconiconit" onclick="grin('niconiconit')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_niconiconit.gif"></span><span
-            title="niconiconi" onclick="grin('niconiconi')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_niconiconi.gif"></span><span
-            title="niconiconi-t" onclick="grin('niconiconi-t')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_niconiconi_t.gif"></span><span
-            title="naive" onclick="grin('naive')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_naive.gif"></span><span
-            title="ku" onclick="grin('ku')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_ku.gif"></span><span
-            title="huaji" onclick="grin('huaji')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_huaji.gif"></span><span
-            title="hu" onclick="grin('hu')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_hu.gif"></span><span
-            title="han" onclick="grin('han')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_han.gif"></span><span
-            title="haha" onclick="grin('haha')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_haha.gif"></span><span
-            title="good" onclick="grin('good')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_good.gif"></span><span
-            title="doubt" onclick="grin('doubt')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_doubt.gif"></span><span
-            title="britan" onclick="grin('britan')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_britan.gif"></span><span
-            title="bbd" onclick="grin('bbd')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_bbd.gif"></span><span
-            title="awesome" onclick="grin('awesome')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_awesome.gif"></span><span
-            title="anger" onclick="grin('anger')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_anger.gif"></span><span
-            title="aa" onclick="grin('aa')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_aa.gif"></span><span
-            title="Happy" onclick="grin('Happy')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_Happy.gif"></span><span
-            title="Grievance" onclick="grin('Grievance')"><img
-            src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/smilies/icon_Grievance.gif"></span>
         </div>
       </div>
       <div class="cmt-info-container">
         <div class="comment-user-avatar">
-          <img :src="hasUserInfo?currentUser.avatarUrl:'https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png'">
+          <img
+              :src="userInfo.avatarUrl?userInfo.avatarUrl:'https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/nologin.png'">
           <div class="socila-check qq-check"><i class="fa fa-qq" aria-hidden="true"></i></div>
           <div class="socila-check gravatar-check"><i class="fa fa-google" aria-hidden="true"></i></div>
         </div>
         <div class="popup cmt-popup cmt-author" onclick="cmt_showPopup(this)">
           <span class="popuptext" id="thePopup" style="margin-left: -115px;width: 230px;">输入QQ号将自动拉取昵称和头像</span>
-          <input type="text" placeholder="昵称或QQ号 (必须 Name* )" name="author" id="author" value="" size="22" autocomplete="off" tabindex="1" aria-required="true">
+          <input type="text" placeholder="昵称或QQ号 (必须 Name* )" name="author" id="author" value="" size="22"
+                 autocomplete="off" tabindex="1" aria-required="true">
         </div>
         <div class="popup cmt-popup" onclick="cmt_showPopup(this)">
           <span class="popuptext" id="thePopup" style="margin-left: -65px;width: 130px;">你将收到回复通知</span>
-          <input type="text" placeholder="邮箱 (必须 Email* )" name="email" id="email" value="" size="22" tabindex="1" autocomplete="off" aria-required="true">
+          <input type="text" placeholder="邮箱 (必须 Email* )" name="email" id="email" value="" size="22" tabindex="1"
+                 autocomplete="off" aria-required="true">
         </div>
         <div class="popup cmt-popup" onclick="cmt_showPopup(this)">
           <span class="popuptext" id="thePopup" style="margin-left: -55px;width: 110px;">禁止小广告😀</span>
-          <input type="text" placeholder="网站 (选填 Site)" name="url" id="url" value="" size="22" autocomplete="off" tabindex="1">
+          <input type="text" placeholder="网站 (选填 Site)" name="url" id="url" value="" size="22" autocomplete="off"
+                 tabindex="1">
         </div>
       </div>
       <label class="siren-checkbox-label active">
-        <input class="siren-checkbox-radio" type="checkbox" name="no-robot">
+        <input v-model="robotCheck" class="siren-checkbox-radio" type="checkbox" name="no-robot">
         <span class="siren-no-robot-checkbox siren-checkbox-radioInput"></span>
         滴，学生卡 | I'm not a robot
       </label>
       <input type="text" placeholder="QQ" name="new_field_qq" id="qq" value="" style="display:none" autocomplete="off">
       <div class="form-submit">
-        <input id="submit" class="submit" @click="handleSubmit" value="发送评论" type="submit"><!-- @click="submitComment"-->
+        <input id="submit" class="submit" @click="handleSubmit" value="发送评论" type="submit">
+        <!-- @click="submitComment"-->
         <div class="insert-image-tips popup"
              @mouseenter="$event.currentTarget.children[1].className='insert-img-popuptext show'"
              @mouseleave="$event.currentTarget.children[1].className='insert-img-popuptext'">
@@ -520,63 +473,74 @@
 </template>
 
 <script>
-import { parseTime } from '@/utils/index'
+import {parseTime} from '@/utils/index'
 import {mapMutations} from "vuex";
 import {message} from "../Message";
 
 export default {
-  //inject:['reload'],
   name: "box",
   data: () => ({
+    emojiPanelState: false,
+
     content: '',
+    robotCheck: false,
     currentUser: null,
   }),
-  methods:{
-    ...mapMutations(['removeToInfo','setCommentList']),
-    handleSubmit(){
-      if (this.content === ''){
-        message("不能为空");
+  methods: {
+    ...mapMutations(['removeToInfo', 'setCommentList']),
+    processEmoji(text) {
+      let name = text.substring(1,text.length-1);
+      let src = this.tiebaEmojiMap[name]
+      return `<img src="${src}" alt="${name}" class="wp-smiley" style="height: 1em; max-height: 1em;">`
+    },
+    addEmoji(e) {
+      let name = e.target.alt
+      this.content += ':' + name + ':'
+    },
+    handleSubmit() {
+      if (!this.robotCheck) {
+        message("Are you a ROBOT?")
+        return
+      }
+      if (this.content === '') {
+        message("内容不能为空");
         return;
       }
       let userInfo = this.$store.getters.userInfo;
-      if (userInfo === null || userInfo === undefined){
-        message("请先登陆");
+      if (userInfo === null || userInfo === undefined) {
+        message("请先登录");
         return;
       }
       let blogUid = this.blogUid//this.$store.getters.blog.uid;
-      console.log('blogUid: '+blogUid);
+      console.log('blogUid: ' + blogUid);
       let toInfo = this.$store.getters.toInfo;
 
       let param = {};
       //param.blogUid = blogUid; // 在comment-index中
       //param.rootUid = blogId;
       param.userUid = userInfo.uid;
-      param.content = this.content;
-
-      if(toInfo !== null){ // is reply
-        console.log('toInfoUid: '+toInfo.toUid);
+      console.log("替换后", this.content.replace(/:.*?:/g, this.processEmoji))
+      param.content = this.content.replace(/:.*?:/g,this.processEmoji)
+      if (toInfo !== null) { // is reply
+        console.log('toInfoUid: ' + toInfo.toUid);
         param.toUid = toInfo.toUid;
         param.toUserUid = toInfo.toUserUid;
         param.targetType = 1; // 回复评论
-      }else {
+      } else {
         param.toUid = null;
         param.toUserUid = null;
         param.targetType = 0;
       }
-      param.createTime = parseTime("YYYY-mm-dd HH:MM:SS",new Date());
-      console.log('在box中: ' + param);
-
+      param.createTime = parseTime("YYYY-mm-dd HH:MM:SS", new Date());
+      this.robotCheck = false;
       this.content = '';
       this.cancelReply();
       this.$emit('submit-comment', param);
     },
-    cancelReply(){
+    cancelReply() {
       let origin_pos = document.getElementById('comments');
       //let box = e.currentTarget.parentNode.parentNode.parentNode;
       let box = document.getElementById('respond');
-      //let refbox = this.$refs.commentbox;
-      //console.log('refbox: '+refbox);
-      console.log('child: '+box.children);
       box.children[0].children[0].children[0].style = 'display: none;';
       this.removeToInfo();
       origin_pos.appendChild(box);
@@ -587,12 +551,14 @@ export default {
 
   },
   mounted() {
-    this.currentUser = this.$store.getters.userInfo;
+    //this.currentUser = this.$store.getters.userInfo;
   },
   computed: {
-    hasUserInfo(){
-      console.log('urltest：'+!!(this.currentUser&&this.currentUser.avatarUrl))
-      return !!(this.currentUser&&this.currentUser.avatarUrl);
+    userInfo(){
+      return this.$store.getters.userInfo;
+    },
+    tiebaEmojiMap(){
+      return this.$store.getters.tiebaEmoji
     }
   }
 }
@@ -604,16 +570,14 @@ export default {
   margin: 0;
   padding: 15px 25px;
   text-transform: none;
-  color:
-      #535a63;
+  color: #535a63;
   background: 0 0;
   border-right: 0;
   -webkit-transition: all .1s ease-out;
   -moz-transition: all .1s ease-out;
   transition: all .1s ease-out;
   box-shadow: none;
-  border: 1px solid
-  #ccc;
+  border: 1px solid #ccc;
   text-shadow: none;
 }
 </style>

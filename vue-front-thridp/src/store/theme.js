@@ -13,6 +13,8 @@ import {
 
 const theme = {
     state: {
+        sidebarOn: false,
+
         isThemeWidgetShow: true,
         wideScreenCover: false,
         sakuraEffect: false,
@@ -22,12 +24,15 @@ const theme = {
         background: 0,
         images: [
             'background-image: none;',
-            'background-image: url("https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/star.png");',//star
-            'background-image: url("https://view.moezx.cc/images/2018/01/03/plaid2dbf8.jpg");',//star
-            'background-image: url("https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.2/other-sites/api-index/images/me.png");',//dark
+            'background-image: url("https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.5/img/theme/star.png");',//star
+            'background-image: url("https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.5/img/theme/grid.jpg");',//star
+            'background-image: url("https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.5/img/theme/dark.png");',//dark
         ],
     },
     getters: {
+        sidebarOn: state => {
+            return state.sidebarOn;
+        },
         isThemeWidgetShow: state => {
             return state.isThemeWidgetShow;
         },
@@ -64,6 +69,9 @@ const theme = {
 
     },
     mutations: {
+        setSidebarOn(state, sidebarOn){
+            state.sidebarOn = sidebarOn;
+        },
         [SET_WIDE_SCREEN_COVER](state, wideScreenCover){
             state.wideScreenCover = wideScreenCover;
             localStorage.setItem('wideScreenCover', wideScreenCover);

@@ -12,7 +12,7 @@
     name: 'App',
     metaInfo: {
       title: 'Admin',
-      titleTemplate: '%s | すべて遠く理想郷',
+      titleTemplate: '%s | すべて遠き理想郷',
       htmlAttrs: { lang: 'en' },
       meta: [
         { charset: 'utf-8' },

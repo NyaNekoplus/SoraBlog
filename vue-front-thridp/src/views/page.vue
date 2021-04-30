@@ -11,8 +11,7 @@
         avatar-src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png"
     />
     <page-content>
-      <article
-          class="post-4491 post type-post status-publish format-standard has-post-thumbnail hentry category-hacking tag-graphql tag-javascript tag-wordpress">
+      <article class="post type-post status-publish format-standard has-post-thumbnail hentry category-hacking tag-graphql tag-javascript tag-wordpress">
 
         <!--
         <div class="ins-section-wrapper">
@@ -79,54 +78,78 @@
         <donate-icon/>
 
         <footer class="post-footer">
-          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
-                                         target="_blank" rel="nofollow"><i class="fa fa-creative-commons"
-                                                                           aria-hidden="true"></i>
-            知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
-          <div class="post-tags"><i class="iconfont icon-tags"></i> <a href="https://2heng.xin/tag/graphql/"
-                                                                       rel="tag">GraphQL</a> <a
-              href="https://2heng.xin/tag/javascript/" rel="tag">JavaScript</a> <a
-              href="https://2heng.xin/tag/wordpress/" rel="tag">WordPress</a></div>
-          <div class="post-like"><a href="javascript:;" data-action="ding" data-id="4491" class="specsZan "> <i
-              class="iconfont icon-like"></i> <span class="count"> 39</span> </a></div>
+          <div class="post-lincenses">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
+               target="_blank" rel="nofollow">
+              <i class="fa fa-creative-commons" aria-hidden="true"></i>
+            知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议
+            </a>
+          </div>
+          <div class="post-tags">
+            <i class="iconfont icon-tags"></i>
+            <a v-for="tag in blog.tagList" :key="tag.uid" rel="tag">{{tag.name}}</a>
+          </div>
+          <div class="post-like">
+            <a href="javascript:;" data-action="ding" data-id="4491" class="specsZan ">
+              <i class="iconfont icon-like"></i>
+              <span class="count"> 39</span>
+            </a>
+          </div>
           <div class="post-share">
-            <div class="social-share sharehidden share-component"><a class="social-share-icon icon-weibo"
-                                                                     href="http://service.weibo.com/share/share.php?url=https%3A%2F%2F2heng.xin%2F2019%2F12%2F31%2Fgraphql-recursion%2F&amp;title=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB&amp;pic=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fmoezx%2Fcdn%403.1.9%2Fimg%2FSakura%2Fimages%2Fnext-b.svg&amp;appkey="
-                                                                     target="_blank"></a><a
-                class="social-share-icon icon-qq"
-                href="http://connect.qq.com/widget/shareqq/index.html?url=https%3A%2F%2F2heng.xin%2F2019%2F12%2F31%2Fgraphql-recursion%2F&amp;title=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB&amp;source=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB&amp;desc=%E5%BD%93%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E7%94%A8%20GraphQL%20%E6%9F%A5%E8%AF%A2%E5%A4%9A%E5%B1%82%E5%A5%97%E5%B5%8C%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%AF%94%E5%A6%82%E5%83%8F%20WordPress%20%E8%BF%99%E6%A0%B7%E5%A5%97%E5%B5%8C%E7%9A%84%E8%AF%84%E8%AE%BA%E4%BF%A1%E6%81%AF%E6%97%B6%EF%BC%8C%E9%80%9A%E5%B8%B8%E7%9A%84%E5%86%99%E6%B3%95%E6%98%AF%EF%BC%9A%20%20%7B%0A%20posts(first%3A%20100)%20%7B%0A%20nodes%20%7B%0A%20id%0A%20title%0A%20comments%20%7B%0A%20nodes%20%7B%0A%20...CommentFields%0A%20replies%3A%20childre%E2%80%A6&amp;pics=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fmoezx%2Fcdn%403.1.9%2Fimg%2FSakura%2Fimages%2Fnext-b.svg&amp;summary=&quot;%E5%BD%93%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E7%94%A8%20GraphQL%20%E6%9F%A5%E8%AF%A2%E5%A4%9A%E5%B1%82%E5%A5%97%E5%B5%8C%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%AF%94%E5%A6%82%E5%83%8F%20WordPress%20%E8%BF%99%E6%A0%B7%E5%A5%97%E5%B5%8C%E7%9A%84%E8%AF%84%E8%AE%BA%E4%BF%A1%E6%81%AF%E6%97%B6%EF%BC%8C%E9%80%9A%E5%B8%B8%E7%9A%84%E5%86%99%E6%B3%95%E6%98%AF%EF%BC%9A%20%20%7B%0A%20posts(first%3A%20100)%20%7B%0A%20nodes%20%7B%0A%20id%0A%20title%0A%20comments%20%7B%0A%20nodes%20%7B%0A%20...CommentFields%0A%20replies%3A%20childre%E2%80%A6&quot;"
-                target="_blank"></a><a class="social-share-icon icon-wechat" href="javascript:">
-              <div class="wechat-qrcode"><h4>微信扫一扫：分享</h4>
-                <div class="qrcode" title="https://2heng.xin/2019/12/31/graphql-recursion/">
-                  <canvas width="100" height="100" style="display: none;"></canvas>
-                  <img alt="Scan me!" style="display: block;"
-                       src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAECklEQVR4nO2VQY7jQAwD/f9Pey+7QDboloqS7DgzFOCL3JZIVk/mOI7j7D7/Knr3WtG71bkJHeqMTEdXa/AYyCOBqKUGQQ12QiJeKlCredAykG8CMiFYhUWfwER6rqPtKs8GYiAG8lEgnTBVcFTHVXOvAm0gvwHIKvwMiPpEpWqjcyNfBgLCMhADmQeiCsoEEDNZrwomm0/3RJ7JO6rNQOCeyDN5R7X9B6TzRKYnezSkT2trPgYyrc1AfhKQ8+LqmN7NUoBUz6tzp8pANucfCSRaGomiQWS7xn4GNrvVi0GBqPvxT5aB7H3dBuQOE9U/9w7oju6qtkjH9iEfZiYMxEDKQVR0V7VFOlIgUWBqLxOizqVBkO9ocJ0d0XfphSdLDeQDQFRx0WIqTq3KDDkQ2FP10p6BGIiBSECo+KinCFWeSoXmxQtE8+iANpCnAamGH4lXQ+qcp9qIbuVCTIDevDcQAzGQHAgdTBarZrKeGlJ2qciFUC9mx/PbYyCr+hgQxfyUGRocmauapiGqAasZbXVEAw3EQAxE/Xg1ZCcyO796X905cZF289QiAIOegex2fAUQNbjqz9NqDjU48VOkAqnM3TwGks1QcmkDiQzKw8Twq7MqRedOAIl6qab3l6oZA2H+sKb3l6oZA2H+BE1aAJGJjpCJoheCAKnsUucayDcAiRZNmJ/odaoavqqNwkkvKxFCjBqIgaD6eiB0SfW7nTgaDjlH310FnvaWD11iIHHdCiQToJ7r/EmretVLEPWu1nae8Ccremcgc9rO00CeB0QNSTUd9TLTkwAnQ73yEhqIULcCoUuVRa/nBwVLu6ozVB0V0Jv9BpKdq+rOKgRChxHT6vmKaXWuWpk24m81D/QMpKKN+FvNAz0DqWgj/lbzQK/2u9cxPbHzKt1CcNtZlYvz8hhIpu0xQKpBZOcnTWfV+bmrZlO9qH/nGoiincw1EFHL1wKhy4kZ2lN1rN5H32Zz6a7onArk7TsDeRQQIrg0+N5blYYZAbxTdzrv/WWnDEQrA/kGIMSMGkhFiCA4PZ/1lD0df/ScgQh7bgeiiiMCVudpjxpQZ1Q9VS5B1d95ngZiIAaS6dTMqIKpuOwiTJmu7KjqreRmIE8DghUURUbnaI8GSHp0hhr0RB7HcRjI44CoAsiSChDybSdMdYbay3YJ+w0k02YgBqL/K+kEF52LTKy+pXOplyrobC71bCDg/EeBqCFVYEbiox4NjuxR9KuQKMBNz0A62gzEQDiQiihimoRFA6Yhqbqn8jCQnwykY1qdq+5Sq7IrmiGAM5BVGYg4V92l1mOAdARTIdHOq4Eo+5VLFe0UewZCtUfnop1ij4WnBlutCjgSunoJKHwCS8nPQJLzBvLLgfwBkdSMuSRKV6oAAAAASUVORK5CYII=">
+            <!--
+            <div class="social-share sharehidden share-component">
+              <a class="social-share-icon icon-weibo"
+                 href="http://service.weibo.com/share/share.php?url=https%3A%2F%2F2heng.xin%2F2019%2F12%2F31%2Fgraphql-recursion%2F&amp;title=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB&amp;pic=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fmoezx%2Fcdn%403.1.9%2Fimg%2FSakura%2Fimages%2Fnext-b.svg&amp;appkey="
+                 target="_blank">
+              </a>
+              <a class="social-share-icon icon-qq"
+                 href="http://connect.qq.com/widget/shareqq/index.html?url=https%3A%2F%2F2heng.xin%2F2019%2F12%2F31%2Fgraphql-recursion%2F&amp;title=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB&amp;source=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB&amp;desc=%E5%BD%93%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E7%94%A8%20GraphQL%20%E6%9F%A5%E8%AF%A2%E5%A4%9A%E5%B1%82%E5%A5%97%E5%B5%8C%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%AF%94%E5%A6%82%E5%83%8F%20WordPress%20%E8%BF%99%E6%A0%B7%E5%A5%97%E5%B5%8C%E7%9A%84%E8%AF%84%E8%AE%BA%E4%BF%A1%E6%81%AF%E6%97%B6%EF%BC%8C%E9%80%9A%E5%B8%B8%E7%9A%84%E5%86%99%E6%B3%95%E6%98%AF%EF%BC%9A%20%20%7B%0A%20posts(first%3A%20100)%20%7B%0A%20nodes%20%7B%0A%20id%0A%20title%0A%20comments%20%7B%0A%20nodes%20%7B%0A%20...CommentFields%0A%20replies%3A%20childre%E2%80%A6&amp;pics=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fmoezx%2Fcdn%403.1.9%2Fimg%2FSakura%2Fimages%2Fnext-b.svg&amp;summary=&quot;%E5%BD%93%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E7%94%A8%20GraphQL%20%E6%9F%A5%E8%AF%A2%E5%A4%9A%E5%B1%82%E5%A5%97%E5%B5%8C%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%AF%94%E5%A6%82%E5%83%8F%20WordPress%20%E8%BF%99%E6%A0%B7%E5%A5%97%E5%B5%8C%E7%9A%84%E8%AF%84%E8%AE%BA%E4%BF%A1%E6%81%AF%E6%97%B6%EF%BC%8C%E9%80%9A%E5%B8%B8%E7%9A%84%E5%86%99%E6%B3%95%E6%98%AF%EF%BC%9A%20%20%7B%0A%20posts(first%3A%20100)%20%7B%0A%20nodes%20%7B%0A%20id%0A%20title%0A%20comments%20%7B%0A%20nodes%20%7B%0A%20...CommentFields%0A%20replies%3A%20childre%E2%80%A6&quot;"
+                target="_blank">
+              </a>
+              <a class="social-share-icon icon-wechat" href="javascript:">
+                <div class="wechat-qrcode">
+                  <h4>微信扫一扫：分享</h4>
+                  <div class="qrcode" title="https://2heng.xin/2019/12/31/graphql-recursion/">
+                    <canvas width="100" height="100" style="display: none;"></canvas>
+                    <img alt="Scan me!" style="display: block;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAECklEQVR4nO2VQY7jQAwD/f9Pey+7QDboloqS7DgzFOCL3JZIVk/mOI7j7D7/Knr3WtG71bkJHeqMTEdXa/AYyCOBqKUGQQ12QiJeKlCredAykG8CMiFYhUWfwER6rqPtKs8GYiAG8lEgnTBVcFTHVXOvAm0gvwHIKvwMiPpEpWqjcyNfBgLCMhADmQeiCsoEEDNZrwomm0/3RJ7JO6rNQOCeyDN5R7X9B6TzRKYnezSkT2trPgYyrc1AfhKQ8+LqmN7NUoBUz6tzp8pANucfCSRaGomiQWS7xn4GNrvVi0GBqPvxT5aB7H3dBuQOE9U/9w7oju6qtkjH9iEfZiYMxEDKQVR0V7VFOlIgUWBqLxOizqVBkO9ocJ0d0XfphSdLDeQDQFRx0WIqTq3KDDkQ2FP10p6BGIiBSECo+KinCFWeSoXmxQtE8+iANpCnAamGH4lXQ+qcp9qIbuVCTIDevDcQAzGQHAgdTBarZrKeGlJ2qciFUC9mx/PbYyCr+hgQxfyUGRocmauapiGqAasZbXVEAw3EQAxE/Xg1ZCcyO796X905cZF289QiAIOegex2fAUQNbjqz9NqDjU48VOkAqnM3TwGks1QcmkDiQzKw8Twq7MqRedOAIl6qab3l6oZA2H+sKb3l6oZA2H+BE1aAJGJjpCJoheCAKnsUucayDcAiRZNmJ/odaoavqqNwkkvKxFCjBqIgaD6eiB0SfW7nTgaDjlH310FnvaWD11iIHHdCiQToJ7r/EmretVLEPWu1nae8Ccremcgc9rO00CeB0QNSTUd9TLTkwAnQ73yEhqIULcCoUuVRa/nBwVLu6ozVB0V0Jv9BpKdq+rOKgRChxHT6vmKaXWuWpk24m81D/QMpKKN+FvNAz0DqWgj/lbzQK/2u9cxPbHzKt1CcNtZlYvz8hhIpu0xQKpBZOcnTWfV+bmrZlO9qH/nGoiincw1EFHL1wKhy4kZ2lN1rN5H32Zz6a7onArk7TsDeRQQIrg0+N5blYYZAbxTdzrv/WWnDEQrA/kGIMSMGkhFiCA4PZ/1lD0df/ScgQh7bgeiiiMCVudpjxpQZ1Q9VS5B1d95ngZiIAaS6dTMqIKpuOwiTJmu7KjqreRmIE8DghUURUbnaI8GSHp0hhr0RB7HcRjI44CoAsiSChDybSdMdYbay3YJ+w0k02YgBqL/K+kEF52LTKy+pXOplyrobC71bCDg/EeBqCFVYEbiox4NjuxR9KuQKMBNz0A62gzEQDiQiihimoRFA6Yhqbqn8jCQnwykY1qdq+5Sq7IrmiGAM5BVGYg4V92l1mOAdARTIdHOq4Eo+5VLFe0UewZCtUfnop1ij4WnBlutCjgSunoJKHwCS8nPQJLzBvLLgfwBkdSMuSRKV6oAAAAASUVORK5CYII=">
+                  </div>
+                  <div class="help"><p>微信里点“发现”，扫一下</p>
+                    <p>二维码便可将本文分享至朋友圈。</p></div>
                 </div>
-                <div class="help"><p>微信里点“发现”，扫一下</p>
-                  <p>二维码便可将本文分享至朋友圈。</p></div>
-              </div>
-            </a><a class="social-share-icon icon-tencent"
+              </a>
+              <a class="social-share-icon icon-tencent"
                    href="http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;title=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB&amp;url=https%3A%2F%2F2heng.xin%2F2019%2F12%2F31%2Fgraphql-recursion%2F&amp;pic=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fmoezx%2Fcdn%403.1.9%2Fimg%2FSakura%2Fimages%2Fnext-b.svg"
-                   target="_blank"></a><a class="social-share-icon icon-douban"
+                   target="_blank"></a>
+              <a class="social-share-icon icon-douban"
                                           href="http://shuo.douban.com/!service/share?href=https%3A%2F%2F2heng.xin%2F2019%2F12%2F31%2Fgraphql-recursion%2F&amp;name=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB&amp;text=%E5%BD%93%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E7%94%A8%20GraphQL%20%E6%9F%A5%E8%AF%A2%E5%A4%9A%E5%B1%82%E5%A5%97%E5%B5%8C%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%AF%94%E5%A6%82%E5%83%8F%20WordPress%20%E8%BF%99%E6%A0%B7%E5%A5%97%E5%B5%8C%E7%9A%84%E8%AF%84%E8%AE%BA%E4%BF%A1%E6%81%AF%E6%97%B6%EF%BC%8C%E9%80%9A%E5%B8%B8%E7%9A%84%E5%86%99%E6%B3%95%E6%98%AF%EF%BC%9A%20%20%7B%0A%20posts(first%3A%20100)%20%7B%0A%20nodes%20%7B%0A%20id%0A%20title%0A%20comments%20%7B%0A%20nodes%20%7B%0A%20...CommentFields%0A%20replies%3A%20childre%E2%80%A6&amp;image=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fmoezx%2Fcdn%403.1.9%2Fimg%2FSakura%2Fimages%2Fnext-b.svg&amp;starid=0&amp;aid=0&amp;style=11"
-                                          target="_blank"></a><a class="social-share-icon icon-qzone"
+                                          target="_blank"></a>
+              <a class="social-share-icon icon-qzone"
                                                                  href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2F2heng.xin%2F2019%2F12%2F31%2Fgraphql-recursion%2F&amp;title=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB&amp;desc=%E5%BD%93%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E7%94%A8%20GraphQL%20%E6%9F%A5%E8%AF%A2%E5%A4%9A%E5%B1%82%E5%A5%97%E5%B5%8C%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%AF%94%E5%A6%82%E5%83%8F%20WordPress%20%E8%BF%99%E6%A0%B7%E5%A5%97%E5%B5%8C%E7%9A%84%E8%AF%84%E8%AE%BA%E4%BF%A1%E6%81%AF%E6%97%B6%EF%BC%8C%E9%80%9A%E5%B8%B8%E7%9A%84%E5%86%99%E6%B3%95%E6%98%AF%EF%BC%9A%20%20%7B%0A%20posts(first%3A%20100)%20%7B%0A%20nodes%20%7B%0A%20id%0A%20title%0A%20comments%20%7B%0A%20nodes%20%7B%0A%20...CommentFields%0A%20replies%3A%20childre%E2%80%A6&amp;summary=%E5%BD%93%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E7%94%A8%20GraphQL%20%E6%9F%A5%E8%AF%A2%E5%A4%9A%E5%B1%82%E5%A5%97%E5%B5%8C%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%AF%94%E5%A6%82%E5%83%8F%20WordPress%20%E8%BF%99%E6%A0%B7%E5%A5%97%E5%B5%8C%E7%9A%84%E8%AF%84%E8%AE%BA%E4%BF%A1%E6%81%AF%E6%97%B6%EF%BC%8C%E9%80%9A%E5%B8%B8%E7%9A%84%E5%86%99%E6%B3%95%E6%98%AF%EF%BC%9A%20%20%7B%0A%20posts(first%3A%20100)%20%7B%0A%20nodes%20%7B%0A%20id%0A%20title%0A%20comments%20%7B%0A%20nodes%20%7B%0A%20...CommentFields%0A%20replies%3A%20childre%E2%80%A6&amp;site=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB"
-                                                                 target="_blank"></a><a
+                                                                 target="_blank"></a>
+              <a
                 class="social-share-icon icon-linkedin"
                 href="http://www.linkedin.com/shareArticle?mini=true&amp;ro=true&amp;title=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB&amp;url=https%3A%2F%2F2heng.xin%2F2019%2F12%2F31%2Fgraphql-recursion%2F&amp;summary=%E5%BD%93%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E7%94%A8%20GraphQL%20%E6%9F%A5%E8%AF%A2%E5%A4%9A%E5%B1%82%E5%A5%97%E5%B5%8C%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%AF%94%E5%A6%82%E5%83%8F%20WordPress%20%E8%BF%99%E6%A0%B7%E5%A5%97%E5%B5%8C%E7%9A%84%E8%AF%84%E8%AE%BA%E4%BF%A1%E6%81%AF%E6%97%B6%EF%BC%8C%E9%80%9A%E5%B8%B8%E7%9A%84%E5%86%99%E6%B3%95%E6%98%AF%EF%BC%9A%20%20%7B%0A%20posts(first%3A%20100)%20%7B%0A%20nodes%20%7B%0A%20id%0A%20title%0A%20comments%20%7B%0A%20nodes%20%7B%0A%20...CommentFields%0A%20replies%3A%20childre%E2%80%A6&amp;source=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB&amp;armin=armin"
-                target="_blank"></a><a class="social-share-icon icon-diandian"
+                target="_blank"></a>
+              <a class="social-share-icon icon-diandian"
                                        href="http://www.diandian.com/share?lo=https%3A%2F%2F2heng.xin%2F2019%2F12%2F31%2Fgraphql-recursion%2F&amp;ti=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB&amp;type=link"
-                                       target="_blank"></a><a class="social-share-icon icon-facebook"
+                                       target="_blank"></a>
+              <a class="social-share-icon icon-facebook"
                                                               href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F2heng.xin%2F2019%2F12%2F31%2Fgraphql-recursion%2F"
-                                                              target="_blank"></a><a
+                                                              target="_blank"></a>
+              <a
                 class="social-share-icon icon-twitter"
                 href="https://twitter.com/intent/tweet?text=GraphQL%20%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%20%7C%20%E6%A8%B1%E8%8A%B1%E5%BA%84%E7%9A%84%E7%99%BD%E7%8C%AB&amp;url=https%3A%2F%2F2heng.xin%2F2019%2F12%2F31%2Fgraphql-recursion%2F&amp;via=https%3A%2F%2F2heng.xin"
-                target="_blank"></a><a class="social-share-icon icon-google"
+                target="_blank"></a>
+              <a class="social-share-icon icon-google"
                                        href="https://plus.google.com/share?url=https%3A%2F%2F2heng.xin%2F2019%2F12%2F31%2Fgraphql-recursion%2F"
-                                       target="_blank"></a></div>
-            <i class="iconfont show-share icon-forward"></i></div>
+                                       target="_blank"></a>
+            </div>
+            -->
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
         </footer>
       </article>
+      <!--
       <section class="post-squares nextprev">
         <div class="post-nepre full previous">
           <a href="https://2heng.xin/2019/09/18/fix-100-vh-in-mobile-browser/" rel="prev">
@@ -167,6 +190,7 @@
           </a>
         </div>
       </section>
+      -->
     </page-content>
 
     <comment-block :blog-uid="blog.uid" :enable-comment="blog.enableComment" :comment-count="blog.commentCount"

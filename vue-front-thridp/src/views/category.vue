@@ -1,33 +1,94 @@
 <template>
-  <article class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
-    <div class="post-entry">
-      <div class="feature"><a href="https://2heng.xin/2018/03/07/freedom-and-bread/">
-        <div class="overlay"><i class="iconfont icon-text"></i></div>
-        <img
-            src="https://2heng.xin/wp-content/uploads//2018/03/gato_mirando_el_amanecer___cat_looking_to_sunset_by_franletadesing-d657km1-150x150.jpg"
-            class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" width="150" height="150"></a>
-      </div>
-      <h1 class="entry-title"><a href="https://2heng.xin/2018/03/07/freedom-and-bread/">自由与面包</a></h1>
-      <div class="p-time"><i class="iconfont icon-time"></i>发布于 2018-03-07</div>
-      <p>亚洲神话的破灭与亚洲价值观</p>
-      <footer class="entry-footer">
-        <div class="post-more"><a href="https://2heng.xin/2018/03/07/freedom-and-bread/"><i
-            class="iconfont icon-caidan"></i></a></div>
-        <div class="info-meta">
-          <div class="comnum"><span><i class="iconfont icon-mark"></i><a
-              href="https://2heng.xin/2018/03/07/freedom-and-bread/#comments">24 条评论</a></span></div>
-          <div class="views"><span><i class="iconfont icon-attention"></i>7,031 热度</span></div>
+  <div>
+    <cover :title="$route.params.title" :cover-src="$route.params.title==='Tech'?'https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.3/img/cover/nv.gif':'https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.4/img/cover/life.jiff'"/>
+    <page-content>
+      <article v-for="blog in blogData" :key="blog.uid" class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <div class="post-entry">
+          <div class="feature">
+            <a :href="'/blog/'+blog.link">
+              <div class="overlay">
+                <i class="iconfont icon-text"></i>
+              </div>
+              <img width="150" height="150" :src="blog.coverUrl" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="">
+            </a>
+          </div>
+          <h1 class="entry-title"><a :href="'/blog/'+blog.link">{{ blog.title }}</a></h1>
+          <div class="p-time">
+            <i class="iconfont icon-time"></i>发布于 {{ formatDate(blog.createTime) }}
+          </div>
+          <p>{{ blog.summary }}		</p>
+          <footer class="entry-footer">
+          <div class="post-more">
+            <a :href="'/blog/'+blog.link"><i class="iconfont icon-caidan"></i></a>
+          </div>
+          <div class="info-meta">
+            <div class="comnum">
+              <span><i class="iconfont icon-mark"></i><a :href="'/blog/'+blog.link+'/#comment'">{{ blog.commentCount }} 条评论</a></span>
+            </div>
+            <div class="views">
+              <span><i class="iconfont icon-attention"></i>298 热度</span>
+            </div>
+          </div>
+        </footer><!-- .entry-footer -->
         </div>
-      </footer>
-    </div>
-    <hr>
-  </article>
+        <hr>
+      </article>
+      <div class="clearer"></div>
+    </page-content>
+  </div>
 </template>
 
 <script>
+
+import {getBlogList} from "../api/article";
+import {getCategoryByName} from "../api/category";
+import {formatDate} from "../utils";
+
 export default {
   name: "category",
-  data: () => ({}),
+  components: {
+    PageContent: () => import('@/components/PageContent'),
+    Cover: () => import('@/layouts/sora/widgets/Cover'),
+  },
+  data: () => ({
+    pageSize: 10,
+    currentPage: 1,
+    totalPage: 0,
+
+    categoryUid: 0,
+    blogData: [],
+  }),
+  methods: {
+    formatDate(date){
+      return formatDate(date)
+    },
+    getData() {
+      let params = {};
+      params.categoryUid = this.categoryUid;
+      params.isDraft = false;
+      params.pageSize = this.pageSize;
+      params.currentPage = this.currentPage;
+      getBlogList(params).then(response => {
+        console.log(response);
+        if (response.state === this.$STATE.SUCCESS) {
+          let data = response.data;
+          this.blogData = data.records;
+          this.pageSize = data.size;
+          this.totalPage = data.pages;
+          this.currentPage = data.current;
+        }
+      })
+    },
+  },
+  created() {
+    console.log('category create: ' + this.$route.params.title);
+    getCategoryByName(this.$route.params.title).then(cres => {
+      if (cres.state === this.$STATE.SUCCESS){
+        this.categoryUid = cres.data.uid;
+        this.getData()
+      }
+    })
+  }
 }
 </script>
 

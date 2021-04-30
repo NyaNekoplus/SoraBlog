@@ -1,4 +1,4 @@
-package com.vincent.admin.record;
+package com.vincent.admin.annotation.record;
 
 import com.vincent.admin.enums.UserOperation;
 import com.vincent.admin.holder.RequestHolder;
