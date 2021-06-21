@@ -10,12 +10,12 @@
     -->
 
     <div class="comments-main">
-      <h3 id="comments-list-title">Comments | <span class="noticom">{{ total===0?'暂无评论':total }}</span></h3>
+      <h3 id="comments-list-title">Comments | <span class="noticom">{{ total===0?'暂无评论':total+' 条评论' }}</span></h3>
       <div id="loading-comments"><span></span></div>
 
       <div v-if="enableComment">
         <div v-if="hasComment">
-          <comment-patch :comment-list="commentList" class="commentwrap"></comment-patch><!--this.rootId-->
+          <comment-patch :key="total" :comment-list="commentList" class="commentwrap"></comment-patch><!--this.rootId-->
           <nav id="comments-navi">
             <a v-if="currentPage!==1" class="prev page-numbers">« Older</a>
             <span v-if="totalPage>10&&currentPage>4" @click="changePage(1)" class="page-numbers">1</span>
@@ -44,35 +44,38 @@
       </div>
     </div>
 
-    <comment-box @submit-comment="submitComment"></comment-box>
+    <comment-box :key="commentSource" @submit-comment="submitComment"></comment-box>
   </section>
 </template>
 
 <script>
 import {addComment, getCommentList, getCommentUpdatedList} from "../../api/comment";
 import {message} from "../Message";
-
+import CommentPatch from './patch';
+import CommentBox from './box'
 export default {
   name: "index",
   components: {
-    CommentPatch: () => import('./patch'),
-    CommentBox: () => import('./box'),
+    CommentBox,
+    CommentPatch
+    //CommentPatch: () => import('./patch'),
+    //CommentBox: () => import('./box'),
   },
   props: {
-    blogUid: {
-      type: Number,
-      default: 0 // 默认不在文章页下评论
-    },
-    enableComment: {
-      type: Boolean
+    blogId: {
+      type: Number
     },
     commentSource: {
       type: String
+    },
+    enableComment: {
+      type: Boolean
     },
   },
   data: () => ({
     //enableComment: true,
     hasComment: false,
+    blog: null,
 
     total: 0,
     totalPage: 0,
@@ -85,26 +88,27 @@ export default {
       let params = {};
       params.source = this.commentSource;
       console.log("Comment source: "+params.source);
-      if (params.source === 'BLOG'){
-        params.blogUid = this.blogUid//blog.uid;
-      }else {params.blogUid = 0;}
+      //let b = this.$store.getters.blog;
+      //alert('uid:'+b.uid + typeof(b.uid)+ ' en c:'+ b.enableComment)
+      params.blogUid = this.blogId//blog.uid;
       params.pageSize = this.pageSize;
       params.currentPage = this.currentPage;
       getCommentList(params).then(response=>{
         if (response.state === this.$STATE.SUCCESS){
-          message(response.message);
           if (response.data.records.length !== 0){
             this.hasComment = true;
             this.total = response.data.total;
             this.totalPage = response.data.pages;
             this.commentList = response.data.records;
           }
+        }else {
+          message(response.message);
         }
       })
     },
     submitComment(c){
       let param = {};
-      param.blogUid = this.blogUid;
+      param.blogUid = this.blogId;
       param.userUid = c.userUid;
       param.toUid = c.toUid;
       param.toUserUid = c.toUserUid;
@@ -112,6 +116,7 @@ export default {
       param.source = this.commentSource;
       param.content = c.content;
       param.targetType = c.targetType;
+      param.currentPage = this.currentPage
       //param.commentTime = c.commentTime;
       addComment(param).then(response=> {
         message(response.message)
@@ -125,23 +130,52 @@ export default {
       params.source = this.commentSource;
       console.log("Comment source: "+params.source);
       if (params.source === 'BLOG'){
-        params.blogUid = this.blogUid//blog.uid;
+        params.blogUid = this.blogId//blog.uid;
       }else {params.blogUid = 0;}
       console.log("Blog uid: "+params.blogUid);
       params.pageSize = this.pageSize;
       params.currentPage = this.currentPage;
       getCommentUpdatedList(params).then(response => {
-        message(response.message)
         if (response.state === this.$STATE.SUCCESS) {
           this.commentList = response.data.records;
           this.total = response.data.total;
           this.totalPage = response.data.pages;
+          this.$forceUpdate();
+        }else {
+          message(response.message)
         }
       })
     },
     changePage(page){
       this.currentPage = page;
       this.updateComment();
+    },
+    updateCommentPage(){
+      let commentsPage = this.$route.params.page
+      let anchor = window.location.hash
+      if (commentsPage === undefined || !/^comment-page-\d+/.test(commentsPage) || !/^#comment-\d+/.test(anchor)){
+        return  // comment-id
+      }
+
+      this.currentPage = Number.parseInt(commentsPage.split('-')[2])
+      console.log('current comment page: '+this.currentPage)
+
+      this.$nextTick(()=>{
+        setTimeout(()=>{
+          let anchor = window.location.hash
+          console.log('anchor: '+anchor.substr(1))
+          let elem = document.getElementById(anchor.substr(1))
+          console.log(elem)
+          elem.scrollIntoView(true)
+        },10)
+      })
+    },
+    getCommentInWhichPage(){
+      let str = window.location.hash.split('-')[1];
+      if (str === undefined || str === null) return
+      let replyID = Number.parseInt(str)
+      if (isNaN(replyID)) return
+      /^#\d/.test(to.hash)
     }
   },
   computed: {
@@ -160,10 +194,21 @@ export default {
     }
   },
   created() {
+    console.log('comment blog id: '+this.blogId)
+    console.log('comment hash: '+window.location.hash)
+    console.log('blog link: '+this.$route.params.title)
+    console.log('comment page: '+this.$route.params.page)
+    //window.location.pathname
+
+    this.updateCommentPage()
+
+
+    this.blog = this.$store.getters.blog;
     this.getCommentList();
+
   },
   mounted() {
-    //this.getCommentList();
+
   }
 }
 </script>

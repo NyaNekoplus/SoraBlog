@@ -12,7 +12,7 @@
 
 
     <div class="major">
-      <input type="text" autocomplete="username" placeholder="邮箱/用户名" autocapitalize="off" v-model="username">
+      <input type="text" autocomplete="username" placeholder="邮箱" autocapitalize="off" v-model="username">
       <input type="password" autocomplete="current-password" placeholder="密码" autocapitalize="off" v-model="password">
     </div>
 
@@ -34,12 +34,12 @@
       <div class="sora-form__sns-btn-area index">
         <div>使用其他账号登陆</div>
         <div class="sns-button-list"><a
-            href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=apple&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_apple"
+            href="javascript:void(0)"
             class="btn-item btn-apple js-click-trackable compact index" data-click-category="signup_page_pc"
             data-click-action="step1" data-click-label="apple" rel="nofollow">Twitter</a>
           |
           <a
-              href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=sina&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_sina"
+              href="javascript:void(0)"
               class="btn-item btn-weibo js-click-trackable compact index" data-click-category="signup_page_pc"
               data-click-action="step1" data-click-label="sina" rel="nofollow">Github</a>
           <!--
@@ -80,8 +80,10 @@ export default {
   methods: {
     ...mapMutations(["setToken"]),
     handleLogin(){
+      //message('暫時關閉密碼登錄')
+      //return // TODO 暫時關閉密碼登錄
       let param = {};
-      param.username = this.username;
+      param.email = this.username;
       param.password = this.password;
       param.remember = this.remember;
       login(param).then(response => {

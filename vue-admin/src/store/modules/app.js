@@ -34,7 +34,7 @@ const state = {
     },
     {
       title: 'Image',
-      icon: 'image',
+      icon: 'file-image',
       items: [
         {
           title: 'Image Classification',
@@ -50,7 +50,7 @@ const state = {
     },
     {
       title: 'System',
-      icon: 'system',
+      icon: 'application-cog',
       items: [
         {
           title: 'System Config',

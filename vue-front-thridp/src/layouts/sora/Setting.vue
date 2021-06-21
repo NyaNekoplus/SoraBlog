@@ -2,20 +2,20 @@
   <div>
     <div id="mo-nav" :class="sidebarOn?'open':''">
       <div class="m-avatar">
-        <img :src="about.avatarUrl">
+        <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png">
       </div>
       <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">
-        {{ about.name }}
+        Vincent Tsai
       </p>
-      <p style="text-align: center; word-spacing: 20px;">
-        <a href="http://twitter.com/2hengxin" class="fa fa-twitter" target="_blank" style="color: #00aced"></a>
-        <a href="http://weibo.com/2960337711" class="fa fa-weibo" target="_blank" style="color: #dd4b39"></a>
-        <a href="http://github.com/mashirozx" class="fa fa-github" target="_blank" style="color: #333"></a>
-        <a onclick="mail_me()" class="fa fa-envelope" style="color: #ffbf00"></a>
+      <p style="text-align: center; letter-spacing: 20px;">
+        <a href="https://twitter.com/Vincent_Tsai_" class="fa fa-twitter" target="_blank" style="color: #00aced"></a>
+        <a href="https://weibo.com/5365785822" class="fa fa-weibo" target="_blank" style="color: #dd4b39"></a>
+        <a href="https://github.com/NyaNekoplus" class="fa fa-github" target="_blank" style="color: #333"></a>
+        <a href="mailto:guoxitsai@gmail.com" class="fa fa-envelope" style="color: #ffbf00"></a>
       </p>
       <div class="m-search">
-        <form class="m-search-form" method="get" action="https://2heng.xin" role="search">
-          <input class="m-search-input" type="search" name="s" placeholder="搜索..." required="">
+        <form @submit.prevent class="m-search-form" role="search">
+          <input @keypress.enter="handleSearch" class="m-search-input" type="search" v-model="keyword" placeholder="搜索..." required="">
         </form>
       </div>
       <ul id="menu-new-1" class="menu">
@@ -36,6 +36,17 @@
     <button id="moblieGoTop" title="Go to top"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
     <button id="moblieDarkLight"><i class="fa fa-moon-o" aria-hidden="true"></i></button>
     <!-- search start -->
+    <div :class="`js-search search-form search-form--modal ${searchbarOn?'is-visible':''}`" role="search">
+      <div class="search-form__inner">
+        <div>
+          <p class="micro mb-">想要找点什么呢？</p>
+          <i class="iconfont icon-search"></i>
+          <input @keypress.enter="handleSearch" class="text-input" v-model="keyword" placeholder="Search" required="">
+        </div>
+      </div>
+      <div @click="closeSearchBar" class="search_close"></div>
+    </div>
+    <!--
     <form class="js-search search-form search-form--modal" method="get" action="<?php echo home_url(); ?>" role="search">
       <div class="search-form__inner">
         <div v-if="liveSearch">
@@ -58,6 +69,7 @@
       </div>
       <div class="search_close"></div>
     </form>
+    -->
     <!-- search end -->
     <!--?php wp_footer(); ?-->
     <div class="site-statistics" v-if="siteStatistics">
@@ -91,33 +103,43 @@
     <aside id="secondary" class="widget-area" role="complementary" style="left: -400px;" v-if="sakuraWidget">
       <div class="heading">php _e('Widgets') /*小工具*/ </div>
       <div class="sakura_widget">
-        php if (function_exists('dynamic_sidebar') && dynamic_sidebar('sakura_widget')) : endif;
+
       </div>
       <div class="show-hide-wrap">
-        <button class="show-hide">
-          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 32 32">
-          <path d="M22 16l-10.105-10.6-1.895 1.987 8.211 8.613-8.211 8.612 1.895 1.988 8.211-8.613z"></path>
-          </svg>
-        </button>
+        <aplayer
+            :music="{
+              title: 'Practise Love',
+              artist: 'JJ Lin',
+              src: 'https://image.sora.vin/music/practise-love.mp3',
+              pic: 'https://image.sora.vin/music/practise-love.jpg'
+            }"
+            mini
+        />
       </div>
     </aside>
-
-    <div id="aplayer-float" style="z-index: 100;" v-if="aplayerServer"
-         class="aplayer"
-         data-id="<?php echo akina_option('aplayer_playlistid', ''); ?>"
-         data-server="<?php echo akina_option('aplayer_server'); ?>"
-         data-type="playlist"
-         data-fixed="true"
-         data-theme="orange">
-    </div>
+    <!--
+    <aplayer
+        :music="{
+              title: 'Practise Love',
+              artist: 'JJ Lin',
+              src: 'https://image.sora.vin/music/practise-love.mp3',
+              pic: 'https://image.sora.vin/music/practise-love.jpg'
+            }"
+        mini
+    />-->
   </div>
 </template>
 
 <script>
 import {mapMutations} from 'vuex';
+import Aplayer from 'vue-aplayer'
 export default {
   name: "SoraSetting",
+  components: {
+    Aplayer
+  },
   data: () => ({
+    keyword: '',
     displayTheme: false,
     themeList: [
       {
@@ -170,7 +192,14 @@ export default {
     toTopClass: 'cd-top faa-float animated',
   }),
   methods: {
-    ...mapMutations(['setWideScreenCover','setSakuraEffect','setSnowEffect','setBackground','setDark']),
+    ...mapMutations(['setWideScreenCover','setSakuraEffect','setSnowEffect','setBackground','setDark','setSearchbarOn']),
+    handleSearch(){
+      window.location.href = 'https://sora.vin/search/'+this.keyword
+      //this.$router.push('/search/'+this.keyword)
+    },
+    closeSearchBar(){
+      this.setSearchbarOn(false);
+    },
     showThemePanel(){
       this.displayTheme = !this.displayTheme;
     },
@@ -234,6 +263,9 @@ export default {
     }
   },
   computed: {
+    searchbarOn(){
+      return this.$store.getters.searchbarOn
+    },
     sidebarOn(){
       return this.$store.getters.sidebarOn
     },

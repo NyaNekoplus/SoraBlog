@@ -41,7 +41,7 @@
                             <v-col cols="5" align-self="end">
                               <div style="text-align: right">
                                 <v-btn
-                                  v-for="(icon, index) in ['content-copy', 'mdi-play', 'mdi-fast-forward']"
+                                  v-for="(icon, index) in ['clipboard-text-outline', 'mdi-trash-can-outline', 'mdi-fast-forward']"
                                   :key="index"
                                   @click="imageOperation(index, image)"
                                   :class="{ 'show-btns': hover }"
@@ -144,6 +144,13 @@ export default {
     imageOperation(i, image){
       switch (i){
         case 0:
+          this.$copyText(image.url).then(function (e) {
+            alert('Copied')
+            console.log(e)
+          }, function (e) {
+            alert('Can not copy')
+            console.log(e)
+          })
           break;
         case 1:
           break;

@@ -13,18 +13,7 @@
     <page-content>
       <article class="post type-post status-publish format-standard has-post-thumbnail hentry category-hacking tag-graphql tag-javascript tag-wordpress">
 
-        <!--
-        <div class="ins-section-wrapper">
-          <div class="ins-section-container">
-            <div class="ins-section">
-              <div class="ins-section-header">
-                header
-              </div>
-            </div>
-          </div>
-        </div>
-        -->
-        <div class="toc-container">
+        <div class="toc-container" :style="`height: ${tocHeight}px;`">
           <div class="toc" style="background: none;">
             <!--
             <ol class="toc-list ">
@@ -71,8 +60,8 @@
             -->
           </div>
         </div>
-        <div class="entry-content" @click="enlargeImage">
-          <div v-html="blog.contentMd"></div>
+        <div id="entry-content" class="entry-content" ref="content" @click="enlargeImage">
+          <div v-html="contentMD"></div>
         </div>
 
         <donate-icon/>
@@ -90,9 +79,9 @@
             <a v-for="tag in blog.tagList" :key="tag.uid" rel="tag">{{tag.name}}</a>
           </div>
           <div class="post-like">
-            <a href="javascript:;" data-action="ding" data-id="4491" class="specsZan ">
+            <a href="javascript:void(0);" @click="like" class="specsZan ">
               <i class="iconfont icon-like"></i>
-              <span class="count"> 39</span>
+              <span class="count"> {{ blog.likedCount }}</span>
             </a>
           </div>
           <div class="post-share">
@@ -193,28 +182,30 @@
       -->
     </page-content>
 
-    <comment-block :blog-uid="blog.uid" :enable-comment="blog.enableComment" :comment-count="blog.commentCount"
-                   :comment-source="'BLOG'"></comment-block>
+    <comment-block v-if="blog.uid" :blog-id="blog.uid" :enable-comment="blog.enableComment" :comment-source="'BLOG'"></comment-block>
   </div>
 </template>
 
 <script>
-import Viewer from "viewerjs"
+import Viewer from "viewerjs";
 import 'viewerjs/dist/viewer.css';
 import * as tocbot from "tocbot";
-import {getBlogByTitle} from "../api/article";
+import {getBlogByTitle, likedIncrement} from "../api/article";
 import {mapMutations} from "vuex";
-import DonateIcon from "../components/DonateIcon";
+import PageContent from "../components/PageContent";
+import {message} from "../components/Message";
 
 export default {
   name: "page",
   components: {
-    DonateIcon,
-    PageContent: () => import('@/components/PageContent'),
+    PageContent,
+    DonateIcon: () => import('@/components/DonateIcon'),
     Cover: () => import('@/layouts/sora/widgets/Cover'),
     CommentBlock: () => import('@/components/CommentBlock/index'),
   },
   data: () => ({
+    tocHeight: 2800,
+    contentMD: '',
     blog: [],
   }),
   methods: {
@@ -233,46 +224,40 @@ export default {
       }
     },
     getBlogByLink() {
-      getBlogByTitle(this.$route.params.title).then(response => {
+      let t = this.$route.params.title
+      if (t.length === 0){
+        this.$router.push('/')
+        return
+      }
+      getBlogByTitle(t).then(response => {
         console.log("page: " + response.state);
         if (response.state === this.$STATE.SUCCESS) {
           console.log("blog: " + response.data);
           this.blog = response.data;
+          this.contentMD = response.data.contentMd;
           this.setBlog(response.data)
-          console.log("page: " + this.blog);
+          //this.$nextTick(this.genToc)
         } else {
-          alert(response.message);
-          alert('获取文章失败');
           this.$router.push('/404');
         }
       });
-    }
-
-  },
-  created() {
-    this.removeToInfo();
-
-
-  },
-  mounted() {
-    console.log('page create: ' + this.$store.getters.blog);
-    if (this.$store.getters.blog !== undefined && this.$store.getters.blog !== null) {
-      let t_blog = this.$store.getters.blog;
-      if (t_blog.link[0] === '/') {
-        t_blog.link = t_blog.link.substr(1);
+    },
+    like(){
+      if (this.$store.getters.userInfo === null){
+        message("登录后才可以点赞哦~")
+        return
       }
-      console.log('t_blog.link: ' + t_blog.link);
-      console.log('this.$route.params.title: ' + this.$route.params.title);
-      if (t_blog.link === this.$route.params.title) {
-        this.blog = this.$store.getters.blog;
-      } else {
-        this.getBlogByLink();
-      }
-    } else {
-      this.getBlogByLink();
-    }
-    // tocbot
-    this.$nextTick(function () {
+      let param = new URLSearchParams();
+      param.append('uid',this.blog.uid);
+      console.log("blog uid:"+param)
+      likedIncrement(param).then(response => {
+        message(response.message)
+        if (response.state === this.$STATE.SUCCESS){
+          this.blog.likedCount = this.blog.likedCount+1;
+        }
+      })
+    },
+    genToc: function () {
       tocbot.init({
         // Where to render the table of contents.
         tocSelector: '.toc', // 放置目录的容器
@@ -280,29 +265,76 @@ export default {
         contentSelector: '.entry-content', // 正文内容所在
         // Which headings to grab inside of the contentSelector element.
         headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
-        positionFixedSelector: ".toc", //目录位置固定
+        //positionFixedSelector: ".toc", //目录位置固定
+        scrollSmooth: true,
+        scrollSmoothOffset: -80,
+        headingsOffset: -500,
         /*
         scrollEndCallback: function (e) { //回调函数
           window.scrollTo(window.scrollX, window.scrollY - 80);
           //修正滚动后页面的位置，80 是自己顶部栏的高度
         },
         */
-        hasInnerContainers: true
+        hasInnerContainers: true,
       });
-    });
-    /*
-    this.$nextTick( () => {
-
-      document.getElementsByClassName('.entry-content').on
-      $('.entry-content').on('click','img',() => {
-        let thisImgAttr = $(this).attr("src");
-        console.log('img url: '+thisImgAttr)
+      this.$nextTick(()=>{
+        console.log('content height: '+this.$refs.content.offsetHeight)
+        //console.log('toc height: '+this.$refs.toc.offsetHeight)
+        this.tocHeight = this.$refs.content.offsetHeight
+        //this.$refs.toc.style.height = 2800//this.$refs.content.offsetHeight
       })
-    })
-    */
+    }
+  },
+  watch: {
+    contentMD: function (){
+      this.$nextTick(function (){
+        // 服，自己加锚点得了
+        var headerEl = 'h1,h2,h3,h4',  //headers
+            content = '.entry-content',//文章容器
+            idArr = {};  //标题数组以确定是否增加索引id//add #id
+        let c = this.$refs.content.childNodes[0].childNodes//document.getElementById('entry-content').children
+        console.log('children: '+c.toString())
+        c.forEach(function (i) {
+          //console.log('tagname: '+i.textContent)
+          if (i.tagName==='H1'||i.tagName === 'H2'||i.tagName === 'H3'
+              ||i.tagName === 'H4'||i.tagName === 'H5'){
+            //去除空格以及多余标点
+            var headerId = i.textContent.replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+            headerId = headerId.toLowerCase();
+            if (idArr[headerId]) {
+              //id已经存在
+              i.id = headerId + '-' + idArr[headerId];
+              //i.attr('id', headerId + '-' + idArr[headerId]);
+              idArr[headerId]++;
+            } else {
+              //id未存在
+              idArr[headerId] = 1;
+              i.id = headerId
+            }
+            console.log('id: '+i.id)
+          }
+        });
+        this.genToc()
+      })
+    }
+  },
+  created() {
+    this.removeToInfo();
+
+  },
+  mounted() {
+    //console.log('mount toc:'+this.$refs.content)
+    //setTimeout(this.genToc,1000)
+    this.getBlogByLink();
+  },
+  updated() {
+    //this.genToc()
+  },
+  destroyed() {
+    console.log('remove blog')
+    tocbot.destroy()
+    this.setBlog(null)
   }
-
-
 }
 </script>
 

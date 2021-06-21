@@ -45,8 +45,8 @@
           <p>
             <a href="https://sora.vin/Donate" target="_blank" rel="nofollow">
               <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/gd.jfif"
-                   alt="谢谢饲主了喵~"
-                   title="谢谢饲主了喵~"
+                   alt="功德无量"
+                   title="功德无量"
                    width="100%">
             </a>
           </p>

@@ -153,6 +153,9 @@ public class ArticleApi {
     @ProxyAuth
     @PostMapping("/add")
     String addArticle(@RequestBody ArticleVO articleVO){
+        if (articleVO.getLink().length()>255){
+            return Result.failure("链接过长");
+        }
         Article article = new Article();
         List<TagVO> tagList = articleVO.getTagList();
         StringBuilder tagUid = new StringBuilder("");
@@ -227,6 +230,7 @@ public class ArticleApi {
         wrapper.set("enable_comment",articleVO.getEnableComment());
         wrapper.set("is_draft",articleVO.getIsDraft());
         wrapper.set("content",articleVO.getContent());
+        wrapper.set("content_md",articleVO.getContentMd());
         wrapper.set("link",articleVO.getLink());
         wrapper.set("title",articleVO.getTitle());
         wrapper.set("level",articleVO.getLevel());
@@ -244,9 +248,9 @@ public class ArticleApi {
     }
 
     @ProxyAuth
-    @DeleteMapping("/delete/{uid}")
-    public String deleteArticle(@PathVariable(value = "uid") Long uid){
-        boolean result = articleService.removeById(uid);;
+    @DeleteMapping("/delete")
+    public String deleteArticle(@RequestBody Article article){
+        boolean result = articleService.removeById(article.getUid());;
         return result?Result.success("Back-end：删除文章成功"):Result.failure("Back-end：删除文章失败");
     }
 

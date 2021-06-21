@@ -46,6 +46,8 @@ public class Article extends SuperEntity<Article> {
 
     private Integer commentCount;
 
+    private Integer likedCount;
+
     private Integer viewCount;
 
     private Boolean isOriginal; // 是否原创

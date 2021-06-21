@@ -92,8 +92,13 @@
       <i class="iconfont icon-notification"></i>
       <div class="notice-content">---------水泥未干---------</div>
     </div>
+    <div class="notice" style="margin-top:10px">
+      <i class="iconfont icon-notification"></i>
+      <div class="notice-content">Original：nyanekoplus.github.io (Blocked by GFW)</div>
+    </div>
+
     <top-list/>
-    <main-list :categoryUid="'1'"></main-list>
+    <main-list :categoryUid="'0'"></main-list>
 
   </div>
 

@@ -1,8 +1,10 @@
 <template>
   <div class="sora-form">
     <div class="sora-form__logo-box">
-      <div class="sora-form__logo"></div>
-      <div class="sora-form__catchphrase">全て遠き理想郷</div>
+      <div class="sora-form__logo">
+        全て遠き理想郷
+      </div>
+      <div class="sora-form__catchphrase">Avalon</div>
     </div>
 
     <div class="major">

@@ -32,7 +32,7 @@
 export default {
   name: "SoraView",
   data: ()=>({
-    isRouterAlive: true,
+    //isRouterAlive: true,
   }),
   /*
   provide: ()=>({

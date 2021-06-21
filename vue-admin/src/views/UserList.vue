@@ -9,11 +9,11 @@
           class="pa-8"
         >
           <span class="subheading font-weight-light mx-3" style="align-self: center">Tasks:</span>
-          <v-tab @click="getUserList(false)" class="mr-3">
+          <v-tab @click="getUserList(true)" class="mr-3">
             <v-icon class="mr-2">mdi-code-tags</v-icon>
             Normal
           </v-tab>
-          <v-tab @click="getUserList(true)">
+          <v-tab @click="getUserList(false)">
             <v-icon class="mr-2">mdi-cloud</v-icon>
             Silence
           </v-tab>
@@ -125,7 +125,7 @@
                     </v-toolbar>
                   </template>
                   <template v-slot:item.avatar="{ item }">
-                    <v-img :src="item.avatarJsDelivrUrl?item.avatarJsDelivrUrl:item.avatarUrl" max-width="80" max-height="45"></v-img>
+                    <v-img :src="item.qqAvatar?item.qqAvatar:item.avatarUrl" max-width="80" max-height="45"></v-img>
                   </template>
                   <template v-slot:item.userProxy="{ item }">
                       <v-chip>
@@ -254,9 +254,9 @@ export default {
       console.log('admin getUserList: sortBy='+sortBy+';sortDesc='+sortDesc);
       this.loading = true
       getUserListByPage(param).then(response => {
+        console.log(response);
         if (response.state === this.$STATE.SUCCESS){
           let userData = response.data;
-          console.log(response);
           console.log(response.data.records);
           console.log(userData.records.length);
           this.userList = userData.records;
@@ -264,8 +264,6 @@ export default {
           this.totalPage = userData.pages;
           this.pageSize = userData.size;
           this.currentPage = userData.current;
-        }else {
-          console.log(response.message);
         }
         this.loading = false
       })
@@ -273,21 +271,18 @@ export default {
     updateUserState(item){
       this.editedIndex = this.userList.indexOf(item)
       let param = {};
-      param.enableComment = item.enableComment;
-      param.enableEmailNotification = item.enableEmailNotification;
+      param.uid = item.uid
+      param.enableComment = item.enableComment
+      param.enableEmailNotification = item.enableEmailNotification
       console.log(param)
-      //param.isDraft = !item.isDraft;
-      /*
       updateUserState(param).then(response => {
+        console.log(response.message);
         if (response.state === this.$STATE.SUCCESS){
-          console.log(response.message);
-          if (enableComment){
+          if (!item.enableComment){
             this.userList.splice(this.editedIndex, 1)
           }
-        }else {
-          console.log(response.message);
         }
-      })*/
+      })
     },
 
     editItem (item) {

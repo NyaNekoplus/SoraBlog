@@ -1,6 +1,7 @@
 <template>
   <div>
-    <cover :title="$route.params.title" :cover-src="$route.params.title==='Tech'?'https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.3/img/cover/nv.gif':'https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.4/img/cover/life.jiff'"/>
+    <cover :title="$route.params.title" :cover-src="$route.params.title==='Tech'?
+    'https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.3/img/cover/nv.gif':'https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.6/img/cover/life.jpg'"/>
     <page-content>
       <article v-for="blog in blogData" :key="blog.uid" class="post post-list" itemscope="" itemtype="http://schema.org/BlogPosting">
         <div class="post-entry">
@@ -26,7 +27,7 @@
               <span><i class="iconfont icon-mark"></i><a :href="'/blog/'+blog.link+'/#comment'">{{ blog.commentCount }} 条评论</a></span>
             </div>
             <div class="views">
-              <span><i class="iconfont icon-attention"></i>298 热度</span>
+              <span><i class="iconfont icon-like"></i>{{ blog.likedCount }} 点赞</span>
             </div>
           </div>
         </footer><!-- .entry-footer -->

@@ -16,7 +16,11 @@ const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     scrollBehavior: (to, from, savedPosition) => {
-        if (to.hash) return { selector: to.hash }
+        console.log('to'+ to.hash)
+        if (to.hash) return {
+            selector: to.hash,
+            behavior: 'smooth'
+        }
         if (savedPosition) return savedPosition
 
         return { x: 0, y: 0 }
@@ -33,14 +37,18 @@ const router = new Router({
             path: '',
             component: otherLayout,
             children: [
+                { path: '/search/:keyword', component:()=>import('@/views/result') },
                 { path: '/tags', component:()=>import('@/views/tag') },
                 { path: '/category', component:()=>import('@/views/categories') },
                 { path: '/category/:title', component:()=>import('@/views/category') },
                 { path: '/link', component:()=>import('@/views/links') },
                 { path: '/donate', component:()=>import('@/views/donate') },
                 { path: '/about', component:()=>import('@/views/about') },
+                { path: '/about/:page', component:()=>import('@/views/about') },
                 { path: '/blog/:title', component:()=>import('@/views/page') },
+                { path: '/blog/:title/:page', component:()=>import('@/views/page') },
                 { path: '/board', component:()=>import('@/views/board') },
+                { path: '/board/:page', component:()=>import('@/views/board') },
                 { path: '/timeline', component:()=>import('@/views/timeline') },
             ]
         },

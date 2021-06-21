@@ -6,7 +6,7 @@
              src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.1/img/svg/loader/orange.progress-bar-stripe-loader.svg"
              :data-src="blog.coverUrl">
       </a>
-    </div><!-- thumbnail-->
+    </div>
     <div class="post-content-wrap">
       <div class="post-content">
         <div class="post-date">
@@ -18,7 +18,8 @@
         </div>
         <a :href="'/blog/'+blog.link" class="post-title"><h3>{{ blog.title }}</h3></a>
         <div class="post-meta">
-          <span><i class="iconfont icon-attention"></i>{{ blog.viewCount }}</span>
+          <!--<span><i class="iconfont icon-attention"></i>{{ blog.viewCount }}</span>--><!--不再显示浏览数-->
+          <span><i class="iconfont icon-like"></i>{{ blog.likedCount }}</span>
           <span class="comments-number"><i class="iconfont icon-mark"></i>{{ blog.commentCount }}条评论</span>
           <span><i class="iconfont icon-file"></i><a href="<?php echo esc_url(get_category_link($the_cat[0]->cat_ID)); ?>">{{ blog.category }}</a>
 					</span>

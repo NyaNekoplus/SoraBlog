@@ -11,7 +11,7 @@
         </div>
       </article>
     </page-content>
-    <comment-block :comment-source="'ABOUT'" :enable-comment="about.enableComment"></comment-block>
+    <comment-block :blog-id="0" :comment-source="'ABOUT'" :enable-comment="about.enableComment"></comment-block>
   </div>
 </template>
 
@@ -29,6 +29,7 @@ export default {
     about: {}
   }),
   created() {
+    console.log('about created')
     getAboutMe().then(response => {
       if (response.state === this.$STATE.SUCCESS){
         this.about = response.data;

@@ -5,21 +5,9 @@
         <div class="site-title" v-if="akina_logo">
           <a href="https://sora.vin"><img src="<?php echo akina_option('akina_logo'); ?>"></a>
         </div>
-        <span class="site-title" v-else :style="`${shownav?'':'display: none;'}`"><!--style="display: none;"-->
-
+        <span class="site-title" v-else :style="`${shownav?'':'display: none;'}`">
           <span class="logolink moe-mashiro">
-            <a :href="about.link">
-              <ruby>
-              <!-- <span class="site-name"><?php echo akina_option('site_name', ''); ?></span> -->
-                <span class="sakuraso" style="padding-left: 7px"><span>悠</span></span>
-
-                <span class="no">の</span>
-
-                <span class="shironeko">空</span>
-
-                <rp></rp><rt class="chinese-font">{{ about.name }}</rt><rp></rp>
-              </ruby>
-            </a>
+            <brand/>
           </span>
         </span>
       </div>
@@ -97,17 +85,17 @@
       <div class="header-user-avatar">
         <router-link to="/login">
           <img class="faa-shake animated-hover"
-               :src="userInfo.avatarUrl?userInfo.avatarUrl:'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/none.png'"
+               :src="userInfo.qqAvatar?userInfo.qqAvatar:userInfo.avatarUrl?userInfo.avatarUrl:'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/none.png'"
                width="30" height="30">
         </router-link>
         <div class="header-user-menu">
           <div class="herder-user-name no-logged">
             <div v-if="isLogin">
               <div>
-                <a @click="signOut" :href="about.link+'/login'" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Log out</a>
+                <a @click="signOut" href="https://sora.vin/login" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Log out</a>
               </div>
               <div>
-                <a :href="about.link+'/profile'" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Profile</a>
+                <a href="https://sora.vin/profile'" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Profile</a>
               </div>
             </div>
             <div v-else>
@@ -115,13 +103,13 @@
                 Whether to <router-link to="/login" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Sign in</router-link> now?
               </div>
               <div>
-                <a :href="about.link+'/register'" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Sign up</a>
+                <a href="https://sora.vin/register" target="_blank" style="color:#333;font-weight:bold;text-decoration:none">Sign up</a>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="searchbox"><i class="iconfont js-toggle-search iconsearch icon-search"></i></div>
+      <div @click="openSearchBar" class="searchbox"><i class="iconfont js-toggle-search iconsearch icon-search"></i></div>
     </div>
   </header>
 </template>
@@ -130,7 +118,6 @@
 import {mapMutations} from "vuex";
 import {authToken} from "../../api/user";
 import {getCookie,setCookie,removeCookie} from "../../utils/cookie";
-import {message} from "../../components/Message";
 
 export default {
   name: "SoraBar",
@@ -138,6 +125,9 @@ export default {
     isIndex: {
       type: Boolean,
     }
+  },
+  components: {
+    Brand: () => import('@/layouts/sora/widgets/brand'),
   },
   data: () => ({
     isLogin: false,
@@ -149,7 +139,10 @@ export default {
     topSearch: true,
   }),
   methods: {
-    ...mapMutations(['removeToken','setLoginState','setUserInfo','removeUserInfo','setThemeWidgetState']),
+    ...mapMutations(['removeToken','setLoginState','setUserInfo','removeUserInfo','setThemeWidgetState','setSearchbarOn']),
+    openSearchBar(){
+      this.setSearchbarOn(true);
+    },
     isNavbarShow(){
       const scrollLen = document.documentElement.scrollTop;
       if (scrollLen === 0){
@@ -190,7 +183,7 @@ export default {
     },
     verifyLogin(){
       let token = this.$store.getters.token;
-      if (token !== ''){
+      if (token !== null){
         console.log('验证store中的token不为空，写入cookie');
         setCookie("token", token, 7);
       }else {
@@ -207,9 +200,10 @@ export default {
             console.log(response.data);
           }else {
             this.isLogin = false;
+            this.removeToken();
             removeCookie("token");
             console.log(response.data);
-            message(response.message)
+            //message(response.message)
           }
           this.setLoginState(this.isLogin);
         });
@@ -229,9 +223,6 @@ export default {
   computed: {
     navbarItem(){
       return this.$store.getters.navbarItems;
-    },
-    about(){
-      return this.$store.getters.about;
     },
     userInfo(){
       return this.$store.getters.userInfo;

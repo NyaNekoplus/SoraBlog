@@ -36,7 +36,9 @@ public class Comment extends SuperEntity<Comment> {
     /**
     * 评论目标：0为文章，1为评论
     */
-    private Integer targetType;
+    //private Integer targetType;
+
+    private Integer type;
 
     private Integer status; // 存在 / 已删除
 

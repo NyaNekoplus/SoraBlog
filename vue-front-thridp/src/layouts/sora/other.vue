@@ -16,17 +16,7 @@
           </div>
           <div class="site-branding">
             <h1 class="site-title">
-              <a :href="about.link">
-                <ruby>
-                  <span class="sakuraso" style="padding-left: 7px"><span>悠</span></span>
-
-                  <span class="no">の</span>
-
-                  <span class="shironeko">空</span>
-
-                  <rp></rp><rt class="chinese-font">{{ about.name }}</rt><rp></rp>
-                </ruby>
-              </a>
+              <brand/>
             </h1>
           </div>
         </div>
@@ -38,7 +28,6 @@
 
 <script>
 import {mapMutations} from "vuex";
-import {getAboutMe} from "../../api/user";
 
 export default {
   name: 'SoraLayout',
@@ -47,6 +36,7 @@ export default {
     SoraBar: () => import('./AppBar'),
     SoraFooter: () => import('./Footer'),
     SoraSetting: () => import('./Setting'),
+    Brand: () => import('@/layouts/sora/widgets/brand'),
   },
   data: () => ({
     about: {},
@@ -63,12 +53,6 @@ export default {
     },
   },
   created() {
-    getAboutMe().then(response => {
-      if (response.state === this.$STATE.SUCCESS){
-        this.about = response.data;
-        this.setAbout(this.about);
-      }
-    })
   }
 }
 </script>

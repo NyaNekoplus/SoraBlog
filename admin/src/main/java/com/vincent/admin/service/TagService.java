@@ -1,6 +1,7 @@
 package com.vincent.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.vincent.admin.entity.Article;
 import com.vincent.admin.entity.Tag;
 
 /**
@@ -8,4 +9,5 @@ import com.vincent.admin.entity.Tag;
  * @date 2021/3/19 18:49
  */
 public interface TagService extends IService<Tag> {
+    void getTagListByArticle(Article article);
 }

@@ -29,7 +29,7 @@
 
       <default-list :items="items" />
     </div>
-
+<!--
     <template #append>
       <div class="pa-4 text-center">
         <app-btn
@@ -56,6 +56,7 @@
         </app-btn>
       </div>
     </template>
+    -->
 
     <div class="pt-12" />
   </v-navigation-drawer>

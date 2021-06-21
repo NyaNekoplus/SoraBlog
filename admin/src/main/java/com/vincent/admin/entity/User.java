@@ -26,7 +26,15 @@ public class User extends SuperEntity<User> {
 
     private String email;
 
-    private Date birthday;
+    private String qqNumber;
+
+    private Integer age;
+
+    private String location; // qq location
+
+    private Integer gender; // 0女 1男
+
+    private String qqAvatar; // qq avatar url
 
     private String phoneNumber;
 
@@ -45,13 +53,11 @@ public class User extends SuperEntity<User> {
 
     private String source; // 个人资料来源
 
-    private String qqNumber;
-
     private String wechat;
 
     private String occupation;
 
-    private Integer enableComment;
+    private Boolean enableComment;
 
     private String ipSource; // ip归属地
 
@@ -59,7 +65,7 @@ public class User extends SuperEntity<User> {
 
     private String browser;
 
-    private Integer enableEmailNotification; // 开启邮件通知
+    private Boolean enableEmailNotification; // 开启邮件通知
 
     private Integer userProxy; // 0:博主 1：测试用户 2：普通用户
 

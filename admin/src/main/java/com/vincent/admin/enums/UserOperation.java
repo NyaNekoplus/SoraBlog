@@ -10,9 +10,10 @@ import java.util.Map;
  * @date 2021/4/17 16:32
  */
 public enum UserOperation {
-
     VISIT_PAGE("浏览页面", "visit"),
+    VISIT_ABOUT_ME("浏览关于我", "visitMe"),
     SEARCH("搜索", "search"),
+    LIKE("点赞", "like"),
     PUBLISH_COMMENT("发表评论", "comment");
 
     public String getDescription() {
@@ -32,12 +33,20 @@ public enum UserOperation {
         String addOn = "";
         //HashMap<String,String> map = new HashMap<>();
         switch (operation) {
+            case LIKE:
+                if (nameAndArgsMap.get("uid") != null){
+                    addOn = nameAndArgsMap.get("uid").toString();
+                }
+                break;
             case SEARCH:
                 if (nameAndArgsMap.get("keyword") != null){
                     addOn = nameAndArgsMap.get("keyword").toString();
                 }
                 break;
             case VISIT_PAGE:
+                if (nameAndArgsMap.get("link") != null){
+                    addOn = nameAndArgsMap.get("link").toString();
+                }
                 break;
             case PUBLISH_COMMENT:
                 Object commentVO = nameAndArgsMap.get("commentVO");

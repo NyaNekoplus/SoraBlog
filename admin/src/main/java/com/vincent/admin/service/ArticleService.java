@@ -11,9 +11,15 @@ import com.vincent.admin.vo.ArticleVO;
  */
 public interface ArticleService extends IService<Article> {
 
+    String getRecommend();
+
     String getBlogByLink(String link);
+
+    String getBlogByKeyword(String keyword, Long currentPage, Long pageSize);
 
     String getArticleListByPage(ArticleVO articleVO);
 
     String getTopBlog();
+
+    String likeBlog(Long uid);
 }

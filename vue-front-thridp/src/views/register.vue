@@ -17,8 +17,10 @@
     </div>
 
     <input type="text" required autocomplete="username" placeholder="用户名" autocapitalize="off" v-model="username">
-    <input type="text" required autocomplete="email" placeholder="邮箱" autocapitalize="off" v-model="email">
     <input type="password" autocomplete="current-password" placeholder="密码" autocapitalize="off" v-model="password">
+    <input type="text" required autocomplete="email" placeholder="邮箱" autocapitalize="off" v-model="email">
+    <input class="register-button" value="发送验证邮件" type="button" @click="sendAuthEmail">
+    <input type="text" required autocomplete="username" placeholder="Authentication Code" autocapitalize="off" v-model="code">
 
     <ul class="uuvlpj-0 jpfKJC"></ul>
     <input class="register-button" value="注册" type="button" @click="handleRegister">
@@ -31,12 +33,12 @@
       <div class="sora-form__sns-btn-area index">
         <div>使用其他账号登陆</div>
         <div class="sns-button-list"><a
-            href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=apple&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_apple"
+            href="javascript:void(0)"
             class="btn-item btn-apple js-click-trackable compact index" data-click-category="signup_page_pc"
             data-click-action="step1" data-click-label="apple" rel="nofollow">Twitter</a>
            |
           <a
-            href="https://accounts.pixiv.net/gigya-auth?mode=signin&amp;provider=sina&amp;source=pc&amp;view_type=page&amp;lang=zh&amp;ref=wwwtop_accounts_index_sina"
+            href="javascript:void(0)"
             class="btn-item btn-weibo js-click-trackable compact index" data-click-category="signup_page_pc"
             data-click-action="step1" data-click-label="sina" rel="nofollow">Github</a>
         </div>
@@ -53,9 +55,10 @@
 
 <script>
 
-import {register} from "../api/user";
+import {getQQInfo, register, sendAuthEmail} from "../api/user";
 import {message} from "../components/Message";
 import {uploadImage} from "../api/file";
+import {mapMutations} from "vuex";
 
 export default {
   name: "register",
@@ -63,6 +66,7 @@ export default {
     username: '',
     email: '',
     password: '',
+    code: '',
 
     image: null,
     imgUrl: '',
@@ -73,11 +77,55 @@ export default {
     }
   }),
   methods: {
+    ...mapMutations(["setToken"]),
+    getQQInfo(){
+      let q = this.qq;
+      console.log('qq:'+q)
+      if (!q || q.length<7 || q.length > 14){
+        message('一般人q号多长心里没点b树吗')
+        return
+      }
+      let param = new URLSearchParams();
+      param.append('qq',q);
+      getQQInfo(param).then(response => {
+        message(response.message)
+        if (response.state === this.$STATE.SUCCESS){
+          // this.setUserInfo(response.data) // bug 会导致vuex中的userid被修改，应等到验证完成再设置
+          this.qqAvatar = response.data.qqAvatar
+          this.qq = response.data.username
+          this.email = response.data.email
+        }
+      })
+    },
+    sendAuthEmail(){
+      let emReg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+      if (!emReg.test(this.email)){
+        message('请输入有效的邮箱地址')
+        return
+      }
+      let param = new URLSearchParams();
+      param.append('email',this.email);
+      sendAuthEmail(param).then(response=> {
+        message(response.message);
+      })
+    },
     handleRegister(){
+      //return // TODO 暫時暫停注冊
+      let c = this.code.trim();
+      if (c.length !== 6){
+        message('验证码长度不符')
+        return
+      }
+      let emReg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+      if (!emReg.test(this.email)){
+        message('请输入有效的邮箱地址')
+        return
+      }
       let params = {};
       params.username = this.username;
       params.password = this.password;
       params.email = this.email;
+      params.code = c
       if (this.image!=null){
         let formData = new FormData();
         formData.append('imageList', this.image);
@@ -89,7 +137,9 @@ export default {
             register(params).then(response => {
               message(response.message);
               if (response.state === this.$STATE.SUCCESS) {
-                this.$router.push('/login');
+                let token = response.data
+                this.setToken(token);
+                this.$router.push('/');
               }
             })
           }
@@ -98,7 +148,9 @@ export default {
         register(params).then(response => {
           message(response.message);
           if (response.state === this.$STATE.SUCCESS) {
-            this.$router.push('/login');
+            let token = response.data
+            this.setToken(token);
+            this.$router.push('/');
           }
         })
       }

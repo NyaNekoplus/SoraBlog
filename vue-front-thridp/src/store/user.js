@@ -11,7 +11,7 @@ const user = {
         isLogin: false,
         token: null,
         userInfo: {
-            avatarUrl: null
+            //avatarUrl: null
         }
     },
     getters: {

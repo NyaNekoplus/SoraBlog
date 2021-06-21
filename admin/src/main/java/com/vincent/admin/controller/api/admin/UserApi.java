@@ -12,6 +12,7 @@ import com.vincent.admin.service.UserService;
 import com.vincent.admin.util.Result;
 import com.vincent.admin.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,5 +64,14 @@ public class UserApi {
         return Result.success("获取用户列表成功",userListPage);
 
          */
+    }
+
+    @ProxyAuth
+    @PostMapping("/update")
+    public String update(@RequestBody User user) {
+        if (user.getUid()==null)return Result.failure("用户数据为空！");
+        boolean result = user.updateById();
+
+        return result?Result.success("更新用户数据成功"):Result.failure("更新用户数据失败");
     }
 }

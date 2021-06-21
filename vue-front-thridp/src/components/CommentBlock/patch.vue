@@ -9,7 +9,7 @@
                 <!--https://q2.qlogo.cn/headimg_dl?dst_uin=1723687845&amp;spec=100-->
                 <img
                     src=""
-                    :data-src="comment.user.avatarUrl"
+                    :data-src="comment.user.qqAvatar?comment.user.qqAvatar:comment.user.avatarUrl"
                     class="lazyload avatar avatar-24 photo" alt="😀" width="24" height="24">
               </a>
             </div>
@@ -19,7 +19,7 @@
                   <h4 class="author">
                     <a href="javascript: return false;" rel="nofollow">
                       <img
-                          src="" :data-src="comment.user.avatarUrl"
+                          src="" :data-src="comment.user.qqAvatar?comment.user.qqAvatar:comment.user.avatarUrl"
                           class="lazyload avatar avatar-24 photo" alt="😀" width="24"
                           height="24">
                       <span v-if="comment.user.userProxy === 0" class="bb-comment" title="博主">博主</span> {{ comment.user.username }}
@@ -29,11 +29,10 @@
                     </a>
                   </h4>
                 </div>
-                <a rel="nofollow" class="comment-reply-link" :id="comment.uid" data-commentid="8435" data-postid="3137"
-                   data-belowelement="comment-8435" data-respondelement="respond" aria-label="Reply to センカメイ" @click="reply($event,comment)">Reply</a>
+                <a rel="nofollow" class="comment-reply-link" :id="'comment-'+comment.uid" :aria-label="`Reply to ${comment.user.username}`" @click="reply($event,comment)">Reply</a>
                 <div class="right">
                   <div class="info">
-                    <time datetime="2021-02-27">{{calculatePeriod(comment.createTime)}}</time>&nbsp;&nbsp;
+                    <time>{{calculatePeriod(comment.createTime)}}</time>&nbsp;&nbsp;
                     <span class="useragent-info">(
                       <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/img/Sakura/images/ua/svg/chrome.svg">
                       &nbsp;{{ comment.user.browser }}&nbsp;&nbsp;
@@ -147,6 +146,29 @@ export default {
 </script>
 
 <style scoped>
+.comments .main.shadow:hover img.avatar {
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+.comment .profile img:hover {
+  opacity: .8;
+}
+.comments .main.shadow img.avatar {
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transition: all ease 1s;
+  -webkit-transition: all ease 1s;
+  -moz-transition: all ease 1s;
+  -o-transition: all ease 1s;
+  box-shadow: 0 1px 10px -6px rgba(0,0,0,.5);
+  margin-left: 3px;
+}
 .comment-respond #cancel-comment-reply-link {
   background:
       #f4f6f8;

@@ -21,4 +21,6 @@ public interface ArticleMapper extends BaseMapper<Article> {
     IPage<Article> getBlogByPageWithCover(Page<Article> page, @Param("categoryUid") Long categoryUid, @Param("isDraft") Boolean isDraft);
 
     IPage<Article> getBlogByPageWithoutTags(Page<Article> page, @Param("categoryUid") Long categoryUid, @Param("isDraft")Boolean isDraft);
+
+    IPage<Article> searchArticle(Page<Article> page, @Param("keyword") String keyword);
 }

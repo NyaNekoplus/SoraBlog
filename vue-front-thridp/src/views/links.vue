@@ -11,7 +11,7 @@
         </div>
       </article>
     </page-content>
-    <comment-block :comment-source="'LINK'" :enable-comment="true"></comment-block>
+    <comment-block :blog-id="0" :comment-source="'LINK'" :enable-comment="true"></comment-block>
   </div>
 </template>
 

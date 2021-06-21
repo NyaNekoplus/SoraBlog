@@ -13,7 +13,9 @@ import {
 
 const theme = {
     state: {
+        loading: false,
         sidebarOn: false,
+        searchbarOn: false,
 
         isThemeWidgetShow: true,
         wideScreenCover: false,
@@ -26,12 +28,18 @@ const theme = {
             'background-image: none;',
             'background-image: url("https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.5/img/theme/star.png");',//star
             'background-image: url("https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.5/img/theme/grid.jpg");',//star
-            'background-image: url("https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.5/img/theme/dark.png");',//dark
+            'background-image: url("https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.7/img/theme/rhone.jfif");',//dark
         ],
     },
     getters: {
+        loading: state => {
+            return state.loading;
+        },
         sidebarOn: state => {
             return state.sidebarOn;
+        },
+        searchbarOn: state => {
+            return state.searchbarOn;
         },
         isThemeWidgetShow: state => {
             return state.isThemeWidgetShow;
@@ -69,6 +77,12 @@ const theme = {
 
     },
     mutations: {
+        loading(state, loading){
+            state.loading = loading;
+        },
+        setSearchbarOn(state, searchbarOn){
+            state.searchbarOn = searchbarOn;
+        },
         setSidebarOn(state, sidebarOn){
             state.sidebarOn = sidebarOn;
         },

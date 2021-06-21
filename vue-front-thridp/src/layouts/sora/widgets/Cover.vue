@@ -15,12 +15,16 @@
             </a>
           </span>
           <span>
-            <a href="https://2heng.xin/author/Mashiro/">{{ author }}</a>
+            <a href="https://sora.vin/About">{{ author }}</a>
           </span>
-          <span class="bull">·</span>{{ releaseTime }}
-          <span class="bull">·</span>{{ viewCount }} 次阅读
+          <span class="bull">·</span>{{ formatDate(releaseTime) }}
+          <!--<span class="bull">·</span>{{ viewCount }} 次阅读-->
           <span class="bull">·</span>{{ commentCount }} 条评论
-          <span class="bull">·</span><span v-for="tag in tagList" :key="tag.uid">{{tag.name}} | </span>
+          <span class="bull">·</span>
+          <span class="cover-tags">
+            <i class="iconfont icon-tags"></i>
+            <a v-for="tag in tagList" :key="tag.uid" rel="tag">{{tag.name}}</a>
+          </span>
           <!--
           <a href="//farseerfc.me/zhs/tag/swap.html" class="btn btn-primary btn-xs withripple">
             <i class="fa fa-tag"></i> swap
@@ -46,6 +50,8 @@
 </template>
 
 <script>
+import {formatDate} from "../../../utils";
+
 export default {
   name: "Cover",
   props: {
@@ -64,13 +70,22 @@ export default {
     //wideScreen: true,
     //wideScreenClass: 'single-center pattern-center',
   }),
+  methods: {
+    formatDate(date){
+      return formatDate(date)
+    },
+  },
   computed: {
+
     hasSubtitle(){
       return !!(this.author||this.releaseTime||this.viewCount); // ！会将对象转换为bool表达式，从而让返回值用于判断
     },
     isWideScreen(){
       return this.$store.getters.wideScreenCover
     }
+  },
+  created() {
+
   },
   mounted() {
     //this.wideScreen = this.$store.getters.wideScreenCover;
@@ -79,57 +94,22 @@ export default {
 </script>
 
 <style scoped>
-a:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
+.cover-tags {
+  font-size: 13px;
+  color: #FFF;
+  text-transform: uppercase
 }
-.btn:focus {
-  z-index: 2;
+
+.cover-tags a {
+  color: #FFF;
+  margin-right: 5px
 }
-.btn-primary {
-  color: #fff;
-  background-color: #5c497f;
-  border-color: #50406f;
+
+.cover-tags a:hover {
+  color: #76B9E4
 }
-.btn {
-  position: relative;
-  padding: 8px 30px;
-  border: 0;
-  border-top-color: currentcolor;
-  border-right-color: currentcolor;
-  border-bottom-color: currentcolor;
-  border-left-color: currentcolor;
-  margin: 10px 1px;
-  cursor: pointer;
-  border-radius: 2px;
-  color: rgba(255,255,255,0.84);
-  transition: box-shadow .28s cubic-bezier(.4, 0, .2, 1);
-  outline: none !important;
-}
-.btn {
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  touch-action: manipulation;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.btn-xs > .btn {
-  padding: 1px 5px;
-  font-size: 12px;
-  line-height: 1.5;
-  border-radius: 3px;
+
+.cover-tags i {
+  margin-right: 5px
 }
 </style>

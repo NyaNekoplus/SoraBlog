@@ -1,9 +1,11 @@
 package com.vincent.admin.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,12 +14,37 @@ import java.util.Map;
  */
 public class JsonUtil {
 
+    public static <T> List<T> jsonToList(String jsonData, Class<T> beanType) {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+        JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, beanType);
+        try {
+            List<T> list = mapper.readValue(jsonData, javaType);
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static String objectToJson(Object obj) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
         //Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
         try {
             return mapper.writeValueAsString(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static <T> T jsonToPojo(String jsonData, Class<T> beanType) {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+        try {
+            T t = mapper.readValue(jsonData, beanType);
+            return t;
         } catch (Exception e) {
             e.printStackTrace();
         }

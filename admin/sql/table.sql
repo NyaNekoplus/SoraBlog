@@ -12,7 +12,11 @@ CREATE TABLE `s_user` (
   `password` char(32) NOT NULL COMMENT '密码MD5',
   `avatar` bigint unsigned DEFAULT NULL COMMENT '个人头像uid', # 不知道，长度待调整
   `email` varchar(32) DEFAULT NULL COMMENT '邮箱',
-  `birthday` date DEFAULT NULL COMMENT '出生年月日',
+  `qq_number` varchar(16) DEFAULT NULL COMMENT 'QQ号',
+  `age` int unsigned DEFAULT NULL COMMENT '年龄',
+  `location` varchar(8) DEFAULT NULL COMMENT 'QQ资料位置',
+  `gender` tinyint unsigned DEFAULT 1 COMMENT '性别（qq）',
+  `qq_avatar` varchar(255) DEFAULT NULL COMMENT 'qq头像url',
   `phone_number` varchar(16) DEFAULT NULL COMMENT '手机',
   `auth_code` varchar(50) DEFAULT NULL COMMENT '邮箱验证码',
   `introduction` varchar(200) DEFAULT NULL COMMENT '自我简介最多150字',
@@ -23,7 +27,6 @@ CREATE TABLE `s_user` (
   `create_time` timestamp NOT NULL DEFAULT '2021-03-18 14:08:05' COMMENT '创建时间',
   `update_time` timestamp DEFAULT NULL COMMENT '更新时间',
   `source` varchar(32) DEFAULT NULL COMMENT '资料来源',
-  `qq_number` varchar(16) DEFAULT NULL COMMENT 'QQ号',
   `wechat` varchar(32) DEFAULT NULL COMMENT '微信号',
   `occupation` varchar(16) DEFAULT NULL COMMENT '职业',
   `enable_comment` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '评论状态 1:正常 0:禁言',
@@ -42,13 +45,14 @@ DROP TABLE IF EXISTS `s_blog`;
 CREATE TABLE `s_blog` (
   `uid` bigint unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一uid',
   `title` varchar(64) NOT NULL COMMENT '博客标题',
-  `link` varchar(32) NOT NULL COMMENT '博客链接',
+  `link` varchar(255) NOT NULL COMMENT '博客链接',
   `lang` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '语言',
   `summary` varchar(200) NOT NULL COMMENT '博客简介', # 根据css调整
   `content` longtext COMMENT '博客内容',
   `content_md` longtext COMMENT 'MarkDown博客内容', # 节约空间，不存html了，转为使用markd和highlight.js解析
   `tag_uid` varchar(64) DEFAULT NULL COMMENT '标签uid', # 该文章下的所有tag的id。之间使用分号或逗号隔开，后台设置tagList时再split循环获取。
   `view_count` int DEFAULT '0' COMMENT '博客浏览量',
+  `liked_count` int DEFAULT '0' COMMENT '点赞数',
   `comment_count` int DEFAULT '0' COMMENT '博客评论数',
   `cover_uid` bigint unsigned DEFAULT NULL COMMENT '标题图片uid', # 不知道，长度待调整
   #`status` tinyint unsigned NOT NULL DEFAULT '1' COMMENT '状态',
@@ -103,7 +107,8 @@ CREATE TABLE `s_comment` (
   `create_time` timestamp NOT NULL DEFAULT '2021-03-18 14:08:05' COMMENT '创建时间',
   `update_time` timestamp DEFAULT NULL COMMENT '更新时间',
   `source` varchar(16) NOT NULL COMMENT '评论来源： MESSAGE_BOARD，ABOUT，BLOG_INFO 等',
-  `target_type` tinyint unsigned NOT NULL DEFAULT '0' COMMENT '评论类型 1:点赞 0:评论',
+  `type` tinyint unsigned NOT NULL DEFAULT '0' COMMENT '0:评论，1：点赞',
+  #`target_type` tinyint unsigned NOT NULL DEFAULT '0' COMMENT '评论类型 1:点赞 0:评论',
   `root_uid` bigint unsigned DEFAULT NULL COMMENT '根评论UID',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='评论表';

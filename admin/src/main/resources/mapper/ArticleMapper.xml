@@ -15,6 +15,7 @@
         <result column="tag_uid" property="tagUid"/>
         <result column="category_uid" property="categoryUid"/>
         <result column="comment_count" property="commentCount"/>
+        <result column="liked_count" property="likedCount"/>
         <result column="view_count" property="viewCount"/>
         <result column="cover_uid" property="coverUid"/>
         <result column="enable_comment" property="enableComment"/>
@@ -48,14 +49,14 @@ select * from user u left join class c u.userid=c.userid
 排序的字段也有影响，有条原则：对驱动表可以直接排序，对非驱动表（的字段排序）需要对循环查询的合并结果（临时表）进行排序！
     -->
     <select id="getBlogByLink" resultMap="BaseResultMap">
-        select a.*,f.url,f.js_delivr_url from
+        select a.uid,a.title,a.link,a.content_md,a.tag_uid,a.create_time,a.update_time,a.level,a.enable_comment,a.view_count,a.comment_count,a.liked_count,a.author,f.url,f.js_delivr_url from
         (select * from s_blog b where b.is_draft = 0 and b.link = #{link}) a
         left join s_file f on a.cover_uid = f.uid
         order by a.create_time desc
     </select>
 
     <select id="getBlogByPageWithCover" resultMap="BaseResultMap">
-        select a.*,f.url, f.js_delivr_url from
+        select a.uid,a.title,a.link,a.summary,a.tag_uid,a.create_time,a.update_time,a.level,a.enable_comment,a.liked_count,a.comment_count,f.url, f.js_delivr_url from
         (select * from s_blog b where b.is_draft = #{isDraft}
         <if test="categoryUid != 0"> and b.category_uid = #{categoryUid} </if>) a
         left join s_file f on a.cover_uid = f.uid
@@ -63,21 +64,29 @@ select * from user u left join class c u.userid=c.userid
     </select>
 
     <select id="getTopBlogWithCover" resultMap="BaseResultMap">
-        select a.*, f.url, f.js_delivr_url from (
+        select a.uid,a.title,a.link,a.create_time,a.update_time,a.level, f.url, f.js_delivr_url from (
         (select max(update_time) update_time, level from s_blog where level>0 group by level) b
         inner join s_blog a on a.level = b.level and a.update_time = b.update_time)
         left join s_file f on a.cover_uid = f.uid
     </select>
 
     <select id="getBlogByPageWithoutTags" resultMap="BaseResultMap">
-        select a.*,c.name from s_category c inner join
+        select a.uid,a.title,a.link,a.summary,a.tag_uid,a.create_time,a.update_time,a.level,a.enable_comment,a.liked_count,a.comment_count,a.url,a.js_delivr_url,c.name from s_category c inner join
         (select b.*,f.url, f.js_delivr_url from
             (select * from s_blog d where d.is_draft = #{isDraft}
-                <if test="categoryUid != 0"> and b.category_uid = #{categoryUid} </if>) b
+                <if test="categoryUid != 0"> and d.category_uid = #{categoryUid} </if>) b
         left join s_file f on b.cover_uid = f.uid) a
         on c.uid = a.category_uid order by a.create_time desc
     </select>
 
+    <select id="searchArticle" resultMap="BaseResultMap">
+        <!--where username LIKE concat(concat('%',#{username}),'%')-->
+        <bind name="pattern" value="'%' + keyword + '%'" />
+        select a.uid,a.title,a.link,a.summary,a.create_time,a.update_time,a.liked_count,a.comment_count,f.url, f.js_delivr_url from
+        (select * from s_blog b where
+        b.is_draft = false and b.title like #{pattern} or b.content like #{pattern}) a
+        left join s_file f on a.cover_uid = f.uid order by a.view_count desc
+    </select>
     <!-- 通用查询结果列
 
      //建立sql片段

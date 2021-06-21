@@ -31,7 +31,9 @@ export function updateArticle(param){
 
 export function deleteArticle(param){
   return request({
-    url: process.env.VUE_APP_ADMIN_API + '/article/delete/' + param,
-    method: 'delete'
+    url: process.env.VUE_APP_ADMIN_API + '/article/delete',
+    method: 'delete',
+    data: param
+    //method: 'delete'
   })
 }

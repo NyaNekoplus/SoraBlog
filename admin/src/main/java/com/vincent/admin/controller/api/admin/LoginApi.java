@@ -70,6 +70,7 @@ public class LoginApi {
             String uuid = UUID.randomUUID().toString().replaceAll("-","");
             String msg = "Back-end: 登錄成功, token: " + uuid;
             //ACTIVE_USER
+            log.info("Remember me: "+rememberMe);
             long expireTime = rememberMe?24:1;
             redisUtil.setExpire("LOGIN_TOKEN"+':'+uuid, JsonUtil.objectToJson(user),expireTime, TimeUnit.HOURS);
             log.info(msg);
@@ -95,21 +96,24 @@ public class LoginApi {
     }
 
     @GetMapping("/getInfo")
-    String getInfo(@RequestParam(name = "token",required = false) String token){
-        if (StringUtils.isEmpty(token)){
-            return Result.failure("无法获取用户信息");
+    String getInfo(){
+        HttpServletRequest request = RequestHolder.getRequest();
+        String token = request.getHeader("Authorization");
+        log.info("token: "+token);
+        if (token != null && !token.equals("undefined")) {
+            String user = redisUtil.get("LOGIN_TOKEN" + ':' + token);
+            log.info("Back-end Login从redis中获取的用户数据："+user);
+            if (StringUtils.isEmpty(user)){
+                log.info("Back-end Login：验证失败，用户数据为空");
+                return Result.failure("Back-end Login：Token已失效");
+            }else {
+                Map<String,Object> map = JsonUtil.jsonToMap(user);
+                log.info("Back-end Login：验证成功，redis管理员数据："+map);
+                map.put("avatarUrl","https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png");
+                return Result.success("Back-end: 获取管理员数据成功",map);
+            }
         }
-        String user = redisUtil.get("LOGIN_TOKEN"+':'+token);
-        log.info("Back-end Login从redis中获取的用户数据："+user);
-        if (StringUtils.isEmpty(user)){
-            log.info("Back-end Login：验证失败，用户数据为空");
-            return Result.failure("Back-end Login：Token已失效");
-        }else {
-            Map<String,Object> map = JsonUtil.jsonToMap(user);
-            log.info("Back-end Login：验证成功，redis管理员数据："+map);
-            map.put("avatarUrl","https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png");
-            return Result.success("Back-end: 获取管理员数据成功",map);
-        }
+        return Result.failure("请先登录");
     }
 
     @PostMapping("/logout")

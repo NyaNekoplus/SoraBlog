@@ -39,11 +39,11 @@ public class ArticleApi {
         return articleService.getArticleListByPage(articleVO);
     }
 
+    @VisitRecord(value = "阅读文章", operation = UserOperation.VISIT_PAGE)
     @GetMapping("/getBlogByTitle/{link}")
-    //@Cacheable(key = "#p0")
     public String getBlogByLink(@PathVariable String link){
         if (StringUtils.isBlank(link)){
-            return Result.failure("标题为空");
+            return Result.failure("标题不能为空");
         }
         return articleService.getBlogByLink(link);
     }
@@ -53,9 +53,23 @@ public class ArticleApi {
         return articleService.getTopBlog();
     }
 
+    @GetMapping("/getRecommend")
+    public String getRecommend(){
+        return articleService.getRecommend();
+    }
+
     @VisitRecord(value = "访问主页", operation = UserOperation.VISIT_PAGE)
     @GetMapping("/visitRecord")
     public String visitRecord() {
         return Result.success();
+    }
+
+    @VisitRecord(value = "点赞", operation = UserOperation.LIKE)
+    @GetMapping("/likedIncrement")
+    public String likedIncrement(@RequestParam(name = "uid", required = false) String uid) {
+        if (StringUtils.isBlank(uid)){
+            return Result.failure("点赞失败,uid为空");
+        }
+        return articleService.likeBlog(Long.parseLong(uid));
     }
 }

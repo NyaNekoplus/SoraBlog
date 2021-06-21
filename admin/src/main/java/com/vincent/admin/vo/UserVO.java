@@ -15,9 +15,11 @@ public class UserVO extends BaseVO<User>{
 
     private Long avatarUid;
 
-    private String nickName;
+    private String code;
 
     private String password;
+
+    private String qqAvatar;
 
     private String email;
 

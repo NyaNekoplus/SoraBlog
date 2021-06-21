@@ -11,6 +11,7 @@
         <result column="root_uid" property="rootUid"/>
         <result column="blog_uid" property="blogUid"/>
         <result column="content" property="content"/>
+        <result column="type" property="type"/>
         <result column="target_type" property="targetType"/>
         <result column="status" property="status"/>
         <result column="source" property="source"/>

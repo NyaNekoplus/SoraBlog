@@ -1,85 +1,59 @@
-[sora:0.0.0.0:9527] [,] 2021-04-20 13:58:26 INFO 28632 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 28632 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
-[sora:0.0.0.0:9527] [,] 2021-04-20 13:58:26 INFO 28632 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
-[sora:0.0.0.0:9527] [,] 2021-04-20 13:58:27 INFO 28632 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
-[sora:0.0.0.0:9527] [,] 2021-04-20 13:58:27 INFO 28632 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-[sora:0.0.0.0:9527] [,] 2021-04-20 13:58:27 INFO 28632 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 24ms. Found 0 Redis repository interfaces.
-[sora:0.0.0.0:9527] [,] 2021-04-20 13:58:30 INFO 28632 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 13:58:31 INFO 28632 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 5.12 seconds (JVM running for 6.321)
-[sora:0.0.0.0:9527] [,] 2021-04-20 13:58:31 INFO 28632 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 14:00:25 INFO 25616 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 25616 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
-[sora:0.0.0.0:9527] [,] 2021-04-20 14:00:25 INFO 25616 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
-[sora:0.0.0.0:9527] [,] 2021-04-20 14:00:25 INFO 25616 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
-[sora:0.0.0.0:9527] [,] 2021-04-20 14:00:25 INFO 25616 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-[sora:0.0.0.0:9527] [,] 2021-04-20 14:00:26 INFO 25616 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 26ms. Found 0 Redis repository interfaces.
-[sora:0.0.0.0:9527] [,] 2021-04-20 14:00:28 INFO 25616 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 14:00:29 INFO 25616 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.259 seconds (JVM running for 5.231)
-[sora:0.0.0.0:9527] [,] 2021-04-20 14:00:29 INFO 25616 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:13:22 INFO 26348 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 26348 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:13:22 INFO 26348 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:13:23 INFO 26348 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:13:23 INFO 26348 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:13:23 INFO 26348 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 22ms. Found 0 Redis repository interfaces.
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:13:25 INFO 26348 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:13:26 INFO 26348 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.394 seconds (JVM running for 5.459)
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:13:29 INFO 26348 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:19:38 INFO 11976 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 11976 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:19:38 INFO 11976 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:19:38 INFO 11976 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:19:38 INFO 11976 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:19:38 INFO 11976 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 28ms. Found 0 Redis repository interfaces.
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:19:41 INFO 11976 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:19:42 INFO 11976 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.615 seconds (JVM running for 5.675)
-[sora:0.0.0.0:9527] [,] 2021-04-20 19:19:42 INFO 11976 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:27:39 INFO 5232 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 5232 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:27:39 INFO 5232 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:27:40 INFO 5232 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:27:40 INFO 5232 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:27:40 INFO 5232 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 24ms. Found 0 Redis repository interfaces.
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:27:43 INFO 5232 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:27:43 INFO 5232 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.464 seconds (JVM running for 5.463)
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:27:45 INFO 5232 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:42:08 INFO 8172 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 8172 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:42:08 INFO 8172 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:42:09 INFO 8172 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:42:09 INFO 8172 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:42:09 INFO 8172 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 23ms. Found 0 Redis repository interfaces.
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:42:12 INFO 8172 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:42:12 INFO 8172 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.387 seconds (JVM running for 5.415)
-[sora:0.0.0.0:9527] [,] 2021-04-20 20:42:13 INFO 8172 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:55:24 INFO 32744 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 32744 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:55:24 INFO 32744 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:55:24 INFO 32744 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:55:24 INFO 32744 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:55:24 INFO 32744 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 24ms. Found 0 Redis repository interfaces.
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:55:27 INFO 32744 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:55:28 INFO 32744 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.538 seconds (JVM running for 5.731)
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:55:28 INFO 32744 [main] com.vincent.admin.AdminApplicationTests success:class java.lang.Boolean
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:55:28 INFO 32744 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:56:12 INFO 16012 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 16012 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:56:12 INFO 16012 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:56:13 INFO 16012 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:56:13 INFO 16012 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:56:13 INFO 16012 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 26ms. Found 0 Redis repository interfaces.
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:56:16 INFO 16012 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:56:16 INFO 16012 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.519 seconds (JVM running for 5.602)
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:56:17 INFO 16012 [main] com.vincent.admin.AdminApplicationTests success:class java.lang.Boolean
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:56:17 INFO 16012 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:59:25 INFO 33192 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 33192 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:59:25 INFO 33192 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:59:26 INFO 33192 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:59:26 INFO 33192 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:59:26 INFO 33192 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 25ms. Found 0 Redis repository interfaces.
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:59:29 INFO 33192 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:59:29 INFO 33192 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.499 seconds (JVM running for 5.589)
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:59:30 INFO 33192 [main] com.vincent.admin.AdminApplicationTests success:class java.lang.Boolean
-[sora:0.0.0.0:9527] [,] 2021-04-20 21:59:30 INFO 33192 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 22:00:51 INFO 21744 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 21744 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
-[sora:0.0.0.0:9527] [,] 2021-04-20 22:00:51 INFO 21744 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
-[sora:0.0.0.0:9527] [,] 2021-04-20 22:00:52 INFO 21744 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
-[sora:0.0.0.0:9527] [,] 2021-04-20 22:00:52 INFO 21744 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-[sora:0.0.0.0:9527] [,] 2021-04-20 22:00:52 INFO 21744 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 28ms. Found 0 Redis repository interfaces.
-[sora:0.0.0.0:9527] [,] 2021-04-20 22:00:55 INFO 21744 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
-[sora:0.0.0.0:9527] [,] 2021-04-20 22:00:55 INFO 21744 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.518 seconds (JVM running for 5.544)
-[sora:0.0.0.0:9527] [,] 2021-04-20 22:00:58 INFO 21744 [main] com.vincent.admin.AdminApplicationTests success:class java.lang.Boolean
-[sora:0.0.0.0:9527] [,] 2021-04-20 22:00:58 INFO 21744 [main] com.vincent.admin.AdminApplicationTests result:class java.util.ArrayList
-[sora:0.0.0.0:9527] [,] 2021-04-20 22:00:58 INFO 21744 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:44:28 INFO 872 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 872 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:44:28 INFO 872 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:44:29 INFO 872 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:44:29 INFO 872 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:44:29 INFO 872 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 29ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:44:33 INFO 872 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:44:33 INFO 872 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 5.486 seconds (JVM running for 6.881)
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:45:53 INFO 872 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:49:12 INFO 23052 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 23052 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:49:12 INFO 23052 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:49:12 INFO 23052 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:49:12 INFO 23052 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:49:12 INFO 23052 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 26ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:49:16 INFO 23052 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:49:16 INFO 23052 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.925 seconds (JVM running for 6.011)
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:49:21 INFO 23052 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:50:54 INFO 12032 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 12032 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:50:54 INFO 12032 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:50:54 INFO 12032 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:50:54 INFO 12032 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:50:54 INFO 12032 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 26ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:50:58 INFO 12032 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:50:58 INFO 12032 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.86 seconds (JVM running for 5.767)
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:51:03 INFO 12032 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:54:47 INFO 17968 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 17968 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:54:47 INFO 17968 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:54:48 INFO 17968 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:54:48 INFO 17968 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:54:48 INFO 17968 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 27ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:54:51 INFO 17968 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:54:52 INFO 17968 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.88 seconds (JVM running for 5.851)
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:55:00 INFO 17968 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:01:43 INFO 19604 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 19604 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:01:43 INFO 19604 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:01:44 INFO 19604 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:01:44 INFO 19604 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:01:44 INFO 19604 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 27ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:01:47 INFO 19604 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:01:48 INFO 19604 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.798 seconds (JVM running for 5.766)
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:01:56 INFO 19604 [main] com.vincent.admin.util.MailUtil 邮件发送成功
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:01:56 INFO 19604 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:57:43 INFO 10168 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 10168 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:57:43 INFO 10168 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:57:43 INFO 10168 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:57:43 INFO 10168 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:57:43 INFO 10168 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 27ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:57:47 INFO 10168 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:57:47 INFO 10168 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 4.915 seconds (JVM running for 6.008)
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:57:56 INFO 10168 [main] com.vincent.admin.util.MailUtil 邮件发送成功
+[sora:0.0.0.0:9527] [,] 2021-06-14 19:57:56 INFO 10168 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 22:21:12 INFO 11352 [main] com.vincent.admin.AdminApplicationTests Starting AdminApplicationTests on DESKTOP-RS1N6L3 with PID 11352 (started by Kasugano Sora in E:\JavaWorkSpace\sora-blog\admin)
+[sora:0.0.0.0:9527] [,] 2021-06-14 22:21:12 INFO 11352 [main] com.vincent.admin.AdminApplicationTests The following profiles are active: dev
+[sora:0.0.0.0:9527] [,] 2021-06-14 22:21:13 INFO 11352 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Multiple Spring Data modules found, entering strict repository configuration mode!
+[sora:0.0.0.0:9527] [,] 2021-06-14 22:21:13 INFO 11352 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[sora:0.0.0.0:9527] [,] 2021-06-14 22:21:14 INFO 11352 [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate Finished Spring Data repository scanning in 23ms. Found 0 Redis repository interfaces.
+[sora:0.0.0.0:9527] [,] 2021-06-14 22:21:17 INFO 11352 [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Initializing ExecutorService 'applicationTaskExecutor'
+[sora:0.0.0.0:9527] [,] 2021-06-14 22:21:17 INFO 11352 [main] com.vincent.admin.AdminApplicationTests Started AdminApplicationTests in 5.545 seconds (JVM running for 6.855)
+[sora:0.0.0.0:9527] [,] 2021-06-14 22:21:27 INFO 11352 [main] com.vincent.admin.util.MailUtil 邮件发送成功
+[sora:0.0.0.0:9527] [,] 2021-06-14 22:21:27 INFO 11352 [SpringContextShutdownHook] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor Shutting down ExecutorService 'applicationTaskExecutor'

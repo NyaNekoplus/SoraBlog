@@ -66,4 +66,16 @@ public class MD5Util {
         logger.debug("MD5加密的二次加密的字符串的调试日志-->>" + string);
         return string;
     }
+
+    public static String genEmailAuthCode() {
+        String[] letters = new String[] {
+                "q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m",
+                "A","W","E","R","T","Y","U","I","O","P","A","S","D","F","G","H","J","K","L","Z","X","C","V","B","N","M",
+                "0","1","2","3","4","5","6","7","8","9"};
+        StringBuilder codeBuilder = new StringBuilder();
+        for (int i = 0; i < 6; i++) {
+            codeBuilder.append(letters[(int)Math.floor(Math.random()*letters.length)]);
+        }
+        return codeBuilder.toString();
+    }
 }

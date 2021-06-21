@@ -11,9 +11,9 @@ export function login(param){
     data: param
   })
 }
-export function getInfo(token){
+export function getInfo(){
   return request({
-    url: process.env.VUE_APP_ADMIN_API +'/user/getInfo'+'?token='+token,
+    url: process.env.VUE_APP_ADMIN_API +'/user/getInfo',
     method: 'get',
     //data: {token}
   })

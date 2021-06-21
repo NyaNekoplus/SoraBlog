@@ -24,8 +24,10 @@ export function parseTime(format, date){
     return format;
 }
 
+//苹果有兼容性问题,需要把中横线换成斜杠。
+// new Date("2017-02-16 20:41:10".replace(/-/g,'/')).getFullYear()
 export function formatDate(date) {
-    let d = new Date(date),
+    let d = new Date(date.replace(/-/g,'/')),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
         year = d.getFullYear(),

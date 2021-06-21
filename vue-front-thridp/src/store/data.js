@@ -11,7 +11,7 @@ const data = {
         links: [
             {
                 title: 'Github',
-                link: '',
+                link: 'https://github.com/NyaNekoplus',
                 icon: 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/github.png'
             },
             {
@@ -21,12 +21,12 @@ const data = {
             },
             {
                 title: 'Twitter',
-                link: '',
+                link: 'https://twitter.com/Vincent_Tsai_',
                 icon: 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/twitter.png'
             },
             {
                 title: 'E-mail',
-                link: 'guoxitsai@gmail.com',
+                link: 'mailto:guoxitsai@gmail.com',
                 icon: 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/email.svg'
             },
         ],

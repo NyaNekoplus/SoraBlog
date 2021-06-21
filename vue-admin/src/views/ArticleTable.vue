@@ -54,7 +54,9 @@
                         single-line
                         hide-details
                       ></v-text-field>
-                      <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+                      <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition"
+                      :retain-focus="false">
+                        <!--:retain-focus="false" 获取焦点-->
                         <v-card>
                           <v-toolbar dark color="primary">
                               <v-btn icon dark @click="close">
@@ -427,6 +429,8 @@ export default {
       this.editedIndex = this.blogList.indexOf(item)
       let param = item;
       //param.isDraft = !item.isDraft;
+      if (changeDraft)
+        param.isDraft = !param.isDraft
       updateArticle(param).then(response => {
         if (response.state === this.$STATE.SUCCESS){
           console.log(response.message);
@@ -442,21 +446,25 @@ export default {
     editItem (item) {
       this.editedIndex = this.blogList.indexOf(item)
       this.editedItem = Object.assign({}, item)
-      console.log(item)
+      console.log(this.editedItem)
       // vue-tinymce问题，更新content后不同步。将于1.1.1版本修复
       this.contentMd = item.contentMd;
       this.dialog = true
-      this.$nextTick(() => {
+      /*this.$nextTick(() => {
         tinymce.activeEditor.setContent(item.contentMd);
-      })
+      })*/
       //this.$tinymce.setContent(item.contentMd);
       //tinyMCE.setContent(item.contentMd)
       //tinymce.setContent(item.contentMd)
     },
     save () {
       if (this.editedIndex > -1) {
+        let activeEditor = tinymce.activeEditor;
+        let editBody = activeEditor.getBody();
+        activeEditor.selection.select(editBody);
+        this.editedItem.content = activeEditor.selection.getContent({'format': 'text'});
         Object.assign(this.blogList[this.editedIndex], this.editedItem)
-        console.log("save: "+this.editedItem.link+this.editedItem.content)
+        console.log("save: "+this.editedItem.link+this.editedItem.contentMd)
         this.updateArticle(this.editedItem)
       } else {
         this.blogList.push(this.editedItem)
@@ -483,7 +491,7 @@ export default {
       console.log('delete blog: '+that.blogList[that.editedIndex].uid+':'+this.editedItem.uid);
       console.log('edit index:'+this.editedIndex+':'+that.editedIndex);
 
-      deleteArticle(this.editedItem.uid).then(response => {
+      deleteArticle(this.editedItem).then(response => {
         if (response.state === this.$STATE.SUCCESS){
           console.log(response.message);
           this.blogList.splice(this.editedIndex, 1)
@@ -502,6 +510,12 @@ export default {
         this.editedIndex = -1
       });
     },
+  },
+  deactivated(){
+    tinymce.remove()
+  },
+  beforeDestroy(){
+    tinymce.remove();
   },
 }
 </script>

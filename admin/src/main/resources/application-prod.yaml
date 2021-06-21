@@ -1,4 +1,28 @@
 spring:
+  freemarker:
+    suffix: .html
+    enabled: true
+    cache: false
+    charset: UTF-8
+    content-type: text/html
+    allow-session-override: false
+  mail:
+    host: smtp.yandex.com #smtp.qq.com
+    username: no-reply@sora.vin #1359643068@qq.com
+    password: sorasora520 #linjdojcyburhbch
+    port: 25 #587
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+          #表示开启 DEBUG 模式，这样，邮件发送过程的日志会在控制台打印出来，方便排查错误
+          debug: true
+    protocol: smtp
   servlet:
     multipart:
       max-request-size: 10MB #限制上传的多个文件的总大小
@@ -8,7 +32,7 @@ spring:
   datasource:
     username: root
     password: sorasora520
-    url: jdbc:mysql://127.0.0.1:3306/sora_blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useSSL=true&autoReconnect=true
+    url: jdbc:mysql://127.0.0.1:3306/sora_blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC&useLegacyDatetimeCode=false&useSSL=true&autoReconnect=true
     driver-class-name: com.mysql.cj.jdbc.Driver
   jackson:
     time-zone: GMT+8
@@ -31,7 +55,12 @@ spring:
     type: caffeine
     caffeine:
       spec: initialCapacity=10,maximumSize=1000,expireAfterAccess=60s
-
+  rabbitmq:
+    username: VincentTsai
+    password: sorasora520
+    virtual-host: /
+    host: 127.0.0.1
+    port: 5672
 
 mybatis-plus:
   type-aliases-package: com.vincent.admin.entity

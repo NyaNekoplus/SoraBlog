@@ -7,3 +7,15 @@
 [sora:0.0.0.0:9527] [,] 2021-04-17 20:52:50 ERROR 21944 [main] com.vincent.admin.util.IpUtil null
 [sora:0.0.0.0:9527] [,] 2021-04-17 20:54:19 ERROR 26536 [main] com.vincent.admin.util.IpUtil null
 [sora:0.0.0.0:9527] [,] 2021-04-17 21:10:03 ERROR 33360 [main] com.vincent.admin.util.IpUtil null
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:45:53 ERROR 872 [main] com.vincent.admin.util.MailUtil Mail server connection failed; nested exception is javax.mail.MessagingException: Got bad greeting from SMTP host: smtp.yandex.com, port: 465, response: [EOF]. Failed messages: javax.mail.MessagingException: Got bad greeting from SMTP host: smtp.yandex.com, port: 465, response: [EOF]
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:49:21 ERROR 23052 [main] com.vincent.admin.util.MailUtil Authentication failed; nested exception is javax.mail.AuthenticationFailedException: [EOF];
+  nested exception is:
+	javax.mail.MessagingException: [EOF]
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:51:03 ERROR 12032 [main] com.vincent.admin.util.MailUtil Authentication failed; nested exception is javax.mail.AuthenticationFailedException: [EOF];
+  nested exception is:
+	javax.mail.MessagingException: [EOF]
+[sora:0.0.0.0:9527] [,] 2021-06-14 18:55:00 ERROR 17968 [main] com.vincent.admin.util.MailUtil Failed messages: com.sun.mail.smtp.SMTPSendFailedException: 553 5.7.1 Sender address rejected: not owned by auth user.
+;
+  nested exception is:
+	com.sun.mail.smtp.SMTPSenderFailedException: 553 5.7.1 Sender address rejected: not owned by auth user.
+

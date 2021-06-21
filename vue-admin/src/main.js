@@ -31,6 +31,8 @@ import { sync } from 'vuex-router-sync'
 Vue.config.productionTip = false
 import prototype from "./util/prototype";
 Vue.use(prototype);
+import VueClipboard from "vue-clipboard2";
+Vue.use(VueClipboard);
 sync(store, router)
 
 new Vue({

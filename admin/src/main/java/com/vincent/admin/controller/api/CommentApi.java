@@ -8,6 +8,7 @@ import com.vincent.admin.entity.*;
 import com.vincent.admin.enums.UserOperation;
 import com.vincent.admin.annotation.record.VisitRecord;
 import com.vincent.admin.service.*;
+import com.vincent.admin.util.RabbitUtil;
 import com.vincent.admin.util.Result;
 import com.vincent.admin.vo.CommentVO;
 import lombok.extern.slf4j.Slf4j;
@@ -18,10 +19,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Comment Api
@@ -35,9 +33,7 @@ import java.util.List;
 @CacheConfig(cacheNames = "comment")
 @Slf4j
 public class CommentApi {
-
     //Cache<String, Object> caffeine;
-
     @Autowired
     private CommentService commentService;
     @Autowired
@@ -48,6 +44,8 @@ public class CommentApi {
     private FileService fileService;
     @Autowired
     private SystemConfigService systemConfigService;
+    @Autowired
+    private RabbitUtil rabbitUtil;
 
     @PostMapping("/list")
     @Cacheable(key = "#p0.currentPage + #p0.pageSize + #p0.source + #p0.blogUid")
@@ -62,13 +60,14 @@ public class CommentApi {
             }
             queryWrapper.like("blog_uid",commentVO.getBlogUid());
         }
-
         Page<Comment> page = new Page<>();
         page.setSize(commentVO.getPageSize());
         page.setCurrent(commentVO.getCurrentPage());
+        queryWrapper.eq("type", 0); // 0 for comment
         queryWrapper.eq("source",commentVO.getSource());
+        queryWrapper.isNull("root_uid");// 所有一级评论
         queryWrapper.isNull("to_uid");
-        queryWrapper.eq("target_type",0); // 所有一级评论
+        //queryWrapper.eq("target_type",0); // 所有一级评论
         queryWrapper.orderByDesc("create_time");
 
         IPage<Comment> pageList = commentService.page(page,queryWrapper);
@@ -108,6 +107,7 @@ public class CommentApi {
         userList.forEach(user -> {
             User tUser = new User();
             tUser.setAvatar(user.getAvatar());
+            tUser.setQqAvatar(user.getQqAvatar());
             tUser.setUid(user.getUid());
             tUser.setUserProxy(user.getUserProxy());
             tUser.setUsername(user.getUsername());
@@ -197,24 +197,20 @@ public class CommentApi {
 
         Comment comment = new Comment();
         comment.setBlogUid(commentVO.getBlogUid());
-        if (commentVO.getBlogUid() != 0){
-            Article article = articleService.getById(comment.getBlogUid());
-            article.setCommentCount(article.getCommentCount()+1);
-            article.updateById();
-        }
-
         comment.setContent(commentVO.getContent());
         //comment.setCommentTime(commentVO.ge);
         comment.setUserUid(commentVO.getUserUid());
         comment.setToUserUid(commentVO.getToUserUid());
         comment.setToUid(commentVO.getToUid());
         comment.setSource(commentVO.getSource());
-        comment.setTargetType(commentVO.getTargetType());
+        comment.setType(0); // 0 for comment
 
         //comment.setUserName(commentVO.getUserName());
         // 非一级评论，设置根评论id
-        if (ObjectUtils.isNotNull(commentVO.getToUid())) {
-            Comment toComment = commentService.getById(commentVO.getToUid());
+        Comment toComment = null;
+        boolean flag = ObjectUtils.isNotNull(commentVO.getToUid()); // 根评论
+        if (flag) {
+            toComment = commentService.getById(commentVO.getToUid());
             if (toComment!=null && ObjectUtils.isNull(toComment.getToUid())) {
                 comment.setRootUid(toComment.getUid());
             }else {
@@ -222,16 +218,54 @@ public class CommentApi {
             }
         }
         log.info("新增评论："+comment);
-        boolean isSaved = commentService.save(comment);
+        boolean isSaved = comment.insert();
+
+        if (!comment.getUserUid().equals(comment.getToUserUid())){
+            User toUser = userService.getById(flag?comment.getToUserUid():1);
+            if (toUser.getEnableEmailNotification()){
+                User user = userService.getById(comment.getUserUid());
+                String commentSource,link;
+                switch (commentVO.getSource()){
+                    case "BLOG":
+                        Article article = articleService.getById(commentVO.getBlogUid());
+                        article.setCommentCount(article.getCommentCount()+1);
+                        article.updateById();
+                        commentSource = "文章「"+article.getTitle()+"」";
+                        link = "https://sora.vin/blog/"+article.getLink()+"/comment-page-"+commentVO.getCurrentPage()+"/#comment-"+comment.getUid();
+                        break;
+                    case "BOARD":
+                        commentSource = "留言板";
+                        link = "https://sora.vin/Board/comment-page-"+commentVO.getCurrentPage()+"/#comment-"+comment.getUid();
+                        break;
+                    case "ABOUT":
+                        commentSource = "About Me";
+                        link = "https://sora.vin/About/comment-page-"+commentVO.getCurrentPage()+"/#comment-"+comment.getUid();
+                        break;
+                    default:
+                        commentSource = "Add comment send Email Error";
+                        link = "https://sora.vin";
+                        break;
+                }
+
+                Map<String,String> map = new HashMap<>();
+                map.put("username",user.getUsername());
+                map.put("toUsername",toUser.getUsername());
+                map.put("content",commentVO.getContent());
+                map.put("toContent",flag?toComment.getContent():null);
+                map.put("commentSource",commentSource);
+                map.put("link",link);
+                log.info(map.toString());
+                rabbitUtil.sendCommentNotification(toUser.getEmail(),map);
+            }
+        }
+
         if (isSaved){
-            return Result.success("yattaze!");
+            return Result.success("评论已发表~");
         }
         else {
             return Result.failure("nope");
         }
     }
-
-
 
     @GetMapping("/test")
     public String commentTest(){

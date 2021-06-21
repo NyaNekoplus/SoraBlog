@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class AopUtil {
 
-    public static Map getFieldsName(ProceedingJoinPoint joinPoint) throws ClassNotFoundException, NoSuchMethodException {
+    public static Map getFieldsName(ProceedingJoinPoint joinPoint) {
         // 参数值
         Object[] args = joinPoint.getArgs();
 

@@ -2,7 +2,7 @@
   <div id="respond" class="comment-respond">
     <h3 id="reply-title" class="comment-reply-title">
       <small><a rel="nofollow" id="cancel-comment-reply-link" style="display:none;" @click="cancelReply">Cancel
-        Reply</a></small><!--href="/theme-sakura/#respond" -->
+        Reply</a></small>
     </h3>
     <div id="commentform" class="comment-form" novalidate="">
       <p>
@@ -34,383 +34,7 @@
           </tr>
           </tbody>
         </table>
-        <!--
-        <div class="bili-container motion-container">
-            <span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('baiyan',type = 'Math')"
-                  style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_baiyan.png);">
-              <div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/baiyan.png);
-                animation-duration: 1800ms;
-                animation-timing-function: steps(45);
-                transform: translateY(-1408px);
-                height: 1440px;"></div>
-            </span>
-          <span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('fadai',type = 'Math')"
-                style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_fadai.png);">
-              <div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/fadai.png);
-                 animation-duration: 1080ms;
-                 animation-timing-function: steps(27);
-                 transform: translateY(-832px);
-                 height: 864px;"></div>
-            </span>
-          <span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('koubi',type = 'Math')"
-                style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_koubi.png);">
-              <div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/koubi.png);
- animation-duration: 1200ms;
- animation-timing-function: steps(30);
- transform: translateY(-928px);
- height: 960px;"></div>
-            </span>
-          <span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('qinqin',type = 'Math')"
-                style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_qinqin.png);">
-              <div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/qinqin.png);
- animation-duration: 280ms;
- animation-timing-function: steps(7);
- transform: translateY(-192px);
- height: 224px;"></div>
-            </span>
-          <span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('weiqu',type = 'Math')"
-                style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_weiqu.png);">
-              <div class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/weiqu.png);
- animation-duration: 800ms;
- animation-timing-function: steps(20);
- transform: translateY(-608px);
- height: 640px;"></div>
-            </span>
-          <span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('bishi',type = 'Math')"
-                style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_bishi.png);"><div
-              class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/bishi.png);animation-duration: 360ms;animation-timing-function: steps(9);transform: translateY(-256px);height: 288px;">
-          </div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('fanu',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_fanu.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/fanu.png);
- animation-duration: 1320ms;
- animation-timing-function: steps(33);
- transform: translateY(-1024px);
- height: 1056px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('kun',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_kun.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/kun.png);
- animation-duration: 1760ms;
- animation-timing-function: steps(44);
- transform: translateY(-1376px);
- height: 1408px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('se',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_se.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/se.png);
- animation-duration: 400ms;
- animation-timing-function: steps(10);
- transform: translateY(-288px);
- height: 320px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('weixiao',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_weixiao.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/weixiao.png);
- animation-duration: 800ms;
- animation-timing-function: steps(20);
- transform: translateY(-608px);
- height: 640px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('bizui',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_bizui.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/bizui.png);
- animation-duration: 1240ms;
- animation-timing-function: steps(31);
- transform: translateY(-960px);
- height: 992px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('ganga',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_ganga.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/ganga.png);
- animation-duration: 1520ms;
- animation-timing-function: steps(38);
- transform: translateY(-1184px);
- height: 1216px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('lengmo',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_lengmo.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/lengmo.png);
- animation-duration: 40ms;
- animation-timing-function: steps(1);
- transform: translateY(-0px);
- height: 32px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent"
-                      onclick="grin('shengbing',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_shengbing.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/shengbing.png);
- animation-duration: 1400ms;
- animation-timing-function: steps(35);
- transform: translateY(-1088px);
- height: 1120px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('wunai',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_wunai.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/wunai.png);
- animation-duration: 920ms;
- animation-timing-function: steps(23);
- transform: translateY(-704px);
- height: 736px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('chan',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_chan.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/chan.png);
- animation-duration: 1600ms;
- animation-timing-function: steps(40);
- transform: translateY(-1248px);
- height: 1280px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('guilian',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_guilian.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/guilian.png);
- animation-duration: 40ms;
- animation-timing-function: steps(1);
- transform: translateY(-0px);
- height: 32px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('liubixue',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_liubixue.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/liubixue.png);
- animation-duration: 1400ms;
- animation-timing-function: steps(35);
- transform: translateY(-1088px);
- height: 1120px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('shengqi',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_shengqi.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/shengqi.png);
- animation-duration: 440ms;
- animation-timing-function: steps(11);
- transform: translateY(-320px);
- height: 352px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('xiaoku',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_xiaoku.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/xiaoku.png);
- animation-duration: 600ms;
- animation-timing-function: steps(15);
- transform: translateY(-448px);
- height: 480px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('daku',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_daku.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/daku.png);
- animation-duration: 320ms;
- animation-timing-function: steps(8);
- transform: translateY(-224px);
- height: 256px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('guzhang',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_guzhang.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/guzhang.png);
- animation-duration: 680ms;
- animation-timing-function: steps(17);
- transform: translateY(-512px);
- height: 544px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('liuhan',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_liuhan.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/liuhan.png);
- animation-duration: 1080ms;
- animation-timing-function: steps(27);
- transform: translateY(-832px);
- height: 864px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('shuizhao',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_shuizhao.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/shuizhao.png);
- animation-duration: 960ms;
- animation-timing-function: steps(24);
- transform: translateY(-736px);
- height: 768px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent"
-                      onclick="grin('xieyanxiao',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_xieyanxiao.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/xieyanxiao.png);
- animation-duration: 320ms;
- animation-timing-function: steps(8);
- transform: translateY(-224px);
- height: 256px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('dalao',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_dalao.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/dalao.png);
- animation-duration: 1320ms;
- animation-timing-function: steps(33);
- transform: translateY(-1024px);
- height: 1056px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('haixiu',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_haixiu.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/haixiu.png);
- animation-duration: 1240ms;
- animation-timing-function: steps(31);
- transform: translateY(-960px);
- height: 992px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('liulei',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_liulei.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/liulei.png);
- animation-duration: 40ms;
- animation-timing-function: steps(1);
- transform: translateY(-0px);
- height: 32px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('sikao',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_sikao.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/sikao.png);
- animation-duration: 1440ms;
- animation-timing-function: steps(36);
- transform: translateY(-1120px);
- height: 1152px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('yiwen',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_yiwen.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/yiwen.png);
- animation-duration: 840ms;
- animation-timing-function: steps(21);
- transform: translateY(-640px);
- height: 672px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('dalian',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_dalian.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/dalian.png);
- animation-duration: 1480ms;
- animation-timing-function: steps(37);
- transform: translateY(-1152px);
- height: 1184px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent"
-                      onclick="grin('heirenwenhao',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_heirenwenhao.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/heirenwenhao.png);
- animation-duration: 1040ms;
- animation-timing-function: steps(26);
- transform: translateY(-800px);
- height: 832px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('miantian',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_miantian.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/miantian.png);
- animation-duration: 1120ms;
- animation-timing-function: steps(28);
- transform: translateY(-864px);
- height: 896px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('tiaokan',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_tiaokan.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/tiaokan.png);
- animation-duration: 40ms;
- animation-timing-function: steps(1);
- transform: translateY(-0px);
- height: 32px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('yun',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_yun.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/yun.png);
- animation-duration: 480ms;
- animation-timing-function: steps(12);
- transform: translateY(-352px);
- height: 384px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('dianzan',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_dianzan.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/dianzan.png);
- animation-duration: 800ms;
- animation-timing-function: steps(20);
- transform: translateY(-608px);
- height: 640px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('huaixiao',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_huaixiao.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/huaixiao.png);
- animation-duration: 1240ms;
- animation-timing-function: steps(31);
- transform: translateY(-960px);
- height: 992px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent"
-                      onclick="grin('mudengkoudai',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_mudengkoudai.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/mudengkoudai.png);
- animation-duration: 40ms;
- animation-timing-function: steps(1);
- transform: translateY(-0px);
- height: 32px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('tiaopi',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_tiaopi.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/tiaopi.png);
- animation-duration: 2000ms;
- animation-timing-function: steps(50);
- transform: translateY(-1568px);
- height: 1600px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('zaijian',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_zaijian.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/zaijian.png);
- animation-duration: 960ms;
- animation-timing-function: steps(24);
- transform: translateY(-736px);
- height: 768px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('doge',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_doge.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/doge.png);
- animation-duration: 800ms;
- animation-timing-function: steps(20);
- transform: translateY(-608px);
- height: 640px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('jingxia',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_jingxia.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/jingxia.png);
- animation-duration: 1280ms;
- animation-timing-function: steps(32);
- transform: translateY(-992px);
- height: 1024px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('nanguo',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_nanguo.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/nanguo.png);
- animation-duration: 1120ms;
- animation-timing-function: steps(28);
- transform: translateY(-864px);
- height: 896px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('touxiao',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_touxiao.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/touxiao.png);
- animation-duration: 240ms;
- animation-timing-function: steps(6);
- transform: translateY(-160px);
- height: 192px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('zhoumei',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_zhoumei.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/zhoumei.png);
- animation-duration: 40ms;
- animation-timing-function: steps(1);
- transform: translateY(-0px);
- height: 32px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('facai',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_facai.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/facai.png);
- animation-duration: 1200ms;
- animation-timing-function: steps(30);
- transform: translateY(-928px);
- height: 960px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('keai',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_keai.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/keai.png);
- animation-duration: 680ms;
- animation-timing-function: steps(17);
- transform: translateY(-512px);
- height: 544px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('outu',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_outu.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/outu.png);
- animation-duration: 1680ms;
- animation-timing-function: steps(42);
- transform: translateY(-1312px);
- height: 1344px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent" onclick="grin('tuxue',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_tuxue.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/tuxue.png);
- animation-duration: 320ms;
- animation-timing-function: steps(8);
- transform: translateY(-224px);
- height: 256px;
- "></div></span><span class="emotion-secter emotion-item emotion-select-parent"
-                      onclick="grin('zhuakuang',type = 'Math')"
-                      style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/hd/ic_emoji_zhuakuang.png);"><div
-            class="img emotion-select-child" style="background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@2.9.4/img/bili/zhuakuang.png);
- animation-duration: 760ms;
- animation-timing-function: steps(19);
- transform: translateY(-576px);
- height: 608px;
- "></div></span></div>
-        <div class="menhera-container motion-container" style="display:none;">
-          <a class="emoji-item">(⌒▽⌒)</a>
-          <a class="emoji-item">（￣▽￣）</a> <a class="emoji-item">(=・ω・=)</a> <a class="emoji-item">(｀・ω・´)</a> <a
-            class="emoji-item">(〜￣△￣)〜</a> <a class="emoji-item">(･∀･)</a> <a class="emoji-item">(°∀°)ﾉ</a> <a
-            class="emoji-item">(￣3￣)</a> <a class="emoji-item">╮(￣▽￣)╭</a> <a class="emoji-item">(´_ゝ｀)</a> <a
-            class="emoji-item">←_←</a> <a class="emoji-item">→_→</a> <a class="emoji-item">(&lt;_&lt;)</a> <a
-            class="emoji-item">(&gt;_&gt;)</a> <a class="emoji-item">(;¬_¬)</a> <a class="emoji-item">("▔□▔)/</a> <a
-            class="emoji-item">(ﾟДﾟ≡ﾟдﾟ)!?</a> <a class="emoji-item">Σ(ﾟдﾟ;)</a> <a class="emoji-item">Σ(￣□￣||)</a> <a
-            class="emoji-item">(’；ω；‘)</a> <a class="emoji-item">（/TДT)/</a> <a class="emoji-item">(^・ω・^ )</a> <a
-            class="emoji-item">(｡･ω･｡)</a> <a class="emoji-item">(●￣(ｴ)￣●)</a> <a class="emoji-item">ε=ε=(ノ≧∇≦)ノ</a>
-          <a class="emoji-item">(’･_･‘)</a> <a class="emoji-item">(-_-#)</a> <a class="emoji-item">（￣へ￣）</a> <a
-              class="emoji-item">(￣ε(#￣)Σ</a> <a class="emoji-item">ヽ(‘Д’)ﾉ</a> <a class="emoji-item">（#-_-)┯━┯</a> <a
-              class="emoji-item">(╯°口°)╯(┴—┴</a> <a class="emoji-item">←◡←</a> <a class="emoji-item">( ♥д♥)</a> <a
-              class="emoji-item">_(:3」∠)_</a> <a class="emoji-item">Σ&gt;―(〃°ω°〃)♡→</a> <a class="emoji-item">⁄(⁄
-            ⁄•⁄ω⁄•⁄ ⁄)⁄</a> <a class="emoji-item">(╬ﾟдﾟ)▄︻┻┳═一</a> <a class="emoji-item">･*･:≡( ε:)</a> <a
-              class="emoji-item">(笑)</a> <a class="emoji-item">(汗)</a> <a class="emoji-item">(泣)</a> <a
-              class="emoji-item">(苦笑)</a></div>
-              -->
+
         <div class="tieba-container motion-container">
           <span v-for="(value,key) in tiebaEmojiMap" :key="key">
             <img @click="addEmoji($event)"
@@ -421,24 +45,28 @@
       </div>
       <div class="cmt-info-container">
         <div class="comment-user-avatar">
+          <!--src="http://q.qlogo.cn/headimg_dl?dst_uin=1359643068&spec=100&img_type=jpg"/>-->
           <img
-              :src="userInfo.avatarUrl?userInfo.avatarUrl:'https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/nologin.png'">
+              :src="qqAvatar?qqAvatar:userInfo.qqAvatar?userInfo.qqAvatar:userInfo.avatarUrl?userInfo.avatarUrl:'https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/nologin.png'">
           <div class="socila-check qq-check"><i class="fa fa-qq" aria-hidden="true"></i></div>
           <div class="socila-check gravatar-check"><i class="fa fa-google" aria-hidden="true"></i></div>
         </div>
-        <div class="popup cmt-popup cmt-author" onclick="cmt_showPopup(this)">
-          <span class="popuptext" id="thePopup" style="margin-left: -115px;width: 230px;">输入QQ号将自动拉取昵称和头像</span>
-          <input type="text" placeholder="昵称或QQ号 (必须 Name* )" name="author" id="author" value="" size="22"
+        <div class="popup cmt-popup cmt-author">
+          <span class="popuptext" style="margin-left: -115px;width: 230px;">输入QQ号将自动拉取昵称和头像</span>
+          <input @focus="showHint($event,true)" @blur="showHint($event,false);getQQInfo();"
+                 type="text" placeholder="QQ/Github" id="author" v-model="qq" size="15"
                  autocomplete="off" tabindex="1" aria-required="true">
         </div>
-        <div class="popup cmt-popup" onclick="cmt_showPopup(this)">
-          <span class="popuptext" id="thePopup" style="margin-left: -65px;width: 130px;">你将收到回复通知</span>
-          <input type="text" placeholder="邮箱 (必须 Email* )" name="email" id="email" value="" size="22" tabindex="1"
+        <div class="popup cmt-popup">
+          <span class="popuptext" style="margin-left: -65px;width: 130px;">你将收到回复通知</span>
+          <input @focus="showHint($event,true)" @blur="showHint($event,false)"
+                 type="text" placeholder="邮箱" id="email" v-model="email" size="22" tabindex="1"
                  autocomplete="off" aria-required="true">
         </div>
-        <div class="popup cmt-popup" onclick="cmt_showPopup(this)">
-          <span class="popuptext" id="thePopup" style="margin-left: -55px;width: 110px;">禁止小广告😀</span>
-          <input type="text" placeholder="网站 (选填 Site)" name="url" id="url" value="" size="22" autocomplete="off"
+        <div class="popup cmt-popup"><!-- onclick="cmt_showPopup(this)"-->
+          <span class="popuptext" style="margin-left: -55px;width: 110px;">禁止小广告😀</span>
+          <input @focus="showHint($event,true)" @blur="showHint($event,false)"
+                 type="text" placeholder="Site /deprecated" id="url" v-model="site" size="22" autocomplete="off"
                  tabindex="1">
         </div>
       </div>
@@ -447,11 +75,24 @@
         <span class="siren-no-robot-checkbox siren-checkbox-radioInput"></span>
         滴，学生卡 | I'm not a robot
       </label>
+      <!--
+      <label class="siren-checkbox-label active">
+        <input class="siren-checkbox-radio" type="checkbox" name="is-private">
+        <span class="siren-is-private-checkbox siren-checkbox-radioInput"></span>
+        悄悄话 | Comment in private
+      </label>-->
       <input type="text" placeholder="QQ" name="new_field_qq" id="qq" value="" style="display:none" autocomplete="off">
       <div class="form-submit">
+        <div id="auth-box" class="auth-box"><!-- onclick="cmt_showPopup(this)"-->
+          <div :class="`auth-boxtext ${showAuth?'show':''}`">
+            请填写验证码
+            <input type="text" placeholder="Auth Code" v-model="emailAuthCode" size="6" required autocomplete="off" tabindex="1" style="border-color:white;">
+            <button @click="emailAuthentication" type="button" style="width:120px;margin-top:2px;margin-right:1px;border-color:white;">Submit</button>
+            <button @click="closeAuth" type="button" style="width:120px;margin-top:2px;margin-left:1px;border-color:white;">Cancel</button>
+          </div>
+        </div>
         <input id="submit" class="submit" @click="handleSubmit" value="发送评论" type="submit">
-        <!-- @click="submitComment"-->
-        <div class="insert-image-tips popup"
+        <div class="insert-image-tips popup" @click="closeAuth"
              @mouseenter="$event.currentTarget.children[1].className='insert-img-popuptext show'"
              @mouseleave="$event.currentTarget.children[1].className='insert-img-popuptext'">
           <i class="fa fa-picture-o" aria-hidden="true"></i>
@@ -476,18 +117,54 @@
 import {parseTime} from '@/utils/index'
 import {mapMutations} from "vuex";
 import {message} from "../Message";
+import {authEmail, authToken, getQQInfo, sendAuthEmail} from "../../api/user";
+import {removeCookie} from "../../utils/cookie";
 
 export default {
   name: "box",
   data: () => ({
+    showAuth: false,
     emojiPanelState: false,
 
+    username: '',
+    qqAvatar: null,
+
+    qq: '',
+    site: '',
+    email: '',
+    emailAuthCode: '',
     content: '',
     robotCheck: false,
     currentUser: null,
   }),
   methods: {
-    ...mapMutations(['removeToInfo', 'setCommentList']),
+    ...mapMutations(['setToken','setLoginState','setUserInfo','removeToInfo', 'setCommentList']),
+    closeAuth(){this.showAuth = false;},
+    showHint(e,b){
+      let t = e.target.parentElement.children[0].classList;
+      //console.log(t.parentElement.children[0].classList)
+      if (b) t.add('show')
+      else t.remove('show')
+    },
+    getQQInfo(){
+      let q = this.qq;
+      console.log('qq:'+q)
+      if (!q || q.length<7 || q.length > 14){
+        message('一般人q号多长心里没点b树吗')
+        return
+      }
+      let param = new URLSearchParams();
+      param.append('qq',q);
+      getQQInfo(param).then(response => {
+        message(response.message)
+        if (response.state === this.$STATE.SUCCESS){
+          // this.setUserInfo(response.data) // bug 会导致vuex中的userid被修改，应等到验证完成再设置
+          this.qqAvatar = response.data.qqAvatar
+          this.qq = response.data.username
+          this.email = response.data.email
+        }
+      })
+    },
     processEmoji(text) {
       let name = text.substring(1,text.length-1);
       let src = this.tiebaEmojiMap[name]
@@ -496,6 +173,38 @@ export default {
     addEmoji(e) {
       let name = e.target.alt
       this.content += ':' + name + ':'
+    },
+    emailAuthentication(){
+      let c = this.emailAuthCode.trim();
+      if (c.length !== 6){
+        message('验证码长度不符')
+        return
+      }
+      let param = {}
+      param.code = c
+      param.username = this.qq
+      param.qqAvatar = this.qqAvatar
+      authEmail(param).then(response => {
+        message(response.message);
+        if (response.state === this.$STATE.SUCCESS){
+          this.closeAuth();
+          let token = response.data
+          this.setToken(token);
+          authToken(token).then(response=>{
+            if(response.state === this.$STATE.SUCCESS){
+              this.setLoginState(true);
+              this.setUserInfo(response.data); // TODO
+              this.handleSubmit()
+              console.log(response.data);
+            }/*else { // 已登录的验证q号失败也不会登出
+              this.setLoginState(false);
+              removeCookie("token");
+              console.log(response.data);
+              message(response.message)
+            }*/
+          });
+        }
+      })
     },
     handleSubmit() {
       if (!this.robotCheck) {
@@ -507,8 +216,20 @@ export default {
         return;
       }
       let userInfo = this.$store.getters.userInfo;
-      if (userInfo === null || userInfo === undefined) {
-        message("请先登录");
+      if (!this.$store.getters.isLogin) {// Object.keys(userInfo).length === 0 userInfo === null || userInfo === undefined
+        // \w表示匹配字母或数字或下划线，这里两个括号表示匹配仅包含字母或数字 和 字母、数字、下划线、‘-’
+        let emReg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+        if (!emReg.test(this.email)){
+          message('请输入有效的邮箱地址')
+          return
+        }
+        let param = new URLSearchParams();
+        param.append('email',this.email);
+        sendAuthEmail(param).then(response=> {
+          message(response.message);
+          this.showAuth = true;
+        })
+        //message("已向输入的邮箱发送验证码");
         return;
       }
       let blogUid = this.blogUid//this.$store.getters.blog.uid;
@@ -521,15 +242,16 @@ export default {
       param.userUid = userInfo.uid;
       console.log("替换后", this.content.replace(/:.*?:/g, this.processEmoji))
       param.content = this.content.replace(/:.*?:/g,this.processEmoji)
+      param.type = 0; // 0 for comment
       if (toInfo !== null) { // is reply
         console.log('toInfoUid: ' + toInfo.toUid);
         param.toUid = toInfo.toUid;
         param.toUserUid = toInfo.toUserUid;
-        param.targetType = 1; // 回复评论
+        //param.targetType = 1; // 回复评论
       } else {
         param.toUid = null;
         param.toUserUid = null;
-        param.targetType = 0;
+        //param.targetType = 0;
       }
       param.createTime = parseTime("YYYY-mm-dd HH:MM:SS", new Date());
       this.robotCheck = false;
@@ -547,11 +269,16 @@ export default {
     },
 
   },
+  beforeUpdate() {
+    //TODO
+    //this.qq = this.$store.getters.userInfo.username;
+    //this.email = this.$store.getters.userInfo.email;
+  },
   created() {
-
+    this.qq = this.$store.getters.userInfo.username;
+    this.email = this.$store.getters.userInfo.email;
   },
   mounted() {
-    //this.currentUser = this.$store.getters.userInfo;
   },
   computed: {
     userInfo(){
@@ -579,5 +306,89 @@ export default {
   box-shadow: none;
   border: 1px solid #ccc;
   text-shadow: none;
+}
+
+.auth-box {
+  position: absolute;
+  display: inline-block;
+  left: 41%;
+  cursor: pointer
+}
+.auth-box .auth-boxtext {
+  visibility: hidden;
+  width: 250px;
+  background-color: #ffcccc;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 3px;
+  position: absolute;
+  z-index: 1;
+  bottom: 10px;
+  left: 50%;
+  /*margin-left: -80px*/
+}
+
+.auth-box .auth-boxtext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #ffcccc transparent transparent transparent
+}
+.auth-box .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+/*模态框*/
+.modal {
+  /*display: block; /* 默认隐藏 */
+  position: fixed; /* 根据浏览器定位 */
+  z-index: 1; /* 放在顶部 */
+  left: 0;
+  top: 0;
+  width: 100%; /* 全宽 */
+  height: 100%; /* 全高 */
+  overflow: auto; /* 允许滚动 */
+  background-color: rgba(0,0,0,0.4); /* 背景色 */
+}
+/*模态框内容*/
+.modal-content {
+  display: flex; /*采用flexbox布局*/
+  flex-direction: column; /*垂直排列*/
+  position: relative;
+  background-color: #fefefe;
+  margin: 15% auto; /*距顶部15% 水平居中*/
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20%;
+  animation: topDown 0.4s; /*自定义动画，从模态框内容上到下出现*/
+}
+@keyframes topDown {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+/*模态框头部*/
+.modal-header {
+  display: flex; /*采用flexbox布局*/
+  flex-direction: row; /*水平布局*/
+  align-items: center; /*内容垂直居中*/
+  justify-content: space-between;
+}
+/*关闭X 样式*/
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 </style>

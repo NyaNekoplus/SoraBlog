@@ -9,7 +9,8 @@ import router from "../router";
 import {getToken} from "./cookie";
 
 const request = axios.create({
-  baseURL: "/",
+  baseURL: "",
+  //withCredentials: true, //允许后台的cookie传递到前端
   timeout:20000
 })
 
@@ -33,9 +34,12 @@ request.defaults.headers.common['Authorization'] = getToken();
 
 request.interceptors.request.use(
   config=>{
-    if(store.getters.token){
-      config.headers.common['Authorization']=getToken(); // todo
-    }
+    //alert('request interceptors:'+store.getters.token)
+    //alert('request interceptors:'+getToken())
+    //if(store.getters.token){
+    //  config.headers.Authorization=getToken(); // todo
+    //}
+    config.headers.Authorization=getToken();
     return config;
   },
   error => {

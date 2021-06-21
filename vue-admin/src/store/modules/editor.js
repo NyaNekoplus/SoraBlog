@@ -11,10 +11,12 @@ const state = {
   setting: {
     //menubar: 'file edit insert view format table tools help',
     menubar: false,
-    toolbar: "undo redo | fullscreen | formatselect alignleft aligncenter alignright alignjustify | link unlink | numlist bullist | image media table | fontselect fontsizeselect forecolor backcolor | bold italic underline strikethrough | indent outdent | superscript subscript | removeformat | codesample | code | toc | preview |",
+    toolbar: "undo redo | fullscreen | formatselect alignleft aligncenter alignright alignjustify | link unlink | numlist bullist | image media table | fontselect fontsizeselect forecolor backcolor | bold italic underline strikethrough | indent outdent | superscript subscript | removeformat | codesample | code | anchor | preview |",
     toolbar_mode: "floating",
     quickbars_selection_toolbar: "removeformat | bold italic underline strikethrough | fontsizeselect forecolor backcolor",
-    plugins: "link image media table lists fullscreen quickbars codesample code preview toc",
+    plugins: "link image media table lists fullscreen quickbars codesample code preview toc anchor",
+
+    inline: false,
 
     language: 'zh_CN', //本地化设置
     branding: false,
@@ -49,7 +51,7 @@ const state = {
           failure('Invalid JSON: ' + xhr.responseText);
           return;
         }
-        success('http://localhost:9527/upload-images/'+json.data[0].url);
+        success(process.env.VUE_APP_IMAGE+json.data[0].url);
       };
 
       xhr.onerror = function () {

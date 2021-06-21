@@ -43,7 +43,7 @@ const actions = {
   },
   GetInfo({commit, state}){
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
+      getInfo().then(response => {
         const user = response.data
         if (user.userProxy!=null){
           commit('proxy',user.userProxy)
@@ -79,7 +79,12 @@ const actions = {
   }
 }
 
-const getters = make.getters(state)
+const getters = {
+  ...make.getters(state),
+  token: state => {
+    return state.token
+  }
+}
 
 
 export default {

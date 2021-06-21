@@ -1,12 +1,17 @@
 package com.vincent.admin.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.vincent.admin.entity.*;
+import com.vincent.admin.enums.Proxy;
+import com.vincent.admin.holder.RequestHolder;
 import com.vincent.admin.mapper.ArticleMapper;
 import com.vincent.admin.service.*;
+import com.vincent.admin.util.JsonUtil;
+import com.vincent.admin.util.RedisUtil;
 import com.vincent.admin.util.Result;
 import com.vincent.admin.vo.ArticleVO;
 import lombok.extern.slf4j.Slf4j;
@@ -14,11 +19,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 /**
  * @author Vincent Tsai
@@ -40,8 +44,39 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     private FileService fileService;
     @Autowired
     private SystemConfigService systemConfigService;
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
+    @Cacheable(key = "#p0")
+    public String getBlogByKeyword(String keyword, Long currentPage, Long pageSize) {
+        Page<Article> page = new Page<>();
+        page.setSize(pageSize);
+        page.setCurrent(currentPage);
+        IPage<Article> pageList = baseMapper.searchArticle(page,keyword);
+        List<Article> articleList = pageList.getRecords();
+        if (articleList.size()==0){
+            return Result.failure("什么也没有");
+        }
+        SystemConfig config = systemConfigService.getConfig((long) 1);
+        setCover(config,articleList);
+        return Result.success("查找文章成功",pageList);
+    }
+
+    @Override
+    @Cacheable
+    public String getRecommend() {
+        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select(Article.class,a-> a.getProperty().equals("link")||a.getProperty().equals("title")||a.getProperty().equals("uid"));
+        queryWrapper.eq("is_draft",false);
+        queryWrapper.orderByDesc("view_count");
+        queryWrapper.last("LIMIT 10");
+        List<Article> articleList = articleService.list(queryWrapper);
+        return Result.success("获取推荐列表成功",articleList);
+    }
+
+    @Override
+    @Cacheable(key = "#p0")
     public String getBlogByLink(String link) {
         Article article = baseMapper.getBlogByLink(link);
         if (article == null){
@@ -57,6 +92,10 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
                 article.setCoverUrl(config.getLocalImageBaseUrl()+article.getCoverUrl());
             }
         }
+        tagService.getTagListByArticle(article);
+        article.setViewCount(article.getViewCount() + 1);
+        article.updateById();
+        article.setViewCount(null);
         return Result.success("获取文章成功，链接："+link,article);
     }
 
@@ -69,30 +108,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         page.setCurrent(articleVO.getCurrentPage());
 
         IPage<Article> pageList = baseMapper.getBlogByPageWithoutTags(page,
-                (long) 0,
+                articleVO.getCategoryUid(),
                 false);
-        List<Article> articleList = new ArrayList<>(pageList.getRecords());
+        List<Article> articleList = pageList.getRecords(); // 深拷贝，防止下面获取tag时改变？
         SystemConfig config = systemConfigService.getConfig((long) 1);
-        articleList.forEach(article -> {
-            if (article.getCoverUrl()==null){
-                article.setCoverUrl(config.getLocalImageBaseUrl()+config.getDefaultCoverUrl());
-            }else {
-                if (article.getCoverJsDelivrUrl() != null){
-                    article.setCoverUrl(article.getCoverJsDelivrUrl());
-                }else {
-                    article.setCoverUrl(config.getLocalImageBaseUrl()+article.getCoverUrl());
-                }
-            }
-            if (article.getTagUid()!=null){
-                String[] tagUidArray = article.getTagUid().split(";");
-                Collection<Long> tagUidList = new ArrayList<>();
-                for (String s : tagUidArray) {
-                    tagUidList.add(Long.parseLong(s));
-                }
-                List<Tag> tagList = tagService.listByIds(tagUidList);
-                article.setTagList(tagList);
-            }
-        });
+        setCover(config,articleList);
         /*
         IPage<Article> pageList = articleService.page(page, queryWrapper);
         List<Article> articleList = new ArrayList<>(pageList.getRecords());
@@ -154,7 +174,6 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
             });
         }
         */
-
         pageList.setRecords(articleList);
         String msg = "获取文章列表成功";
         return Result.success(msg, pageList);
@@ -173,6 +192,56 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
             }
         });
         return Result.success("查找置顶文章成功",topList);
+    }
+
+    @Override
+    public String likeBlog(Long uid) {
+        HttpServletRequest request = RequestHolder.getRequest();
+        String token = request.getHeader("Authorization");
+        log.info("token: "+token);
+        if (token == null || token.equals("undefined")) {
+            return Result.failure("登录后才可以点赞哦~");
+        }
+        String user = redisUtil.get("LOGIN_TOKEN"+':'+token);
+        if (StringUtils.isEmpty(user)){
+            return Result.failure("登录后才可以点赞哦~");
+        }
+        Map<String,Object> info = JsonUtil.jsonToMap(user);
+        Long userUid = Integer.toUnsignedLong((Integer) info.get("uid"));
+        log.info("用户信息： "+info);
+        QueryWrapper<Comment> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_uid",userUid);
+        queryWrapper.eq("blog_uid",uid);
+        queryWrapper.eq("source","BLOG");
+        queryWrapper.eq("type",1); // 1 for liked, 0 for comment
+        queryWrapper.last("LIMIT 1");
+        Comment isLiked = commentService.getOne(queryWrapper);
+        if (isLiked != null){
+            return Result.failure("感谢支持!你已经点过赞了~");
+        }
+        articleService.update(new UpdateWrapper<Article>().eq("uid",uid).setSql("liked_count = liked_count+1"));
+        Comment likeInc = new Comment();
+        likeInc.setSource("BLOG");
+        likeInc.setType(1);
+        likeInc.setBlogUid(uid);
+        likeInc.setUserUid(userUid);
+        likeInc.insert();
+        return Result.success("感谢支持~");
+    }
+
+    private void setCover(SystemConfig config,List<Article> articleList){
+        articleList.forEach(article -> {
+            if (article.getCoverUrl()==null){
+                article.setCoverUrl(config.getLocalImageBaseUrl()+config.getDefaultCoverUrl());
+            }else {
+                if (article.getCoverJsDelivrUrl() != null){
+                    article.setCoverUrl(article.getCoverJsDelivrUrl());
+                }else {
+                    article.setCoverUrl(config.getLocalImageBaseUrl()+article.getCoverUrl());
+                }
+            }
+            //tagService.getTagListByArticle(article);
+        });
     }
 
 }

@@ -10,8 +10,8 @@
         <figure id="centerbg" class="centerbg"><!-- style="height: 938px;"-->
           <div class="focusinfo no-select" >
             <div class="header-tou">
-              <a :href="about.link">
-                <img :src="about.avatarUrl">
+              <a href="https://sora.vin/About">
+                <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png">
               </a>
             </div>
             <!--<h1 class="center-text glitch is-glitching Ubuntu-font" data-text="遠い空へ">遠い空へ</h1>-->
@@ -20,7 +20,7 @@
               <i class="fa fa-quote-left"></i>
               <i class="fa fa-quote-right"></i>
               -->
-              <p> {{ about.motto }} </p>
+              <p> 思绪如风，来得快去得也快，偶尔在这里停留 </p>
               <div class="top-social_v2">
                 <!--
                 <li id="bg-pre">
@@ -31,7 +31,7 @@
                 </li>
                 -->
                 <li v-for="link in links" :key="link.title">
-                  <a :title="link.title">
+                  <a :title="link.title" :href="link.link" target="_blank">
                     <img :src="link.icon"></a>
                 </li>
               </div>
@@ -67,33 +67,20 @@
           </div>
           <div class="site-branding">
             <h1 class="site-title">
-              <a :href="about.link">
-                <ruby>
-                  <span class="sakuraso" style="padding-left: 7px"><span>悠</span></span>
-
-                  <span class="no">の</span>
-
-                  <span class="shironeko">空</span>
-
-                  <rp></rp><rt class="chinese-font">{{ about.name }}</rt><rp></rp>
-                </ruby>
-              </a>
+              <brand/>
             </h1>
           </div>
         </div> <!--在section内 -->
       </div>
     </section>
 
-
     <sora-setting/>
-
 
   </div>
 </template>
 
 <script>
 import {mapMutations} from "vuex";
-import {getAboutMe} from "../../api/user";
 
 export default {
   name: 'SoraLayout',
@@ -102,6 +89,7 @@ export default {
     SoraBar: () => import('./AppBar'),
     SoraFooter: () => import('./Footer'),
     SoraSetting: () => import('./Setting'),
+    Brand: () => import('@/layouts/sora/widgets/brand'),
   },
   data: () => ({
     coverHeight: 300,
@@ -156,12 +144,15 @@ export default {
     }
   },
   created() {
+    this.$store.state.loading = true
+    /*
     getAboutMe().then(response => {
       if (response.state === this.$STATE.SUCCESS){
         this.about = response.data;
         this.setAbout(this.about);
       }
-    })
+    })*/
+    this.$store.state.loading = false
   }
 }
 </script>

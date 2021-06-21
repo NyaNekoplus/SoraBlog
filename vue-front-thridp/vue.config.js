@@ -11,6 +11,7 @@ module.exports = {
     devServer: {
         port: 9529,
         disableHostCheck: true,
+        //externals: 'hls.js' // 消去aplayer的警告，hls.js is for play HLS media.
     },
     // 配置webpack打包
     configureWebpack: (config) => {
@@ -25,6 +26,7 @@ module.exports = {
                 return args;
             })
     },
+
     /*
     configureWebpack: {
         plugins: [
