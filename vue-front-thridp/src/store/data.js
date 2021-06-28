@@ -21,7 +21,7 @@ const data = {
             },
             {
                 title: 'Twitter',
-                link: 'https://twitter.com/Vincent_Tsai_',
+                link: 'https://twitter.com/realVincentTsai',
                 icon: 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/twitter.png'
             },
             {

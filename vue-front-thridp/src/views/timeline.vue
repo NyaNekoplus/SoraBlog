@@ -144,6 +144,7 @@ export default {
           {
             value: 6,
             dayList: [
+              {value: 27, description: 'Add Link sample'},
               {value: 20, description: '修复时区问题(Asia/Shanghai-UTC+8)'},
               {value: 19, description: '增加邮件模板，现在被回复/新文章发布时用户将收到邮件通知;使用RabbitMQ作为消息中间件'},
               {value: 13, description: '修复DELETE跨域问题'},
