@@ -87,14 +87,21 @@
         </ul>
       </div>
     </div>-->
-
-    <div class="notice" style="margin-top:60px">
+<!--
+    <div class="notice" style="margin-top:60px">style="margin-top:10px
       <i class="iconfont icon-notification"></i>
       <div class="notice-content">---------水泥未干---------</div>
     </div>
-    <div class="notice" style="margin-top:10px">
+-->
+    <div class="notice" style="margin-top:60px">
       <i class="iconfont icon-notification"></i>
-      <div class="notice-content">Original：nyanekoplus.github.io (Blocked by GFW)</div>
+      <div class="notice-content">
+        旧博客：
+        <a title="旧博客" href="https://nyanekoplus.github.io/" target="_blank" rel="noopener">
+          nyanekoplus.github.io
+        </a>
+         (Blocked by GFW)
+      </div>
     </div>
 
     <top-list/>

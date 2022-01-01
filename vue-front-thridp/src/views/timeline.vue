@@ -19,7 +19,8 @@
                           <li>
                             <a href="https://sora.vin">
                               <span style="color:#0bf;">{{ day.value }}日 </span>
-                              {{day.description}}
+                              <span v-html="day.description"></span>
+                              <!--{{day.description}}-->
                             </a>
                           </li>
                         </ul>
@@ -131,6 +132,9 @@
 </template>
 
 <script>
+
+import {getTimeLine} from "../api/timeline";
+
 export default {
   name: "timeline",
   components: {
@@ -141,6 +145,19 @@ export default {
       {
         value: 2021,
         monthList: [
+          {
+            value: 8,
+            dayList: [
+              {value: 19, description: 'Update social network links in mobile device'},
+              {value: 6, description: 'Fix to tool box and toTop button display problem'},
+            ]
+          },
+          {
+            value: 7,
+            dayList: [
+              {value: 19, description: 'Signed up for Telegram. Contact: <a href="https://t.me/realVincentTsai" target="_blank" rel="noopener noreferrer">@realVincentTsai</a>'},
+            ]
+          },
           {
             value: 6,
             dayList: [
@@ -169,6 +186,9 @@ export default {
       }
     ]
   }),
+  created() {
+    getTimeLine(); // Just for record, presently TODO
+  }
 }
 </script>
 

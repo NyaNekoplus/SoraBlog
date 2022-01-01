@@ -16,7 +16,7 @@ const data = {
             },
             {
                 title: 'Telegram',
-                link: '',
+                link: 'https://t.me/realVincentTsai',
                 icon: 'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/sns/telegram.svg'
             },
             {

@@ -2,7 +2,7 @@
   <div>
     <section id="main-container" :class="sidebarOn?'open':''">
       <div class="scrollbar" id="bar" style="width: 19%; background: #00bbff none repeat scroll 0% 0%;"></div>
-      <div class="headertop filter-dot" style="height: auto;"> <!-- headertop-bar : banner处的一行白色-->
+      <div class="headertop filter-dot headertop-bar" style="height: auto;"> <!-- headertop-bar : banner处的一行白色-->
 
         <div id="banner_wave_1"></div>
         <div id="banner_wave_2"></div>
@@ -31,7 +31,7 @@
                 </li>
                 -->
                 <li v-for="link in links" :key="link.title">
-                  <a :title="link.title" :href="link.link" target="_blank">
+                  <a :title="link.title" :href="link.link" target="_blank" rel="noopener">
                     <img :src="link.icon"></a>
                 </li>
               </div>
@@ -157,6 +157,11 @@ export default {
 }
 </script>
 <style>
+@media (max-width: 860px) {
+  .headertop-down {
+    display: none;
+  }
+}
 .headertop-down {
   position: absolute;
   bottom: 50px;
@@ -172,6 +177,8 @@ export default {
   -webkit-transform: scale(1.5,1);
   transform: scale(1.5,1);
 }
+
+
 .centerbg{
   background-image: url('https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/landscape.jfif');
   background-position: center center;
@@ -244,8 +251,7 @@ export default {
 }
 @media(max-width:860px) {
   #banner_wave_1,#banner_wave_2 {
-    display:inline-block;
-
+    display:none;/*inline-block;*/
   }
   @-webkit-keyframes wave1/*Safari and Chrome*/
   {

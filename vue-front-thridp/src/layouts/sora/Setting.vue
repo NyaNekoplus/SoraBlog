@@ -8,8 +8,8 @@
         Vincent Tsai
       </p>
       <p style="text-align: center; letter-spacing: 20px;">
-        <a href="https://twitter.com/Vincent_Tsai_" class="fa fa-twitter" target="_blank" style="color: #00aced"></a>
-        <a href="https://weibo.com/5365785822" class="fa fa-weibo" target="_blank" style="color: #dd4b39"></a>
+        <a href="https://twitter.com/realVincentTsai" class="fa fa-twitter" target="_blank" style="color: #00aced"></a>
+        <a href="https://t.me/realVincentTsai" class="fa fa-telegram" target="_blank" style="color: #00aced"></a>
         <a href="https://github.com/NyaNekoplus" class="fa fa-github" target="_blank" style="color: #333"></a>
         <a href="mailto:guoxitsai@gmail.com" class="fa fa-envelope" style="color: #ffbf00"></a>
       </p>
@@ -76,7 +76,7 @@
       <!--<script type="text/javascript"><?php echo akina_option('site_statistics'); ?></script>-->
     </div>
 
-    <div class="changeSkin-gear no-select" :style="`background: none; visibility: visible; bottom: ${isTop?`0px`:`-999px`};`">
+    <div class="changeSkin-gear no-select" style="background: none; bottom: 0px;" :style="`visibility:${isTop?`visible`:`hidden`};`">
       <div class="keys">
         <span id="open-skinMenu" @click="showThemePanel">
 		      <i class="iconfont icon-gear inline-block rotating"></i>&nbsp; 切换主题 | SCHEME TOOL

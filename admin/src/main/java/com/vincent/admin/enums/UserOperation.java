@@ -11,7 +11,8 @@ import java.util.Map;
  */
 public enum UserOperation {
     VISIT_PAGE("浏览页面", "visit"),
-    VISIT_ABOUT_ME("浏览关于我", "visitMe"),
+    VISIT_ABOUT_ME("浏览关于我", "visitAboutMe"),
+    VISIT_TIME_LINE("浏览时光轴", "visitTimeLine"),
     SEARCH("搜索", "search"),
     LIKE("点赞", "like"),
     PUBLISH_COMMENT("发表评论", "comment");

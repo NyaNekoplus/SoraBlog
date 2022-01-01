@@ -17,7 +17,7 @@ const theme = {
         sidebarOn: false,
         searchbarOn: false,
 
-        isThemeWidgetShow: true,
+        isThemeWidgetShow: false,
         wideScreenCover: false,
         sakuraEffect: false,
         snowEffect: false,

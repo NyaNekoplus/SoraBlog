@@ -226,9 +226,18 @@ public class ArticleApi {
     @PostMapping("/update")
     String updateArticleState(@RequestBody ArticleVO articleVO){
 
+        /*
+        *
+        *if (articleVO.getContent().length()>35){
+            article.setSummary(articleVO.getContent().substring(0,35)); //
+        }else {
+            article.setSummary(articleVO.getContent());
+        }
+        * */
         UpdateWrapper<Article> wrapper = new UpdateWrapper<>();
         wrapper.set("enable_comment",articleVO.getEnableComment());
         wrapper.set("is_draft",articleVO.getIsDraft());
+        wrapper.set("summary",articleVO.getContent().length()<=35?articleVO.getContent():articleVO.getContent().substring(0,35));
         wrapper.set("content",articleVO.getContent());
         wrapper.set("content_md",articleVO.getContentMd());
         wrapper.set("link",articleVO.getLink());

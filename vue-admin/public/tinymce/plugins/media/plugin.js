@@ -500,7 +500,7 @@
         type: 'iframe',
         w: 560,
         h: 314,
-        url: '//player.bilibili.com/player.html?bvid=$1&page=1',
+        url: 'player.bilibili.com/player.html?bvid=$1&page=1',
         allowFullscreen: true
       },
       {

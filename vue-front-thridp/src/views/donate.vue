@@ -17,13 +17,21 @@
           <p style="text-align: center;">支付宝 / 微信</p>
           <donate-icon/>
           <p>
-            <strong>USDT(ERC20)：</strong><span style="margin-left: 25px">{{usdt}}</span>
+            <strong>USDT(BSC)：</strong><span style="margin-left: 25px">{{usdt}}</span>
             <a v-clipboard:copy="usdt"
                v-clipboard:success="copy"
                class="copy-code" href="javascript:" title="复制">
               <i class="fa fa-clipboard" aria-hidden="true"></i>
             </a>
             <br><br>
+            <strong>USDT(TRC20)：</strong><span style="margin-left: 25px">{{usdt_t}}</span>
+            <a v-clipboard:copy="usdt_t"
+               v-clipboard:success="copy"
+               class="copy-code" href="javascript:" title="复制">
+              <i class="fa fa-clipboard" aria-hidden="true"></i>
+            </a>
+            <br><br>
+            <!--
             <strong>ETH：</strong><span style="margin-left: 100px">{{eth}}</span>
             <a v-clipboard:copy="btc"
                v-clipboard:success="copy"
@@ -38,6 +46,7 @@
               <i class="fa fa-clipboard" aria-hidden="true"></i>
             </a>
             <br><br>
+            -->
 
             任意金额，交个朋友
           </p>
@@ -69,7 +78,8 @@ export default {
   data: () => ({
     btc:'3ASXf5SASK9oNMRsUMei99N76QDCs7dhYz',
     eth:'0x60a5D53CAd05c3CcC6434E9Eb01794E98Ee0a5EC',
-    usdt:'0xf44a129bd5b215730cdedc65c3707ebbb46a9e4b',
+    usdt_t:'TZ7JWVEPD22WCrt7VZps6jhKAYWH2sYvMY',
+    usdt:'0x72d4EBbb0B092712845138615C557D42BF02a226',
   }),
   methods: {
     copy(){

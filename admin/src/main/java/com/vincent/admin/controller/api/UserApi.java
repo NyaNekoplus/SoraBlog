@@ -1,7 +1,6 @@
 package com.vincent.admin.controller.api;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.mysql.cj.log.Log;
 import com.vincent.admin.annotation.record.VisitRecord;
 import com.vincent.admin.entity.File;
 import com.vincent.admin.entity.SystemConfig;
@@ -163,6 +162,7 @@ public class UserApi {
     public String getAboutMe(){
         return aboutMeService.getAboutMeByLang(1);
     }
+
     @GetMapping("/getQQInfo")
     public String getQQInfo(@RequestParam(name = "qq", required = false) String qq){
         if (StringUtils.isEmpty(qq))
