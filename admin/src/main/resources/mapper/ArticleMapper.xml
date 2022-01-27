@@ -65,7 +65,7 @@ select * from user u left join class c u.userid=c.userid
 
     <select id="getTopBlogWithCover" resultMap="BaseResultMap">
         select a.uid,a.title,a.link,a.create_time,a.update_time,a.level, f.url, f.js_delivr_url from (
-        (select max(update_time) update_time, level from s_blog where level>0 and is_draft=1 group by level) b
+        (select max(update_time) update_time, level from s_blog where level>0 and is_draft=0 group by level) b
         inner join s_blog a on a.level = b.level and a.update_time = b.update_time)
         left join s_file f on a.cover_uid = f.uid
     </select>

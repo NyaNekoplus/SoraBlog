@@ -68,7 +68,7 @@ CREATE TABLE `s_visit_record` (
   `ip` varchar(15) DEFAULT NULL COMMENT 'ip地址',
   `ip_source` varchar(64) DEFAULT NULL COMMENT 'ip归属地',
   `browser` varchar(32) DEFAULT NULL COMMENT '浏览器',
-  `os` varchar(32) DEFAULT NULL COMMENT '操作系统',
+  `os` varchar(255) DEFAULT NULL COMMENT '操作系统',
   `operation` varchar(16) DEFAULT NULL COMMENT '用户操作',
   `add_on` varchar(255) DEFAULT NULL COMMENT '附加数据(比如搜索内容)',
   `create_time` timestamp NOT NULL DEFAULT '2021-03-18 14:08:05' COMMENT '创建时间',

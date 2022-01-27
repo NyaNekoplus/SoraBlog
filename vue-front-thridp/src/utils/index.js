@@ -31,7 +31,7 @@ export function formatDate(date) {
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
         year = d.getFullYear(),
-        hour = d.getUTCHours(),
+        hour = d.getHours(),
         minute = d.getUTCMinutes();
 
     if (month.length < 2) month = '0' + month;

@@ -143,6 +143,18 @@ export default {
   data: () => ({
     yearList: [
       {
+        value: 2022,
+        monthList: [
+          {
+            value: 1,
+            dayList: [
+              {value: 27,description: "Fix to function formatDate, hour=getHours()"},
+              {value: 1, description: "Fix to draft will display on top list"},
+            ]
+          }
+        ]
+      },
+      {
         value: 2021,
         monthList: [
           {
