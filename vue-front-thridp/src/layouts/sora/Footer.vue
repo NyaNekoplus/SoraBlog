@@ -3,8 +3,8 @@
     <div class="site-info">
       <div class="footertext">
         <div class="img-preload">
-          <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/wordpress-rotating-ball-o.svg">
-          <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/disqus-preloader.svg">
+          <img src="https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/wordpress-rotating-ball-o.svg">
+          <img src="https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/disqus-preloader.svg">
         </div>
         <p style="color: #666666;">Copyright &copy;{{new Date().getUTCFullYear()}} Vincent Tsai All Rights Reserved.</p>
       </div>

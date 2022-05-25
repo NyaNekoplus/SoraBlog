@@ -10,7 +10,7 @@
           <div style="width:64px;height:64px;text-align:center;" @click="openImg">
             <!--<span v-if="imgUrl==''">点击上传</span>-->
             <img style="height:100%;width:100%;"
-                 :src="imgUrl===''?'https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/none.png':imgUrl" alt="上传头像"/>
+                 :src="imgUrl===''?'https://fastly.jsdelivr.net/gh/Nyanekoplus/js@master/data/none.png':imgUrl" alt="上传头像"/>
           </div>
         </div>
       </div>

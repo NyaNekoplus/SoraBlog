@@ -11,7 +11,7 @@
           <div class="focusinfo no-select" >
             <div class="header-tou">
               <a href="https://sora.vin/About">
-                <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png">
+                <img src="https://fastly.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png">
               </a>
             </div>
             <!--<h1 class="center-text glitch is-glitching Ubuntu-font" data-text="遠い空へ">遠い空へ</h1>-->
@@ -24,10 +24,10 @@
               <div class="top-social_v2">
                 <!--
                 <li id="bg-pre">
-                  <img class="flipx" src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/next-b.svg">
+                  <img class="flipx" src="https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/next-b.svg">
                 </li>
                 <li id="bg-next">
-                  <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/next-b.svg">
+                  <img src="https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/next-b.svg">
                 </li>
                 -->
                 <li v-for="link in links" :key="link.title">
@@ -178,7 +178,7 @@ export default {
   transform: scale(1.5,1);
 }
 
-/*https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/landscape.jfif*/
+/*https://fastly.jsdelivr.net/gh/Nyanekoplus/js@master/data/landscape.jfif*/
 .centerbg{
   background-image: url('https://s2.loli.net/2022/03/21/PN8eMdBf12nuOtK.jpg');
   background-position: center center;
@@ -218,7 +218,7 @@ export default {
 #banner_wave_1 {
   width:auto;
   height:65px;
-  background:url("https://cdn.jsdelivr.net/gh/yremp/resource@2.0/img/other/wave1.png") repeat-x;
+  background:url("https://fastly.jsdelivr.net/gh/yremp/resource@2.0/img/other/wave1.png") repeat-x;
   _filter:alpha(opacity=80);
   position:absolute;
   bottom:0;
@@ -233,7 +233,7 @@ export default {
 #banner_wave_2 {
   width:auto;
   height:80px;
-  background:url("https://cdn.jsdelivr.net/gh/yremp/resource@2.0/img/other/wave2.png") repeat-x;
+  background:url("https://fastly.jsdelivr.net/gh/yremp/resource@2.0/img/other/wave2.png") repeat-x;
   _filter:alpha(opacity=80);
   position:absolute;
   bottom:0;
@@ -284,7 +284,7 @@ export default {
   #banner_wave_1 {
     width:auto;
     height:65px;
-    background:url("https://cdn.jsdelivr.net/gh/yremp/resource@2.0/img/other/wave1.png") repeat-x;
+    background:url("https://fastly.jsdelivr.net/gh/yremp/resource@2.0/img/other/wave1.png") repeat-x;
     _filter:alpha(opacity=80);
     position:absolute;
     bottom:0;
@@ -299,7 +299,7 @@ export default {
   #banner_wave_2 {
     width:auto;
     height:80px;
-    background:url("https://cdn.jsdelivr.net/gh/yremp/resource@2.0/img/other/wave2.png") repeat-x;
+    background:url("https://fastly.jsdelivr.net/gh/yremp/resource@2.0/img/other/wave2.png") repeat-x;
     _filter:alpha(opacity=80);
     position:absolute;
     bottom:0;

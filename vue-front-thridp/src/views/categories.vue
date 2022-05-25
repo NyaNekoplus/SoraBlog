@@ -1,6 +1,6 @@
 <template>
   <div>
-    <cover title="分类归档" cover-src="https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.3/img/cover/category.png"/>
+    <cover title="分类归档" cover-src="https://fastly.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.3/img/cover/category.png"/>
     <page-content>
       <article class="page type-page status-publish has-post-thumbnail hentry">
         <div class="entry-content">
@@ -22,8 +22,8 @@
               <!------------------------------技术 START---------------------------------->
               <li class="link-item">
                 <a class="link-item-inner effect-apollo" href="https://sora.vin/Category/Tech" title="技术" target="_blank" rel="friend noopener noreferrer">
-                  <!--<img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/lizard.png">-->
-                  <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/lizard.png">
+                  <!--<img class="lazyload" src="https://fastly.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/Nyanekoplus/js@master/data/lizard.png">-->
+                  <img src="https://fastly.jsdelivr.net/gh/Nyanekoplus/js@master/data/lizard.png">
                   <span class="sitename">技术</span>
                   <div class="linkdes">Technology</div>
                 </a>
@@ -33,8 +33,8 @@
               <!------------------------------资源 START---------------------------------->
               <li class="link-item">
                 <a class="link-item-inner effect-apollo" href="https://sora.vin/Category/Life" title="生活" target="_blank" rel="friend noopener noreferrer">
-                  <!--<img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="/wp-content/uploads/2020/05/资源.png">-->
-                  <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/1618926500372.jpg">
+                  <!--<img class="lazyload" src="https://fastly.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="/wp-content/uploads/2020/05/资源.png">-->
+                  <img src="https://fastly.jsdelivr.net/gh/Nyanekoplus/js@master/data/1618926500372.jpg">
                   <span class="sitename">生活</span>
                   <div class="linkdes">Life</div>
                 </a>

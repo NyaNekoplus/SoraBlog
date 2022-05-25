@@ -1,7 +1,7 @@
 <template>
   <div>
     <cover title="标签云"
-           cover-src="https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.5/img/cover/tag.jpg"
+           cover-src="https://fastly.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.5/img/cover/tag.jpg"
     />
     <page-content>
       <article

@@ -2,7 +2,7 @@
   <div>
     <cover
         title="留言板"
-        cover-src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/board.jpg"
+        cover-src="https://fastly.jsdelivr.net/gh/Nyanekoplus/js@master/data/board.jpg"
     />
     <comment-block :blog-id="0" :comment-source="'BOARD'" :enable-comment="true"></comment-block><!--:enable-comment="blog.enableComment" -->
   </div>

@@ -26,9 +26,9 @@ const theme = {
         background: 0,
         images: [
             'background-image: none;',
-            'background-image: url("https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.5/img/theme/star.png");',//star
-            'background-image: url("https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.5/img/theme/grid.jpg");',//star
-            'background-image: url("https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.7/img/theme/rhone.jfif");',//dark
+            'background-image: url("https://fastly.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.5/img/theme/star.png");',//star
+            'background-image: url("https://fastly.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.5/img/theme/grid.jpg");',//star
+            'background-image: url("https://fastly.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.7/img/theme/rhone.jfif");',//dark
         ],
     },
     getters: {

@@ -85,7 +85,7 @@
       <div class="header-user-avatar">
         <router-link to="/login">
           <img class="faa-shake animated-hover"
-               :src="userInfo.qqAvatar?userInfo.qqAvatar:userInfo.avatarUrl?userInfo.avatarUrl:'https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/none.png'"
+               :src="userInfo.qqAvatar?userInfo.qqAvatar:userInfo.avatarUrl?userInfo.avatarUrl:'https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/none.png'"
                width="30" height="30">
         </router-link>
         <div class="header-user-menu">

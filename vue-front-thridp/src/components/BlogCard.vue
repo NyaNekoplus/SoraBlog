@@ -3,7 +3,7 @@
     <div class="post-thumb">
       <a href="">
         <img class="lazyload"
-             src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.0.1/img/svg/loader/orange.progress-bar-stripe-loader.svg"
+             src="https://fastly.jsdelivr.net/gh/moezx/cdn@3.0.1/img/svg/loader/orange.progress-bar-stripe-loader.svg"
              :data-src="blog.coverUrl">
       </a>
     </div>

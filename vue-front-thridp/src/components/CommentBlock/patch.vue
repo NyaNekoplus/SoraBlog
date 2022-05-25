@@ -24,7 +24,7 @@
                           height="24">
                       <span v-if="comment.user.userProxy === 0" class="bb-comment" title="博主">博主</span> {{ comment.user.username }}
                       <span class="showGrade0" title="萌萌哒新人~">
-                        <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/level/level_0.svg" style="height: 1.5em; max-height: 1.5em; display: inline-block;">
+                        <img src="https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/level/level_0.svg" style="height: 1.5em; max-height: 1.5em; display: inline-block;">
                       </span>
                     </a>
                   </h4>
@@ -34,14 +34,14 @@
                   <div class="info">
                     <time>{{calculatePeriod(comment.createTime)}}</time>&nbsp;&nbsp;
                     <span class="useragent-info">(
-                      <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/img/Sakura/images/ua/svg/chrome.svg">
+                      <img src="https://fastly.jsdelivr.net/gh/moezx/cdn@3.4.5/img/Sakura/images/ua/svg/chrome.svg">
                       &nbsp;{{ comment.user.browser }}&nbsp;&nbsp;
-                      <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/img/Sakura/images/ua/svg/windows_win10.svg">
+                      <img src="https://fastly.jsdelivr.net/gh/moezx/cdn@3.4.5/img/Sakura/images/ua/svg/windows_win10.svg">
                       &nbsp;{{ comment.user.os }} )
                     </span>
                     <span class="useragent-info-m">(
-                      <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/img/Sakura/images/ua/svg/chrome.svg">&nbsp;&nbsp;
-                      <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/img/Sakura/images/ua/svg/windows_win10.svg"> )
+                      <img src="https://fastly.jsdelivr.net/gh/moezx/cdn@3.4.5/img/Sakura/images/ua/svg/chrome.svg">&nbsp;&nbsp;
+                      <img src="https://fastly.jsdelivr.net/gh/moezx/cdn@3.4.5/img/Sakura/images/ua/svg/windows_win10.svg"> )
                     </span>
                     <!--&nbsp;来自: 江苏省南京市 移动-->
                   </div>

@@ -7,7 +7,7 @@
       <div class="the-feature square from_left_and_right">
         <a href="/theme-sakura/" target="_blank">
           <div class="img">
-            <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.3.2/img/other/sakura.md.png">
+            <img src="https://fastly.jsdelivr.net/gh/moezx/cdn@3.3.2/img/other/sakura.md.png">
           </div>
           <div class="info">
             <h3>{{ topBlogs[0].title }}</h3>
@@ -20,7 +20,7 @@
       <div class="the-feature square from_left_and_right" style="margin: 0 4.5px">
         <a href="/2017/09/19/pixiv/" target="_blank">
           <div class="img">
-            <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.6/img/other/th%20(3).jpg">
+            <img src="https://fastly.jsdelivr.net/gh/moezx/cdn@3.1.6/img/other/th%20(3).jpg">
           </div>
           <div class="info">
             <h3>Pixiv</h3>

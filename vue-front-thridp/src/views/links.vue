@@ -2,7 +2,7 @@
   <div>
     <cover
         title="友情链接"
-        cover-src="https://cdn.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.3/img/cover/link.jpg"
+        cover-src="https://fastly.jsdelivr.net/gh/NyaNekoplus/cdn@0.0.3/img/cover/link.jpg"
     />
     <page-content>
       <article class="page type-page status-publish has-post-thumbnail hentry">
@@ -14,8 +14,8 @@
               <!------------------------------资源 START---------------------------------->
               <li class="link-item">
                 <a class="link-item-inner effect-apollo" href="https://sora.vin/" title="Sample" target="_blank" rel="friend noopener noreferrer">
-                  <!--<img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="/wp-content/uploads/2020/05/资源.png">-->
-                  <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/1618926500372.jpg">
+                  <!--<img class="lazyload" src="https://fastly.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="/wp-content/uploads/2020/05/资源.png">-->
+                  <img src="https://fastly.jsdelivr.net/gh/Nyanekoplus/js@master/data/1618926500372.jpg">
                   <span class="sitename">Sample</span>
                   <div class="linkdes">In solitude, where we are least alone.</div>
                 </a>

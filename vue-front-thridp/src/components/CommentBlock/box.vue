@@ -47,7 +47,7 @@
         <div class="comment-user-avatar">
           <!--src="http://q.qlogo.cn/headimg_dl?dst_uin=1359643068&spec=100&img_type=jpg"/>-->
           <img
-              :src="qqAvatar?qqAvatar:userInfo.qqAvatar?userInfo.qqAvatar:userInfo.avatarUrl?userInfo.avatarUrl:'https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/nologin.png'">
+              :src="qqAvatar?qqAvatar:userInfo.qqAvatar?userInfo.qqAvatar:userInfo.avatarUrl?userInfo.avatarUrl:'https://fastly.jsdelivr.net/gh/Nyanekoplus/js@master/data/nologin.png'">
           <div class="socila-check qq-check"><i class="fa fa-qq" aria-hidden="true"></i></div>
           <div class="socila-check gravatar-check"><i class="fa fa-google" aria-hidden="true"></i></div>
         </div>

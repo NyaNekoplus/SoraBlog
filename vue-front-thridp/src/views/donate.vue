@@ -1,6 +1,6 @@
 <template>
   <div>
-    <cover title="功德箱" cover-src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/donate.jpg"/>
+    <cover title="功德箱" cover-src="https://fastly.jsdelivr.net/gh/Nyanekoplus/js@master/data/donate.jpg"/>
     <page-content>
       <article class="post type-post status-publish format-standard hentry category-uncategorized tag-bilibili tag-3 tag-5 tag-4">
         <div class="entry-content">
@@ -53,7 +53,7 @@
           <p></p>
           <p>
             <a href="https://sora.vin/Donate" target="_blank" rel="nofollow">
-              <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/gd.jfif"
+              <img src="https://fastly.jsdelivr.net/gh/Nyanekoplus/js@master/data/gd.jfif"
                    alt="功德无量"
                    title="功德无量"
                    width="100%">

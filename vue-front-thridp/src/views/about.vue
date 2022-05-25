@@ -2,7 +2,7 @@
   <div>
     <cover
         title="关于"
-        cover-src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/about.png"
+        cover-src="https://fastly.jsdelivr.net/gh/Nyanekoplus/js@master/data/about.png"
     />
     <page-content>
       <article class="page type-page status-publish has-post-thumbnail hentry">

@@ -2,7 +2,7 @@
   <div>
     <div id="mo-nav" :class="sidebarOn?'open':''">
       <div class="m-avatar">
-        <img src="https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png">
+        <img src="https://fastly.jsdelivr.net/gh/Nyanekoplus/js@master/data/avatar0.png">
       </div>
       <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">
         Vincent Tsai
@@ -235,7 +235,7 @@ export default {
       let script = document.createElement('script')
 
       script.type = 'text/javascript'
-      script.src = 'https://cdn.jsdelivr.net/gh/yremp/yremp-js@1.5/sakura.js'
+      script.src = 'https://fastly.jsdelivr.net/gh/yremp/yremp-js@1.5/sakura.js'
 
       let effect = this.$refs.dynamicEffect;
       effect.appendChild(script);
