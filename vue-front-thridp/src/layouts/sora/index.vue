@@ -178,9 +178,9 @@ export default {
   transform: scale(1.5,1);
 }
 
-
+/*https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/landscape.jfif*/
 .centerbg{
-  background-image: url('https://cdn.jsdelivr.net/gh/Nyanekoplus/js@master/data/landscape.jfif');
+  background-image: url('https://s2.loli.net/2022/03/21/PN8eMdBf12nuOtK.jpg');
   background-position: center center;
   background-attachment: inherit;
 }

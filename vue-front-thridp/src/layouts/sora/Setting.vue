@@ -100,11 +100,37 @@
     </div>
     <canvas id="night-mode-cover"></canvas>
 
+<!--
+    <div id="aplayer-float" class="aplayer aplayer-withlist aplayer-fixed aplayer-narrow" style="z-index: 100;">
+      <div class="aplayer-body ap-hover" style="width: 400px;">
+        <div class="aplayer-pic">
+          <aplayer
+              :music="{
+              title: 'Practise Love',
+              artist: 'JJ Lin',
+              src: 'https://image.sora.vin/music/practise-love.mp3',
+              pic: 'https://image.sora.vin/music/practise-love.jpg'
+            }"
+          />
+        </div>
+
+        <div class="aplayer-miniswitcher">
+          <button class="aplayer-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 32 32"><path d="M22 16l-10.105-10.6-1.895 1.987 8.211 8.613-8.211 8.612 1.895 1.988 8.211-8.613z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+-->
+    <!--
     <aside id="secondary" class="widget-area" role="complementary" style="left: -400px;" v-if="sakuraWidget">
       <div class="heading">php _e('Widgets') /*小工具*/ </div>
-      <div class="sakura_widget">
 
+      <div class="sakura_widget">
+        fff
       </div>
+
       <div class="show-hide-wrap">
         <aplayer
             :music="{
@@ -113,11 +139,12 @@
               src: 'https://image.sora.vin/music/practise-love.mp3',
               pic: 'https://image.sora.vin/music/practise-love.jpg'
             }"
-            mini
+
         />
       </div>
     </aside>
-    <!--
+    -->
+<!--
     <aplayer
         :music="{
               title: 'Practise Love',
@@ -125,18 +152,18 @@
               src: 'https://image.sora.vin/music/practise-love.mp3',
               pic: 'https://image.sora.vin/music/practise-love.jpg'
             }"
-        mini
     />-->
   </div>
 </template>
 
 <script>
 import {mapMutations} from 'vuex';
-import Aplayer from 'vue-aplayer'
+import Mplayer from "../../components/Player/Mplayer";
+//import Aplayer from 'vue-aplayer'
 export default {
   name: "SoraSetting",
   components: {
-    Aplayer
+    Mplayer
   },
   data: () => ({
     keyword: '',
@@ -285,7 +312,8 @@ export default {
     if (this.$store.getters.snowEffect)snow_on = true;
     document.body.style = this.$store.getters.background;
     document.getElementById('night-mode-cover').style.visibility = this.$store.getters.dark?'visible':'hidden';
-  }
+
+  },
 }
 </script>
 

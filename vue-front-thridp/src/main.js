@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 
 import router from './router'
-
+import "aplayer/dist/APlayer.min.css";
 /*
 import Viewer from "v-viewer";
 import 'viewerjs/dist/viewer.min.css'

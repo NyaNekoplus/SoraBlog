@@ -146,6 +146,12 @@ export default {
         value: 2022,
         monthList: [
           {
+            value: 3,
+            dayList: [
+              {value: 20,description: 'Fix to music widget display problem. Change cover picture source, using <a href="https://sm.ms" target=\"_blank\" rel=\"noopener noreferrer\">sm.ms</a> now.'},
+            ]
+          },
+          {
             value: 1,
             dayList: [
               {value: 27,description: "Fix to function formatDate, hour=getHours()"},

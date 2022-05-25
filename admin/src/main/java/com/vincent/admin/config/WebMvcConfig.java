@@ -41,7 +41,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowCredentials(true).maxAge(3600);
     }
 */
-/*
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") // 所有的当前站点的请求地址，都支持跨域访问。
@@ -50,6 +50,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "OPTIONS", "DELETE", "PUT") // 当前站点支持的跨域请求类型是什么
                 .maxAge(3600); // 超时时长设置为1小时。 时间单位是秒。
     }
-*/
+
 
 }

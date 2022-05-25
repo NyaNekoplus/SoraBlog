@@ -4,6 +4,7 @@
       <router-view :key="$router.path"/>
   </div>
 
+
 </template>
 
 <script>

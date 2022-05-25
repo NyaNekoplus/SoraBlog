@@ -6,12 +6,18 @@
       </div>
     </div>
     <router-view/>
+    <Mplayer/>
   </div>
 </template>
 
 <script>
+import Mplayer from "./components/Player/Mplayer";
+
 export default {
   name: 'Sora',
+  components: {
+    Mplayer
+  },
   metaInfo: {
     title: 'Sora',
     titleTemplate: '%s | 悠远的苍穹',
